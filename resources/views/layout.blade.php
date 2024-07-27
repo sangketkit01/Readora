@@ -23,5 +23,9 @@
             <a href="#"><img src="/nav/profile.png" alt=""></a>
         </div>
     </div>
+
+    <div class="@yield('containerClassName')">
+        @yield('content')
+    </div>
 </body>
 </html>
