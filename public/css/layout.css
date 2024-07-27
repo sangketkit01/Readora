@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+*{
+    margin: 0;
+}
+
+.navbar{
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar div a{
+    text-decoration: none;
+    font-family: "Roboto",sans-serif;
+    font-weight: 800;
+    color: #33436F;
+    font-size: 24px;
+}
+
+.left-menu{
+    margin-left: 20px;
+}
+
+.left-menu a:last-child{
+    margin-left: 15px;
+}
+
+.left-menu a:hover{
+    color: #9EB5D0;
+}
+
+.right-menu{
+    margin-right: 20px;
+}
+
+.right-menu a:not(:last-child){
+    margin-right: 15px;
+}
+
+.right-menu a{
+    display: inline-block;
+    align-items: center;
+    background-color: #DBE0E6;
+    padding: 10px;
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+}
+
+.right-menu a:hover{
+    background-color: #b5b7bc;
+}
+
+.right-menu , .left-menu{
+    margin-top: 30px;
+}
+
+.web-title{
+    margin: 0 auto;
+}
+
+#title{
+    font-size: 40px;
+    color: #9EB5D0;
+}
