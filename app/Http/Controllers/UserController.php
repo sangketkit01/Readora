@@ -8,10 +8,6 @@ class UserController extends Controller
 {
     //
     function profile(){
-        return view('all.profile');
-    }
-
-    function unfinish(){
-        return view('reader.unfinish_read');
+        return view('user.profile');
     }
 }

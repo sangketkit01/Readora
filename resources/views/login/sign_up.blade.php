@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign in</title>
-    <link rel="stylesheet" href="/css/all/sign_in.css">
+    <link rel="stylesheet" href="/css/login/sign_in.css">
 </head>
 
 <body>

@@ -1,7 +1,7 @@
-@extends('all.layout')
+@extends('user.layout')
 @section('title','Home')
 @push('style')
-    <link rel="stylesheet" href="/css/all/index.css">
+    <link rel="stylesheet" href="/css/user/index.css">
 @endpush
 @section('containerClassName',"indexContainer")
 

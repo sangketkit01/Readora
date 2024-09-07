@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->increments("commentID");
-            $table->unsignedInteger("userID");
-            $table->text("comment_content");
-
-            $table->foreign("userID")->references("userID")->on("userdbs")->onDelete("cascade");
+        Schema::create('userdbs', function (Blueprint $table) {
+            $table->string("username")->primary();
+            $table->string("profile");
+            $table->string("name",60);
+            $table->string("password");
+            $table->string("email",255);
+            $table->char("gender",1);
             $table->timestamps();
-
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('userdbs');
     }
 };

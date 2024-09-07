@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign in</title>
-    <link rel="stylesheet" href="/css/all/sign_in.css">
+    <link rel="stylesheet" href="/css/login/sign_in.css">
 </head>
 <body>
     <div class="container">
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="third-party-login">
-                        <a href="{{route('google-auth')}}" type="button" id="google"><img src="/login/Google.png" alt="" id="google-img"> เข้าสู่ระบบ Google</a>
+                        <a href="{{route('google-auth')}}" type="button" id="google"><img src="/login/Google.png" alt="" id="google-img"> เข้าสู่ระบบด้วย Google</a>
                         <a href="#" type="button" id="facebook">เข้าสู่ระบบด้วย Facebook</a>
                     </div>
                 </form>

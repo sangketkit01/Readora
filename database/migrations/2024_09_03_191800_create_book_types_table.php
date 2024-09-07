@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::dropIfExists('writers');
-        Schema::create('writers', function (Blueprint $table) {
-            $table->increments("writerID")->primary();
-            $table->unsignedInteger("userID");
-
-            $table->foreign("userID")->references("userID")->on("userdbs")->onDelete("cascade");
-
+        Schema::create('book_types', function (Blueprint $table) {
+            $table->increments("bookTypeID");
+            $table->string("bookType_name",45);
         });
     }
 
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('writers');
+        Schema::dropIfExists('book_types');
     }
 };

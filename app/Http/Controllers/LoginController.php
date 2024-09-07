@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\Session;
 class LoginController extends Controller
 {
     //
-    function logout(){
-        Session::flush();
-        return redirect()->route('sign_in');
-    }
 
     function verify(Request $request){
         $user = DB::table("userdbs")->where("username",$request->input("username"))->first();
@@ -32,13 +28,14 @@ class LoginController extends Controller
 
     function insert(Request $request){
         $request->validate([
-            "username" => "unique:userdbs,username",
             "email" => "unique:userdbs,email",
+            "password" => "min:8",
             "confirm" => "same:password"
         ]);
 
         $insert = [
             "username" =>  $request->input("username") , 
+            "name" => $request->input("username"),
             "email" => $request->input("email") , 
             "password" => Hash::make($request->input("password")) ,
             "gender" => $request->input("gender") , 
@@ -52,5 +49,10 @@ class LoginController extends Controller
         DB::table("userdbs")->insert($insert);
 
         return redirect()->route("sign_in");
+    }
+
+    function logout(){
+        Session::flush();
+        return redirect()->route('sign_in');
     }
 }
