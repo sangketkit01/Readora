@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body{
+    background-color: #F1F1F1;
+}
+
+.header-left{
+    display: flex;
+    align-items: center;
+}
+
+.header-left p{
+    margin-right: 10px;
+}
+
+.header-left select{
+    border: none;
+    outline: none;
+}
+
+.header-right{
+    display: flex;
+}
+
+#edit-button , #watch-example-button {
+    display: flex;
+    text-decoration: none;
+    width: 101px;
+    height: 31px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+}
+
+#edit-button{
+    color: #666666;
+    background-color: #A4A4A4;
+    margin-right: 10px;
+}
+
+#watch-example-button{
+    color: white;
+    background-color: #4F5D87;
+}
+
+#cover-image{
+    max-width: 500px;
+}
+
+#inputImage{
+   display: none;
+   margin-top: 15px;
+}
+
+#input-image-label{
+    height: 422px;
+    width: 384px;
+    background-color: #f8f9fa;
+    text-align: center;
+    background-image: url("../../novel/add_photo.png");
+    background-position: center;
+    background-size:200px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+#input-image-label:hover{
+    background-color: #f1f2f2;
+}
+
+.image-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-title{
+   display: flex;
+   flex-direction: column;
+   justify-content: start;
+   width: 643px;
+   height: 422px;
+   background-color: #D9D9D9;
+}
+
+.add-title label{
+    font-size: 1.5em;
+    margin: 20px 20px 0 20px;
+    font-family: "Inter",sans-serif;
+    font-weight: bold;
+    padding: 5px 5px;
+}
+
+.profile{
+    margin-top: 15px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#profile-image{
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit:cover;
+}
+
+#profile-name{
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    padding-top: 12px;
+}
+
+.recommend{
+    background-color: black;
+}
+
+
+
+
+
+
