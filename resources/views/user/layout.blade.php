@@ -12,6 +12,7 @@
     @stack('style')
 </head>
 
+
 <body>
     <div class="navbar">
         <div class="left-menu">
@@ -43,6 +44,8 @@
     <div class="@yield('containerClassName')">
         @yield('content')
     </div>
+
+    
 </body>
 @stack('scripts')
 
