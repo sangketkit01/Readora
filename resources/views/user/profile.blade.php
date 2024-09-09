@@ -4,11 +4,6 @@
 
 @push('style')
     <link rel="stylesheet" href="/css/user/profile.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
 @endpush
 
 @section('containerClassName', 'UserContainer')
@@ -32,7 +27,7 @@
                     <p>Facebook:</p>
                     <p>รหัสผ่าน: ******* <button id="change-password">เปลี่ยนรหัสผ่าน</button></p>
                     <p>เพศ:
-                        @if ($item->gender == 'F')
+                        @if($item->gender == 'F')
                             หญิง
                         @elseif($item->gender == 'M')
                             ชาย
@@ -42,7 +37,7 @@
             @endforeach
             <div class="user-actions">
                 <button id="edit-info-button">แก้ไขข้อมูล</button>
-                <button id="logout">ออกจากระบบ</button>
+                <button id="logout" onclick="window.location.href='/signin'">ออกจากระบบ</button>
             </div>
         </div>
 
@@ -76,7 +71,6 @@
         @endforeach
     </div>    
     
-
     <script>
         document.getElementById('user-menu').addEventListener('change', function() {
             document.querySelectorAll('.content-section', ).forEach(function(section) {
