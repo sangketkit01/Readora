@@ -17,6 +17,7 @@ Route::get("/signup",[WebController::class,"sign_up"])->name('sign_up');
 Route::get("/forgot",[WebController::class,"forgot"])->name('forgot');
 
 Route::get('/profile',[UserController::class,"profile"])->name('profile');
+Route::post('/update_profile', [UserController::class, 'update'])->name('update.profile');
 
 Route::post('/login_verify',[LoginController::class,"verify"])->name("login_verify");
 Route::post("/signup_insert",[LoginController::class,"insert"])->name("signup_insert");

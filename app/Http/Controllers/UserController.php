@@ -16,4 +16,14 @@ class UserController extends Controller
         $book = Book::all();
         return view('user.profile', compact('info'));
     }
+
+    // function update(Request $request){
+    //     $user = Userdb::where('username', Session::get('user')->username)->first();
+    //     $user->name = $request->input('name');
+    //     $user->email = $request->input('email');
+    //     $user->gender = $request->input('gender');
+    //     $user->save();
+    //     return redirect()->route('profile')->with('success', 'ข้อมูลผู้ใช้ได้รับการอัปเดตเรียบร้อยแล้ว');
+
+    // }
 }
