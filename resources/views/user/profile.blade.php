@@ -87,8 +87,8 @@
                     <option value="F" @if ($item->gender == 'F') selected @endif>หญิง</option>
                     <option value="M" @if ($item->gender == 'M') selected @endif>ชาย</option>
                 </select> <br>
-                <button id="cancle-edit-info-button">ยกเลิก</button>
-                <button type="submit" id="submit-new-info">บันทึก</button>
+                <button type="button" id="cancle-edit-info-button" onclick="window.location.href='/profile'">ยกเลิก</button>
+                <button id="submit-new-info">บันทึก</button>
             </form>
         @endforeach
     </div>
@@ -112,11 +112,13 @@
         document.getElementById('cancle-edit-info-button').addEventListener('click', function() {
             document.querySelector('.edit-user-info').classList.add('hidden');
             document.getElementById('profile').classList.remove('hidden');
+
         });
 
         document.getElementById('change-password').addEventListener('click', function() {
             alert("dd")
         });
+
 
     </script>
 @endsection
