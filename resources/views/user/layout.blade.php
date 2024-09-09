@@ -12,7 +12,7 @@
     @stack('style')
 </head>
 
-<body style="background-color: #F1F1F1">
+<body style="background-color: #F1F1F1; margin-bottom:20px;">
     <div class="navbar">
         <div class="left-menu">
             <a href="#" id="title">เอาชื่อเว็บมาใส่</a>

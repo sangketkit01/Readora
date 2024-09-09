@@ -4,11 +4,14 @@
 .header-left {
     display: flex;
     align-items: center;
+    position: relative;
+    right: 8%;
 }
 
 .header-left p {
     margin-right: 10px;
 }
+
 
 .header-left select {
     border: none;
@@ -25,8 +28,12 @@
     margin-top: 20px;
 }
 
+.createNovelContainer{
+    margin-left: 75px;
+}
+
 #edit-button,
-#watch-example-button {
+#submit-button {
     display: flex;
     text-decoration: none;
     width: 101px;
@@ -47,7 +54,7 @@
     margin-right: 10px;
 }
 
-#watch-example-button {
+#submit-button {
     color: white;
     background-color: #4F5D87;
 }
@@ -100,6 +107,11 @@
     padding: 5px 5px;
 }
 
+.type{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
 .profile {
     margin-top: 15px;
     margin-left: 20px;
@@ -123,8 +135,17 @@
     padding-top: 12px;
 }
 
-.recommend {
+.row .recommend {
     background-color: white;
+    width: 1040px;
+    height: 196px;
+    position: relative;
+    bottom: 3%;
+    left: 2px;
+}
+
+.row .recommend > div{
+    margin-top: 20px;
 }
 
 .row {
@@ -135,44 +156,41 @@
 
 .header-left p {
     margin: 0;
-    /* ปรับให้พอดีกับ select */
 }
+
 
 .header-left select {
     margin-left: 10px;
-    /* เพิ่มระยะห่างระหว่างข้อความกับ select */
 }
 
 
-/* ปรับขนาดและการจัดวางปุ่มด้านล่างให้ตรงกับด้านบน */
 .group-35,
 .group-36 {
     display: inline-block;
     width: 137px;
-    /* กำหนดขนาดความกว้างที่เท่ากับปุ่มด้านบน */
     height: 41px;
     position: relative;
     margin-right: 10px;
-    /* เพิ่มระยะห่างระหว่างปุ่ม */
     box-sizing: border-box;
     position: relative;
 }
 
-.div35,
-.div36 {
+.div35,.div36 {
     text-align: center;
     font-family: "Inter-SemiBold", sans-serif;
     font-size: 16px;
     font-weight: 600;
     position: absolute;
     top: 8px;
-    /* จัดข้อความให้อยู่ตรงกลางปุ่ม */
     left: 0;
     right: 0;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    padding: 0 5px;
 }
 
-.rectangle-127,
-.rectangle-123 {
+.rectangle-127,.rectangle-123 {
     width: 137px;
     height: 41px;
     border-radius: 100px;
@@ -186,19 +204,9 @@
     border: 1.5px solid #a4a4a4;
     background-color: transparent;
 }
-
-/* ปรับการจัดวางให้ปุ่มด้านบนและล่างอยู่ในระดับเดียวกัน */
-#edit-button,
-#watch-example-button {
-    width: 137px;
-    /* ปรับขนาดความกว้างให้ตรงกับปุ่มด้านล่าง */
-    height: 41px;
-}
-
-/* การจัดเรียงปุ่มด้านล่างในแนวนอน */
 .recommend .text-end {
     display: flex;
     justify-content: flex-end;
-    /* จัดปุ่มให้ชิดขวาตามดีไซน์ */
 
 }
+

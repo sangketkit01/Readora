@@ -4,14 +4,13 @@
 <link rel="stylesheet" href="/css/user/create_novel.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+
 @endpush 
 @section('containerClassName', "createNovelContainer")
 @section('content')
 <div class="container">
-    <form action="{{route('novel.insert')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('novel.insert')}}" method="post" id="form" enctype="multipart/form-data">
+        @csrf
         <div class="row justify-content-center row-header">
             <div class="col-7">
                 <div class="header-left d-flex align-items-center" style="margin-top: 12px;">
@@ -26,7 +25,7 @@
             <div class="col-3 ms-3">
                 <div class="header-right">
                     <a href="#" id="edit-button">แก้ไข</a>
-                    <a href="#" id="watch-example-button">ดูตัวอย่าง</a>
+                    <button type="button" onclick="submitForm()" id="submit-button">ยืนยัน</button>
                 </div>
             </div>
         </div> <br>
@@ -36,35 +35,46 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="image-title text-center">
-                            <img src="" alt="" id="cover-image" />
+                            <img src="" alt="" id="cover-image">
                             <label for="inputImage" id="input-image-label"></label>
-                            <input type="file" id="inputImage" />
+                            <input type="file" id="inputImage" required name="inputImage" accept="image/*">
                         </div>
                     </div>
                     <div class="col-8">
                         <div class="add-title">
-                            <label contenteditable="true">เพิ่มชื่อเรื่อง</label>
+                            <label contenteditable="true" id="add-title-input">เพิ่มชื่อเรื่อง</label>
+                            <textarea id="hiddenTextareaTitle" name="title" style="display:none;"></textarea>
                             <div class="profile d-flex align-items-center">
                                 <img id="profile-image" src="{{session('user')->profile}}" alt="">
                                 <p for="profile-image" id="profile-name">{{session('user')->name}}</p>
                             </div>
+                            <div class="type">
+                                <select name="type" id="type">
+                                    @foreach ($book_types as $type)
+                                        <option value="{{$type->bookTypeID}}">{{$type->bookType_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                         </div>
                     </div>
                 </div> <br>
 
-                <div class="row recommend justify-content-between align-items-center">
+                <div class="row recommend justify-content-between">
                     <div class="col-8">
                         <h4>แนะนำเนื้อเรื่อง</h4>
+                        <p contenteditable="true" id="recommend-input">เพิ่มคำแนะนำเนื้อเรื่อง</p>
+                        <textarea id="hiddenTextareaRecommend" name="recommend" style="display:none;"></textarea>
                     </div>
                     <div class="col-4 text-end">
                         <div class="group-36">
-                            <div class="div36" style="color: rgb(140, 140, 140);">แก้ไขแนะนำเรื่อง</div>
+                            <button type="button" class="div36" style="color: rgb(140, 140, 140);">แก้ไขแนะนำเรื่อง</button>
                             <div class="rectangle-123"></div>
                         </div>
 
                         <div class="group-35">
                             <div class="rectangle-127"></div>
-                            <div class="div35" style="color: rgb(255, 255, 255);">เพิ่มแนะนำเรื่อง</div>
+                            <button type="button" class="div35" style="color: rgb(255, 255, 255);">เพิ่มแนะนำเรื่อง</button>
                         </div>
 
                     </div>
@@ -72,53 +82,8 @@
             </div>
         </div>
 
+
     </form>
-    <!-- <form action="" method="post">
-        <div class="header">
-            <div class="header-left">
-                <p>ตั้งค่าสถานะเรื่อง</p>
-                <select name="status" id="">
-                    <option value="0">เฉพาะฉัน</option>
-                    <option value="1">สาธารณะ</option>
-                </select>
-            </div>
-    
-            <div class="header-right">
-                <a href="#" id="edit-button">แก้ไข</a>
-                <a href="#" id="watch-example-button">ดูตัวอย่าง</a>
-            </div>
-    
-        </div>
-
-        <div class="main">
-            <div class="cover">
-                <div class="image-title">
-                    <img src="" alt="" id="cover-image">
-                    <label for="inputImage" id="input-image-label"></label>
-                    <input type="file" id="inputImage">
-                </div>
-                <div class="add-title">
-                    <label contenteditable="true">เพิ่มชื่อเรื่อง</label>
-                    <div class="profile">
-                        <img id="profile-image" src="{{session('user')->profile}}" alt="">
-                        <p for="profile-image" id="profile-name">{{session('user')->name}}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="recommend">
-                <div class="header-recommend">
-                    <h4>แนะนำเนื้อเรื่อง</h4>
-                </div>
-
-                <div class="recommend-button">
-                    <a href="" id="edit-recommend">แก้ไขแนะนำเนื้อเรื่อง</a>
-                    <a href="" id="add-recommend">เพิ่มแนะนำเนื้อเรื่อง</a>
-                </div>
-            </div>
-        </div>
-
-    </form> -->
 </div>
 @endsection 
 @push('scripts')
@@ -139,12 +104,41 @@
 
                 const imageUrl = URL.createObjectURL(file);
                 inputImageLabel.style.backgroundImage = `url(${imageUrl})`;
-                //inputImageLabel.style.backgroundColor = 'transparent';
                 inputImageLabel.style.backgroundSize = "contain";
 
                 inputImage.style.display = "inline-block";
             }
         });
+
     });
+
+    function submitForm(){
+            let recommend = document.getElementById("hiddenTextareaRecommend");
+            let title = document.getElementById("hiddenTextareaTitle");
+
+            let recommendInput = document.getElementById("recommend-input").innerHTML;
+            let titleInput = document.getElementById("add-title-input").innerHTML;
+
+            if(titleInput === "เพิ่มชื่อเรื่อง" ||  titleInput=== ""){
+                alert("กรุณาเพิ่มชื่อเรื่อง");
+                return;
+            }
+
+            if(recommendInput === ""){
+                recommendInput = "ไม่มีคำแนะนำเนื้อเรื่อง";
+            }
+
+            recommend.value = recommendInput;
+            title.value = titleInput;
+
+
+            let form = document.getElementById("form");
+            if(form.checkValidity()){
+                form.submit();
+            }else{
+                alert("กรุณาใส่รูปภาพ")
+            }
+
+        }
 </script>
 @endpush
