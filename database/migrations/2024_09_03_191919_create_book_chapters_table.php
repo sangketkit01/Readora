@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('book_chapters', function (Blueprint $table) {
-            $table->string("chapterID",10)->primary();
-            $table->string("bookID",10);
+            $table->increments("chapterID");
+            $table->unsignedInteger("bookID");
             $table->unsignedInteger("bookTypeID");
             $table->text("chapter_content");
             $table->string("chapter_name",45);
