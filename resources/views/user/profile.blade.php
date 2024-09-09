@@ -1,4 +1,4 @@
-@extends('all.layout')
+@extends('user.layout')
 @section('title','Profile')
 @push('style')
     <link rel="stylesheet" href="/css/user/profile.css">
