@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('chapter_comments', function (Blueprint $table) {
             $table->increments("commentID");
-            $table->string("chapterID",10);
+            $table->unsignedInteger("chapterID");
             $table->string("username");
             $table->string("comment_message",255);
             $table->timestamps();

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->increments("reportID");
-            $table->string("bookID",10);
+            $table->unsignedInteger("bookID");
             $table->text("report_message");
             $table->timestamps();
             $table->softDeletes();
