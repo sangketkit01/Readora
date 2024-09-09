@@ -12,8 +12,7 @@
     @stack('style')
 </head>
 
-
-<body>
+<body style="background-color: #F1F1F1">
     <div class="navbar">
         <div class="left-menu">
             <a href="#" id="title">เอาชื่อเว็บมาใส่</a>
@@ -30,7 +29,7 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>
                         <li><a class="dropdown-item" href="{{route('sign_out')}}">Logout</a></li>
                     </ul>
                 </div>
@@ -46,7 +45,7 @@
     </div>
 
     
-</body>
+</>
 @stack('scripts')
 
 </html>

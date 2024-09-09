@@ -15,4 +15,8 @@ class NovelController extends Controller
 
         return view("user.create_novel");
     }
+
+    public function insertNewNovel(Request $request){
+        
+    }
 }

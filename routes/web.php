@@ -17,6 +17,7 @@ Route::get("/signup",[WebController::class,"sign_up"])->name('sign_up');
 Route::get("/forgot",[WebController::class,"forgot"])->name('forgot');
 
 Route::get('/profile',[UserController::class,"profile"])->name('profile');
+Route::post('/update_profile', [UserController::class, 'update'])->name('update.profile');
 
 Route::post('/login_verify',[LoginController::class,"verify"])->name("login_verify");
 Route::post("/signup_insert",[LoginController::class,"insert"])->name("signup_insert");
@@ -26,3 +27,4 @@ Route::get('/auth/google',[GoogleController::class,"redirect"])->name("google-au
 Route::get("/auth/google/call-back",[GoogleController::class,"callbackGoogle"]);
 
 Route::get("/create_novel",[NovelController::class,"page"])->name("create_novel");
+Route::post("/create_novel/insert",[NovelController::class,"insertNewNovel"])->name("novel.insert");

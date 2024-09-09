@@ -1,28 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-body{
-    background-color: #F1F1F1;
-}
 
-.header-left{
+.header-left {
     display: flex;
     align-items: center;
 }
 
-.header-left p{
+.header-left p {
     margin-right: 10px;
 }
 
-.header-left select{
+.header-left select {
     border: none;
     outline: none;
 }
 
-.header-right{
+.header-right {
     display: flex;
 }
 
-#edit-button , #watch-example-button {
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+#edit-button,
+#watch-example-button {
     display: flex;
     text-decoration: none;
     width: 101px;
@@ -33,80 +37,84 @@ body{
     border-radius: 50px;
 }
 
-#edit-button{
-    color: #666666;
-    background-color: #A4A4A4;
+#edit-button a:link {
+    color: #a4a4a4;
+}
+
+#edit-button {
+    border: 1.5px solid #a4a4a4;
+    background-color: transparent;
     margin-right: 10px;
 }
 
-#watch-example-button{
+#watch-example-button {
     color: white;
     background-color: #4F5D87;
 }
 
-#cover-image{
+#cover-image {
     max-width: 500px;
 }
 
-#inputImage{
-   display: none;
-   margin-top: 15px;
+#inputImage {
+    display: none;
+    margin-top: 15px;
 }
 
-#input-image-label{
+#input-image-label {
     height: 422px;
     width: 384px;
     background-color: #f8f9fa;
     text-align: center;
     background-image: url("../../novel/add_photo.png");
     background-position: center;
-    background-size:200px;
+    background-size: 200px;
     background-repeat: no-repeat;
     cursor: pointer;
 }
 
-#input-image-label:hover{
+#input-image-label:hover {
     background-color: #f1f2f2;
 }
 
-.image-title{
+.image-title {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.add-title{
-   display: flex;
-   flex-direction: column;
-   justify-content: start;
-   width: 643px;
-   height: 422px;
-   background-color: #D9D9D9;
+.add-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 643px;
+    height: 422px;
+    background-color: #D9D9D9;
 }
 
-.add-title label{
+.add-title label {
     font-size: 1.5em;
     margin: 20px 20px 0 20px;
-    font-family: "Inter",sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: bold;
     padding: 5px 5px;
 }
 
-.profile{
+.profile {
     margin-top: 15px;
     margin-left: 20px;
     display: flex;
     align-items: center;
 }
 
-#profile-image{
+#profile-image {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    object-fit:cover;
+    object-fit: cover;
 }
 
-#profile-name{
+#profile-name {
     margin-left: 10px;
     display: flex;
     align-items: center;
@@ -115,12 +123,82 @@ body{
     padding-top: 12px;
 }
 
-.recommend{
-    background-color: black;
+.recommend {
+    background-color: white;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    margin: 0;
+}
+
+.header-left p {
+    margin: 0;
+    /* ปรับให้พอดีกับ select */
+}
+
+.header-left select {
+    margin-left: 10px;
+    /* เพิ่มระยะห่างระหว่างข้อความกับ select */
 }
 
 
+/* ปรับขนาดและการจัดวางปุ่มด้านล่างให้ตรงกับด้านบน */
+.group-35,
+.group-36 {
+    display: inline-block;
+    width: 137px;
+    /* กำหนดขนาดความกว้างที่เท่ากับปุ่มด้านบน */
+    height: 41px;
+    position: relative;
+    margin-right: 10px;
+    /* เพิ่มระยะห่างระหว่างปุ่ม */
+    box-sizing: border-box;
+    position: relative;
+}
 
+.div35,
+.div36 {
+    text-align: center;
+    font-family: "Inter-SemiBold", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    position: absolute;
+    top: 8px;
+    /* จัดข้อความให้อยู่ตรงกลางปุ่ม */
+    left: 0;
+    right: 0;
+}
 
+.rectangle-127,
+.rectangle-123 {
+    width: 137px;
+    height: 41px;
+    border-radius: 100px;
+}
 
+.rectangle-127 {
+    background-color: #4f5d87;
+}
 
+.rectangle-123 {
+    border: 1.5px solid #a4a4a4;
+    background-color: transparent;
+}
+
+/* ปรับการจัดวางให้ปุ่มด้านบนและล่างอยู่ในระดับเดียวกัน */
+#edit-button,
+#watch-example-button {
+    width: 137px;
+    /* ปรับขนาดความกว้างให้ตรงกับปุ่มด้านล่าง */
+    height: 41px;
+}
+
+/* การจัดเรียงปุ่มด้านล่างในแนวนอน */
+.recommend .text-end {
+    display: flex;
+    justify-content: flex-end;
+    /* จัดปุ่มให้ชิดขวาตามดีไซน์ */
+
+}

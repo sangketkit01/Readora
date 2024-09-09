@@ -114,22 +114,6 @@
                     </div>
                 </div>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
                 <div class="recommend">
                     <h2>แนะนำ</h2>
                     <br>

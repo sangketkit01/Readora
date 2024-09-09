@@ -10,4 +10,8 @@ class Userdb extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $primaryKey = 'username';
+    public $incrementing = false;
+    protected $keyType = 'string';
 }
