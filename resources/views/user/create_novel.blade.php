@@ -1,5 +1,5 @@
 @extends('user.layout') 
-@section('title','Create Novel') 
+@section('title', 'Create Novel') 
 @push('style')
 <link rel="stylesheet" href="/css/user/create_novel.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -8,14 +8,14 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 @endpush 
-@section('containerClassName',"createNovelContainer")
+@section('containerClassName', "createNovelContainer")
 @section('content')
 <div class="container">
     <form action="{{route('novel.insert')}}" method="post" enctype="multipart/form-data">
         <div class="row justify-content-center row-header">
             <div class="col-7">
-                <div class="header-left">
-                    <p>ตั้งค่าสถานะเรื่อง</p>
+                <div class="header-left d-flex align-items-center" style="margin-top: 12px;">
+                    <p class="me-2">ตั้งค่าสถานะเรื่อง</p>
                     <select name="status" id="">
                         <option value="0">เฉพาะฉัน</option>
                         <option value="1">สาธารณะ</option>
@@ -29,10 +29,10 @@
                     <a href="#" id="watch-example-button">ดูตัวอย่าง</a>
                 </div>
             </div>
-        </div>
+        </div> <br>
 
         <div class="row justify-content-center">
-            <div class="col-12 col-md-10">
+            <div class="col-12 col-md-11">
                 <div class="row">
                     <div class="col-4">
                         <div class="image-title text-center">
@@ -50,16 +50,24 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> <br>
 
-                <div class="row recommend justify-content-between">
-                        <div class="col-8">
-                            <h4>แนะนำเนื้อเรื่อง</h4>
+                <div class="row recommend justify-content-between align-items-center">
+                    <div class="col-8">
+                        <h4>แนะนำเนื้อเรื่อง</h4>
+                    </div>
+                    <div class="col-4 text-end">
+                        <div class="group-36">
+                            <div class="div36" style="color: rgb(140, 140, 140);">แก้ไขแนะนำเรื่อง</div>
+                            <div class="rectangle-123"></div>
                         </div>
-                        <div class="col-4">
-                            <a href="" id="edit-recommend">แก้ไขแนะนำเนื้อเรื่อง</a>
-                            <a href="" id="add-recommend">เพิ่มแนะนำเนื้อเรื่อง</a>
+
+                        <div class="group-35">
+                            <div class="rectangle-127"></div>
+                            <div class="div35" style="color: rgb(255, 255, 255);">เพิ่มแนะนำเรื่อง</div>
                         </div>
+
+                    </div>
                 </div>
             </div>
         </div>
