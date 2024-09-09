@@ -17,6 +17,7 @@ class GoogleController extends Controller
     public function callbackGoogle(){
         try{
             $google_user = Socialite::driver('google')->user();
+
             $user = DB::table("userdbs")->where("email",$google_user->getEmail())->first();
             if(!$user){
                 Session::flush();
