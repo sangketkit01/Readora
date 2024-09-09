@@ -43,7 +43,9 @@
     <div class="@yield('containerClassName')">
         @yield('content')
     </div>
-</body>
+
+    
+</>
 @stack('scripts')
 
 </html>

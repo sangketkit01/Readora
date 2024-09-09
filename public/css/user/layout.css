@@ -3,7 +3,6 @@
 
 
 *{
-    margin: 0;
     font-family: "Roboto";
 }
 
@@ -89,4 +88,4 @@
     color: white;
     padding: 7px 15px;
     border-radius: 8px;
-}
+} 
