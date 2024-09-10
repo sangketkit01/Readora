@@ -42,7 +42,7 @@
                     <label for="confirm">ยืนยันรหัสผ่าน</label>
                     <input type="password" name="confirm" placeholder="ยืนยันรหัสผ่าน" required>
                     <label for="gender">เพศ</label>
-                    <select name="gender" class="gender" required>
+                    <select name="gender" class="gender">
                         <option value="none">ไม่ระบุ</option>
                         <option value="m">ชาย</option>
                         <option value="f">หญิง</option>
