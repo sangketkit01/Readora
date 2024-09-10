@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
             inputImageLabel.style.backgroundImage = `url(${imageUrl})`;
             inputImageLabel.style.backgroundSize = "contain";
 
-            inputImage.style.display = "inline-block";
         }
     });
 });

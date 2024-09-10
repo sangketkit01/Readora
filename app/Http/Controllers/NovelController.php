@@ -13,9 +13,16 @@ use function PHPUnit\Framework\isNull;
 class NovelController extends Controller
 {
     //
-    public function page(){
-        if(!Session::has("user")){
+
+    function checkLoggedIn(){
+        if (!Session::has("user")) {
             return redirect(route("sign_in"));
+        }
+    }
+
+    public function page(){
+        if($this->checkLoggedIn()){
+            return $this->checkLoggedIn();
         }
 
         $book_types = DB::table("book_types")->get();
@@ -23,6 +30,11 @@ class NovelController extends Controller
     }
 
     public function insertNewNovel(Request $request){
+        if ($this->checkLoggedIn()) {
+            return $this->checkLoggedIn();
+        }
+
+
         $file = $request->file('inputImage');
         $newFileName = uniqid('', true) . '.' . $file->getClientOriginalExtension();
         $fileUrl = Storage::putFileAs('public/Picture', $file, $newFileName);
@@ -50,7 +62,13 @@ class NovelController extends Controller
 
 
     public function edit($bookID){
+        if ($this->checkLoggedIn()) {
+            return $this->checkLoggedIn();
+        }
+
+        $book_types = DB::table("book_types")->get();
         $data = Book::where("bookID",$bookID)->get();
-        return view("user.edit_novel",compact("data"));
+
+        return view("user.edit_novel",compact("data","book_types"));
     }
 }

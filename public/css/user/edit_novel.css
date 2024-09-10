@@ -78,7 +78,7 @@ body {
     text-align: center;
     background-image: url("../../novel/add_photo.png");
     background-position: center;
-    background-size: 200px;
+    background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
 }
@@ -222,6 +222,7 @@ body {
 
 #chapter {
     background-color: rgb(255, 255, 255);
+    height: auto;
 }
 
 .chap {
@@ -279,13 +280,14 @@ strong {
 img {
     width: 100px;
     height: 100px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 10px;
     margin-inline: 20px;
 }
 
 #sub-chap {
     margin: 0;
+    padding: 10px 0;
 }
 
 #mainchap {
@@ -299,4 +301,12 @@ img {
 #pub {
     border: 1px solid black;
     border-radius: 10px;
+    padding: 0 5px;
+}
+
+.header-left{
+    margin: auto 0;
+    height: 50px;
+    position: relative;
+    top: 3%;
 }

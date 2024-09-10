@@ -26,20 +26,19 @@
                 </div>
             </div>
         </div> <br>
-
+        @foreach ($data as $item)
         <div class="row justify-content-center">
             <div class="col-12 col-md-11">
                 <div class="row">
                     <div class="col-4">
                         <div class="image-title text-center">
-                            <img src="" alt="" id="cover-image">
-                            <label for="inputImage" id="input-image-label"></label>
+                                <label for="inputImage" id="input-image-label" style="background-image: url({{asset($item->book_pic)}})"></label>
                             <input type="file" id="inputImage" required name="inputImage" accept="image/*">
                         </div>
                     </div>
                     <div class="col-8">
                         <div class="add-title">
-                            <label contenteditable="true" id="add-title-input">เพิ่มชื่อเรื่อง</label>
+                            <label contenteditable="true" id="add-title-input">{{$item->book_name}}</label>
                             <textarea id="hiddenTextareaTitle" name="title" style="display:none;"></textarea>
                             <div class="profile d-flex align-items-center">
                                 <img id="profile-image" src="{{session('user')->profile}}" alt="">
@@ -48,7 +47,11 @@
                             <div class="type">
                                 <select name="type" id="type">
                                     @foreach ($book_types as $type)
-                                        <option value="{{$type->bookTypeID}}">{{$type->bookType_name}}</option>
+                                        @if ($item->bookTypeID == $type->bookTypeID)
+                                            <option value="{{$type->bookTypeID}}" selected>{{$type->bookType_name}}</option>
+                                        @else
+                                             <option value="{{$type->bookTypeID}}">{{$type->bookType_name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -98,10 +101,13 @@
                         </div>
                     </div>
                     <hr>
+                </div>
+
+                <div class="row recommend justify-content-between">
                     <div class="col-8" id="sub-chap">
                         <input type="checkbox" name="chap" id="chap" class="chap">
                         <strong>1</strong>
-                        <img src="./data.png" alt="">
+                        <img src="{{asset('storage\Picture\66e013e65e6c94.92140139.jpg')}}" alt="">
                         <strong>มิโดริยะ</strong>
                     </div>
                     <div class="col-4 text-end">
@@ -116,6 +122,7 @@
                     <hr>
                 </div>
             </div>
+             @endforeach
     </form>
 </div>
 @endsection

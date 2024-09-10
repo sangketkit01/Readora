@@ -10,4 +10,24 @@ class Book extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    function BookType(){
+        return $this->belongsTo(Book_type::class);
+    }
+
+    function Chapter(){
+        return $this->hasMany(Book_chapter::class);
+    }
+
+    function User(){
+        return $this->belongsTo(Userdb::class);
+    }
+
+    function Users(){
+        return $this->belongsToMany(Userdb::class);
+    }
+
+    function Reports(){
+        return $this->hasMany(Report::class);
+    }
 }

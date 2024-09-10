@@ -10,4 +10,12 @@ class Chapter_comment extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    function Chapter(){
+        return $this->belongsTo(Book_chapter::class);
+    }
+
+    function User(){
+        return $this->belongsTo(Userdb::class);
+    }
 }

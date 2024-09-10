@@ -32,7 +32,6 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="image-title text-center">
-                            <img src="" alt="" id="cover-image">
                             <label for="inputImage" id="input-image-label"></label>
                             <input type="file" id="inputImage" required name="inputImage" accept="image/*">
                         </div>

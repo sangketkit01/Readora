@@ -10,4 +10,8 @@ class Report extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    function Book(){
+        return $this->belongsTo(Book::class);
+    }
 }
