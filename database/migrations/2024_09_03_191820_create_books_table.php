@@ -23,7 +23,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign("username")->references("username")->on("userdbs")->onDelete("cascade");
-            $table->foreign("bookTypeID")->references("bookTypeID")->on("book_types")->onDelete("cascade");
+            $table->foreign("bookTypeID")->references("bookTypeID")->on("book_types");
         });
     }
 

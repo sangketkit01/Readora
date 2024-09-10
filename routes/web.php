@@ -28,3 +28,4 @@ Route::get("/auth/google/call-back",[GoogleController::class,"callbackGoogle"]);
 
 Route::get("/create_novel",[NovelController::class,"page"])->name("create_novel");
 Route::post("/create_novel/insert",[NovelController::class,"insertNewNovel"])->name("novel.insert");
+Route::get("/edit_novel/{bookID}",[NovelController::class,'edit'])->name("novel.edit");

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -26,15 +27,30 @@ class NovelController extends Controller
         $newFileName = uniqid('', true) . '.' . $file->getClientOriginalExtension();
         $fileUrl = Storage::putFileAs('public/Picture', $file, $newFileName);
 
+        $fileUrl = str_replace("public/","storage/",$fileUrl);
+
+        $created_at = now();
+
         $data = [
-            'name' => $request->input('title'),
-            'page' => $request->input('page'),
-            'brief_content' => $request->input('brief_content'),
-            'location' => $request->input('location'),
-            'url' => Storage::url($fileUrl)
+            'username' => Session::get("user")->username,
+            'bookTypeID' => (int)$request->input("type"),
+            'book_name' => $request->input("title"),
+            'book_pic' => $fileUrl,
+            'book_description' => $request->input("recommend"),
+            "book_status" => (int) $request->input("status") ,
+            "created_at" => $created_at
         ];
 
         DB::table('books')->insert($data);
+
+        $bookID = DB::table("books")->where("username",Session::get("user")->username)->where("created_at",$created_at)->first();
+
+        return redirect("/edit_novel/$bookID->bookID");
     }
 
+
+    public function edit($bookID){
+        $data = Book::where("bookID",$bookID)->get();
+        return view("user.edit_novel",compact("data"));
+    }
 }
