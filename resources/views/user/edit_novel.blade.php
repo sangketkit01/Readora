@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    @foreach ($data as $item)
-        <h1>{{$item->username}}</h1>
-        <img src="{{ asset($item->book_pic) }}"alt="{{$item->book_name}}">
-    @endforeach
-</body>
-</html>
+@extends("user.layout")
+@section("title","Edit Novel")
+@push("style")
+    <link rel="stylesheet" href="{{asset('css/user/edit_novel.css')}}">
+@endpush
+@section("containerClassName","editNovelContainer")
+@section("content")
+    
+@endsection
+
+@push("scripts")
+    <script src="{{asset('js/user/edit_novel.js')}}"></script>
+@endpush
