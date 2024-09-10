@@ -29,7 +29,7 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>
                         <li><a class="dropdown-item" href="{{route('sign_out')}}">Logout</a></li>
                     </ul>
                 </div>
