@@ -1,6 +1,6 @@
 @extends('user.layout')
 
-@section('title','Profile')
+@section('title', 'Profile')
 
 @push('style')
     <link rel="stylesheet" href="/css/user/profile.css">
@@ -16,21 +16,32 @@
     </div>
 
     <div id="about">
-        นิยาย
-        คอมมิค
-        ความคิดเห็น
+        <table border="1">
+            <thead>
+                <th>นิยาย</th>
+                <th>คอมมิค</th>
+                <th>ความคิดเห็น</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <div class="user-options">
         <select name="user-menu" id="user-menu">
-            <option value="profile">ข้อมูลส่วนตัว</option>
+            <option value="profile-info">ข้อมูลส่วนตัว</option>
             <option value="novel">นิยาย</option>
             <option value="comic">คอมมิค</option>
         </select>
     </div> <br>
 
     <div id="content-area">
-        <div id="profile" class="content-section">
+        <div id="profile-info" class="content-section">
             @foreach ($info as $item)
                 <div class="user-info">
                     <p>ชื่อที่ใช้แสดง {{ $item->name }}</p>
@@ -49,76 +60,61 @@
                     </p>
                 </div>
             @endforeach
-            <button id="edit-info-button">แก้ไขข้อมูล</button> <br>
+            <button id="edit-info">แก้ไขข้อมูล</button> <br>
             <button id="logout" onclick="window.location.href='/signin'">ออกจากระบบ</button>
         </div>
 
         <div id="novel" class="content-section" style="display: none;">
-            นิยาย นิยาย นิยาย นิยาย
+            <button onclick="window.location.href=''">สร้างเรื่องใหม่</button>
         </div>
 
         <div id="comic" class="content-section" style="display: none;">
-            คอมมิค คอมมิค คอมมิค คอมมิค
+            <button onclick="window.location.href=''">สร้างเรื่องใหม่</button>
         </div>
     </div>
 
-    {{-- <div class="change-password">
-        <h2 class="fs-5">Popover in a modal</h2>
-        <p>This <button class="btn btn-secondary" data-bs-toggle="popover" title="Popover title"
-                data-bs-content="Popover body content is set in this attribute.">button</button> triggers a popover on
-            click.</p>
-        <hr>
-        <h2 class="fs-5">Tooltips in a modal</h2>
-        <p><a href="#" data-bs-toggle="tooltip" title="Tooltip">This link</a> and <a href="#"
-                data-bs-toggle="tooltip" title="Tooltip">that link</a> have tooltips on hover.</p>
-    </div> --}}
-
-    <div class="edit-user-info" style="display: none;" id="">
+    <div class="edit-user-info" style="display: none;" id="edit-user-info">
         <p><h5>แก้ไขข้อมูล</h5></p>
         @foreach ($info as $item)
             ชื่อผู้ใช้งาน: {{ $item->username }} <br>
-            <form action="{{ route('update.profile') }}" method="post">
+            <form action="{{ route('update_info') }}" method="post">
                 @csrf
                 ชื่อที่ใช้แสดง <input type="text" id="name" name="name" value="{{ $item->name }}" required>
                 <br>
-                อีเมล <input type="text" id="email" name="email" value="{{ $item->email }}" required> <br>
+                อีเมล <input type="email" id="email" name="email" value="{{ $item->email }}" required> <br>
+                รหัสผ่าน <a href="" id="link-edit-password">เปลี่ยนรหัสผ่าน</a> <br>
                 เพศ
                 <select id="gender" name="gender">
                     <option value="F" @if ($item->gender == 'F') selected @endif>หญิง</option>
                     <option value="M" @if ($item->gender == 'M') selected @endif>ชาย</option>
                 </select> <br>
-                <button type="button" id="cancle-edit-info-button" onclick="window.location.href='/profile'">ยกเลิก</button>
-                <button id="submit-new-info">บันทึก</button>
+                <button id="cancle-edit-info" type="button" onclick="window.location.href='/profile'">ยกเลิก</button>
+                <button id="submit-new-info" type="submit">บันทึก</button>
             </form>
         @endforeach
     </div>
 
-    <script>
-        document.getElementById('user-menu').addEventListener('change', function() {
-            document.querySelectorAll('.content-section', ).forEach(function(section) {
-                section.style.display = 'none';
-            });
-            let selectedValue = this.value;
-            document.getElementById(selectedValue).style.display = 'block';
-            document.querySelector('.edit-user-info').style.display = 'none';
-        });
-        document.getElementById('profile').style.display = 'block';
+    <div class="popup" id="popup">
+        <h5>เปลี่ยนรหัสผ่าน</h5>
+        <div class="close-btn">&times;</div>
+        <div class="form-element">
+            <form action="{{route('update_password')}}" method="post">
+                <label for="password">รหัสผ่านเดิม
+                    <input type="password" name="" id="password">
+                </label> <br>
+                <label for="new_password">รหัสผ่านใหม่
+                    <input type="password" name="" id="new_password">
+                </label> <br>
+                <label for="confirm_password">ยืนยันรหัสผ่าน
+                    <input type="password" name="" id="confirm_password">
+                </label> <br>
+                <a href="http://">ลืมรหัสผ่าน</a> <br>
+                <button type="submit">บันทึก</button> 
+            </form>
+        </div>
+    </div>
 
-
-        document.getElementById('edit-info-button').addEventListener('click', function() {
-            document.getElementById('profile').style.display = 'none';
-            document.querySelector('.edit-user-info').style.display = 'block';
-        });
-        document.getElementById('cancle-edit-info-button').addEventListener('click', function() {
-            document.querySelector('.edit-user-info').classList.add('hidden');
-            document.getElementById('profile').classList.remove('hidden');
-
-        });
-
-        document.getElementById('change-password').addEventListener('click', function() {
-            alert("dd")
-        });
-
-
-    </script>
+    @push("scripts")
+        <script src="{{asset('js/user/profile.js')}}"></script>
+    @endpush
 @endsection
