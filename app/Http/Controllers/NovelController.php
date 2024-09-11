@@ -71,4 +71,5 @@ class NovelController extends Controller
 
         return view("user.edit_novel",compact("data","book_types"));
     }
+
 }
