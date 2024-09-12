@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Monolog\Handler\SendGridHandler;
 
-Route::get('/', function () {
-    return view('user.index');
-})->name('index');
+Route::get('/', [NovelController::class,"index"])->name('index');
 
 Route::get('/signin',[WebController::class,"sign_in"])->name('sign_in');
 Route::get("/signup",[WebController::class,"sign_up"])->name('sign_up');

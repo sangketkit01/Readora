@@ -36,38 +36,34 @@
             <div class="recommend" id="recommend1">
                 <h2>แนะนำ</h2>
                 <br>
+                {{-- @foreach ($books as $books) --}}
                 <div class="recommend-section1">
                     <div class="recommend-card">
-                    @foreach ($book as $books)
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="{{$books->book_pic}}"
-                                    class="img-fluid rounded-start" alt="...">
+                                <img src="{{asset($books[0]->book_pic)}}"
+                                    class="img-fluid rounded-start" alt="Book Image">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{$books->book_name}}</h5>
-                                    <p class="card-text">{{$books->book_description}}</p>
-                                    <p class="card-text"><small class="text-body-secondary">{{$books->username}}</small></p>
+                                    <h5 class="card-title">{{$books[0]->book_name}}</h5>
+                                    <p class="card-text">{{$books[0]->book_description}}</p>
+                                    <p class="card-text"><small class="text-body-secondary">{{$books[0]->username}}</small></p>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
                     </div>
                     <div class="recommend-card">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                <img src="{{asset($books[1]->book_pic)}}"
                                     class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to
-                                        additional
-                                        content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small>
+                                    <h5 class="card-title">{{$books[1]->book_name}}</h5>
+                                    <p class="card-text">{{$books[1]->book_description}}</p>
+                                    <p class="card-text"><small class="text-body-secondary">{{$books[1]->username}}</small>
                                     </p>
                                 </div>
                             </div>
@@ -76,17 +72,14 @@
                     <div class="recommend-card">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                            <img src="{{asset($books[2]->book_pic)}}"
                                     class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to
-                                        additional
-                                        content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small>
+                                    <h5 class="card-title">{{$books[2]->book_name}}</h5>
+                                    <p class="card-text">{{$books[2]->book_description}}</p>
+                                    <p class="card-text"><small class="text-body-secondary">{{$books[2]->username}}</small>
                                     </p>
                                 </div>
                             </div>
@@ -95,23 +88,21 @@
                     <div class="recommend-card">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                <img src="{{asset($books[3]->book_pic)}}"
                                     class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to
-                                        additional
-                                        content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small>
+                                    <h5 class="card-title">{{$books[3]->book_name}}</h5>
+                                    <p class="card-text">{{$books[3]->book_description}}</p>
+                                    <p class="card-text"><small class="text-body-secondary">{{$books[3]->username}}</small>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {{-- @endforeach --}}
     
                 <div class="recommend">
                     <h2>แนะนำ</h2>
