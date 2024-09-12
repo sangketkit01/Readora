@@ -33,4 +33,9 @@ class UserController extends Controller
         // return redirect()->route('profile');
 
     }
+
+    function rec1(){
+        $book = Book::all();
+        return view('user.rec1', compact('book'));
+    }
 }

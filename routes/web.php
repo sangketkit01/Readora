@@ -35,3 +35,6 @@ Route::middleware("checkLogin")->group(function(){
     Route::get("/add_chapter/{bookID}", [NovelController::class, "AddChapter"])->name("novel.add_chapter");
     Route::post("/add_chapter/insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter");
 });
+
+
+
