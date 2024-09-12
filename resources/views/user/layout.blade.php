@@ -15,12 +15,12 @@
 <body style="background-color: #F1F1F1; margin-bottom:20px;">
     <div class="navbar">
         <div class="left-menu">
-            <a href="#" id="title">เอาชื่อเว็บมาใส่</a>
+            <a href="/" id="title">เอาชื่อเว็บมาใส่</a>
             <a href="#">นิยาย</a>
             <a href="#">คอมมิก</a>
         </div>
         <div class="right-menu">
-            <button><img src="/nav/search.png" alt=""></button>
+            <button id="search-image"><img src="/nav/search.png" alt=""></button>
             @if (session()->has('user'))
                 <div class="dropdown">
                     <a class="dropdown" href="#" role="button" data-bs-toggle="dropdown"

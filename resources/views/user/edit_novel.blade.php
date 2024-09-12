@@ -26,6 +26,7 @@
                 </div>
             </div>
         </div> <br>
+
         @foreach ($data as $item)
         <div class="row justify-content-center">
             <div class="col-12 col-md-11">
@@ -102,12 +103,11 @@
                     </div>
                     <hr>
                 </div>
-
                 <div class="row recommend justify-content-between">
                     <div class="col-8" id="sub-chap">
                         <input type="checkbox" name="chap" id="chap" class="chap">
                         <strong>1</strong>
-                        <img src="{{asset('storage\Picture\66e013e65e6c94.92140139.jpg')}}" alt="">
+                        <img src="{{asset('storage/Chapter/66e189cba1a6c1.79683859.jpg')}}" alt="">
                         <strong>มิโดริยะ</strong>
                     </div>
                     <div class="col-4 text-end">

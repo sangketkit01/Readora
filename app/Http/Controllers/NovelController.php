@@ -14,27 +14,12 @@ class NovelController extends Controller
 {
     //
 
-    function checkLoggedIn(){
-        if (!Session::has("user")) {
-            return redirect(route("sign_in"));
-        }
-    }
-
     public function page(){
-        if($this->checkLoggedIn()){
-            return $this->checkLoggedIn();
-        }
-
         $book_types = DB::table("book_types")->get();
         return view("user.create_novel",compact("book_types"));
     }
 
     public function insertNewNovel(Request $request){
-        if ($this->checkLoggedIn()) {
-            return $this->checkLoggedIn();
-        }
-
-
         $file = $request->file('inputImage');
         $newFileName = uniqid('', true) . '.' . $file->getClientOriginalExtension();
         $fileUrl = Storage::putFileAs('public/Picture', $file, $newFileName);
@@ -62,14 +47,44 @@ class NovelController extends Controller
 
 
     public function edit($bookID){
-        if ($this->checkLoggedIn()) {
-            return $this->checkLoggedIn();
-        }
 
         $book_types = DB::table("book_types")->get();
         $data = Book::where("bookID",$bookID)->get();
 
         return view("user.edit_novel",compact("data","book_types"));
+    }
+
+    public function AddChapter($bookID){
+        return view("user.add_chapter",compact("bookID"));
+    }
+
+    public function InsertNewChapter(Request $request , $bookID){
+
+        $image = $request->file('image');
+        $newImageFileName = uniqid('', true) . '.' . $image->getClientOriginalExtension();
+        $imageUrl = Storage::putFileAs('public/Chapter', $image, $newImageFileName);
+        $imageUrl = str_replace("public/", "storage/", $imageUrl);
+
+        $created_at = now();
+        $book = Book::where("bookID",$bookID)->first();
+
+        $allow_comment = $request->has('allow_comment') ? 1 : 0;
+
+        $data = [
+            'chapter_image' => $imageUrl , 
+            'bookID' => $bookID,
+            'bookTypeID' => $book->bookTypeID,
+            'chapter_content' => $request->input("content"),
+            'chapter_name' => $request->input("title"),
+            "writer_message" => $request->input("writer_message"),
+            "allow_comment" => $allow_comment,
+            "created_at" => $created_at
+        ];
+
+        DB::table('book_chapters')->insert($data);
+
+
+        return redirect(route("novel.edit",["bookID" => $bookID]));
     }
 
 }

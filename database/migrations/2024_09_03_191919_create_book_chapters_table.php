@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('book_chapters', function (Blueprint $table) {
             $table->increments("chapterID");
+            $table->string("chapter_image");
             $table->unsignedInteger("bookID");
             $table->unsignedInteger("bookTypeID");
             $table->text("chapter_content");
             $table->string("chapter_name",45);
             $table->string("writer_message",45);
+            $table->tinyInteger("allow_comment");
             $table->timestamps();
             $table->softDeletes();
 
