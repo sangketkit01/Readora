@@ -42,7 +42,7 @@
     margin-right: 25px;
 }
 
-.right-menu button{
+#search-image{
     display: inline-block;
     background-color: #DBE0E6;
     width: 45px;
@@ -50,6 +50,12 @@
     border-radius: 50px;
     border: none;
     cursor: pointer;
+}
+
+#search-image img{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
 }
 
 .right-menu button:not(:last-child){
@@ -75,10 +81,6 @@
     transform: translateX(-20%);
 }
 
-.search{
-    width: 400px;
-    margin: 0 auto 0 auto;
-}
 
 #login-button{
     display: flex;

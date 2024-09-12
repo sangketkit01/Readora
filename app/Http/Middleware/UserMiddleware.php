@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserMiddleware
@@ -14,7 +15,12 @@ class UserMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
-        return $next($request);
+    {   
+
+        if(Session::has("user")){
+            return $next($request);
+        }
+
+        return redirect()->route("sign_in");
     }
 }

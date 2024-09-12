@@ -32,28 +32,27 @@
     
         </div>
         <div class="container">
+            
             <div class="recommend" id="recommend1">
                 <h2>แนะนำ</h2>
                 <br>
                 <div class="recommend-section1">
                     <div class="recommend-card">
+                    @foreach ($book as $books)
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                <img src="{{$books->book_pic}}"
                                     class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to
-                                        additional
-                                        content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small>
-                                    </p>
+                                    <h5 class="card-title">{{$books->book_name}}</h5>
+                                    <p class="card-text">{{$books->book_description}}</p>
+                                    <p class="card-text"><small class="text-body-secondary">{{$books->username}}</small></p>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                     <div class="recommend-card">
                         <div class="row g-0">

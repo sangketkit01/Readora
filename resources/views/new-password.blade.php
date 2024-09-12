@@ -19,6 +19,7 @@
          <label class="form-label">Confirm password</label>
          <input type="password" name="password" id="password_confirm" class="form-control">
          <button type="submit">Submit</button>
+         
     </form>
 </body>
 </html>

@@ -14,4 +14,12 @@ class Userdb extends Model
     protected $primaryKey = 'username';
     public $incrementing = false;
     protected $keyType = 'string';
+
+    function Books(){
+        return $this->hasMany(Book::class);
+    }
+
+    function Comments(){
+        return $this->hasMany(Chapter_comment::class);
+    }
 }

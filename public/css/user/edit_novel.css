@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+body {
+    background-color: #f8f9fa;
+}
 
 .header-left {
     display: flex;
@@ -28,7 +31,7 @@
     margin-top: 20px;
 }
 
-.createNovelContainer{
+.createNovelContainer {
     margin-left: 75px;
 }
 
@@ -75,7 +78,7 @@
     text-align: center;
     background-image: url("../../novel/add_photo.png");
     background-position: center;
-    background-size: 200px;
+    background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
 }
@@ -107,7 +110,7 @@
     padding: 5px 5px;
 }
 
-.type{
+.type {
     margin-left: 20px;
     margin-top: 10px;
 }
@@ -144,7 +147,7 @@
     left: 2px;
 }
 
-.row .recommend > div{
+.row .recommend>div {
     margin-top: 20px;
 }
 
@@ -175,7 +178,8 @@
     position: relative;
 }
 
-.div35,.div36 {
+.div35,
+.div36 {
     text-align: center;
     font-family: "Inter-SemiBold", sans-serif;
     font-size: 16px;
@@ -190,7 +194,8 @@
     padding: 0 5px;
 }
 
-.rectangle-127,.rectangle-123 {
+.rectangle-127,
+.rectangle-123 {
     width: 137px;
     height: 41px;
     border-radius: 100px;
@@ -204,9 +209,104 @@
     border: 1.5px solid #a4a4a4;
     background-color: transparent;
 }
+
 .recommend .text-end {
     display: flex;
     justify-content: flex-end;
 
 }
 
+#rec {
+    background-color: rgb(255, 255, 255);
+}
+
+#chapter {
+    background-color: rgb(255, 255, 255);
+    height: auto;
+}
+
+.chap {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.srt {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+small {
+    margin-top: 15px;
+}
+
+.group-37 {
+    display: inline-block;
+    width: 137px;
+    height: 41px;
+    position: relative;
+    margin-right: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.div37 {
+    text-align: center;
+    font-family: "Inter-SemiBold", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    padding: 0 5px;
+    margin-top: 5px;
+}
+
+.rectangle-128 {
+    width: 137px;
+    height: 41px;
+    border-radius: 100px;
+    background-color: #4f5d87;
+    margin-top: 5px;
+}
+
+strong {
+    margin-left: 10px;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-inline: 20px;
+}
+
+#sub-chap {
+    margin: 0;
+    padding: 10px 0;
+}
+
+#mainchap {
+    margin-bottom: 20px;
+}
+
+#icon {
+    text-align: right;
+}
+
+#pub {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0 5px;
+}
+
+.header-left{
+    margin: auto 0;
+    height: 50px;
+    position: relative;
+    top: 3%;
+}
