@@ -30,7 +30,7 @@
                     <input type="text" name="username" placeholder="Username" required>
                     <label for="password">Password</label>
                     <input type="password" name="password" placeholder="Password" required>
-                    <a href="#" id="forgot">ลืมรหัสผ่าน?</a>
+                    <a href="{{ url('/forgot_password')}}" id="forgot">ลืมรหัสผ่าน?</a>
                     <button type="submit" id="login-button">เข้าสู่ระบบ</button>
                     <div class="or">
                         <div class="line"></div>

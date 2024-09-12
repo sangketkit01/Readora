@@ -24,6 +24,6 @@ class UserController extends Controller
         $user->gender = $request->input('gender');
         $user->save();
         return redirect()->route('profile')->with('success', 'ข้อมูลผู้ใช้ได้รับการอัปเดตเรียบร้อยแล้ว');
-
+        
     }
 }

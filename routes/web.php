@@ -1,12 +1,16 @@
 <?php
 
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NovelController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\WriterController;
+use App\Mail\Hellomail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Monolog\Handler\SendGridHandler;
 
 Route::get('/', function () {
     return view('user.index');
@@ -28,3 +32,13 @@ Route::get("/auth/google/call-back",[GoogleController::class,"callbackGoogle"]);
 
 Route::get("/create_novel",[NovelController::class,"page"])->name("create_novel");
 Route::post("/create_novel/insert",[NovelController::class,"insertNewNovel"])->name("novel.insert");
+
+Route::get("/mail",function(){
+    Mail::to('auttzeza@gmail.com')
+        ->Send(new Hellomail());
+});
+Route::get('/forgot_password',[ForgotPasswordController::class,'forgot'])->name('forgot.password');
+Route::post('/forgot_password',[ForgotPasswordController::class,'password'])->name('forgot.password.post');
+Route::get('/reset_password/{token}',[ForgotPasswordController::class,'resetPassword'])->name('reset_password');
+Route::post('/reset_password',[ForgotPasswordController::class,'resetPasswordPost'])->name('reset_password.post');
+
