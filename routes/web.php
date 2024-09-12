@@ -40,5 +40,12 @@ Route::middleware("checkLogin")->group(function(){
     Route::post("/add_chapter/insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter");
 });
 
-
+Route::get("/mail",function(){
+    Mail::to('auttzeza@gmail.com')
+        ->Send(new Hellomail());
+});
+Route::get('/forgot_password',[ForgotPasswordController::class,'forgot'])->name('forgot.password');
+Route::post('/forgot_password',[ForgotPasswordController::class,'password'])->name('forgot.password.post');
+Route::get('/reset_password/{token}',[ForgotPasswordController::class,'resetPassword'])->name('reset_password');
+Route::post('/reset_password',[ForgotPasswordController::class,'resetPasswordPost'])->name('reset_password.post');
 
