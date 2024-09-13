@@ -94,10 +94,7 @@ class NovelController extends Controller
     }
     public function index()
     {
-        $selectedBookID = [1, 2, 3, 4];
-
-        $books = Book::whereIn('bookID', $selectedBookID)->get();
-
+        $books = Book::all();
         return view('user.index', compact('books'));
     }
 

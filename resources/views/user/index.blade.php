@@ -36,73 +36,25 @@
             <div class="recommend" id="recommend1">
                 <h2>แนะนำ</h2>
                 <br>
-                {{-- @foreach ($books as $books) --}}
                 <div class="recommend-section1">
+                    @foreach ($books as $book)
                     <div class="recommend-card">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="{{asset($books[0]->book_pic)}}"
-                                    class="img-fluid rounded-start" alt="Book Image">
+                                <img src="{{asset($book->book_pic)}}"
+                                    class="img-fluid rounded-start" alt="Book Image" style="object-fit: contain;">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{$books[0]->book_name}}</h5>
-                                    <p class="card-text">{{$books[0]->book_description}}</p>
-                                    <p class="card-text"><small class="text-body-secondary">{{$books[0]->username}}</small></p>
+                                    <h5 class="card-title">{{$book->book_name}}</h5>
+                                    <p class="card-text">{{$book->book_description}}</p>
+                                    <p class="card-text"><small class="text-body-secondary">{{$book->username}}</small></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="recommend-card">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{asset($books[1]->book_pic)}}"
-                                    class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$books[1]->book_name}}</h5>
-                                    <p class="card-text">{{$books[1]->book_description}}</p>
-                                    <p class="card-text"><small class="text-body-secondary">{{$books[1]->username}}</small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="recommend-card">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                            <img src="{{asset($books[2]->book_pic)}}"
-                                    class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$books[2]->book_name}}</h5>
-                                    <p class="card-text">{{$books[2]->book_description}}</p>
-                                    <p class="card-text"><small class="text-body-secondary">{{$books[2]->username}}</small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="recommend-card">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{asset($books[3]->book_pic)}}"
-                                    class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$books[3]->book_name}}</h5>
-                                    <p class="card-text">{{$books[3]->book_description}}</p>
-                                    <p class="card-text"><small class="text-body-secondary">{{$books[3]->username}}</small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-                {{-- @endforeach --}}
     
                 <div class="recommend">
                     <h2>แนะนำ</h2>
