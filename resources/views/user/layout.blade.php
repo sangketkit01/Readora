@@ -25,7 +25,11 @@
                 <div class="dropdown">
                     <a class="dropdown" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="{{session('user')->profile}}" id="avatar-picture" alt="">
+                        @if (session('user')->profile == NULL)
+                            <img src="{{asset('novel/midoriya.png')}}" id="avatar-picture" alt="">
+                        @else
+                            <img src="{{session('user')->profile}}" id="avatar-picture" alt="">
+                        @endif
                     </a>
 
                     <ul class="dropdown-menu">
