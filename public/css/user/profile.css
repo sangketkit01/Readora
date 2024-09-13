@@ -6,15 +6,7 @@ table {
   padding: 0px;
   font-family: sans-serif;
 }
-#forgot{
-  margin: 5px 5px 0 auto;
-  text-decoration: none;
-  color: #2559C2;
-  font-size: 14px;
-}
-#forgot:hover{
-  text-decoration: underline;
-}
+
 
 /* popup */
 .blur-layer {
@@ -124,11 +116,13 @@ table {
 #popup a {
   display: block;
   text-align: right;
-  font-size: 15px;
-  color: #1a79ca;
+  font-size: 14px;
+  color: #2559C2;
   text-decoration: none;
   margin-top: 10px;
+  margin: 5px 5px 0 auto;
 }
 #popup a:hover {
-  color: #4F5D87;
+  text-decoration: underline;
+
 }
