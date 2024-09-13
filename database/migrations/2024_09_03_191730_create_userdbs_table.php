@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('userdbs', function (Blueprint $table) {
             $table->string("username")->primary();
-            $table->string("profile");
+            $table->string("profile")->nullable();
             $table->string("name",60);
-            $table->string("password");
+            $table->string("password")->nullable();
             $table->string("email",255);
-            $table->char("gender",1);
+            $table->char("gender",1)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
