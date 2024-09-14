@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Book;
+use App\Models\Book_type;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -21,5 +22,11 @@ class IndexController extends Controller
     {
         $book = Book::all();
         return view("user.rec2", compact('book'));
+    }
+
+    public function read(){
+        $book = Book::all();
+        $book = Book_type::all();
+        return view("user.read", compact('book'));
     }
 }

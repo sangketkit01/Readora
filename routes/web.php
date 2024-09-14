@@ -65,6 +65,7 @@ Route::post('/reset_password',[ForgotPasswordController::class,'resetPasswordPos
 
 Route::get("/rec1", [IndexController::class, 'rec1'])->name("index.rec1");
 Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
+Route::get("/read", [IndexController::class, "read"])->name("index.read");
 
 
 
