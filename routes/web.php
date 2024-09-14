@@ -63,7 +63,8 @@ Route::post('/forgot_password',[ForgotPasswordController::class,'password'])->na
 Route::get('/reset_password/{token}',[ForgotPasswordController::class,'resetPassword'])->name('reset_password');
 Route::post('/reset_password',[ForgotPasswordController::class,'resetPasswordPost'])->name('reset_password.post');
 
-  
+Route::get("/rec1", [IndexController::class, 'rec1'])->name("index.rec1");
+Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
 
 
 
