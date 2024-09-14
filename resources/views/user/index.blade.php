@@ -41,14 +41,23 @@
                     <div class="recommend-card">
                         <div class="row g-0">
                             <div class="col-md-4">
+<<<<<<< HEAD
+                                <img src="{{asset($book->book_pic)}}"
+                                    class="img-fluid rounded-start" alt="Book Image" style="object-fit: contain;">
+=======
                                 <img class="images" src="{{asset($book->book_pic)}}"
                                     class="img-fluid rounded-start images" alt="Book Image" style="object-fit: contain;">
+>>>>>>> 64ea1f8f7e1ca74d6774e15585d40fd1c6e7eed8
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">{{$book->book_name}}</h5>
                                     <p class="card-text">{{$book->book_description}}</p>
+<<<<<<< HEAD
+                                    <p class="card-text"><small class="text-body-secondary">{{$book->username}}</small></p>
+=======
                                     <p class="card-text"><small class="text-body-secondary">{{$book->User->name}}</small></p>
+>>>>>>> 64ea1f8f7e1ca74d6774e15585d40fd1c6e7eed8
                                 </div>
                             </div>
                         </div>
