@@ -85,7 +85,6 @@ input[type=radio] {
     padding: 20px;
     text-align: center;
 }
-
 .recommend {
     margin-top: 100px;
     padding: 20px;
@@ -103,9 +102,10 @@ input[type=radio] {
 
 .recommend-card {
     width: 48%;
-    /* ให้การ์ดแต่ละใบมีความกว้าง 48% เพื่อให้วางได้ 2 ใบต่อแถว */
+    /* ลองเพิ่มค่าความกว้างของการ์ดถ้าอยากให้ใหญ่ขึ้น */
     text-align: center;
-    padding: 10px;
+    padding: 20px;
+    /* เพิ่ม padding ถ้าอยากให้มีพื้นที่ภายในมากขึ้น */
     background-color: #f8f9fa;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -135,20 +135,16 @@ input[type=radio] {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.row {
-    display: flex;
-    justify-content: space-between;
-}
-
 .container {
-    width: 66%;
+    width: 80%;
+    /* เพิ่มขนาดเป็น 80% หรือค่าที่เหมาะสม */
     margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
 }
 
 .side {
-    width: 17%;
+    width: 5%;
 }
 
 h2 {
