@@ -50,10 +50,6 @@ Route::middleware("checkAdminLogin")->group(function(){
 Route::get("/admin/login",[AdminController::class,'Login'])->name("admin.login");
 Route::post("/admin/login/verify",[AdminController::class,'VerifyLogin'])->name("admin.login_verify");
 
-
-
-
-
 Route::get("/mail",function(){
     Mail::to('auttzeza@gmail.com')
         ->Send(new Hellomail());
