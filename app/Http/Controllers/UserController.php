@@ -8,6 +8,7 @@ use App\Models\Book;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Rules\MatchOldPassword;
 
 class UserController extends Controller
 {
@@ -36,32 +37,25 @@ class UserController extends Controller
     function add_password(Request $request){
         $request->validate([
             'new_password' => 'required|min:8|confirmed',
-            'confirm_password' => 'required',
         ]);
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $user->password = $request->input('confirm_password');
+        $user->password = Hash::make($request->input('new_password'));
         $user->save();
         return redirect()->route('profile');
     }
 
     function update_password(Request $request){
         $request->validate([
-            'current_password' => 'required',
+            'current_password' => ['required', new MatchOldPassword],
             'new_password' => 'required|min:8|confirmed',
         ]);
-
-        if (!Hash::check($request->current_password, Session::get('user')->password)) {
-            return back()->withErrors(['current_password' => 'รหัสผ่านเดิมไม่ถูกต้อง']);
-        }
-        $user = Session::get('user');
+        $user = Userdb::where('username', Session::get('user')->username)->first();
         $user->password = Hash::make($request->new_password);
         $user->save();
-        return back()->with('success', 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว');
+        return redirect()->route('profile')->with('success', 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว');
 
     }
     
-    
-
     function rec1(){
         $book = Book::all();
         return view('user.rec1', compact('book'));

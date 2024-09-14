@@ -10,14 +10,13 @@
 
 @section('content')
 
-    <div class="containner">
+    <div class="container">
         <div class="row pt-3">
             <div class="user">
                 <div id="profile-top">
                     @foreach ($info as $item)
                         <img src="{{ $item->profile }}" alt="" onclick=""> <br>
                         <p>{{ $item->name }}</p>
-                        
                     @endforeach
                 </div>
                 <div class="row">
@@ -60,7 +59,6 @@
                             <p>ชื่อผู้ใช้งาน {{ $item->username }}</p>
                             <p>อีเมล {{ $item->email }}</p>
                             <p>Facebook</p>
-                            <p>รหัสผ่าน ******* <button id="change-password-btn">เปลี่ยนรหัสผ่าน</button></p>
                             @if(!empty($item->password))
                                 <p>รหัสผ่าน ******* <button id="change-password-btn">เปลี่ยนรหัสผ่าน</button></p>
                             @else
@@ -121,7 +119,7 @@
     </div>
 
     {{-- change password --}}
-    <div class="popup" id="popup">
+    <div class="popup" id="">
         <div class="close-btn">&times;</div>
         <h5>เปลี่ยนรหัสผ่าน</h5>
         <div class="form-element">
@@ -141,12 +139,13 @@
         </div>
     </div>
 
-    <div class="popup-addpassword" id="popup">
+    {{-- add password --}}
+    <div class="popup2" id="">
         <div class="close-btn">&times;</div>
         <h5>สร้างรหัสผ่าน</h5>
         <div class="form-element">
             <form action="{{route('add_password')}}" method="post" id="add-password-form">
-                <label for="new_password">รหัสผ่านใหม่
+                <label for="new_password">รหัสผ่าน
                     <input type="password" name="new_password" id="" required>
                 </label> <br>
                 <label for="confirm_password">ยืนยันรหัสผ่าน
