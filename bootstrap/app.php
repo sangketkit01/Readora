@@ -1,5 +1,9 @@
 <?php
 
+<<<<<<< HEAD
+=======
+use App\Http\Middleware\AdminMiddleware;
+>>>>>>> 64ea1f8f7e1ca74d6774e15585d40fd1c6e7eed8
 use App\Http\Middleware\OwnerBookMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use Illuminate\Foundation\Application;
@@ -17,6 +21,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'checkLogin' => UserMiddleware::class,
             'checkOwner' => OwnerBookMiddleware::class,
+<<<<<<< HEAD
+=======
+            'checkAdminLogin' => AdminMiddleware::class,
+>>>>>>> 64ea1f8f7e1ca74d6774e15585d40fd1c6e7eed8
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

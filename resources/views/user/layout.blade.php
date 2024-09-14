@@ -13,19 +13,23 @@
 </head>
 
 <body style="background-color: #F1F1F1; margin-bottom:20px;">
-    <div class="navbar">
+    <div class="navbar-layout">
         <div class="left-menu">
             <a href="/" id="title">เอาชื่อเว็บมาใส่</a>
             <a href="#">นิยาย</a>
             <a href="#">คอมมิก</a>
         </div>
         <div class="right-menu">
-            <button id="search-image"><img src="/nav/search.png" alt=""></button>
+            <button id="layout-search"><img id="layout-search-image" src="/nav/search.svg" width="30" height="30" alt=""></button>
             @if (session()->has('user'))
                 <div class="dropdown">
                     <a class="dropdown" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="{{session('user')->profile}}" id="avatar-picture" alt="">
+                        @if (session('user')->profile == NULL)
+                            <img src="{{asset('novel/midoriya.png')}}" id="avatar-picture" alt="">
+                        @else
+                            <img src="{{session('user')->profile}}" id="avatar-picture" alt="">
+                        @endif
                     </a>
 
                     <ul class="dropdown-menu">

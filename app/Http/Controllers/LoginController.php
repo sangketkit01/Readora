@@ -43,13 +43,14 @@ class LoginController extends Controller
             "created_at" => now() ,
         ];
 
-        if(Session::has("google_avatar")){
-            $insert["profile"] = session("google_avatar");
-        }
 
         DB::table("userdbs")->insert($insert);
 
-        return redirect()->route("sign_in");
+        $user = Userdb::where("username",$request->input("username"))->first();
+        Session::flush();
+        Session::put("user",$user);
+
+        return redirect()->route("index");
     }
 
     function logout(){

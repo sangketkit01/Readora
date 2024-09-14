@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 class IndexController extends Controller
 {
     public function index(){
-        $book = Book::all();
-        return view("user.index",compact("book"));
+        $books = Book::all();
+        return view("user.index",compact("books"));
     }
     function rec1()
     {

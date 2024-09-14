@@ -16,10 +16,10 @@ class Userdb extends Model
     protected $keyType = 'string';
 
     function Books(){
-        return $this->hasMany(Book::class);
+        return $this->hasMany(Book::class,"bookID");
     }
 
     function Comments(){
-        return $this->hasMany(Chapter_comment::class);
+        return $this->hasMany(Chapter_comment::class,"commentID");
     }
 }

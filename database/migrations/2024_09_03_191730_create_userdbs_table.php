@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 return new class extends Migration
 {
     /**
@@ -13,11 +12,11 @@ return new class extends Migration
     {
         Schema::create('userdbs', function (Blueprint $table) {
             $table->string("username")->primary();
-            $table->string("profile");
+            $table->string("profile")->nullable();
             $table->string("name",60);
-            $table->string("password");
+            $table->string("password")->nullable();
             $table->string("email",255);
-            $table->char("gender",1);
+            $table->string("gender",4)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -27,10 +27,10 @@ class UserController extends Controller
     }
 
     function update_password(Request $request){
-        // $user = Userdb::where('username', Session::get('user')->username)->first();
-        // $user->password = $request->input('new_password');
-        // $user->save();
-        // return redirect()->route('profile');
+        $user = Userdb::where('username', Session::get('user')->username)->first();
+        $user->password = $request->input('new_password');
+        $user->save();
+        return redirect()->route('profile');
 
     }
 

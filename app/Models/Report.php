@@ -12,6 +12,6 @@ class Report extends Model
     use SoftDeletes;
 
     function Book(){
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Book::class,"bookID");
     }
 }

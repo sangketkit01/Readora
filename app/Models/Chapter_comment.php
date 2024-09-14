@@ -12,10 +12,10 @@ class Chapter_comment extends Model
     use SoftDeletes;
 
     function Chapter(){
-        return $this->belongsTo(Book_chapter::class);
+        return $this->belongsTo(Book_chapter::class,"chapterID");
     }
 
     function User(){
-        return $this->belongsTo(Userdb::class);
+        return $this->belongsTo(Userdb::class,"username");
     }
 }

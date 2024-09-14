@@ -6,7 +6,7 @@
     font-family: "Roboto";
 }
 
-.navbar{
+.navbar-layout{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -42,8 +42,7 @@
     margin-right: 25px;
 }
 
-#search-image{
-    display: inline-block;
+#layout-search{
     background-color: #DBE0E6;
     width: 45px;
     height: 45px;
@@ -52,7 +51,7 @@
     cursor: pointer;
 }
 
-#search-image img{
+#layout-seach-image{
     width: 30px;
     height: 30px;
     object-fit: contain;

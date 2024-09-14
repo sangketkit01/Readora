@@ -12,15 +12,15 @@
         <input type="radio" name="slider" id="item-3">
         <div class="cards">
             <label class="card" for="item-1" id="song-1">
-                <img src="https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80"
+                <img class="images" src="https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80"
                     alt="song">
             </label>
             <label class="card" for="item-2" id="song-2">
-                <img src="https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80"
+                <img class="images" src="https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80"
                     alt="song">
             </label>
             <label class="card" for="item-3" id="song-3">
-                <img src="https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
+                <img class="images" src="https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
                     alt="song">
             </label>
         </div>
@@ -41,14 +41,23 @@
                     <div class="recommend-card">
                         <div class="row g-0">
                             <div class="col-md-4">
+<<<<<<< HEAD
                                 <img src="{{asset($book->book_pic)}}"
                                     class="img-fluid rounded-start" alt="Book Image" style="object-fit: contain;">
+=======
+                                <img class="images" src="{{asset($book->book_pic)}}"
+                                    class="img-fluid rounded-start images" alt="Book Image" style="object-fit: contain;">
+>>>>>>> 64ea1f8f7e1ca74d6774e15585d40fd1c6e7eed8
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">{{$book->book_name}}</h5>
                                     <p class="card-text">{{$book->book_description}}</p>
+<<<<<<< HEAD
                                     <p class="card-text"><small class="text-body-secondary">{{$book->username}}</small></p>
+=======
+                                    <p class="card-text"><small class="text-body-secondary">{{$book->User->name}}</small></p>
+>>>>>>> 64ea1f8f7e1ca74d6774e15585d40fd1c6e7eed8
                                 </div>
                             </div>
                         </div>
@@ -64,7 +73,7 @@
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                        class="img-fluid rounded-start" alt="...">
+                                        class="img-fluid rounded-start images"  alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -83,7 +92,7 @@
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                        class="img-fluid rounded-start" alt="...">
+                                        class="img-fluid rounded-start images" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -102,7 +111,7 @@
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                        class="img-fluid rounded-start" alt="...">
+                                        class="img-fluid rounded-start images" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -121,7 +130,7 @@
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                        class="img-fluid rounded-start" alt="...">
+                                        class="img-fluid rounded-start images" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -151,7 +160,7 @@
                         <div class="row g-0">
                             <div class="col-md-4">
                                 <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                    class="img-fluid rounded-start" alt="...">
+                                    class="img-fluid rounded-start images" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -170,7 +179,7 @@
                         <div class="row g-0">
                             <div class="col-md-4">
                                 <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                    class="img-fluid rounded-start" alt="...">
+                                    class="img-fluid rounded-start images" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -189,7 +198,7 @@
                         <div class="row g-0">
                             <div class="col-md-4">
                                 <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                    class="img-fluid rounded-start" alt="...">
+                                    class="img-fluid rounded-start images" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -208,7 +217,7 @@
                         <div class="row g-0">
                             <div class="col-md-4">
                                 <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                    class="img-fluid rounded-start" alt="...">
+                                    class="img-fluid rounded-start images" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">

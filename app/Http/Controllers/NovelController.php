@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Book_chapter;
 use App\Models\Book_type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-use function PHPUnit\Framework\isNull;
 
 class NovelController extends Controller
 {
@@ -17,7 +17,7 @@ class NovelController extends Controller
 
     public function page()
     {
-        $book_types = DB::table("book_types")->get();
+        $book_types = Book_type::all();
         return view("user.create_novel", compact("book_types"));
     }
 
@@ -54,8 +54,14 @@ class NovelController extends Controller
 
         $book_types = DB::table("book_types")->get();
         $data = Book::where("bookID", $bookID)->get();
+        $chapters = Book_chapter::where("bookID",$bookID)->get();
+        $count_chapter = Book_chapter::where("bookID",$bookID)->count();
 
-        return view("user.edit_novel", compact("data", "book_types"));
+        return view("user.edit_novel", compact("data", "book_types","bookID","chapters","count_chapter"));
+    }
+
+    public function edit_insert(Request $request , $bookID){
+        
     }
 
     public function AddChapter($bookID)
@@ -91,11 +97,6 @@ class NovelController extends Controller
 
 
         return redirect(route("novel.edit", ["bookID" => $bookID]));
-    }
-    public function index()
-    {
-        $books = Book::all();
-        return view('user.index', compact('books'));
     }
 
 }
