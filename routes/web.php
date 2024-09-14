@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Monolog\Handler\SendGridHandler;
 
-Route::get('/', function () {
-    return view('user.index');
-})->name('index');
+Route::get('/', [NovelController::class,"index"])->name('index');
 
 Route::get('/signin',[WebController::class,"sign_in"])->name('sign_in');
 Route::get("/signup",[WebController::class,"sign_up"])->name('sign_up');
@@ -35,9 +33,9 @@ Route::middleware("checkLogin")->group(function(){
 
     Route::get("/create_novel", [NovelController::class, "page"])->name("create_novel");
     Route::post("/create_novel/insert", [NovelController::class, "insertNewNovel"])->name("novel.insert");
-    Route::get("/edit_novel/{bookID}", [NovelController::class, 'edit'])->name("novel.edit");
-    Route::get("/add_chapter/{bookID}", [NovelController::class, "AddChapter"])->name("novel.add_chapter");
-    Route::post("/add_chapter/insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter");
+    Route::get("/edit_novel/{bookID}", [NovelController::class, 'edit'])->name("novel.edit")->middleware(["checkOwner"]);
+    Route::get("/add_chapter/{bookID}", [NovelController::class, "AddChapter"])->name("novel.add_chapter")->middleware(["checkOwner"]);
+    Route::post("/add_chapter/insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter")->middleware(["checkOwner"]);
 });
 
 Route::get("/mail",function(){

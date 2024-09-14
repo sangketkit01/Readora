@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Book_type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -14,51 +15,56 @@ class NovelController extends Controller
 {
     //
 
-    public function page(){
+    public function page()
+    {
         $book_types = DB::table("book_types")->get();
-        return view("user.create_novel",compact("book_types"));
+        return view("user.create_novel", compact("book_types"));
     }
 
-    public function insertNewNovel(Request $request){
+    public function insertNewNovel(Request $request)
+    {
         $file = $request->file('inputImage');
         $newFileName = uniqid('', true) . '.' . $file->getClientOriginalExtension();
         $fileUrl = Storage::putFileAs('public/Picture', $file, $newFileName);
 
-        $fileUrl = str_replace("public/","storage/",$fileUrl);
+        $fileUrl = str_replace("public/", "storage/", $fileUrl);
 
         $created_at = now();
 
         $data = [
             'username' => Session::get("user")->username,
-            'bookTypeID' => (int)$request->input("type"),
+            'bookTypeID' => (int) $request->input("type"),
             'book_name' => $request->input("title"),
             'book_pic' => $fileUrl,
             'book_description' => $request->input("recommend"),
-            "book_status" => (int) $request->input("status") ,
+            "book_status" => (int) $request->input("status"),
             "created_at" => $created_at
         ];
 
         DB::table('books')->insert($data);
 
-        $bookID = DB::table("books")->where("username",Session::get("user")->username)->where("created_at",$created_at)->first();
+        $bookID = DB::table("books")->where("username", Session::get("user")->username)->where("created_at", $created_at)->first();
 
         return redirect("/edit_novel/$bookID->bookID");
     }
 
 
-    public function edit($bookID){
+    public function edit($bookID)
+    {
 
         $book_types = DB::table("book_types")->get();
-        $data = Book::where("bookID",$bookID)->get();
+        $data = Book::where("bookID", $bookID)->get();
 
-        return view("user.edit_novel",compact("data","book_types"));
+        return view("user.edit_novel", compact("data", "book_types"));
     }
 
-    public function AddChapter($bookID){
-        return view("user.add_chapter",compact("bookID"));
+    public function AddChapter($bookID)
+    {
+        return view("user.add_chapter", compact("bookID"));
     }
 
-    public function InsertNewChapter(Request $request , $bookID){
+    public function InsertNewChapter(Request $request, $bookID)
+    {
 
         $image = $request->file('image');
         $newImageFileName = uniqid('', true) . '.' . $image->getClientOriginalExtension();
@@ -66,12 +72,12 @@ class NovelController extends Controller
         $imageUrl = str_replace("public/", "storage/", $imageUrl);
 
         $created_at = now();
-        $book = Book::where("bookID",$bookID)->first();
+        $book = Book::where("bookID", $bookID)->first();
 
         $allow_comment = $request->has('allow_comment') ? 1 : 0;
 
         $data = [
-            'chapter_image' => $imageUrl , 
+            'chapter_image' => $imageUrl,
             'bookID' => $bookID,
             'bookTypeID' => $book->bookTypeID,
             'chapter_content' => $request->input("content"),
@@ -84,7 +90,12 @@ class NovelController extends Controller
         DB::table('book_chapters')->insert($data);
 
 
-        return redirect(route("novel.edit",["bookID" => $bookID]));
+        return redirect(route("novel.edit", ["bookID" => $bookID]));
+    }
+    public function index()
+    {
+        $books = Book::all();
+        return view('user.index', compact('books'));
     }
 
 }
