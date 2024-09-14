@@ -76,9 +76,8 @@ body {
     width: 384px;
     background-color: #f8f9fa;
     text-align: center;
-    background-image: url("../../novel/add_photo.png");
     background-position: center;
-    background-size: contain;
+    background-size: 270px;
     background-repeat: no-repeat;
     cursor: pointer;
 }
@@ -120,28 +119,30 @@ body {
     margin-left: 20px;
     display: flex;
     align-items: center;
+    margin-left: 20px;
 }
 
-#profile-image {
+#profile-image-edit {
     width: 44px;
     height: 44px;
     border-radius: 50%;
     object-fit: cover;
+    margin: 0;
 }
 
-#profile-name {
-    margin-left: 10px;
+#profile-name-edit {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
     padding-top: 12px;
+    margin-left: 10px;
 }
 
 .row .recommend {
     background-color: white;
     width: 1040px;
-    height: 196px;
+    height: auto;
     position: relative;
     bottom: 3%;
     left: 2px;
@@ -277,7 +278,7 @@ strong {
     margin-left: 10px;
 }
 
-img {
+.images {
     width: 100px;
     height: 100px;
     object-fit: contain;
@@ -309,4 +310,13 @@ img {
     height: 50px;
     position: relative;
     top: 3%;
+}
+
+#edit-chapter-href{
+    text-decoration: none;
+    color: #333;
+}
+
+#edit-chapter-href:hover{
+    color: #777;
 }

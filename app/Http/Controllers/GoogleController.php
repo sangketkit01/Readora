@@ -30,6 +30,7 @@ class GoogleController extends Controller
                     "profile" => $google_user->getAvatar(),
                     "name" => $google_user->getName(),
                     "email" => $google_user->getEmail(),
+                    "gender" => "none",
                     "created_at" => now()
                 ];
 

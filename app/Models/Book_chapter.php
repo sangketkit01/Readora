@@ -12,14 +12,14 @@ class Book_chapter extends Model
     use SoftDeletes;
 
     function Book(){
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Book::class,"bookID");
     }
 
     function Type(){
-        return $this->belongsTo(Book_type::class);
+        return $this->belongsTo(Book_type::class,"bookTypeID");
     }
 
     function Comments(){
-        return $this->hasMany(Chapter_comment::class);
+        return $this->hasMany(Chapter_comment::class,"commentID");
     }
 }
