@@ -1,12 +1,65 @@
-table {
-  text-align: center;
-}
-* {
+.containner {
   margin: 0px;
   padding: 0px;
   font-family: sans-serif;
+  height: 100vh;
+  background-color: white;
 }
 
+.user {
+  width: 60%;
+  background-color: #F1F1F1;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+#profile-top img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+  margin-bottom: 10px;
+
+}
+#profile-top p {
+  font-size: medium;
+  color: #33436F;
+}
+#about table {
+  margin-top: 0px;
+  width: 40%;
+  margin: 0 auto;
+  background-color: #fff;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+#about th, #about td {
+  padding: 10px 10px;
+  text-align: center;
+  font-size: 16px;
+  color: #6d6d6d;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+}
+#about th {
+  background-color: #f9f9f9;
+  color: black;
+  font-size: small;
+}
+#about td {
+  background-color: #f9f9f9;
+  color: black;
+  font-size: small;
+}
+.user-options select {
+  border: none; 
+  outline: none; 
+  background-color: transparent; 
+  font-size: larger;
+}
 
 /* popup */
 .blur-layer {
@@ -55,7 +108,7 @@ table {
               opacity 200ms ease-in-out 0ms,
               transform 200ms ease-in-out 0ms;
 }
-.popup .close-btn {
+.close-btn {
   position:  fixed;
   top: 11px;
   right: 10px;
@@ -79,17 +132,18 @@ table {
   font-size: 25px;
 }
 #popup .form-element {
+  margin-top: 10px;
   width: 100%;
 }
 #popup label {
+  margin-top: 5px;
   font-size: 14px;
   color: #222;
   padding-top: 10px;
   width: 100%;
 }
 #popup input[type="password"]{
-  margin-top: 5px;
-  width: 100%;
+  width: 90%;
   display: block;
   height: 35px;
   outline: none;

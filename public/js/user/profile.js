@@ -25,6 +25,7 @@ editInfoButton.addEventListener('click', () => {
 //popup
 document.addEventListener('DOMContentLoaded', function () {
     const popup = document.querySelector('.popup');
+
     const blurLayer = document.createElement('div');
     blurLayer.classList.add('blur-layer');
     document.body.appendChild(blurLayer);
@@ -46,6 +47,16 @@ document.addEventListener('DOMContentLoaded', function () {
         overlay.style.display = 'none';
     });
 });
+
+document.getElementById('add-password-form').addEventListener('submit', function(event) {
+    let newPassword = document.getElementById('new_password').value;
+    let confirmPassword = document.getElementById('confirm_password').value;
+    if (newPassword !== confirmPassword) {
+        event.preventDefault(); 
+        alert('รหัสผ่านไม่ตรงกัน');
+    }
+});
+
 
 
 
