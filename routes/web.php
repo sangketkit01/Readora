@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\IndexController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\WriterController;
 use App\Mail\Hellomail;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Monolog\Handler\SendGridHandler;
@@ -40,5 +42,12 @@ Route::middleware("checkLogin")->group(function(){
     Route::post("/add_chapter/insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter")->middleware(["checkOwner"]);
 });
 
+Route::middleware("checkAdminLogin")->group(function(){
+    Route::get("/admin/index", [AdminController::class, 'Index'])->name("admin.index");
+    Route::get("/admin/signout",[AdminController::class,'SignOut'])->name("admin.signout");
+});
+
+Route::get("/admin/login",[AdminController::class,'Login'])->name("admin.login");
+Route::post("/admin/login/verify",[AdminController::class,'VerifyLogin'])->name("admin.login_verify");
 
 
