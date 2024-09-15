@@ -13,7 +13,6 @@ use App\Mail\Hellomail;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use Monolog\Handler\SendGridHandler;
 
 Route::get('/', [IndexController::class,"index"])->name('index');
 
