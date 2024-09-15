@@ -13,9 +13,9 @@ return new class extends Migration
         Schema::create('userdbs', function (Blueprint $table) {
             $table->string("username")->primary();
             $table->string("profile")->nullable();
-            $table->string("name",60);
+            $table->string("name");
             $table->string("password")->nullable();
-            $table->string("email",255);
+            $table->string("email");
             $table->string("gender",4)->nullable();
             $table->timestamps();
             $table->softDeletes();
