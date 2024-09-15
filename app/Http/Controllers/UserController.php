@@ -34,15 +34,21 @@ class UserController extends Controller
         return redirect()->route('profile');
     }
 
-    function add_password(Request $request){
+    public function add_password(Request $request) {
         $request->validate([
-            'new_password' => 'required|min:8|confirmed',
+            'new_password' => 'required|min:8',
+            'confirm_password' => 'required|same:new_password',
+        ], [
+            'new_password.min' => 'รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร',
+            'confirm_password.same' => 'รหัสผ่านไม่ตรงกัน',
         ]);
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $user->password = Hash::make($request->input('new_password'));
+        // $user->password = Hash::make($request->input('new_password'));
+        $user->password = $request->input('new_password');
         $user->save();
-        return redirect()->route('profile');
+        return redirect()->route('profile')->with('success', 'รหัสผ่านถูกเปลี่ยนเรียบร้อย');
     }
+    
 
     function update_password(Request $request){
         $request->validate([
@@ -53,7 +59,6 @@ class UserController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
         return redirect()->route('profile')->with('success', 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว');
-
     }
     
     function rec1(){

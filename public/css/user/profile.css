@@ -2,9 +2,7 @@
   margin: 0px;
   padding: 0px;
   font-family: sans-serif;
-  height: 100vh;
   background-color: white;
-
 }
 
 .user {
@@ -45,23 +43,18 @@
   color: #6d6d6d;
   background-color: #f9f9f9;
   border-bottom: 1px solid #eee;
-}
-#about th {
   background-color: #f9f9f9;
   color: black;
   font-size: small;
 }
-#about td {
-  background-color: #f9f9f9;
-  color: black;
-  font-size: small;
-}
+
 .user-options select {
   font-weight: bold;
   border: none; 
   outline: none; 
   background-color: transparent; 
   font-size: x-large;
+  cursor: pointer;
 }
 
 /* popup */
@@ -106,7 +99,7 @@
 .close-btn:hover {
   background-color: rgb(192, 0, 0);
 }
-input[type="password"]{
+.popup input[type="password"], .popup2 input[type="password"]{
   width: 90%;
   display: block;
   height: 35px;
@@ -169,7 +162,7 @@ input[type="password"]{
   cursor: pointer;
 }
 .popup button:hover, .popup2 button:hover{
-  background: #4F5D87;
+  background: #4F5D87 !important;
 }
 .popup a {
   display: block;
@@ -180,7 +173,7 @@ input[type="password"]{
   margin-top: 10px;
   margin: 5px 5px 0 auto;
 }
-.popup a:hover {
-  text-decoration: underline;
+.popup a:hover{
+  text-decoration: underline !important; 
 }
 
