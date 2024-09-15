@@ -30,6 +30,7 @@ Route::middleware("checkLogin")->group(function(){
     Route::get('/profile', [UserController::class, "profile"])->name('profile');
     Route::post('/update_info', [UserController::class, 'update_info'])->name('update_info');
     Route::post('/update_password', [UserController::class, 'update_password'])->name('update_password');
+    Route::post('/add_password', [UserController::class, 'add_password'])->name('add_password');
 
     Route::get('/signout', [LoginController::class, 'logout'])->name('sign_out');
 
