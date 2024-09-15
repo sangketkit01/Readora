@@ -15,9 +15,9 @@ return new class extends Migration
             $table->increments("bookID");
             $table->string("username");
             $table->unsignedInteger("bookTypeID");
-            $table->string("book_name",45);
-            $table->string("book_pic",255);
-            $table->string("book_description",255);
+            $table->string("book_name");
+            $table->string("book_pic");
+            $table->string("book_description");
             $table->tinyInteger("book_status");
             $table->timestamps();
             $table->softDeletes();

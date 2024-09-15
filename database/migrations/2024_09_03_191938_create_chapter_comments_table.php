@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments("commentID");
             $table->unsignedInteger("chapterID");
             $table->string("username");
-            $table->string("comment_message",255);
+            $table->string("comment_message");
             $table->timestamps();
             $table->softDeletes();
 
