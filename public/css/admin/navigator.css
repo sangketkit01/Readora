@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+.left {
+    color: white;
+    float: left;
+    margin: 8px;
+}
+.right {
+    float: right;
+    margin: 8px;
+    color: white;
+}
+.nav {
+    padding: 25px;
+}
+.navbar {
+    background-color: black;
+}

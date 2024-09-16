@@ -1,0 +1,40 @@
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 250px 250px 250px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.box {
+    background-color: pink;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-box {
+    background-color: #4a66d3;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-box img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+}
+
+.action-box p {
+    font-size: 1.2rem;
+}
+
+.action-box:hover {
+    background-color: #3949ab;
+}

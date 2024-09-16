@@ -38,4 +38,8 @@ class AdminController extends Controller
 
         return redirect()->route("admin.login");
     }
+
+    function Home(){
+        return view("admin.home");
+    }
 }

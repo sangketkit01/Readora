@@ -63,5 +63,7 @@ Route::get("/rec1", [IndexController::class, 'rec1'])->name("index.rec1");
 Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
 Route::get("/read", [IndexController::class, "read"])->name("index.read");
 
+Route::get("/Home_admin",[AdminController::class,"Home"])->name("Home_admin");
+
 
 
