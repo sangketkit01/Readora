@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NovelController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\ReadController;
 use App\Http\Controllers\WriterController;
 use App\Mail\Hellomail;
 use App\Models\Admin;
@@ -61,7 +62,8 @@ Route::post('/reset_password',[ForgotPasswordController::class,'resetPasswordPos
 
 Route::get("/rec1", [IndexController::class, 'rec1'])->name("index.rec1");
 Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
-Route::get("/read", [IndexController::class, "read"])->name("index.read");
+Route::get("/read_novel/{bookID}", [ReadController::class, "read_novel"])->name("index.read");
+
 
 Route::get("/Home_admin",[AdminController::class,"Home"])->name("Home_admin");
 

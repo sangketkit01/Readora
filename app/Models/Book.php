@@ -12,7 +12,7 @@ class Book extends Model
     use SoftDeletes;
 
     function BookType(){
-        return $this->belongsTo(Book_type::class,"bookTypeID");
+        return $this->belongsTo(Book_type::class,"bookTypeID","bookTypeID");
     }
 
     function Chapter(){

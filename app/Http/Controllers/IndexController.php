@@ -24,9 +24,4 @@ class IndexController extends Controller
         return view("user.rec2", compact('book'));
     }
 
-    public function read(){
-        $book = Book::all();
-        $book = Book_type::all();
-        return view("user.read", compact('book'));
-    }
 }
