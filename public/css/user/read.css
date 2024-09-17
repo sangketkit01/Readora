@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+body{
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+}
+
 .add-title {
     padding: 20px;
     font-size: 40px;
@@ -23,26 +29,22 @@
     margin-top: 15px;
 }
 
-#input-image-label {
-    height: 422px;
-    width: 384px;
-    background-color: #f8f9fa;
-    text-align: center;
-    background-image: url("../../novel/add_photo.png");
-    background-position: center;
-    background-size: 200px;
-    background-repeat: no-repeat;
-    cursor: pointer;
-}
-
-#input-image-label:hover {
-    background-color: #f1f2f2;
-}
 
 .image-title {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.image-title img {
+    object-fit: cover;
+    height: 422px;
+    width: 384px;
+    background-color: #f8f9fa;
+    text-align: center;
+    background-position: center;
+    background-size: 200px;
+    background-repeat: no-repeat;
+    cursor: pointer;
 }
 
 .add-title {
@@ -97,11 +99,14 @@
     position: relative;
     bottom: 3%;
     left: 2px;
+    padding: 10px;
 }
+
 
 .row .recommend>div {
     margin-top: 20px;
 }
+
 
 .row {
     display: flex;
@@ -167,13 +172,13 @@
     justify-content: flex-end;
 
 }
+.content{
+    margin-left: 107px;
+    margin-top: 40px;
+}
 
 div#mainchap {
     margin-left: 5px;
-}
-
-div#chapter {
-    height: 100px;
 }
 
 div#sub-chap {
@@ -205,6 +210,7 @@ hr {
 
 textarea {
     width: 100%;
+    
     max-width: 90%;
     /* Maximum width for textarea */
     min-width: 300px;
@@ -220,9 +226,7 @@ textarea {
 textarea.output {
     width: 100%;
     max-width: fit-content;
-    /* Maximum width for textarea */
     min-width: fit-content;
-    /* Minimum width for textarea */
     height: fit-content;
     padding: 10px;
     border: 1px solid #ccc;
@@ -269,6 +273,6 @@ textarea[readonly] {
     background-color: #e2e2e2;
     width: 850px;
     border-radius: 20px;
-
-
+    margin-top: -150px;
+    margin-left: -150px;
 }

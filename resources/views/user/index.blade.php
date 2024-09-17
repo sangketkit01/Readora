@@ -6,7 +6,7 @@
 @section('containerClassName', "indexContainer")
 
 @section('content')
-<div id="banner">
+<div id="banner" class="container">
     <input type="radio" name="slider" id="item-1" checked>
     <input type="radio" name="slider" id="item-2">
     <input type="radio" name="slider" id="item-3">
@@ -28,90 +28,62 @@
         </label>
     </div>
 </div>
-<br>
-<div class="row">
-    <div class="side">
-        <p> </p>
 
-    </div>
+
     <div class="container">
-        <div class="recommend" id="recommend1">
-            <h2>แนะนำ</h2>
-            <br>
-            <div class="recommend-section1">
-                @foreach ($books as $book)
-                    <div class="recommend-card">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{asset($book->book_pic)}}" class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$book->book_name}}</h5>
-                                    <p class="card-text">{{$book->book_description}}</p>
-                                    <p class="card-text"><small class="text-body-secondary">{{$book->User->name}}</small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+    <!-- Recommendation Section for Books -->
+    <div class="recommend" id="recommend1">
+        <h2>แนะนำนิยาย</h2>
+        <br>
+        <div class="recommend-section1">
+            @foreach ($books as $book)
+                <div class="recommend-card">
+                    <img src="{{ asset($book->book_pic) }}" alt="Book Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $book->book_name }}</h5>
+                        <p class="card-text">{{ $book->book_description }}</p>
+                        <p class="card-text"><small class="text-body-secondary">{{ $book->User->name }}</small></p>
                     </div>
-                @endforeach
-            </div>
-
-
-        <div class="recommend">
-            <h2>แนะนำ</h2>
-            <br>
-            <div class="recommend-section1">
-                @foreach ($books as $book)
-                    <div class="recommend-card">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{asset($book->book_pic)}}" class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$book->book_name}}</h5>
-                                    <p class="card-text">{{$book->book_description}}</p>
-                                    <p class="card-text"><small class="text-body-secondary">{{$book->User->name}}</small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-
-        <div class="recommend">
-            <h2>แนะนำ</h2>
-            <br>
-            <div class="recommend-section2">
-                @foreach ($books as $book)
-                    <div class="recommend-card">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{asset($book->book_pic)}}" class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$book->book_name}}</h5>
-                                    <p class="card-text">{{$book->book_description}}</p>
-                                    <p class="card-text"><small class="text-body-secondary">{{$book->User->name}}</small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-
-                <div class="side">
-                    <p> </p>
-
                 </div>
+            @endforeach
+        </div>
+    </div>
 
-            </div>
+    <!-- Recommendation Section for Comics -->
+    <div class="recommend" id="recommend1">
+        <h2>แนะนำคอมมิค</h2>
+        <br>
+        <div class="recommend-section1">
+            @foreach ($books as $book)
+                <div class="recommend-card">
+                    <img src="{{ asset($book->book_pic) }}" alt="Book Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $book->book_name }}</h5>
+                        <p class="card-text">{{ $book->book_description }}</p>
+                        <p class="card-text"><small class="text-body-secondary">{{ $book->User->name }}</small></p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    <!-- Romance Section -->
+    <div class="recommend">
+        <h2>รักโรแมนติก</h2>
+        <br>
+        <div class="recommend-section2">
+            @foreach ($books as $book)
+                <div class="recommend-card">
+                    <img src="{{ asset($book->book_pic) }}" alt="Romance Book Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $book->book_name }}</h5>
+                        <p class="card-text">{{ $book->book_description }}</p>
+                        <p class="card-text"><small class="text-body-secondary">{{ $book->User->name }}</small></p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
 
             @endsection

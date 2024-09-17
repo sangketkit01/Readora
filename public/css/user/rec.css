@@ -41,8 +41,6 @@ p ._1 {
     font-weight: 400;
     font-size: 350px;
 
-
-
 }
 
 .row {
@@ -84,13 +82,14 @@ p ._1 {
 
 .recommend-card {
     width: 48%;
-    /* ให้การ์ดแต่ละใบมีความกว้าง 48% เพื่อให้วางได้ 2 ใบต่อแถว */
     text-align: center;
     padding: 10px;
     background-color: #f8f9fa;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 
