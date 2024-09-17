@@ -1,8 +1,8 @@
-*{
+* {
     margin: 0;
 }
 
-.AddChapterContainer{
+.EditChapterContainer {
     display: flex;
     flex-direction: column;
     width: 1027px;
@@ -10,35 +10,36 @@
     margin: 30px auto;
 }
 
-#edit-button , #submit-button{
+#edit-button,
+#submit-button {
     width: 101px;
     height: 31px;
     border-radius: 50px;
 }
 
-#edit-button{
+#edit-button {
     border: 1.5px solid #a4a4a4;
     background-color: transparent;
     margin-right: 10px;
     color: #858585;
 }
 
-#submit-button{
+#submit-button {
     border: 1.5px solid transparent;
     background-color: #4F5D87;
     color: white;
 }
 
 
-.add-name{
+.add-name {
     margin: auto 0;
 }
 
-.add-name label{
+.add-name label {
     font-size: 23px;
 }
 
-.add-name input{
+.add-name input {
     border: 2px solid #AFA9A9;
     background-color: transparent;
     height: 40px;
@@ -46,56 +47,57 @@
     color: black;
 }
 
-#content-label{
+#content-label {
     font-size: 23px;
 }
 
-#content , #writer_message{
+#content,
+#writer_message {
     padding-top: 5px;
     border: none;
     outline: none;
 }
 
-#content-hr{
+#content-hr {
     margin-top: 0;
     width: 100%;
 }
 
-#check-error{
+#check-error {
     height: 40px;
 }
 
 
-#checkbox{
+#checkbox {
     width: 25px;
     height: 25px;
     cursor: pointer;
 }
 
-#cancel-button , #save-button{
+#cancel-button,
+#save-button {
     width: 135px;
     height: 36px;
     border-radius: 50px;
 }
 
-#cancel-button{
+#cancel-button {
     margin-right: 20px;
     border: 2px solid #A4A4A4;
     color: #858585;
     background-color: transparent;
 }
 
-#save-button{
+#save-button {
     border: 2px solid transparent;
     color: white;
     background-color: #4F5D87;
-    
+
 }
 
 #image-input-label {
     width: 180px;
     height: 200px;
-    background-image: url("../../novel/add_photo.png");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -106,7 +108,7 @@
     flex: 0 0 auto;
 }
 
-#image-input-label:hover{
+#image-input-label:hover {
     background-color: #FAFAFA;
 }
 

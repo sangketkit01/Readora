@@ -11,6 +11,9 @@ class Book_chapter extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $table = 'book_chapters';
+    protected $primaryKey = 'chapterID';
+
     function Book(){
         return $this->belongsTo(Book::class,"bookID");
     }

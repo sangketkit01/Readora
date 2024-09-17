@@ -99,4 +99,33 @@ class NovelController extends Controller
         return redirect(route("novel.edit", ["bookID" => $bookID]));
     }
 
+    function EditChapter($bookID,$chapterID){
+        $book = Book_chapter::where("chapterID",$chapterID)->where("bookID",$bookID)->first();
+        return view('user.edit_chapter',compact("book","bookID","chapterID"));
+    }
+
+    function EditChapterUpdate(Request $request,$bookID,$chapterID){
+        $chapterContent = Book_chapter::where('bookID',$bookID)->where('chapterID',$chapterID)->first();
+        if($request->has('image')){
+            $oldImage = $chapterContent->chapter_image;
+            $oldImage = str_replace("storage/","public/",$oldImage);
+            if ($oldImage && Storage::exists($oldImage)) {
+                Storage::delete($oldImage);
+            }       
+
+            $image = $request->file('image');
+            $newImageFileName = uniqid('', true) . '.' . $image->getClientOriginalExtension();
+            $imageUrl = Storage::putFileAs('public/Chapter', $image, $newImageFileName);
+            $imageUrl = str_replace("public/", "storage/", $imageUrl);
+
+            $chapterContent->chapter_image = $imageUrl;
+        }
+        $chapterContent->chapter_content = $request->content;
+        $chapterContent->chapter_name = $request->title;
+        $chapterContent->writer_message = $request->writer_message;
+        $chapterContent->allow_comment = $request->has('allow_comment') ? 1 : 0;
+        $chapterContent->save();
+        return redirect()->route('novel.edit',['bookID'=>$bookID]);
+    }
+
 }

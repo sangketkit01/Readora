@@ -11,6 +11,9 @@ class Report extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $table = 'reports';
+    protected $primaryKey = 'reportID';
+
     function Book(){
         return $this->belongsTo(Book::class,"bookID");
     }

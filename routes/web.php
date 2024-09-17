@@ -41,6 +41,9 @@ Route::middleware("checkLogin")->group(function(){
     Route::post("/create_novel/insert", [NovelController::class, "insertNewNovel"])->name("novel.insert");
     Route::post("/edit_novel/insert/{bookID}",[NovelController::class,"edit_insert"])->name("novel.edit_insert")->middleware(["checkOwner"]);
     Route::post("/add_chapter/insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter")->middleware(["checkOwner"]);
+
+    Route::get('/edit_chapter/{bookID}/{chapterID}',[NovelController::class,"EditChapter"])->name('novel.edit_chapter')->middleware(['checkOwner']);
+    Route::post('/edit_chapter/update/{bookID}/{chapterID}',[NovelController::class,'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkOwner']);
 });
 
 Route::middleware("checkAdminLogin")->group(function(){

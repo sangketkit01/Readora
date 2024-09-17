@@ -120,7 +120,7 @@
                                     <input type="checkbox" name="chap" id="chap" class="chap">
                                     <strong>{{ $count }}</strong>
                                     <img class="images" src="{{ asset($chapter->chapter_image) }}" alt="">
-                                    <strong><a href="#" id="edit-chapter-href">{{$chapter->chapter_name}}</a></strong>
+                                    <strong><a href="/edit_chapter/{{$bookID}}/{{$chapter->chapterID}}" id="edit-chapter-href">{{$chapter->chapter_name}}</a></strong>
                                 </div>
                                 <div class="col-4 text-end">
                                     <div class="header-left d-flex align-items-center" style="margin-top: 12px;">
