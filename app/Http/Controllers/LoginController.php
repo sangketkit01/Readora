@@ -16,7 +16,6 @@ class LoginController extends Controller
         $user = DB::table("userdbs")->where("username",$request->input("username"))->first();
         $password = $request->input("password");
 
-        //dd(Hash::check($password, $user->password));
         if(!($user && Hash::check($password,$user->password))){
             return redirect()->back()->withErrors(["msg" => "Invalid username or password."]);
         }
@@ -29,9 +28,15 @@ class LoginController extends Controller
 
     function insert(Request $request){
         $request->validate([
+            "username" => "unique:userdbs,username",
             "email" => "unique:userdbs,email",
             "password" => "min:8",
             "confirm" => "same:password"
+        ],[
+            "username.unique" => "ชื่อผู้ใช้ถูกใช้งานแล้ว",
+            "email.unique" => "อีเมลล์ถูกใช้งานแล้ว",
+            "password.min" => "รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร",
+            "confirm.same" => "รหัสผ่านไม่ตรงกัน"
         ]);
 
         $insert = [
