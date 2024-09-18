@@ -20,14 +20,15 @@ class OwnerBookMiddleware
         try{
             $bookID = $request->route("bookID");
             $book = Book::where("username",Session::get("user")->username)->where("bookID",$bookID)->first();
-            if(isset($book)){
+            if(isset($book) && $book){
                 return $next($request);
             }else{
                 return abort(404);
             }
         }catch(\Exception $e){
-            return redirect()->route('index');
+            return abort(404);
         }
+        
         return redirect()->route('index');
     }
 }

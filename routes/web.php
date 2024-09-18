@@ -9,9 +9,7 @@ use App\Http\Controllers\NovelController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\ReadController;
-use App\Http\Controllers\WriterController;
 use App\Mail\Hellomail;
-use App\Models\Admin;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -42,8 +40,8 @@ Route::middleware("checkLogin")->group(function(){
     Route::post("/edit_novel/insert/{bookID}",[NovelController::class,"edit_insert"])->name("novel.edit_insert")->middleware(["checkOwner"]);
     Route::post("/add_chapter/insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter")->middleware(["checkOwner"]);
 
-    Route::get('/edit_chapter/{bookID}/{chapterID}',[NovelController::class,"EditChapter"])->name('novel.edit_chapter')->middleware(['checkOwner']);
-    Route::post('/edit_chapter/update/{bookID}/{chapterID}',[NovelController::class,'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkOwner']);
+    Route::get('/edit_chapter/{bookID}/{chapterID}',[NovelController::class,"EditChapter"])->name('novel.edit_chapter')->middleware(['checkOwner','checkChapterOwner']);
+    Route::post('/edit_chapter/update/{bookID}/{chapterID}',[NovelController::class,'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkOwner', 'checkChapterOwner']);
 });
 
 Route::middleware("checkAdminLogin")->group(function(){
