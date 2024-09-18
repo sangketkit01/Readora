@@ -30,8 +30,10 @@ Route::get("/auth/google/call-back",[GoogleController::class,"callbackGoogle"]);
 Route::middleware("checkLogin")->group(function(){
     Route::get('/profile', [UserController::class, "profile"])->name('profile');
     Route::post('/update_info', [UserController::class, 'update_info'])->name('update_info');
-    Route::post('/update_password', [UserController::class, 'update_password'])->name('update_password');
-    Route::post('/add_password', [UserController::class, 'add_password'])->name('add_password');
+    Route::get('/create_password_page', [UserController::class, 'callView'])->name('create.password.page');
+    Route::post('/create_password', [UserController::class, 'create_password'])->name('create.password');
+    Route::get('/change_password_page', [UserController::class, 'callView2'])->name('change.password.page');
+    Route::post('/change_password', [UserController::class, 'create_password'])->name('change.password');
 
     Route::get('/signout', [LoginController::class, 'logout'])->name('sign_out');
 
