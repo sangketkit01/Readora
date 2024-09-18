@@ -34,7 +34,7 @@
                     <div class="d-flex flex-column">
                         <a href="{{ url('/forgot_password')}}" id="forgot">ลืมรหัสผ่าน?</a>
                         @if ($errors->has('msg'))
-                            <p class="text-danger text-center p-0 mb-0 mt-2">{{$errors->first('msg')}}</p>
+                            <p class="text-danger text-center p-0 mb-0 mt-2 fw-bold">{{$errors->first('msg')}}</p>
                         @endif
                     </div>
                     <button type="submit" id="login-button">เข้าสู่ระบบ</button>

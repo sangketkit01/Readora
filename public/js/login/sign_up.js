@@ -8,13 +8,12 @@ password.addEventListener("input", () => {
         if (passwordP.classList.contains("text-success")) {
             passwordP.classList.remove("text-success");
         }
-
         passwordP.classList.add("text-danger");
     } else {
         if (passwordP.classList.contains("text-danger")) {
             passwordP.classList.remove("text-danger");
         }
-
+        passwordP.style.fontWeight = 'bold';
         passwordP.classList.add("text-success");
     }
 });
@@ -24,13 +23,14 @@ confirmPassword.addEventListener("input" , () =>{
         if(confirmPasswordP.classList.contains("text-success")){
             confirmPasswordP.classList.remove("text-success")
         }
-
+        confirmPasswordP.textContent = "รหัสผ่านไม่ตรงกัน"
         confirmPasswordP.classList.add("text-danger")
     }else{
         if(confirmPasswordP.classList.contains("text-danger")){
             confirmPasswordP.classList.remove("text-danger")
         }
 
+        confirmPasswordP.textContent = "รหัสผ่านตรงกัน"
         confirmPasswordP.classList.add("text-success")
     }
 })

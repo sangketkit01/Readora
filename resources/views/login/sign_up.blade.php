@@ -33,7 +33,7 @@
                     <label for="username">ชื่อผู้ใช้</label>
                     <input type="text" name="username" placeholder="ชื่อผู้ใช้" required>
                     @if ($errors->has('username'))
-                        <p class="mt-2 mb-0 text-danger" style="font-size: 14px; margin-left:2px">{{$errors->first('username')}}</p>
+                        <p class="mt-2 mb-0 text-danger fw-bold" style="font-size: 14px; margin-left:2px">{{$errors->first('username')}}</p>
                     @endif
                     <label for="email">อีเมลล์</label>
 
@@ -42,15 +42,15 @@
                     @else
                         <input type="email" name="email" placeholder="อีเมลล์" required>
                          @if ($errors->has('email'))
-                            <p class="mt-2 mb-0 text-danger" style="font-size: 14px; margin-left:2px">{{$errors->first('email')}}</p>
+                            <p class="mt-2 mb-0 text-danger fw-bold" style="font-size: 14px; margin-left:2px">{{$errors->first('email')}}</p>
                         @endif
                     @endif
                     <label for="password">รหัสผ่าน</label>
                     <input type="password" name="password" placeholder="รหัสผ่าน" id="password-input" required>
-                    <p class="mt-2 mb-0 text-danger" id="password-p" style="font-size: 14px; margin-left:2px">รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร</p>
+                    <p class="mt-2 mb-0 text-danger fw-bold" id="password-p" style="font-size: 14px; margin-left:2px">รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร</p>
                     <label for="confirm">ยืนยันรหัสผ่าน</label>
                     <input type="password" name="confirm" placeholder="ยืนยันรหัสผ่าน" id="confirm-password-input" required>
-                    <p class="mt-2 mb-0 text-danger" id="confirm-p" style="font-size: 14px; margin-left:2px">รหัสผ่านไม่ตรงกัน</p>
+                    <p class="mt-2 mb-0 text-danger fw-bold" id="confirm-p" style="font-size: 14px; margin-left:2px">รหัสผ่านไม่ตรงกัน</p>
                     <label for="gender">เพศ</label>
                     <select name="gender" class="gender">
                         <option value="none">ไม่ระบุ</option>
