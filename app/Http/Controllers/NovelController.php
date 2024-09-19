@@ -171,4 +171,12 @@ class NovelController extends Controller
         return redirect()->route('novel.edit',['bookID'=>$bookID]);
     }
 
+    function NovelChapterUpdate(Request $request,$bookID,$chapterID){
+        $chapter = Book_chapter::where("chapterID",$chapterID)->where("bookID",$bookID);
+        if(!$chapter){
+            return abort(404);
+        }
+
+    }
+
 }
