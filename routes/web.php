@@ -54,10 +54,10 @@ Route::middleware("checkAdminLogin")->group(function(){
 Route::get("/admin/login",[AdminController::class,'Login'])->name("admin.login");
 Route::post("/admin/login/verify",[AdminController::class,'VerifyLogin'])->name("admin.login_verify");
 
-Route::get("/mail",function(){
-    Mail::to('auttzeza@gmail.com')
-        ->Send(new Hellomail());
-});
+// Route::get("/mail",function(){
+//     Mail::to('auttzeza@gmail.com')
+//         ->Send(new Hellomail());
+// });
 Route::get('/forgot_password',[ForgotPasswordController::class,'forgot'])->name('forgot.password');
 Route::post('/forgot_password',[ForgotPasswordController::class,'password'])->name('forgot.password.post');
 Route::get('/reset_password/{token}',[ForgotPasswordController::class,'resetPassword'])->name('reset_password');
