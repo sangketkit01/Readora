@@ -77,7 +77,7 @@ body {
     background-color: #f8f9fa;
     text-align: center;
     background-position: center;
-    background-size: 270px;
+    background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
 }
@@ -299,7 +299,7 @@ strong {
     text-align: right;
 }
 
-#pub {
+#pub , #pub-chapter{
     border: 1px solid black;
     border-radius: 10px;
     padding: 0 5px;

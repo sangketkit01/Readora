@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign in</title>
     <link rel="stylesheet" href="/css/login/sign_in.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+    <div class="container1">
         <div class="cover">
             <img src="/login/login.png" id="login-cover" alt="">
         </div>
@@ -30,7 +31,12 @@
                     <input type="text" name="username" placeholder="Username" required>
                     <label for="password">Password</label>
                     <input type="password" name="password" placeholder="Password" required>
-                    <a href="{{ url('/forgot_password')}}" id="forgot">ลืมรหัสผ่าน?</a>
+                    <div class="d-flex flex-column">
+                        <a href="{{ url('/forgot_password')}}" id="forgot">ลืมรหัสผ่าน?</a>
+                        @if ($errors->has('msg'))
+                            <p class="text-danger text-center p-0 mb-0 mt-2 fw-bold">{{$errors->first('msg')}}</p>
+                        @endif
+                    </div>
                     <button type="submit" id="login-button">เข้าสู่ระบบ</button>
                     <div class="or">
                         <div class="line"></div>

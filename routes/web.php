@@ -9,9 +9,7 @@ use App\Http\Controllers\NovelController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\ReadController;
-use App\Http\Controllers\WriterController;
 use App\Mail\Hellomail;
-use App\Models\Admin;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -30,8 +28,10 @@ Route::get("/auth/google/call-back",[GoogleController::class,"callbackGoogle"]);
 Route::middleware("checkLogin")->group(function(){
     Route::get('/profile', [UserController::class, "profile"])->name('profile');
     Route::post('/update_info', [UserController::class, 'update_info'])->name('update_info');
-    Route::post('/update_password', [UserController::class, 'update_password'])->name('update_password');
-    Route::post('/add_password', [UserController::class, 'add_password'])->name('add_password');
+    Route::get('/create_password_page', [UserController::class, 'callView'])->name('create.password.page');
+    Route::post('/create_password', [UserController::class, 'create_password'])->name('create.password');
+    Route::get('/change_password_page', [UserController::class, 'callView2'])->name('change.password.page');
+    Route::post('/change_password', [UserController::class, 'create_password'])->name('change.password');
 
     Route::get('/signout', [LoginController::class, 'logout'])->name('sign_out');
 
@@ -42,8 +42,8 @@ Route::middleware("checkLogin")->group(function(){
     Route::post("/edit_novel/insert/{bookID}",[NovelController::class,"edit_insert"])->name("novel.edit_insert")->middleware(["checkOwner"]);
     Route::post("/add_chapter/insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter")->middleware(["checkOwner"]);
 
-    Route::get('/edit_chapter/{bookID}/{chapterID}',[NovelController::class,"EditChapter"])->name('novel.edit_chapter')->middleware(['checkOwner']);
-    Route::post('/edit_chapter/update/{bookID}/{chapterID}',[NovelController::class,'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkOwner']);
+    Route::get('/edit_chapter/{bookID}/{chapterID}',[NovelController::class,"EditChapter"])->name('novel.edit_chapter')->middleware(['checkOwner','checkChapterOwner']);
+    Route::post('/edit_chapter/update/{bookID}/{chapterID}',[NovelController::class,'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkOwner', 'checkChapterOwner']);
 });
 
 Route::middleware("checkAdminLogin")->group(function(){

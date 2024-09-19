@@ -8,14 +8,15 @@
     <div class="container">
         <form action="{{ route('novel.edit_insert',['bookID' => $bookID]) }}" method="post" id="form" enctype="multipart/form-data">
             @csrf
-            <div class="row justify-content-center row-header">
+            <div class="row justify-content-center row-header align-items-center">
                 <div class="col-7">
                     <div class="header-left d-flex align-items-center" style="margin-top: 12px;">
-                        <p class="me-2">ตั้งค่าสถานะเรื่อง</p>
+                        <p class="ms-4 me-2">ตั้งค่าสถานะเรื่อง</p>
                         <select name="status" id="pub">
-                            <option value="0">เฉพาะฉัน</option>
-                            <option value="1">สาธารณะ</option>
+                            <option value="0" {{ $data->book_status == 0 ? 'selected' : '' }}>เฉพาะฉัน</option>
+                            <option value="1" {{ $data->book_status == 1 ? 'selected' : '' }}>สาธารณะ</option>
                         </select>
+
                     </div>
                 </div>
 
@@ -27,20 +28,19 @@
                 </div>
             </div> <br>
 
-            @foreach ($data as $item)
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-11">
                         <div class="row">
                             <div class="col-4">
                                 <div class="image-title text-center">
                                     <label for="inputImage" id="input-image-label"
-                                        style="background-image: url({{ asset($item->book_pic) }})"></label>
-                                    <input type="file" id="inputImage" required name="inputImage" accept="image/*">
+                                        style="background-image: url({{ asset($data->book_pic) }})"></label>
+                                    <input type="file" id="inputImage" name="inputImage" accept="image/*">
                                 </div>
                             </div>
                             <div class="col-8">
                                 <div class="add-title">
-                                    <label contenteditable="true" id="add-title-input">{{ $item->book_name }}</label>
+                                    <label contenteditable="true" id="add-title-input">{{ $data->book_name }}</label>
                                     <textarea id="hiddenTextareaTitle" name="title" style="display:none;"></textarea>
                                     <div class="profile d-flex align-items-center">
                                         <img id="profile-image-edit" src="{{ session('user')->profile }}" alt="">
@@ -49,7 +49,7 @@
                                     <div class="type">
                                         <select name="type" id="type">
                                             @foreach ($book_types as $type)
-                                                @if ($item->bookTypeID == $type->bookTypeID)
+                                                @if ($data->bookTypeID == $type->bookTypeID)
                                                     <option value="{{ $type->bookTypeID }}" selected>
                                                         {{ $type->bookType_name }}</option>
                                                 @else
@@ -67,7 +67,7 @@
                         <div class="row recommend justify-content-between" id="rec">
                             <div class="col-8">
                                 <h4>แนะนำเนื้อเรื่อง</h4>
-                                <p contenteditable="true" id="recommend-input">เพิ่มคำแนะนำเนื้อเรื่อง</p>
+                                <p contenteditable="true" id="recommend-input">{{$data->book_description}}</p>
                                 <textarea id="hiddenTextareaRecommend" name="recommend" style="display:none;"></textarea>
                             </div>
                             <div class="col-4 text-end">
@@ -125,7 +125,7 @@
                                 <div class="col-4 text-end">
                                     <div class="header-left d-flex align-items-center" style="margin-top: 12px;">
                                         <i class="bi bi-eye"></i>
-                                        <select name="status" id="pub">
+                                        <select name="status-chapter" id="pub-chapter">
                                             <option value="0">เฉพาะฉัน</option>
                                             @if ($chapter->allow_comment == 1)
                                                 <option value="1" selected>สาธารณะ</option>
@@ -139,7 +139,6 @@
                             @endforeach
                         </div>
                     </div>
-            @endforeach
         </form>
     </div>
 @endsection

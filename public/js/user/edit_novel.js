@@ -19,3 +19,31 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+
+function submitForm() {
+    let recommend = document.getElementById("hiddenTextareaRecommend");
+    let title = document.getElementById("hiddenTextareaTitle");
+
+    let recommendInput = document.getElementById("recommend-input").textContent;
+    let titleInput = document.getElementById("add-title-input").textContent;
+
+
+    if (titleInput === "เพิ่มชื่อเรื่อง" || titleInput === "") {
+        alert("กรุณาเพิ่มชื่อเรื่อง");
+        return;
+    }
+
+    if (recommendInput === "") {
+        recommendInput = "ไม่มีคำแนะนำเนื้อเรื่อง";
+    }
+
+    recommend.value = recommendInput;
+    title.value = titleInput;
+
+    let form = document.getElementById("form");
+    if (form.checkValidity()) {
+        form.submit();
+    }
+}
