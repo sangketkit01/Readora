@@ -53,7 +53,7 @@ class NovelController extends Controller
     {
 
         $book_types = DB::table("book_types")->get();
-        $data = Book::where("bookID", $bookID)->get();
+        $data = Book::where("bookID", $bookID)->first();
         $chapters = Book_chapter::where("bookID",$bookID)->get();
         $count_chapter = Book_chapter::where("bookID",$bookID)->count();
 
@@ -65,7 +65,34 @@ class NovelController extends Controller
     }
 
     public function edit_insert(Request $request , $bookID){
-        
+        $book = Book::where("bookID",$bookID)->first();
+        if(!$book){
+            return abort(404);
+        }
+
+
+        if($request->has("inputImage")){
+            $oldImage = $book->book_pic;
+            $oldImage = str_replace("storage/", "public/", $oldImage);
+            if ($oldImage && Storage::exists($oldImage)) {
+                Storage::delete($oldImage);
+            }
+
+            $image = $request->file('inputImage');
+            $newImageFileName = uniqid('', true) . '.' . $image->getClientOriginalExtension();
+            $imageUrl = Storage::putFileAs('public/Picture', $image, $newImageFileName);
+            $imageUrl = str_replace("public/", "storage/", $imageUrl);
+
+            $book->book_pic = $imageUrl;
+        }
+
+        $book->book_name  = $request->title;
+        $book->bookTypeID = $request->type;
+        $book->book_description = $request->recommend;
+        $book->book_status = (int) $request->status;
+        $book->save();
+
+        return redirect()->route("novel.edit",["bookID"=>$bookID]);
     }
 
     public function AddChapter($bookID)

@@ -46,7 +46,7 @@
                         @endif
                     @endif
                     <label for="password">รหัสผ่าน</label>
-                    <input type="password" name="password" placeholder="รหัสผ่าน" id="password-input" required>
+                    <input type="password" min="8" name="password" placeholder="รหัสผ่าน" id="password-input" required>
                     <p class="mt-2 mb-0 text-danger fw-bold" id="password-p" style="font-size: 14px; margin-left:2px">รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร</p>
                     <label for="confirm">ยืนยันรหัสผ่าน</label>
                     <input type="password" name="confirm" placeholder="ยืนยันรหัสผ่าน" id="confirm-password-input" required>

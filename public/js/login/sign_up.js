@@ -13,7 +13,6 @@ password.addEventListener("input", () => {
         if (passwordP.classList.contains("text-danger")) {
             passwordP.classList.remove("text-danger");
         }
-        passwordP.style.fontWeight = 'bold';
         passwordP.classList.add("text-success");
     }
 });
