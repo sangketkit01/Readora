@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments("comicchapterID");
             $table->string("chapter_image");
             $table->unsignedInteger("comicID");
+            $table->unsignedInteger("comicTypeID");
             $table->string("chapter_name");
             $table->string("chapter_content");
             $table->string("writer_message");
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign("comicID")->references("comicID")->on("comics")->onDelete("cascade");
+            $table->foreign("comicTypeID")->references("comicTypeID")->on("comic_types")->onDelete("cascade");
         });
     }
 
