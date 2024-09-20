@@ -1,278 +1,313 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-body{
-    align-content: center;
-    justify-content: center;
-    justify-items: center;
+body {
+    background-color: #F1F1F1;
 }
 
-.add-title {
-    padding: 20px;
-    font-size: 40px;
-}
-
-
-.type p {
-    font-size: 20px;
-    color: #333;
-    padding: 5px 0;
-}
-
-
-
-#cover-image {
-    max-width: 500px;
-}
-
-#inputImage {
-    display: none;
-    margin-top: 15px;
-}
-
-
-.image-title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.image-title img {
-    object-fit: cover;
-    height: 422px;
-    width: 384px;
-    background-color: #f8f9fa;
-    text-align: center;
-    background-position: center;
-    background-size: 200px;
-    background-repeat: no-repeat;
-    cursor: pointer;
-}
-
-.add-title {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    width: 643px;
-    height: 422px;
-    background-color: #D9D9D9;
-}
-
-.add-title label {
-    font-size: 1.5em;
-    margin: 20px 20px 0 20px;
-    font-family: "Inter", sans-serif;
-    font-weight: bold;
-    padding: 5px 5px;
-}
-
-.type {
-    margin-left: 20px;
-    margin-top: 10px;
-}
-
-.profile {
-    margin-top: 15px;
-    margin-left: 20px;
-    display: flex;
-    align-items: center;
-}
-
-#profile-image {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-#profile-name {
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    padding-top: 12px;
-}
-
-.row .recommend {
-    background-color: white;
-    width: 1040px;
-    height: 196px;
-    position: relative;
-    bottom: 3%;
-    left: 2px;
-    padding: 10px;
-}
-
-
-.row .recommend>div {
-    margin-top: 20px;
-}
-
-
-.row {
-    display: flex;
-    width: 100%;
+p {
     margin: 0;
-}
-
-.header-left p {
-    margin: 0;
-}
-
-
-.header-left select {
-    margin-left: 10px;
-}
-
-
-.group-35,
-.group-36 {
-    display: inline-block;
-    width: 137px;
-    height: 41px;
-    position: relative;
-    margin-right: 10px;
-    box-sizing: border-box;
-    position: relative;
-}
-
-.div35,
-.div36 {
-    text-align: center;
-    font-family: "Inter-SemiBold", sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    position: absolute;
-    top: 8px;
-    left: 0;
-    right: 0;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    padding: 0 5px;
-}
-
-.rectangle-127,
-.rectangle-123 {
-    width: 137px;
-    height: 41px;
-    border-radius: 100px;
-}
-
-.rectangle-127 {
-    background-color: #4f5d87;
-}
-
-.rectangle-123 {
-    border: 1.5px solid #a4a4a4;
-    background-color: transparent;
-}
-
-.recommend .text-end {
-    display: flex;
-    justify-content: flex-end;
-
-}
-.content{
-    margin-left: 107px;
-    margin-top: 40px;
-}
-
-div#mainchap {
-    margin-left: 5px;
-}
-
-div#sub-chap {
-    margin: 0 0 15px 10px;
-
-}
-
-div#chap {
     padding: 0;
 }
 
-.row .recommend {
-    height: auto;
+.container_user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-#opn {
-    margin-left: 10px;
-}
+.card_user {
+    display: flex;
+    margin: 0 auto;
+    width: 73%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    justify-content: center;
 
-.input-area {
-    margin: 20px 0;
-    text-align: left;
-}
-
-hr {
-    height: 5px;
 }
 
 
-textarea {
-    width: 100%;
-    
-    max-width: 90%;
-    /* Maximum width for textarea */
-    min-width: 300px;
-    /* Minimum width for textarea */
-    height: 150px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.img img {
+    width: 384px;
+    height: 422px;
+    object-fit: cover;
+    margin-right: 10px;
 }
 
-textarea.output {
-    width: 100%;
-    max-width: fit-content;
-    min-width: fit-content;
-    height: fit-content;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.user {
+    padding: 20px;
+    background-color: #D9D9D9;
 }
 
-textarea:focus {
-    border-color: #66afe9;
-    outline: none;
-    box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+.head {
+    height: 45px;
+    display: flex;
+    overflow: hidden;
 }
 
-textarea[readonly] {
-    background-color: #ffffff;
+.head h1 {
+    font-size: 30px;
 }
 
-.profile {
-    margin-top: 15px;
-    margin-left: 20px;
+.profile_user {
     display: flex;
     align-items: center;
-    width: 800px;
 }
 
-#profile-image {
-    width: 44px;
-    height: 44px;
+.profile_user img {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-#profile-name {
-    margin-left: 10px;
+.button ul {
     display: flex;
-    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.button li {
+    margin-right: 10px;
+}
+
+.button_1 {
+    border: 1px solid #676767;
+    color: #676767;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+
+}
+
+.button_2 {
+    background-color: #4F5D87;
+    color: #ffffff;
+    ;
+    padding: 10px 28px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.type {
+    margin: 10px 0;
+    height: 65%;
+}
+
+.Introducing {
+    background-color: white;
+    width: 70%;
+    padding: 20px;
     justify-content: center;
-    font-size: 18px;
-    padding-top: 12px;
+    margin: 0 auto;
+}
+
+.Introducing a {
+    text-decoration: none;
+    color: #4F5D87;
+}
+
+.All_episodes {
+    background-color: white;
+    width: 70%;
+    padding: 20px;
+    justify-content: center;
+    margin: 10px auto;
+}
+
+.All_episodes select {
+    width: 200px;
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.All_episodes select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.comment {
+    background-color: white;
+    width: 70%;
+    padding: 20px;
+    justify-content: center;
+    margin: 10px auto;
+}
+
+.comment h4 {
+    margin-bottom: 10px;
+}
+
+.comment textarea {
+    width: 100%;
+    height: 200px;
 }
 
 .com {
-    background-color: #e2e2e2;
-    width: 850px;
+    background-color: #E2E2E2;
+    width: 50%;
+    height: 200px;
+    padding: 20px;
     border-radius: 20px;
-    margin-top: -150px;
-    margin-left: -150px;
+    justify-content: center;
+    margin: 0px auto;
+
 }
+
+.pofile_user_com {
+    display: flex;
+    align-items: center;
+}
+
+.pofile_user_com img {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
+.com textarea {
+    margin: 10px;
+    width: 97%;
+    height: 110px;
+}
+
+.com textarea:focus {
+    outline: 0;
+    box-shadow: #007bff 0 0px 2px 1px;
+}
+
+@media screen and (max-width: 576px) {
+    .container_user {
+        width: 100%;
+        margin: 0;
+    }
+
+    .card_user {
+        display: block;
+        margin: 0 auto;
+        width: 70%;
+    }
+
+    .img img {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+        max-width: 576px;
+    }
+
+    .user {
+        height: 240px;
+    }
+
+    .user h1 {
+        font-size: 16px;
+    }
+
+    .type h4 {
+        font-size: 16px;
+    }
+
+    .type p {
+        font-size: 10px;
+    }
+
+    .type {
+        margin: 10px 0;
+        height: 45%;
+    }
+
+    .profile_user img {
+        width: 20px;
+        height: 20px;
+
+    }
+
+    .profile_user p {
+        font-size: 10px;
+    }
+
+    .button_1 {
+
+        padding: 5px 10px;
+
+    }
+
+    .button_2 {
+        padding: 5px 18px;
+
+    }
+
+    .com {
+        width: 70%;
+
+    }
+
+}
+
+@media screen and (min-width: 577px) and (max-width: 1040px) {
+    .container_user {
+        width: 100%;
+    }
+
+    .user {
+        margin-left: 10px;
+    }
+
+    .img img {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .user h1 {
+        font-size: 16px;
+    }
+
+    .type h4 {
+        font-size: 16px;
+    }
+
+    .type p {
+        font-size: 10px;
+    }
+
+    .type {
+        margin: 10px 0;
+        height: 70%;
+    }
+
+    .profile_user img {
+        width: 20px;
+        height: 20px;
+
+    }
+
+    .profile_user p {
+        font-size: 10px;
+    }
+
+    .button_1 {
+
+        padding: 5px 5px;
+
+    }
+
+    .button_2 {
+        padding: 5px 10px;
+
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .container_user {
+        width: 100%;
+
+    }
+}
+fonts.googleapis.com

@@ -72,7 +72,7 @@
         <h2>รักโรแมนติก</h2>
         <br>
         <div class="recommend-section2">
-            @foreach ($books as $book)
+            @foreach ($romanticBooks as $book)
                 <div class="recommend-card">
                     <img src="{{ asset($book->book_pic) }}" alt="Romance Book Image">
                     <div class="card-body">

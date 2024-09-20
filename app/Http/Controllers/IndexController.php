@@ -10,8 +10,10 @@ class IndexController extends Controller
     public function index()
     {
         $books = Book::take(4)->get();
-        return view("user.index", compact("books"));
+        $romanticBooks = Book::where('bookTypeID', 1)->limit(4)->get();
+        return view("user.index", compact("books", 'romanticBooks'));
     }
+
     public function rec1()
     {
         $book = Book::all();
