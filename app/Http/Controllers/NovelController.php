@@ -15,13 +15,13 @@ class NovelController extends Controller
 {
     //
 
-    public function page()
+    public function Page()
     {
         $novel_types = Novel_type::all();
         return view("user.create_novel", compact("novel_types"));
     }
 
-    public function insertNewNovel(Request $request)
+    public function InsertNewNovel(Request $request)
     {
         $file = $request->file('inputImage');
         $newFileName = uniqid('', true) . '.' . $file->getClientOriginalExtension();
@@ -31,12 +31,17 @@ class NovelController extends Controller
 
         $created_at = now();
 
+        $recommend = $request->input("recommend");
+        if($recommend === "เพิ่มคำแนะนำเรื่อง" || trim($recommend) === ""){
+            $recommend = "ไม่มีคำแนะนำเรื่อง";
+        }
+
         $data = [
             'username' => Session::get("user")->username,
             'novelTypeID' => (int) $request->input("type"),
             'novel_name' => $request->input("title"),
             'novel_pic' => $fileUrl,
-            'novel_description' => $request->input("recommend"),
+            'novel_description' => $recommend,
             "novel_status" => (int) $request->input("status"),
             "created_at" => $created_at
         ];
@@ -45,13 +50,12 @@ class NovelController extends Controller
 
         $novelID = DB::table("novels")->where("username", Session::get("user")->username)->where("created_at", $created_at)->first();
 
-        return redirect("/edit_novel/$novelID->novelID");
+        return redirect("/edit_novel/$novelID->novelID")->with(["successMsg" => "สร้างนิยายสำเร็จ\nคุณอยู่ในหน้าแก้ไขนิยายแล้ว"]);
     }
 
 
-    public function edit($novelID)
+    public function Edit($novelID)
     {
-
         $novel_types = DB::table("novel_types")->get();
         $data = Novel::where("novelID", $novelID)->first();
         $chapters = Novel_chapter::where("novelID",$novelID)->get();
@@ -64,10 +68,15 @@ class NovelController extends Controller
         return view("user.edit_novel", compact("data", "novel_types","novelID","chapters","count_chapter"));
     }
 
-    public function edit_insert(Request $request , $novelID){
+    public function EditInsert(Request $request , $novelID){
         $novel = Novel::where("novelID",$novelID)->first();
         if(!$novel){
             return abort(404);
+        }
+
+        $recommend = $request->input("recommend");
+        if ($recommend === "เพิ่มคำแนะนำเรื่อง" || trim($recommend) === "") {
+            $recommend = "ไม่มีคำแนะนำเรื่อง";
         }
 
 
@@ -88,11 +97,11 @@ class NovelController extends Controller
 
         $novel->novel_name  = $request->title;
         $novel->novelTypeID = $request->type;
-        $novel->novel_description = $request->recommend;
+        $novel->novel_description = $recommend;
         $novel->novel_status = (int) $request->status;
         $novel->save();
 
-        return redirect()->route("novel.edit",["novelID"=>$novelID]);
+        return redirect()->route("novel.edit",["novelID"=>$novelID])->with(["successMsg" => "แก้ไขนิยายสำเร็จ"]);
     }
 
     public function AddChapter($novelID)
@@ -130,7 +139,7 @@ class NovelController extends Controller
         DB::table('novel_chapters')->insert($data);
 
 
-        return redirect(route("novel.edit", ["novelID" => $novelID]));
+        return redirect(route("novel.edit", ["novelID" => $novelID]))->with(["successMsg"=>"สร้างตอนใหม่สำเร็จ"]);
     }
 
     function EditChapter($novelID,$chapterID){
@@ -168,10 +177,10 @@ class NovelController extends Controller
         $chapterContent->writer_message = $request->writer_message;
         $chapterContent->allow_comment = $request->has('allow_comment') ? 1 : 0;
         $chapterContent->save();
-        return redirect()->route('novel.edit',['novelID'=>$novelID]);
+        return redirect()->route('novel.edit',['novelID'=>$novelID])->with(["successMsg" => "แก้ไขตอนสำเร็จ"]);
     }
 
-    function NovelChapterUpdate(Request $request,$novelID,$chapterID){
+    function ChapterStatusUpdate(Request $request,$novelID,$chapterID){
         $chapter = Novel_chapter::where("chapterID",$chapterID)->where("novelID",$novelID)->first();
         if(!$chapter){
             return abort(404);

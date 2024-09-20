@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     //
 
-    function verify(Request $request){
+    function Verify(Request $request){
         $user = DB::table("userdbs")->where("username",$request->input("username"))->first();
         $password = $request->input("password");
 
@@ -26,7 +26,7 @@ class LoginController extends Controller
         return redirect()->route("index");
     }
 
-    function insert(Request $request){
+    function Insert(Request $request){
         $request->validate([
             "username" => "unique:userdbs,username",
             "email" => "unique:userdbs,email",
@@ -58,7 +58,7 @@ class LoginController extends Controller
         return redirect()->route("index");
     }
 
-    function logout(){
+    function Logout(){
         Session::flush();
         return redirect()->route('sign_in');
     }
