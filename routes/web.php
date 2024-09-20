@@ -36,7 +36,6 @@ Route::middleware("checkLogin")->group(function(){
     Route::get('/novel_info/{}', [UserController::class, 'novelInfoPage']);
     Route::get('/comic_info/{username}', [UserController::class, 'comicInfoPage']);
 
-
     Route::get('/create_password_page', [UserController::class, 'viewCreatePassword'])->name('create.password.page');
     Route::post('/create_password', [UserController::class, 'create_password'])->name('create.password');
     Route::get('/change_password_page', [UserController::class, 'viewChangePassword'])->name('change.password.page');
