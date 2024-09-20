@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Userdb;
-use App\Models\Book;
+use App\Models\Novel;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +16,7 @@ class UserController extends Controller
     function profile(){
         $info = Userdb::where('username', Session::get('user')->username)->first();
         // dd(Session::get('user')->username);
-        $book = Book::all();
+        $novel = Novel::all();
         return view('profile.main_profile', compact('info'));
     }
 
@@ -56,7 +56,7 @@ class UserController extends Controller
     }
     
     function rec1(){
-        $book = Book::all();
-        return view('user.rec1', compact('book'));
+        $novel = Novel::all();
+        return view('user.rec1', compact('novel'));
     }
 }

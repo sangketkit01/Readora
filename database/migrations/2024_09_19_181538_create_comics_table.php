@@ -11,19 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
-            $table->increments("bookID");
+        Schema::create('comics', function (Blueprint $table) {
+            $table->increments("comicID");
             $table->string("username");
-            $table->unsignedInteger("bookTypeID");
-            $table->string("book_name");
-            $table->string("book_pic");
-            $table->string("book_description");
-            $table->tinyInteger("book_status");
+            $table->unsignedInteger("comicTypeID");
+            $table->string("comic_name");
+            $table->string("comic_pic");
+            $table->string("comic_description");
+            $table->tinyInteger("comic_status")->default(1);
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign("username")->references("username")->on("userdbs")->onDelete("cascade");
-            $table->foreign("bookTypeID")->references("bookTypeID")->on("book_types");
+            $table->foreign("comicTypeID")->references("comicTypeID")->on("comic_types");
         });
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('comics');
     }
 };

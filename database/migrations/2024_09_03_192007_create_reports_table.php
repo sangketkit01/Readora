@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->increments("reportID");
-            $table->unsignedInteger("bookID");
+            $table->unsignedInteger("novelID");
             $table->text("report_message");
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign("bookID")->references("bookID")->on("books")->onDelete("cascade");
+            $table->foreign("novelID")->references("novelID")->on("novels")->onDelete("cascade");
         });
     }
 

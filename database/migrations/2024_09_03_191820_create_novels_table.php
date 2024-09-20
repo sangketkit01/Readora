@@ -11,16 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('chapter_comments', function (Blueprint $table) {
-            $table->increments("commentID");
-            $table->unsignedInteger("chapterID");
+        Schema::create('novels', function (Blueprint $table) {
+            $table->increments("novelID");
             $table->string("username");
-            $table->string("comment_message");
+            $table->unsignedInteger("novelTypeID");
+            $table->string("novel_name");
+            $table->string("novel_pic");
+            $table->string("novel_description");
+            $table->tinyInteger("novel_status")->default(1);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign("chapterID")->references("chapterID")->on("novel_chapters")->onDelete("cascade");
             $table->foreign("username")->references("username")->on("userdbs")->onDelete("cascade");
+            $table->foreign("novelTypeID")->references("novelTypeID")->on("novel_types");
         });
     }
 
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('chapter_comments');
+        Schema::dropIfExists('novels');
     }
 };

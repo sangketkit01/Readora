@@ -3,7 +3,7 @@
 
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ChapterOwner;
-use App\Http\Middleware\OwnerBookMiddleware;
+use App\Http\Middleware\OwnerNovelMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         //
         $middleware->alias([
             'checkLogin' => UserMiddleware::class,
-            'checkOwner' => OwnerBookMiddleware::class,
+            'checkOwner' => OwnerNovelMiddleware::class,
             'checkAdminLogin' => AdminMiddleware::class,
             'checkChapterOwner' => ChapterOwner::class,
         ]);
