@@ -116,7 +116,6 @@ h2 {
     transition: transform 0.3s ease-in-out;
     display: flex;
     flex-direction: row;
-    /* Horizontal layout for image and text */
     align-items: center;
 }
 
@@ -180,11 +179,8 @@ h2 {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        /* Align text to the left */
         text-align: left;
-        /* Align text to the left */
         width: calc(100% - 150px);
-        /* Ensure the body takes up the remaining space */
     }
 }
 

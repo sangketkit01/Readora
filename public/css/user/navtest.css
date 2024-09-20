@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+.header-left {
+    display: flex;
+    align-items: center;
+    position: relative;
+    right: 8%;
+}
+
+.header-left p {
+    margin-right: 10px;
+}
+
+
+.header-left select {
+    border: none;
+    outline: none;
+}
+
+.header-right {
+    display: flex;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.createNovelContainer {
+    margin-left: 75px;
+}
+
+#edit-button,
+#submit-button {
+    display: flex;
+    text-decoration: none;
+    width: 101px;
+    height: 31px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+}
+
+#edit-button a:link {
+    color: #a4a4a4;
+}
+
+#edit-button {
+    border: 1.5px solid #a4a4a4;
+    background-color: transparent;
+    margin-right: 10px;
+}
+
+#submit-button {
+    color: white;
+    background-color: #4F5D87;
+}
+
+#cover-image {
+    max-width: 500px;
+}
+
+#inputImage {
+    display: none;
+    margin-top: 15px;
+}
+
+#input-image-label {
+    height: 422px;
+    width: 384px;
+    background-color: #f8f9fa;
+    text-align: center;
+    background-image: url("../../novel/add_photo.png");
+    background-position: center;
+    background-size: 270px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+#input-image-label:hover {
+    background-color: #f1f2f2;
+}
+
+.image-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 643px;
+    height: 422px;
+    background-color: #D9D9D9;
+}
+
+.add-title label {
+    font-size: 1.5em;
+    margin: 20px 20px 0 20px;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    padding: 5px 5px;
+}
+
+.type {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.profile {
+    margin-top: 15px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#profile-image {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#profile-name {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    padding-top: 12px;
+}
+
+.row .recommend {
+    background-color: white;
+    width: 1040px;
+    height: 196px;
+    position: relative;
+    bottom: 3%;
+    left: 2px;
+}
+
+.row .recommend>div {
+    margin-top: 20px;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    margin: 0;
+}
+
+.header-left p {
+    margin: 0;
+}
+
+
+.header-left select {
+    margin-left: 10px;
+}
+
+
+.group-35,
+.group-36 {
+    display: inline-block;
+    width: 137px;
+    height: 41px;
+    position: relative;
+    margin-right: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.div35,
+.div36 {
+    text-align: center;
+    font-family: "Inter-SemiBold", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    padding: 0 5px;
+}
+
+.rectangle-127,
+.rectangle-123 {
+    width: 137px;
+    height: 41px;
+    border-radius: 100px;
+}
+
+.rectangle-127 {
+    background-color: #4f5d87;
+}
+
+.rectangle-123 {
+    border: 1.5px solid #a4a4a4;
+    background-color: transparent;
+}
+
+.recommend .text-end {
+    display: flex;
+    justify-content: flex-end;
+
+}

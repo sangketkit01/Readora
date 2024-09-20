@@ -70,5 +70,9 @@ Route::get("/read_novel/{bookID}", [ReadController::class, "read_novel"])->name(
 
 Route::get("/Home_admin",[AdminController::class,"Home"])->name("Home_admin");
 
+Route::get("/test", function () {
+    return view('user.test');
+});
+
 
 
