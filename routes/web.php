@@ -88,5 +88,9 @@ Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
 Route::get("/read_novel/{novelID}", [ReadController::class, "read_novel"])->name("index.read");
 
 
+Route::get("/test", function () {
+    return view('user.test');
+});
+
 
 
