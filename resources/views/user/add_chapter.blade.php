@@ -6,7 +6,7 @@
 
 @section("containerClassName","AddChapterContainer")
 @section("content")
-    <form action="{{route("novel.new_chapter",["bookID"=>$bookID])}}" id="form" method="post" enctype="multipart/form-data">
+    <form action="{{route("novel.new_chapter",["novelID"=>$novelID])}}" id="form" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row button-header">
             <div class="col-12 d-flex justify-content-end">

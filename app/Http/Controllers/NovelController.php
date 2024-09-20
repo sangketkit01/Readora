@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
-use App\Models\Book_chapter;
-use App\Models\Book_type;
+use App\Models\Novel;
+use App\Models\Novel_chapter;
+use App\Models\Novel_type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -17,8 +17,8 @@ class NovelController extends Controller
 
     public function page()
     {
-        $book_types = Book_type::all();
-        return view("user.create_novel", compact("book_types"));
+        $novel_types = Novel_type::all();
+        return view("user.create_novel", compact("novel_types"));
     }
 
     public function insertNewNovel(Request $request)
@@ -33,46 +33,46 @@ class NovelController extends Controller
 
         $data = [
             'username' => Session::get("user")->username,
-            'bookTypeID' => (int) $request->input("type"),
-            'book_name' => $request->input("title"),
-            'book_pic' => $fileUrl,
-            'book_description' => $request->input("recommend"),
-            "book_status" => (int) $request->input("status"),
+            'novelTypeID' => (int) $request->input("type"),
+            'novel_name' => $request->input("title"),
+            'novel_pic' => $fileUrl,
+            'novel_description' => $request->input("recommend"),
+            "novel_status" => (int) $request->input("status"),
             "created_at" => $created_at
         ];
 
-        DB::table('books')->insert($data);
+        DB::table('novels')->insert($data);
 
-        $bookID = DB::table("books")->where("username", Session::get("user")->username)->where("created_at", $created_at)->first();
+        $novelID = DB::table("novels")->where("username", Session::get("user")->username)->where("created_at", $created_at)->first();
 
-        return redirect("/edit_novel/$bookID->bookID");
+        return redirect("/edit_novel/$novelID->novelID");
     }
 
 
-    public function edit($bookID)
+    public function edit($novelID)
     {
 
-        $book_types = DB::table("book_types")->get();
-        $data = Book::where("bookID", $bookID)->first();
-        $chapters = Book_chapter::where("bookID",$bookID)->get();
-        $count_chapter = Book_chapter::where("bookID",$bookID)->count();
+        $novel_types = DB::table("novel_types")->get();
+        $data = Novel::where("novelID", $novelID)->first();
+        $chapters = Novel_chapter::where("novelID",$novelID)->get();
+        $count_chapter = Novel_chapter::where("novelID",$novelID)->count();
 
         if((!$data)){
             return abort(404);
         }
 
-        return view("user.edit_novel", compact("data", "book_types","bookID","chapters","count_chapter"));
+        return view("user.edit_novel", compact("data", "novel_types","novelID","chapters","count_chapter"));
     }
 
-    public function edit_insert(Request $request , $bookID){
-        $book = Book::where("bookID",$bookID)->first();
-        if(!$book){
+    public function edit_insert(Request $request , $novelID){
+        $novel = Novel::where("novelID",$novelID)->first();
+        if(!$novel){
             return abort(404);
         }
 
 
         if($request->has("inputImage")){
-            $oldImage = $book->book_pic;
+            $oldImage = $novel->novel_pic;
             $oldImage = str_replace("storage/", "public/", $oldImage);
             if ($oldImage && Storage::exists($oldImage)) {
                 Storage::delete($oldImage);
@@ -83,24 +83,24 @@ class NovelController extends Controller
             $imageUrl = Storage::putFileAs('public/Picture', $image, $newImageFileName);
             $imageUrl = str_replace("public/", "storage/", $imageUrl);
 
-            $book->book_pic = $imageUrl;
+            $novel->novel_pic = $imageUrl;
         }
 
-        $book->book_name  = $request->title;
-        $book->bookTypeID = $request->type;
-        $book->book_description = $request->recommend;
-        $book->book_status = (int) $request->status;
-        $book->save();
+        $novel->novel_name  = $request->title;
+        $novel->novelTypeID = $request->type;
+        $novel->novel_description = $request->recommend;
+        $novel->novel_status = (int) $request->status;
+        $novel->save();
 
-        return redirect()->route("novel.edit",["bookID"=>$bookID]);
+        return redirect()->route("novel.edit",["novelID"=>$novelID]);
     }
 
-    public function AddChapter($bookID)
+    public function AddChapter($novelID)
     {
-        return view("user.add_chapter", compact("bookID"));
+        return view("user.add_chapter", compact("novelID"));
     }
 
-    public function InsertNewChapter(Request $request, $bookID)
+    public function InsertNewChapter(Request $request, $novelID)
     {
 
         $image = $request->file('image');
@@ -109,8 +109,8 @@ class NovelController extends Controller
         $imageUrl = str_replace("public/", "storage/", $imageUrl);
 
         $created_at = now();
-        $book = Book::where("bookID", $bookID)->first();
-        if (!$book) {
+        $novel = Novel::where("novelID", $novelID)->first();
+        if (!$novel) {
             return redirect()->route('index')->withErrors(["msg" => "Something went wrong."]);
         }
 
@@ -118,8 +118,8 @@ class NovelController extends Controller
 
         $data = [
             'chapter_image' => $imageUrl,
-            'bookID' => $bookID,
-            'bookTypeID' => $book->bookTypeID,
+            'novelID' => $novelID,
+            'novelTypeID' => $novel->novelTypeID,
             'chapter_content' => $request->input("content"),
             'chapter_name' => $request->input("title"),
             "writer_message" => $request->input("writer_message"),
@@ -127,23 +127,23 @@ class NovelController extends Controller
             "created_at" => $created_at
         ];
 
-        DB::table('book_chapters')->insert($data);
+        DB::table('novel_chapters')->insert($data);
 
 
-        return redirect(route("novel.edit", ["bookID" => $bookID]));
+        return redirect(route("novel.edit", ["novelID" => $novelID]));
     }
 
-    function EditChapter($bookID,$chapterID){
-        $book = Book_chapter::where("chapterID",$chapterID)->where("bookID",$bookID)->first();
-        if(!$book){
+    function EditChapter($novelID,$chapterID){
+        $novel = Novel_chapter::where("chapterID",$chapterID)->where("novelID",$novelID)->first();
+        if(!$novel){
             return abort(404);
         }
 
-        return view('user.edit_chapter',compact("book","bookID","chapterID"));
+        return view('user.edit_chapter',compact("novel","novelID","chapterID"));
     }
 
-    function EditChapterUpdate(Request $request,$bookID,$chapterID){
-        $chapterContent = Book_chapter::where('bookID',$bookID)->where('chapterID',$chapterID)->first();
+    function EditChapterUpdate(Request $request,$novelID,$chapterID){
+        $chapterContent = Novel_chapter::where('novelID',$novelID)->where('chapterID',$chapterID)->first();
 
         if (!$chapterContent) {
             return redirect()->route('index')->withErrors(["msg" => "Something went wrong."]);
@@ -168,7 +168,20 @@ class NovelController extends Controller
         $chapterContent->writer_message = $request->writer_message;
         $chapterContent->allow_comment = $request->has('allow_comment') ? 1 : 0;
         $chapterContent->save();
-        return redirect()->route('novel.edit',['bookID'=>$bookID]);
+        return redirect()->route('novel.edit',['novelID'=>$novelID]);
+    }
+
+    function NovelChapterUpdate(Request $request,$novelID,$chapterID){
+        $chapter = Novel_chapter::where("chapterID",$chapterID)->where("novelID",$novelID)->first();
+        if(!$chapter){
+            return abort(404);
+        }
+
+        $chapter->chapter_status  = $request->status_chapter;
+        $chapter->save();
+
+        return redirect()->route("novel.edit",["novelID"=>$novelID]);
+
     }
 
 }

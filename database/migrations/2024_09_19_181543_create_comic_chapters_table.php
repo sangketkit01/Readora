@@ -12,11 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comic_chapters', function (Blueprint $table) {
-            $table->increments("comicchapterID");
+            $table->increments("comic_chapterID");
             $table->string("chapter_image");
             $table->unsignedInteger("comicID");
             $table->unsignedInteger("comicTypeID");
             $table->string("chapter_name");
+            $table->tinyInteger("chapter_status")->default(1);
             $table->string("chapter_content");
             $table->string("writer_message");
             $table->tinyInteger("allow_comment");
