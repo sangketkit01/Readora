@@ -26,12 +26,21 @@ Route::get('/auth/google',[GoogleController::class,"redirect"])->name("google-au
 Route::get("/auth/google/call-back",[GoogleController::class,"callbackGoogle"]);
 
 Route::middleware("checkLogin")->group(function(){
+
+    // profile
     Route::get('/profile', [UserController::class, "profile"])->name('profile');
-    Route::post('/update_info', [UserController::class, 'update_info'])->name('update_info');
-    Route::get('/create_password_page', [UserController::class, 'callView'])->name('create.password.page');
+    Route::get('/edit_info/{username}', [UserController::class, 'editInfoPage']);
+    Route::post('/edit_info', [UserController::class, 'edit_info'])->name('edit.info');
+
+    Route::get('/novel_info/{}', [UserController::class, 'novelInfoPage']);
+    Route::get('/comic_info/{username}', [UserController::class, 'comicInfoPage']);
+
+
+    Route::get('/create_password_page', [UserController::class, 'viewCreatePassword'])->name('create.password.page');
     Route::post('/create_password', [UserController::class, 'create_password'])->name('create.password');
-    Route::get('/change_password_page', [UserController::class, 'callView2'])->name('change.password.page');
-    Route::post('/change_password', [UserController::class, 'create_password'])->name('change.password');
+    Route::get('/change_password_page', [UserController::class, 'viewChangePassword'])->name('change.password.page');
+    Route::post('/change_password', [UserController::class, 'change_password'])->name('change.password');
+    //
 
     Route::get('/signout', [LoginController::class, 'logout'])->name('sign_out');
 
