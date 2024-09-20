@@ -35,7 +35,7 @@
             <img src="https://img.icons8.com/material/48/000000/book.png" alt="Novels">
             <p>Novels</p>
         </div>
-        <div class="action-box">
+        <div class="action-box center">
             <img src="https://img.icons8.com/material/48/000000/book.png" alt="Comics">
             <p>Comics</p>
         </div>
@@ -47,7 +47,7 @@
             <img src="https://img.icons8.com/material/48/000000/cancel-2.png" alt="Blocked Novels">
             <p>Blocked Novels</p>
         </div>
-        <div class="action-box">
+        <div class="action-box center">
             <img src="https://img.icons8.com/material/48/000000/cancel-2.png" alt="Blocked Comics">
             <p>Blocked Comics</p>
         </div>

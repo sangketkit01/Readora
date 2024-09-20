@@ -25,6 +25,13 @@
     transition: background-color 0.3s;
 }
 
+.box{
+    margin-bottom: 20px;
+
+}
+.action-box {
+    margin:10px  10px;
+}
 .action-box img {
     width: 48px;
     height: 48px;
