@@ -176,6 +176,12 @@ p {
     object-fit: cover;
 
 }
+.images {
+    height: 100px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-inline: 20px;
+}
 
 .com textarea {
     margin: 10px;
@@ -253,6 +259,7 @@ p {
         width: 70%;
 
     }
+    
 
 }
 
