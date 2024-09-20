@@ -1,0 +1,126 @@
+/* Container */
+.container {
+    display: flex; /* ใช้ flexbox เพื่อจัดเรียง left-box และ right-box ให้อยู่ในแนวนอน */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 2%;
+}
+
+.box {
+    display: flex;
+    width: 100%;
+}
+
+/* Left Box (form inputs) */
+.left-box {
+    padding-right: 20px;
+    width: 100%;
+}
+
+.left-box label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.left-box input[type="text"],
+.left-box textarea,
+.left-box select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+}
+
+.left-box textarea {
+    resize: vertical;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-submit {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-cancel {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Right Box (file upload section) */
+.right-box {
+    width: 40%; /* ให้กว้าง 40% ของพื้นที่ทั้งหมด */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.file-upload {
+    padding: 20px;
+    border: 2px dashed #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    background-color: #f1f5ff;
+    height: 100%;
+}
+.file-upload input{
+    height: 100%;
+}
+
+.profile img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 10px;
+    margin-right: 10px;
+}
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#profile-name {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+
+.profile p{
+    margin: 0;
+
+}
+#input-image-label {
+    height: 422px;
+    width: 384px;
+    background-color: #f8f9fa;
+    text-align: center;
+    background-image: url("../../novel/add_photo.png");
+    background-position: center;
+    background-size: 270px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+

@@ -20,7 +20,7 @@ class NovelController extends Controller
         $novel_types = Novel_type::all();
         return view("user.create_novel", compact("novel_types"));
     }
-
+    
     public function insertNewNovel(Request $request)
     {
         $file = $request->file('inputImage');
