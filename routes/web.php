@@ -41,20 +41,20 @@ Route::middleware("checkLogin")->group(function(){
     });
 
     Route::prefix("edit_novel")->group(function () {
-        Route::get("{bookID}", [NovelController::class, 'edit'])->name("novel.edit")->middleware(["checkOwner"]);
-        Route::post("insert/{bookID}", [NovelController::class, "edit_insert"])->name("novel.edit_insert")->middleware(["checkOwner"]);
-        Route::post('chapter/update/{bookID}/{chapterID}', [NovelController::class, 'NovelChapterUpdate'])->name('novel.novel_chapter_update')->middleware(['checkOwner', 'checkChapterOwner']);
+        Route::get("{novelID}", [NovelController::class, 'edit'])->name("novel.edit")->middleware(["checkOwner"]);
+        Route::post("insert/{novelID}", [NovelController::class, "edit_insert"])->name("novel.edit_insert")->middleware(["checkOwner"]);
+        Route::post('chapter/update/{novelID}/{chapterID}', [NovelController::class, 'NovelChapterUpdate'])->name('novel.novel_chapter_update')->middleware(['checkOwner', 'checkChapterOwner']);
     });
 
     Route::prefix("add_chapter")->group(function(){
-        Route::get("{bookID}", [NovelController::class, "AddChapter"])->name("novel.add_chapter")->middleware(["checkOwner"]);
-        Route::post("insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter")->middleware(["checkOwner"]);
+        Route::get("{novelID}", [NovelController::class, "AddChapter"])->name("novel.add_chapter")->middleware(["checkOwner"]);
+        Route::post("insert/{novelID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter")->middleware(["checkOwner"]);
     });
 
 
     Route::prefix('edit_chapter')->group(function(){
-        Route::get('{bookID}/{chapterID}', [NovelController::class, "EditChapter"])->name('novel.edit_chapter')->middleware(['checkOwner', 'checkChapterOwner']);
-        Route::post('update/{bookID}/{chapterID}', [NovelController::class, 'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkOwner', 'checkChapterOwner']);
+        Route::get('{novelID}/{chapterID}', [NovelController::class, "EditChapter"])->name('novel.edit_chapter')->middleware(['checkOwner', 'checkChapterOwner']);
+        Route::post('update/{novelID}/{chapterID}', [NovelController::class, 'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkOwner', 'checkChapterOwner']);
     });
 });
 
@@ -82,7 +82,7 @@ Route::post('/reset_password',[ForgotPasswordController::class,'resetPasswordPos
 
 Route::get("/rec1", [IndexController::class, 'rec1'])->name("index.rec1");
 Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
-Route::get("/read_novel/{bookID}", [ReadController::class, "read_novel"])->name("index.read");
+Route::get("/read_novel/{novelID}", [ReadController::class, "read_novel"])->name("index.read");
 
 
 

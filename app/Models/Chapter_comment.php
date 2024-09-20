@@ -15,7 +15,7 @@ class Chapter_comment extends Model
     protected $primaryKey = 'commentID';
 
     function Chapter(){
-        return $this->belongsTo(Book_chapter::class,"chapterID");
+        return $this->belongsTo(Novel_chapter::class,"chapterID");
     }
 
     function User(){

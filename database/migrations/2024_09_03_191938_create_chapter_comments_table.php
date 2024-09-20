@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign("chapterID")->references("chapterID")->on("book_chapters")->onDelete("cascade");
+            $table->foreign("chapterID")->references("chapterID")->on("novel_chapters")->onDelete("cascade");
             $table->foreign("username")->references("username")->on("userdbs")->onDelete("cascade");
         });
     }

@@ -14,7 +14,7 @@ class Report extends Model
     protected $table = 'reports';
     protected $primaryKey = 'reportID';
 
-    function Book(){
-        return $this->belongsTo(Book::class,"bookID");
+    function Novel(){
+        return $this->belongsTo(Novel::class,"novelID");
     }
 }

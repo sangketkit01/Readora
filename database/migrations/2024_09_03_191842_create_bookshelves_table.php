@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('bookshelves', function (Blueprint $table) {
             $table->string("username");
-            $table->unsignedInteger("bookID");
+            $table->unsignedInteger("novelID");
 
-            $table->primary(['username','bookID']);
+            $table->primary(['username','novelID']);
             $table->foreign("username")->references("username")->on("userdbs")->onDelete("cascade");
-            $table->foreign("bookID")->references("bookID")->on("books")->onDelete("cascade");
+            $table->foreign("novelID")->references("novelID")->on("novels")->onDelete("cascade");
         });
     }
 

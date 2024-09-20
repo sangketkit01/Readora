@@ -6,7 +6,7 @@
 @section('containerClassName', 'editNovelContainer')
 @section('content')
     <div class="container">
-        <form action="{{ route('novel.edit_insert', ['bookID' => $bookID]) }}" method="post" id="form"
+        <form action="{{ route('novel.edit_insert', ['novelID' => $novelID]) }}" method="post" id="form"
             enctype="multipart/form-data">
             @csrf
             <div class="row justify-content-center row-header align-items-center">
@@ -14,8 +14,8 @@
                     <div class="header-left d-flex align-items-center" style="margin-top: 12px;">
                         <p class="ms-4 me-2">ตั้งค่าสถานะเรื่อง</p>
                         <select name="status" id="pub">
-                            <option value="0" {{ $data->book_status == 0 ? 'selected' : '' }}>เฉพาะฉัน</option>
-                            <option value="1" {{ $data->book_status == 1 ? 'selected' : '' }}>สาธารณะ</option>
+                            <option value="0" {{ $data->novel_status == 0 ? 'selected' : '' }}>เฉพาะฉัน</option>
+                            <option value="1" {{ $data->novel_status == 1 ? 'selected' : '' }}>สาธารณะ</option>
                         </select>
 
                     </div>
@@ -35,13 +35,13 @@
                         <div class="col-4">
                             <div class="image-title text-center">
                                 <label for="inputImage" id="input-image-label"
-                                    style="background-image: url({{ asset($data->book_pic) }})"></label>
+                                    style="background-image: url({{ asset($data->novel_pic) }})"></label>
                                 <input type="file" id="inputImage" name="inputImage" accept="image/*">
                             </div>
                         </div>
                         <div class="col-8">
                             <div class="add-title">
-                                <label contenteditable="true" id="add-title-input">{{ $data->book_name }}</label>
+                                <label contenteditable="true" id="add-title-input">{{ $data->novel_name }}</label>
                                 <textarea id="hiddenTextareaTitle" name="title" style="display:none;"></textarea>
                                 <div class="profile d-flex align-items-center">
                                     <img id="profile-image-edit" src="{{ session('user')->profile }}" alt="">
@@ -49,12 +49,12 @@
                                 </div>
                                 <div class="type">
                                     <select name="type" id="type">
-                                        @foreach ($book_types as $type)
-                                            @if ($data->bookTypeID == $type->bookTypeID)
-                                                <option value="{{ $type->bookTypeID }}" selected>
-                                                    {{ $type->bookType_name }}</option>
+                                        @foreach ($novel_types as $type)
+                                            @if ($data->novelTypeID == $type->novelTypeID)
+                                                <option value="{{ $type->novelTypeID }}" selected>
+                                                    {{ $type->novelType_name }}</option>
                                             @else
-                                                <option value="{{ $type->bookTypeID }}">{{ $type->bookType_name }}
+                                                <option value="{{ $type->novelTypeID }}">{{ $type->novelType_name }}
                                                 </option>
                                             @endif
                                         @endforeach
@@ -68,7 +68,7 @@
                     <div class="row recommend justify-content-between" id="rec">
                         <div class="col-8">
                             <h4>แนะนำเนื้อเรื่อง</h4>
-                            <p contenteditable="true" id="recommend-input">{{ $data->book_description }}</p>
+                            <p contenteditable="true" id="recommend-input">{{ $data->novel_description }}</p>
                             <textarea id="hiddenTextareaRecommend" name="recommend" style="display:none;"></textarea>
                         </div>
                         <div class="col-4 text-end">
@@ -103,7 +103,7 @@
                             <div class="group-37">
                                 <div class="rectangle-128"></div>
                                 <button type="button" class="div37" style="color: rgb(255, 255, 255);"
-                                    onclick="window.location.href = '/add_chapter/{{ $bookID }}'">เพิ่มตอนใหม่</button>
+                                    onclick="window.location.href = '/add_chapter/{{ $novelID }}'">เพิ่มตอนใหม่</button>
                             </div>
                         </div>
                         <hr>
@@ -122,17 +122,17 @@
                     <input type="checkbox" name="chap" id="chap" class="chap">
                     <strong>{{ $count }}</strong>
                     <img class="images" src="{{ asset($chapter->chapter_image) }}" alt="">
-                    <strong><a href="/edit_chapter/{{ $bookID }}/{{ $chapter->chapterID }}"
+                    <strong><a href="/edit_chapter/{{ $novelID }}/{{ $chapter->chapterID }}"
                             id="edit-chapter-href">{{ $chapter->chapter_name }}</a></strong>
                 </div>
                 <div class="col-4 text-end">
                     <div class="header-left d-flex align-items-center" style="margin-top: 12px;">
                         <i class="bi bi-eye"></i>
-                        <form action="{{route('novel.novel_chapter_update',["bookID"=>$bookID,"chapterID"=>$chapter->chapterID])}}" id="chapter-form" method="POST">
+                        <form action="{{route('novel.novel_chapter_update',["novelID"=>$novelID,"chapterID"=>$chapter->chapterID])}}" id="chapter-form" method="POST">
                             @csrf
-                            <select name="status-chapter" id="pub-chapter">
+                            <select name="status_chapter" id="pub-chapter">
                                 <option value="0">เฉพาะฉัน</option>
-                                @if ($chapter->allow_comment == 1)
+                                @if ($chapter->chapter_status == 1)
                                     <option value="1" selected>สาธารณะ</option>
                                 @else
                                     <option value="1">สาธารณะ</option>
