@@ -15,14 +15,12 @@ class NovelController extends Controller
 {
     //
 
-    public function Page()
-    {
+    public function Page(){
         $novel_types = Novel_type::all();
         return view("user.create_novel", compact("novel_types"));
     }
 
-    public function InsertNewNovel(Request $request)
-    {
+    public function InsertNewNovel(Request $request) {
         $file = $request->file('inputImage');
         $newFileName = uniqid('', true) . '.' . $file->getClientOriginalExtension();
         $fileUrl = Storage::putFileAs('public/Picture', $file, $newFileName);
@@ -54,8 +52,7 @@ class NovelController extends Controller
     }
 
 
-    public function Edit($novelID)
-    {
+    public function Edit($novelID) {
         $novel_types = DB::table("novel_types")->get();
         $data = Novel::where("novelID", $novelID)->first();
         $chapters = Novel_chapter::where("novelID",$novelID)->get();
@@ -104,13 +101,11 @@ class NovelController extends Controller
         return redirect()->route("novel.edit",["novelID"=>$novelID])->with(["successMsg" => "แก้ไขนิยายสำเร็จ"]);
     }
 
-    public function AddChapter($novelID)
-    {
+    public function AddChapter($novelID){
         return view("user.add_chapter", compact("novelID"));
     }
 
-    public function InsertNewChapter(Request $request, $novelID)
-    {
+    public function InsertNewChapter(Request $request, $novelID) {
 
         $image = $request->file('image');
         $newImageFileName = uniqid('', true) . '.' . $image->getClientOriginalExtension();
