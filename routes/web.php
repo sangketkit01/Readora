@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComicController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GoogleController;
@@ -56,6 +57,18 @@ Route::middleware("checkLogin")->group(function(){
         Route::get('{novelID}/{chapterID}', [NovelController::class, "EditChapter"])->name('novel.edit_chapter')->middleware(['checkOwner', 'checkChapterOwner']);
         Route::post('update/{novelID}/{chapterID}', [NovelController::class, 'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkOwner', 'checkChapterOwner']);
     });
+
+    Route::prefix("create_comic")->group(function () {
+        Route::get("/", [ComicController::class, "page"])->name("create_comic");
+        Route::post("insert", [ComicController::class, "insertNewComic"])->name("comic.insert");
+    });
+
+    Route::prefix("edit_comic")->group(function () {
+        Route::get("{comicID}", [NovelController::class, 'edit'])->name("comic.edit")->middleware(["checkOwner"]);
+        Route::post("insert/{comicID}", [NovelController::class, "edit_insert"])->name("comic.edit_insert")->middleware(["checkOwner"]);
+        Route::post('chapter/update/{comicID}/{chapterID}', [NovelController::class, 'ComicChapterUpdate'])->name('comic.comic_chapter_update')->middleware(['checkOwner', 'checkChapterOwner']);
+    });
+
 });
 
 Route::prefix("admin")->group(function(){
