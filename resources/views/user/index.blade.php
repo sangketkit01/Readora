@@ -38,10 +38,10 @@
         <div class="recommend-section1">
             @foreach ($novels as $novel)
                 <div class="recommend-card">
-                    <img src="{{ asset($novel->novel_pic) }}" alt="Novel Image">
+                    <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $novel->novel_name }}</h5>
-                        <p class="card-text">{{ $novel->novel_description }}</p>
+                        <h5 class="card-title">{{ $novel->book_name }}</h5>
+                        <p class="card-text">{{ $novel->book_description }}</p>
                         <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
                     </div>
                 </div>
@@ -56,10 +56,10 @@
         <div class="recommend-section1">
             @foreach ($novels as $novel)
                 <div class="recommend-card">
-                    <img src="{{ asset($novel->novel_pic) }}" alt="Novel Image">
+                    <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $novel->novel_name }}</h5>
-                        <p class="card-text">{{ $novel->novel_description }}</p>
+                        <h5 class="card-title">{{ $novel->book_name }}</h5>
+                        <p class="card-text">{{ $novel->book_description }}</p>
                         <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
                     </div>
                 </div>
@@ -74,10 +74,10 @@
         <div class="recommend-section2">
             @foreach ($romanticNovels as $novel)
                 <div class="recommend-card">
-                    <img src="{{ asset($novel->novel_pic) }}" alt="Romance Novel Image">
+                    <img src="{{ asset($novel->book_pic) }}" alt="Romance Novel Image">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $novel->novel_name }}</h5>
-                        <p class="card-text">{{ $novel->novel_description }}</p>
+                        <h5 class="card-title">{{ $novel->book_name }}</h5>
+                        <p class="card-text">{{ $novel->book_description }}</p>
                         <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
                     </div>
                 </div>

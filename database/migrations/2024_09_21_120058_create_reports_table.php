@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->increments("reportID");
-            $table->unsignedInteger("novelID");
+            $table->unsignedInteger("bookID");
+            $table->string("username");
             $table->text("report_message");
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign("novelID")->references("novelID")->on("novels")->onDelete("cascade");
+            $table->foreign("bookID")->references("bookID")->on("books");
+            $table->foreign("username")->references("username")->on("userdbs");
         });
     }
 
@@ -28,5 +30,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('reports');
+        Schema::table('reports', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

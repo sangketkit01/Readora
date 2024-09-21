@@ -1,29 +1,32 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Novel;
-use App\Models\Novel_type;
+use App\Models\Book;
+use App\Models\Book_type;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        $novels = Novel::take(4)->get();
-        $romanticNovels = Novel::where('novelTypeID', 1)->limit(4)->get();
+        $novels = Book::where('BooktypeID', 1)->take(4)->get();
+        $romanticNovels = Book::where('BooktypeID', 1)
+            ->where('BookgenreID', 1)
+            ->limit(4)
+            ->get();
         return view("user.index", compact("novels", 'romanticNovels'));
     }
 
     public function rec1()
     {
-        $novel = Novel::all();
-        return view("user.rec1", compact('novel'));
+        $novels = Book::where('BooktypeID', 1)->all();
+        return view("user.rec1", compact('novels'));
     }
 
     public function rec2()
     {
-        $novel = Novel::all();
-        return view("user.rec2", compact('novel'));
+        $comics = Book::where('BooktypeID', 1)->all();
+        return view("user.rec2", compact('comics'));
     }
 
 }

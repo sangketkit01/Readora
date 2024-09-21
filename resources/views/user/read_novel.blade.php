@@ -6,30 +6,27 @@
 @section('containerClassName', 'indexContainer')
 
 @section('content')
-    @foreach ($novels as $novel)
+    @foreach ($books as $book)
         <div class="container_user">
             <div class="card_user">
                 <div class="img row col-4 md-6 sm-12">
-                    <img src="{{ asset($novel->novel_pic) }}
+                    <img src="{{ asset($book->book_pic) }}
             " alt="">
 
                 </div>
                 <div class="user col-8 md-6 sm-12">
                     <div class="head">
-                        <h1>{{ $novel->novel_name }}
+                        <h1>{{ $book->book_name }}
                         </h1>
                     </div>
                     <div class="profile_user">
-                        <img src="{{ $novel->User->profile }}
+                        <img src="{{ $book->User->profile }}
             " alt="">
-                        <p>{{ $novel->User->name }}
+                        <p>{{ $book->User->name }}
                         </p>
                     </div>
                     <div class="type">
-                        <h4>{{ $novel->NovelType->novelType_name }}
-                        </h4>
-                        <p>{{ $novel->novel_description }}
-                        </p>
+                        <h4>{{ $book->Genre->bookGenre_name }}</h4>
                     </div>
                     <div class="button">
                         <a href="" class="button_1">เพิ่มเข้าชั้น</a>
@@ -39,7 +36,7 @@
             </div>
             <div class="Introducing">
                 <h4>แนะนำเนื้อเรื่อง</h4>
-                <p>{{ $novel->novel_description }}
+                <p>{{ $book->book_description }}
                 </p>{{-- loopข้อมูลมาวส่สะ --}}
             </div>
             <div class="All_episodes">
@@ -61,7 +58,7 @@
                             @endphp
                             <strong>{{ $count }}</strong>
                             <img class="images" src="{{ asset($chapter->chapter_image) }}" alt="">
-                            <strong><a href="#" id="edit-chapter-href">{{ $chapter->chapter_name }}</a></strong>
+                            <strong><a href="{{ route('read.read_chapt', ['bookID' => $book -> bookID, 'chapterID' => $chapter->chapterID]) }}" id="edit-chapter-href">{{ $chapter->chapter_name }}</a></strong>
                         </div>
                     @endforeach
                     <hr>
@@ -74,9 +71,9 @@
                                 </div>
                                 <div class="com">
                                     <div class="pofile_user_com">
-                                        <img src="{{ $novel->User->profile }}
+                                        <img src="{{ $book->User->profile }}
             " alt=""> 
-                                        <p>{{ $novel->User->name }}
+                                        <p>{{ $book->User->name }}
             </p> 
                                     </div>
                                     <textarea readonly>ลูปความเห็นมาใส่นี่</textarea>

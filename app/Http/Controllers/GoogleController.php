@@ -10,12 +10,12 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
-    public function redirect()
+    public function Redirect()
     {
         return Socialite::driver('google')->redirect();
     }
 
-    public function callbackGoogle(){
+    public function CallbackGoogle(){
         try{
             $google_user = Socialite::driver('google')->user();
 
@@ -30,7 +30,7 @@ class GoogleController extends Controller
                     "profile" => $google_user->getAvatar(),
                     "name" => $google_user->getName(),
                     "email" => $google_user->getEmail(),
-                    "gender" => "none",
+                    "gender" => "n",
                     "created_at" => now()
                 ];
 

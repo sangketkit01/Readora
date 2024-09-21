@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Novel;
-use App\Models\Novel_type;
-use App\Models\Novel_chapter;
+use App\Models\Book;
+use App\Models\Book_type;
+use App\Models\Book_chapter;
 use Illuminate\Http\Request;
 
 class ReadController extends Controller
 {
-    public function read_novel($novelID){
-        $novels = Novel::where("NovelID",$novelID)->get();
-        $chapters = Novel_chapter::where("novelID",$novelID)->get();
-        $count_chapter = Novel_chapter::where("novelID",$novelID)->count();
-        return view("user.read_novel", compact('novels','novelID','chapters','count_chapter'));
+    public function read($bookID){
+        $books = Book::where("BookID", $bookID)->get();
+        $chapters = Book_chapter::where("bookID", $bookID)
+                    ->where("chapterstatus", 'public') ->get();
+        $count_chapter = Book_chapter::where("bookID", $bookID)->count();
+        return view("user.read_novel", compact('books', 'bookID','chapters','count_chapter'));
+    }
+    
+    public function readnovel_chapt($bookID,$chapterID){
+        $books = Book::where("BookID",$bookID)->get();
+        $chapters = Book_chapter::where("chapterID",$chapterID)->where("bookID",$bookID)->first();
+        return view('user.read_novel_chapter',compact("chapters","bookID","chapterID","books"));
     } 
+
 }

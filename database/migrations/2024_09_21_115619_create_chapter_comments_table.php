@@ -15,12 +15,11 @@ return new class extends Migration
             $table->increments("commentID");
             $table->unsignedInteger("chapterID");
             $table->string("username");
-            $table->string("comment_message");
+            $table->text("comment_message");
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign("chapterID")->references("chapterID")->on("novel_chapters")->onDelete("cascade");
-            $table->foreign("username")->references("username")->on("userdbs")->onDelete("cascade");
+            $table->foreign("chapterID")->references("chapterID")->on("book_chapters");
         });
     }
 
@@ -30,5 +29,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('chapter_comments');
+        Schema::table('chapter_comments', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

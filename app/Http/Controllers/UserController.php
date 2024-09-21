@@ -4,59 +4,90 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Userdb;
-use App\Models\Novel;
+use App\Models\Book;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use App\Rules\MatchOldPassword;
 
 class UserController extends Controller
 {
-    //
     function profile(){
-        $info = Userdb::where('username', Session::get('user')->username)->first();
-        // dd(Session::get('user')->username);
-        $novel = Novel::all();
-        return view('profile.main_profile', compact('info'));
+        $user = Userdb::where('username', Session::get('user')->username)->first();
+        $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
+        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->count();
+        $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
+        return view('profile.main', compact('user', 'novel', 'n_count', 'comic', 'c_count'));
     }
 
-    function update_info(Request $request){
+    function editInfoPage($username){
+        $user = Userdb::where('username', Session::get('user')->username)->first();
+        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->count();
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
+        return view('profile.main', compact('user', 'username', 'n_count', 'c_count'));
+    }
+    function edit_info(Request $request){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->gender = $request->input('gender');
         $user->save();
-        return redirect()->route('profile');
+        redirect()->route('profile');
     }
 
-    public function callView(){
+    function novelInfoPage($username){
+        $user = Userdb::where('username', Session::get('user')->username)->first();
+        $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
+        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->count();
+        return view('profile.main', compact('user', 'novel', 'username'));
+    }
+
+    function comicInfoPage($username){
+        $user = Userdb::where('username', Session::get('user')->username)->first();
+        $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
+        return view('profile.main', compact('user', 'comic', 'username'));
+    }
+
+    function viewCreatePassword(){
         return view('profile.create_password');
     }
-    public function create_password(Request $request) {
-        dd($request->all());
+    function create_password(Request $request){
         $request->validate([
-            'new_password' => 'required|min:8|confirmed',
-        ], 
-        [
-            'new_password.required' => 'กรุณากรอกรหัสผ่านใหม่',
-            'new_password.min' => 'รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร',
-            'new_password.confirmed' => 'การยืนยันรหัสผ่านไม่ตรงกัน',
+            "password" => "min:8",
+            "confirm" => "same:password"
+        ],[
+            "password.min" => "รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร",
+            "confirm.same" => "รหัสผ่านไม่ตรงกัน"
         ]);
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $user->password = Hash::make($request->input('new_password'));
+        $user->password = Hash::make($request->input("password"));
         $user->save();
-        return redirect()->route('profile')->with('success', 'สร้างรหัสผ่านเรียบร้อยแล้ว');
+        return redirect()->route('profile');
     }
     
-    public function callView2(){
+    function viewChangePassword(){
         return view('profile.change_password');
     }
-    
-    function update_password(Request $request){
+    function change_password(Request $request){
+        $request->validate([
+            "current_password" => "required",
+            "password" => "min:8",
+            "confirm" => "same:password"
+        ],[
+            "password.min" => "รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร",
+            "confirm.same" => "รหัสผ่านไม่ตรงกัน"
+        ]);
+        $user = Userdb::where('username', Session::get('user')->username)->first();
+        if (!Hash::check($request->input('current_password'), $user->password)) {
+            echo "<script>alert('รหัสผ่านไม่ตรงกัน') return false;</script>";
+        }
+        $user->password = Hash::make($request->input("password"));
+        $user->save();
+        return redirect()->route('profile');
     }
     
     function rec1(){
-        $novel = Novel::all();
+        $novel = Book::all();
         return view('user.rec1', compact('novel'));
     }
 }

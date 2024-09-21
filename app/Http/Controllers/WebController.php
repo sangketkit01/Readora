@@ -7,15 +7,15 @@ use Illuminate\Http\Request;
 class WebController extends Controller
 {
     //
-    function sign_in(){
+    function SignIn(){
         return view('login.sign_in');
     }
 
-    function sign_up(){
+    function SignUp(){
         return view('login.sign_up');
     }
 
-    function forgot(){
+    function Forgot(){
         return view('login.forgotpass');
     }
 }

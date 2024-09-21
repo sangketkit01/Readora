@@ -11,11 +11,11 @@ class Chapter_comment extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'chapter_comments';
-    protected $primaryKey = 'commentID';
+    protected $table = "chapter_comments";
+    protected $primaryKey = "commentID";
 
     function Chapter(){
-        return $this->belongsTo(Novel_chapter::class,"chapterID");
+        return $this->belongsTo(Book_chapter::class,"chapterID");
     }
 
     function User(){
