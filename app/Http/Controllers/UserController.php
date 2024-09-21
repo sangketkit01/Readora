@@ -4,44 +4,49 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Userdb;
-use App\Models\Novel;
-use App\Models\Comic;
+use App\Models\Book;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    //
     function profile(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        // dd(Session::get('user')->username);
-        return view('profile.main', compact('user'));
+        $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
+        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->count();
+        $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
+        return view('profile.main', compact('user', 'novel', 'n_count', 'comic', 'c_count'));
     }
 
+    function editInfoPage($username){
+        $user = Userdb::where('username', Session::get('user')->username)->first();
+        $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
+        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->count();
+        $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
+        return view('profile.main', compact('user', 'username', 'novel', 'n_count', 'comic', 'c_count'));
+    }
     function edit_info(Request $request){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->gender = $request->input('gender');
         $user->save();
-        return redirect()->route('profile');
-    }
-    function editInfoPage($username){
-        $user = Userdb::where('username', Session::get('user')->username)->first();
-        return view('profile.main', compact('user', 'username'));
+        redirect()->route('profile');
     }
 
     function novelInfoPage($username){
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $novel = Novel::where('username', $user->username)->get();
-        $c_count = Novel::where('username', $user->username)->count();
+        $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
+        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->count();
         return view('profile.main', compact('user', 'novel', 'username'));
     }
 
     function comicInfoPage($username){
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $comic = Comic::where('username', $user->username)->get();
-        $n_count = Comic::where('username', $user->username)->count();
+        $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
         return view('profile.main', compact('user', 'comic', 'username'));
     }
 
@@ -76,7 +81,7 @@ class UserController extends Controller
         ]);
         $user = Userdb::where('username', Session::get('user')->username)->first();
         if (!Hash::check($request->input('current_password'), $user->password)) {
-            return redirect()->back()->withErrors(['current_password' => 'รหัสผ่านเดิมไม่ถูกต้อง']);
+            echo "<script>alert('รหัสผ่านไม่ตรงกัน') return false;</script>";
         }
         $user->password = Hash::make($request->input("password"));
         $user->save();
@@ -84,7 +89,7 @@ class UserController extends Controller
     }
     
     function rec1(){
-        $novel = Novel::all();
+        $novel = Book::all();
         return view('user.rec1', compact('novel'));
     }
 }

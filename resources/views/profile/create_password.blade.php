@@ -1,4 +1,6 @@
 @extends('user.layout')
+@section('title', 'Create password')
+
 @section('content')
     <h5>สร้างรหัสผ่าน</h5>
     <form action="{{ route('create.password') }}" method="POST" id="add-password-form" onsubmit="return validateForm()">

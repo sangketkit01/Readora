@@ -50,7 +50,7 @@ function validateForm() {
     if (confirmPassword !== password) {
         confirmPasswordP.textContent = "รหัสผ่านไม่ตรงกัน";
         confirmPasswordP.classList.add("text-secondaryr");
-        return false; 
+        return false;
     } else {
         confirmPasswordP.textContent = "รหัสผ่านตรงกัน";
         confirmPasswordP.classList.remove("text-secondary");
