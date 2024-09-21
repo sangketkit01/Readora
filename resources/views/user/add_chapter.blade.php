@@ -22,7 +22,7 @@
             </div>
             <div class="col-9 d-flex flex-column ms-4 add-name">
                 <label for="">ชื่อตอน</label>
-                <input type="text" name="title" id="title-name">
+                <input type="text" name="title" id="title-name" required>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
 
         <div class="row">
             <div class="col-12 d-flex flex-column mt-2 bg-white">
-                <textarea name="content" id="content" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="15"></textarea>
+                <textarea name="content" id="content" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="15" required></textarea>
                 <hr id="content-hr">
                 <div class="row d-flex align-item-center" id="check-error">
                     <div class="col-6 d-flex">
@@ -52,7 +52,7 @@
 
         <div class="row">
             <div class="col-12 d-flex justfy-content-start mt-5">
-                <label for="" id="content-label">ข้อความจากนักเขียน</label>
+                <label for="" id="content-label">ข้อความจากนักเขียน (ไม่บังคับ)</label>
             </div>
         </div>
 

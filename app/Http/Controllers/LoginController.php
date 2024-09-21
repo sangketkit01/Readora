@@ -13,16 +13,20 @@ class LoginController extends Controller
     //
 
     function Verify(Request $request){
-        $user = DB::table("userdbs")->where("username",$request->input("username"))->first();
-        $password = $request->input("password");
+        try{
+            $user = DB::table("userdbs")->where("username", $request->username)->first();
+            $password = $request->password;
 
-        if(!($user && Hash::check($password,$user->password))){
-            return redirect()->back()->withErrors(["msg" => "Invalid username or password."]);
+            if (!($user && Hash::check($password, $user->password))) {
+                return redirect()->back()->withErrors(["msg" => "Invalid username or password."])->withInput();;
+            }
+
+            Session::flush();
+            Session::put("user", $user);
+        }catch(\Throwable $th){
+            return redirect()->route('sign_in')->withErrors(["msg" => "Login failed. Please try again."]);
         }
 
-        Session::flush();
-        Session::put("user",$user);
-        
         return redirect()->route("index");
     }
 
@@ -40,18 +44,18 @@ class LoginController extends Controller
         ]);
 
         $insert = [
-            "username" =>  $request->input("username") , 
-            "name" => $request->input("username"),
-            "email" => $request->input("email") , 
-            "password" => Hash::make($request->input("password")) ,
-            "gender" => $request->input("gender") , 
+            "username" =>  $request->username , 
+            "name" => $request->username,
+            "email" => $request->email , 
+            "password" => Hash::make($request->password) ,
+            "gender" => $request->gender , 
             "created_at" => now() ,
         ];
 
 
         DB::table("userdbs")->insert($insert);
 
-        $user = Userdb::where("username",$request->input("username"))->first();
+        $user = Userdb::where("username",$request->username)->first();
         Session::flush();
         Session::put("user",$user);
 

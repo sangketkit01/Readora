@@ -22,7 +22,7 @@
             </div>
             <div class="col-9 d-flex flex-column ms-4 add-name">
                 <label for="">ชื่อตอน</label>
-                <input type="text" name="title" id="title-name" value="{{$book->chapter_name}}">
+                <input type="text" name="title" id="title-name" value="{{$book->chapter_name}}" required>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
 
         <div class="row">
             <div class="col-12 d-flex flex-column mt-2 bg-white">
-                <textarea name="content" id="content" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="15">{{$book->chapter_content}}</textarea>
+                <textarea name="content" id="content" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="15" required>{{$book->chapter_content}}</textarea>
                 <hr id="content-hr">
                 <div class="row d-flex align-item-center" id="check-error">
                     <div class="col-6 d-flex">
@@ -59,18 +59,18 @@
          <div class="row">
             <div class="col-12 d-flex flex-column mt-2 bg-white">
                 @if ($book->writer_message == "No Writer message")
-                    <textarea name="writer_message" id="writer_message" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="10"></textarea>
+                    <textarea name="writer_message" id="writer_message" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="10" required></textarea>
                 @else
-                    <textarea name="writer_message" id="writer_message" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="10">{{$book->writer_message}}</textarea>
+                    <textarea name="writer_message" id="writer_message" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="10" required>{{$book->writer_message}}</textarea>
                 @endif
             </div>
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-12 d-flex justfy-content-start mt-5">
                 <label for="" id="content-label">ตั้งค่าตอน</label>
             </div>
-        </div>
+        </div> --}}
 
         {{-- <div class="row mt-2">
             <div class="col-12 d-flex align-item-center">
