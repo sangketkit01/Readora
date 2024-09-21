@@ -21,11 +21,9 @@ class UserController extends Controller
 
     function editInfoPage($username){
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->count();
-        $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
-        return view('profile.main', compact('user', 'username', 'novel', 'n_count', 'comic', 'c_count'));
+        return view('profile.main', compact('user', 'username', 'n_count', 'c_count'));
     }
     function edit_info(Request $request){
         $user = Userdb::where('username', Session::get('user')->username)->first();
