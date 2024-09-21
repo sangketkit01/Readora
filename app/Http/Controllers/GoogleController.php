@@ -30,7 +30,7 @@ class GoogleController extends Controller
                     "profile" => $google_user->getAvatar(),
                     "name" => $google_user->getName(),
                     "email" => $google_user->getEmail(),
-                    "gender" => "n",
+                    "gender" => "N",
                     "created_at" => now()
                 ];
 
@@ -40,27 +40,10 @@ class GoogleController extends Controller
                 Session::flush();
                 Session::put("user", $user);
 
-
-                $data = [
-                    "avatar" => $google_user->getAvatar(),
-                    "name" => $google_user->getName(),
-                    "username" => $google_user->getEmail()
-                ];
-
-                Session::put("data", $data);
-
                 return redirect()->route("index");
             }
             Session::flush();
             Session::put("user",$user);
-
-            $data = [
-                "avatar" => $google_user->getAvatar() , 
-                "name" => $google_user->getName(),
-                "username" => $google_user->getEmail()
-            ];
-
-            Session::put("data",$data);
 
             return redirect()->route('index');
         }catch(\Throwable $th){

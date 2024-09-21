@@ -30,19 +30,19 @@ class NovelController extends Controller
 
         $created_at = now();
 
-        $recommend = $request->input("recommend");
+        $recommend = $request->recommend;
         if($recommend === "เพิ่มคำแนะนำเรื่อง" || trim($recommend) === ""){
             $recommend = "ไม่มีคำแนะนำเรื่อง";
         }
 
         $data = [
             'username' => Session::get("user")->username,
-            'bookGenreID' => (int) $request->input("genre"),
+            'bookGenreID' => (int) $request->genre,
             'bookTypeID' => 1,
-            'book_name' => $request->input("title"),
+            'book_name' => $request->title,
             'book_pic' => $fileUrl,
             'book_description' => $recommend,
-            "book_status" => $request->input("status"),
+            "book_status" => $request->status,
             "created_at" => $created_at
         ];
 
@@ -73,7 +73,7 @@ class NovelController extends Controller
             return abort(404);
         }
 
-        $recommend = $request->input("recommend");
+        $recommend = $request->recommend;
         if ($recommend === "เพิ่มคำแนะนำเรื่อง" || trim($recommend) === "") {
             $recommend = "ไม่มีคำแนะนำเรื่อง";
         }
@@ -114,7 +114,10 @@ class NovelController extends Controller
         $imageUrl = Storage::putFileAs('public/Chapter', $image, $newImageFileName);
         $imageUrl = str_replace("public/", "storage/", $imageUrl);
 
+        $writer_message = $request->writer_message == null ?  "ไม่มีข้อความจากนักเขียน" : $request->writer_message;
+
         $created_at = now();
+
         $book = Book::where("bookID", $bookID)->first();
         if (!$book) {
             return redirect()->route('index')->withErrors(["msg" => "Something went wrong."]);
@@ -123,9 +126,9 @@ class NovelController extends Controller
         $data = [
             'chapter_image' => $imageUrl,
             'bookID' => $bookID,
-            'chapter_content' => $request->input("content"),
-            'chapter_name' => $request->input("title"),
-            "writer_message" => $request->input("writer_message"),
+            'chapter_content' => $request->content,
+            'chapter_name' => $request->title,
+            "writer_message" => $writer_message,
             "created_at" => $created_at
         ];
 

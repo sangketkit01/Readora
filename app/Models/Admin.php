@@ -13,4 +13,6 @@ class Admin extends Model
 
     protected $table = "admins";
     protected $primaryKey = "admin_username";
+    protected $keyType = "string";
+    public    $incrementing = false;
 }
