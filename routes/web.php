@@ -34,11 +34,11 @@ Route::middleware("checkLogin")->group(function(){
     Route::post('/edit_info', [UserController::class, 'edit_info'])->name('edit.info');
 
     Route::get('/novel_info/{}', [UserController::class, 'novelInfoPage']);
-    Route::get('/comic_info/{username}', [UserController::class, 'comicInfoPage']);
+    Route::get('/comic_info/{}', [UserController::class, 'comicInfoPage']);
 
-    Route::get('/create_password_page', [UserController::class, 'viewCreatePassword'])->name('create.password.page');
+    Route::get('/createPassword', [UserController::class, 'viewCreatePassword'])->name('create.password.page');
     Route::post('/create_password', [UserController::class, 'create_password'])->name('create.password');
-    Route::get('/change_password_page', [UserController::class, 'viewChangePassword'])->name('change.password.page');
+    Route::get('/changePassword', [UserController::class, 'viewChangePassword'])->name('change.password.page');
     Route::post('/change_password', [UserController::class, 'change_password'])->name('change.password');
     //
 

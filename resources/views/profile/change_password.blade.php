@@ -2,19 +2,34 @@
 @section('title', 'Change password')
 
 @section('content')
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <h5>เปลี่ยนรหัสผ่าน</h5>
-    <form action="{{route('change.password')}}" method="post" id="update-password-form" onsubmit="return validateForm()">
+    <form action="{{route('change.password')}}" method="post" id="update-password-form">
         @csrf
         <label for="current_password">รหัสผ่านเดิม
-            <input type="password" name="current_password" id="password" required>
+            <input type="password" name="current_password" id="password" required> <p></p>
         </label> <br>
         <label for="new_password">รหัสผ่านใหม่
-            <input type="password" min="8" id="n-password" required> 
-            <p class="mt-2 mb-0 text-secondary" id="password-w" style="font-size: 12px; margin-left:2px">รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร</p>
+            <input type="password" min="8" id="n-password" name="n-password" required> 
+            <p class="text-secondary" id="password-w" style="font-size: 12px; margin-left:2px"></p>
         </label> <br>
         <label for="confirm_password">ยืนยันรหัสผ่าน
             <input type="password" id="c-password" required>
-            <p class="mt-2 mb-0 text-secondary" id="confirm-w" style="font-size: 12px; margin-left:2px"></p>
+            <p class="text-secondary" id="confirm-w" style="font-size: 12px; margin-left:2px"></p>
         </label> <br>
         <button type="button" onclick="window.location.href='/profile'">ย้อนกลับ</button>
         <button type="submit">บันทึก</button> <br>

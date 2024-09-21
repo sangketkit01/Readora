@@ -6,7 +6,7 @@
 @section('containerClassName', 'ProfileContainer')
 
 @section('content')
-    <img src="{{ $user->profile }}" alt="" onclick=""> <br>
+    <img src="{{ $user->profile }}" alt="" onclick=""> <img src="" alt="">
     <p>{{$user->name}}</p>
 
     <table>
@@ -42,14 +42,18 @@
                 อีเมล <input type="email" name="email" value="{{$user->email}}" required>
             </label> <br>
             <label for="password">
-                รหัสผ่าน <a href="/change_password_page" id="link-change-password">เปลี่ยนรหัสผ่าน</a>
+                @if(!empty($user->password))
+                    รหัสผ่าน <a href="/changePassword" id="link-change-password">เปลี่ยนรหัสผ่าน</a>
+                @else
+                    รหัสผ่าน <button type="button" id="add-password-btn" onclick="window.location.href='/createPassword'">สร้างรหัสผ่าน</button>
+                @endif
             </label> <br>
             <label for="gender">
                 เพศ
                 <select name="gender">
-                    <option value="F" @if ($user->gender == 'F') selected @endif>หญิง</option>
-                    <option value="M" @if ($user->gender == 'M') selected @endif>ชาย</option>
-                    <option value="n" @if ($user->gender == 'n') selected @endif>ไม่ระบุ</option>
+                    <option value="F" @if($user->gender == 'F') selected @endif>หญิง</option>
+                    <option value="M" @if($user->gender == 'M') selected @endif>ชาย</option>
+                    <option value="N" @if($user->gender == 'N') selected @endif>ไม่ระบุ</option>
                 </select>
             </label> <br>
             <button id="cancle-edit-info" type="button" onclick="window.location.href='/profile'">ยกเลิก</button>
@@ -61,11 +65,9 @@
         <p>อีเมล {{$user->email}}</p>
         <p>Facebook</p>
         @if(!empty($user->password))
-            <p>รหัสผ่าน ******* <button id="change-password-btn"
-                    onclick="window.location.href='/change_password_page'">เปลี่ยนรหัสผ่าน</button></p>
+            <p>รหัสผ่าน ******* <button id="change-password-btn" onclick="window.location.href='/changePassword'">เปลี่ยนรหัสผ่าน</button></p>
         @else
-            <p>รหัสผ่าน <button id="add-password-btn"
-                    onclick="window.location.href='/create_password_page'">สร้างรหัสผ่าน</button></p>
+            <p>รหัสผ่าน <button type="button" id="add-password-btn" onclick="window.location.href='/createPassword'">สร้างรหัสผ่าน</button></p>
         @endif
         <p>เพศ
             @if ($user->gender == 'F')

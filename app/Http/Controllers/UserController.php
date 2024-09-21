@@ -31,7 +31,7 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->gender = $request->input('gender');
         $user->save();
-        redirect()->route('profile');
+        return redirect()->route('profile');
     }
 
     function novelInfoPage($username){
@@ -81,9 +81,9 @@ class UserController extends Controller
         if (!Hash::check($request->input('current_password'), $user->password)) {
             echo "<script>alert('รหัสผ่านไม่ตรงกัน') return false;</script>";
         }
-        $user->password = Hash::make($request->input("password"));
+        $user->password = Hash::make($request->input("n-password"));
         $user->save();
-        return redirect()->route('profile');
+        return redirect()->route('profile')->with('status', 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว');
     }
     
     function rec1(){
