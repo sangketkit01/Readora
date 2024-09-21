@@ -13,6 +13,8 @@ class Userdb extends Model
 
     protected $table = "userdbs";
     protected $primaryKey = "username";
+    public $incrementing = false;
+    protected $keyType = 'string'; 
 
     function Books(){
         return $this->hasMany(Book::class,"bookID");

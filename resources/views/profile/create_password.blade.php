@@ -3,7 +3,7 @@
 
 @section('content')
     <h5>สร้างรหัสผ่าน</h5>
-    <form action="{{ route('create.password') }}" method="POST" id="add-password-form" onsubmit="return validateForm()">
+    <form action="{{ route('create.password') }}" method="POST" id="add-password-form">
         @csrf
         <label for="new_password">รหัสผ่าน
             <input type="password" min="8" name="password" id="n-password" required>
