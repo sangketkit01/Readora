@@ -15,11 +15,15 @@ class Userdb extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    function Books(){
-        return $this->hasMany(Book::class,"bookID");
+    function Novels(){
+        return $this->hasMany(Novel::class,"novelID");
     }
 
     function Comments(){
         return $this->hasMany(Chapter_comment::class,"commentID");
+    }
+
+    function Comics(){
+        return $this->hasMany(Comic::class,"comicID");
     }
 }

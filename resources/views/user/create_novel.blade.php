@@ -14,7 +14,7 @@
                     <p class="me-2">ตั้งค่าสถานะเรื่อง</p>
                     <select name="status" id="">
                         <option value="0">เฉพาะฉัน</option>
-                        <option value="1">สาธารณะ</option>
+                        <option value="1" selected>สาธารณะ</option>
                     </select>
                 </div>
             </div>
@@ -46,12 +46,11 @@
                             </div>
                             <div class="type">
                                 <select name="type" id="type">
-                                    @foreach ($book_types as $type)
-                                        <option value="{{$type->bookTypeID}}">{{$type->bookType_name}}</option>
+                                    @foreach ($novel_types as $type)
+                                        <option value="{{$type->novelTypeID}}">{{$type->novelType_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
-
                         </div>
                     </div>
                 </div> <br>

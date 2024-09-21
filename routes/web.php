@@ -35,24 +35,41 @@ Route::middleware("checkLogin")->group(function(){
 
     Route::get('/signout', [LoginController::class, 'logout'])->name('sign_out');
 
-    Route::get("/create_novel", [NovelController::class, "page"])->name("create_novel");
-    Route::get("/edit_novel/{bookID}", [NovelController::class, 'edit'])->name("novel.edit")->middleware(["checkOwner"]);
-    Route::get("/add_chapter/{bookID}", [NovelController::class, "AddChapter"])->name("novel.add_chapter")->middleware(["checkOwner"]);
-    Route::post("/create_novel/insert", [NovelController::class, "insertNewNovel"])->name("novel.insert");
-    Route::post("/edit_novel/insert/{bookID}",[NovelController::class,"edit_insert"])->name("novel.edit_insert")->middleware(["checkOwner"]);
-    Route::post("/add_chapter/insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter")->middleware(["checkOwner"]);
+    Route::prefix("create_novel")->group(function () {
+        Route::get("/", [NovelController::class, "page"])->name("create_novel");
+        Route::post("insert", [NovelController::class, "insertNewNovel"])->name("novel.insert");
+    });
 
-    Route::get('/edit_chapter/{bookID}/{chapterID}',[NovelController::class,"EditChapter"])->name('novel.edit_chapter')->middleware(['checkOwner','checkChapterOwner']);
-    Route::post('/edit_chapter/update/{bookID}/{chapterID}',[NovelController::class,'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkOwner', 'checkChapterOwner']);
+    Route::prefix("edit_novel")->group(function () {
+        Route::get("{novelID}", [NovelController::class, 'edit'])->name("novel.edit")->middleware(["checkOwner"]);
+        Route::post("insert/{novelID}", [NovelController::class, "edit_insert"])->name("novel.edit_insert")->middleware(["checkOwner"]);
+        Route::post('chapter/update/{novelID}/{chapterID}', [NovelController::class, 'NovelChapterUpdate'])->name('novel.novel_chapter_update')->middleware(['checkOwner', 'checkChapterOwner']);
+    });
+
+    Route::prefix("add_chapter")->group(function(){
+        Route::get("{novelID}", [NovelController::class, "AddChapter"])->name("novel.add_chapter")->middleware(["checkOwner"]);
+        Route::post("insert/{novelID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter")->middleware(["checkOwner"]);
+    });
+
+
+    Route::prefix('edit_chapter')->group(function(){
+        Route::get('{novelID}/{chapterID}', [NovelController::class, "EditChapter"])->name('novel.edit_chapter')->middleware(['checkOwner', 'checkChapterOwner']);
+        Route::post('update/{novelID}/{chapterID}', [NovelController::class, 'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkOwner', 'checkChapterOwner']);
+    });
 });
 
-Route::middleware("checkAdminLogin")->group(function(){
-    Route::get("/admin/index", [AdminController::class, 'Index'])->name("admin.index");
-    Route::get("/admin/signout",[AdminController::class,'SignOut'])->name("admin.signout");
+Route::prefix("admin")->group(function(){
+    Route::middleware("checkAdminLogin")->group(function(){
+        Route::get("index", [AdminController::class, 'Index'])->name("admin.index");
+        Route::get("signout",[AdminController::class,'SignOut'])->name("admin.signout");
+        Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
+
+    });
+    
+    Route::get("login",[AdminController::class,'Login'])->name("admin.login");
+    Route::post("login/verify",[AdminController::class,'VerifyLogin'])->name("admin.login_verify");
 });
 
-Route::get("/admin/login",[AdminController::class,'Login'])->name("admin.login");
-Route::post("/admin/login/verify",[AdminController::class,'VerifyLogin'])->name("admin.login_verify");
 
 Route::get("/mail",function(){
     Mail::to('auttzeza@gmail.com')
@@ -65,10 +82,12 @@ Route::post('/reset_password',[ForgotPasswordController::class,'resetPasswordPos
 
 Route::get("/rec1", [IndexController::class, 'rec1'])->name("index.rec1");
 Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
-Route::get("/read_novel/{bookID}", [ReadController::class, "read_novel"])->name("index.read");
+Route::get("/read_novel/{novelID}", [ReadController::class, "read_novel"])->name("index.read");
 
 
-Route::get("/Home_admin",[AdminController::class,"Home"])->name("Home_admin");
+Route::get("/test", function () {
+    return view('user.test');
+});
 
 
 

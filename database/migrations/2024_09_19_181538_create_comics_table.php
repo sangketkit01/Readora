@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("comic_name");
             $table->string("comic_pic");
             $table->string("comic_description");
-            $table->tinyInteger("comic_status");
+            $table->tinyInteger("comic_status")->default(1);
             $table->timestamps();
             $table->softDeletes();
 

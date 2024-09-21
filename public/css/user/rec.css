@@ -109,6 +109,7 @@ p ._1 {
 .recommend-card p {
     font-size: 14px;
     color: #666;
+    margin-left: 10px;
 }
 
 .recommend-card:hover {

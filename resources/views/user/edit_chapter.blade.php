@@ -6,7 +6,7 @@
 @section('containerClassName','EditChapterContainer')
 
 @section('content')
-     <form action="{{route("novel.chapter_update",["bookID"=>$bookID,'chapterID' => $chapterID])}}" id="form" method="post" enctype="multipart/form-data">
+     <form action="{{route("novel.chapter_update",["novelID"=>$novelID,'chapterID' => $chapterID])}}" id="form" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row button-header">
             <div class="col-12 d-flex justify-content-end">
@@ -17,12 +17,12 @@
 
         <div class="row d-flex">
             <div class="col-2 d-flex justify-content-start">
-                <label for="image-input" id="image-input-label" style="background-image: url('{{asset($book->chapter_image)}}')"></label>
+                <label for="image-input" id="image-input-label" style="background-image: url('{{asset($novel->chapter_image)}}')"></label>
                 <input type="file" name="image" id="image-input" accept="image/*">
             </div>
             <div class="col-9 d-flex flex-column ms-4 add-name">
                 <label for="">ชื่อตอน</label>
-                <input type="text" name="title" id="title-name" value="{{$book->chapter_name}}">
+                <input type="text" name="title" id="title-name" value="{{$novel->chapter_name}}">
             </div>
         </div>
 
@@ -34,7 +34,7 @@
 
         <div class="row">
             <div class="col-12 d-flex flex-column mt-2 bg-white">
-                <textarea name="content" id="content" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="15">{{$book->chapter_content}}</textarea>
+                <textarea name="content" id="content" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="15">{{$novel->chapter_content}}</textarea>
                 <hr id="content-hr">
                 <div class="row d-flex align-item-center" id="check-error">
                     <div class="col-6 d-flex">
@@ -58,10 +58,10 @@
 
          <div class="row">
             <div class="col-12 d-flex flex-column mt-2 bg-white">
-                @if ($book->writer_message == "No Writer message")
+                @if ($novel->writer_message == "No Writer message")
                     <textarea name="writer_message" id="writer_message" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="10"></textarea>
                 @else
-                    <textarea name="writer_message" id="writer_message" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="10">{{$book->writer_message}}</textarea>
+                    <textarea name="writer_message" id="writer_message" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="10">{{$novel->writer_message}}</textarea>
                 @endif
             </div>
         </div>
@@ -74,7 +74,7 @@
 
         <div class="row mt-2">
             <div class="col-12 d-flex align-item-center">
-                @if ($book->allow_comment == 1)
+                @if ($novel->allow_comment == 1)
                     <input type="checkbox" id="checkbox" name="allow_comment" checked>
                 @else
                     <input type="checkbox" id="checkbox" name="allow_comment">

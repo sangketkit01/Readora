@@ -31,18 +31,18 @@
 
 
     <div class="container">
-    <!-- Recommendation Section for Books -->
+    <!-- Recommendation Section for Novels -->
     <div class="recommend" id="recommend1">
         <h2>แนะนำนิยาย</h2>
         <br>
         <div class="recommend-section1">
-            @foreach ($books as $book)
+            @foreach ($novels as $novel)
                 <div class="recommend-card">
-                    <img src="{{ asset($book->book_pic) }}" alt="Book Image">
+                    <img src="{{ asset($novel->novel_pic) }}" alt="Novel Image">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $book->book_name }}</h5>
-                        <p class="card-text">{{ $book->book_description }}</p>
-                        <p class="card-text"><small class="text-body-secondary">{{ $book->User->name }}</small></p>
+                        <h5 class="card-title">{{ $novel->novel_name }}</h5>
+                        <p class="card-text">{{ $novel->novel_description }}</p>
+                        <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
                     </div>
                 </div>
             @endforeach
@@ -54,13 +54,13 @@
         <h2>แนะนำคอมมิค</h2>
         <br>
         <div class="recommend-section1">
-            @foreach ($books as $book)
+            @foreach ($novels as $novel)
                 <div class="recommend-card">
-                    <img src="{{ asset($book->book_pic) }}" alt="Book Image">
+                    <img src="{{ asset($novel->novel_pic) }}" alt="Novel Image">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $book->book_name }}</h5>
-                        <p class="card-text">{{ $book->book_description }}</p>
-                        <p class="card-text"><small class="text-body-secondary">{{ $book->User->name }}</small></p>
+                        <h5 class="card-title">{{ $novel->novel_name }}</h5>
+                        <p class="card-text">{{ $novel->novel_description }}</p>
+                        <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
                     </div>
                 </div>
             @endforeach
@@ -72,13 +72,13 @@
         <h2>รักโรแมนติก</h2>
         <br>
         <div class="recommend-section2">
-            @foreach ($romanticBooks as $book)
+            @foreach ($romanticNovels as $novel)
                 <div class="recommend-card">
-                    <img src="{{ asset($book->book_pic) }}" alt="Romance Book Image">
+                    <img src="{{ asset($novel->novel_pic) }}" alt="Romance Novel Image">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $book->book_name }}</h5>
-                        <p class="card-text">{{ $book->book_description }}</p>
-                        <p class="card-text"><small class="text-body-secondary">{{ $book->User->name }}</small></p>
+                        <h5 class="card-title">{{ $novel->novel_name }}</h5>
+                        <p class="card-text">{{ $novel->novel_description }}</p>
+                        <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
                     </div>
                 </div>
             @endforeach

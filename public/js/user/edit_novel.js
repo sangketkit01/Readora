@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     });
+
+    document.getElementById("pub-chapter").addEventListener("change",()=>{
+        document.getElementById("chapter-form").submit();
+    })
 });
 
 
