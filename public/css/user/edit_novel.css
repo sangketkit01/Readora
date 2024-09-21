@@ -110,3 +110,12 @@ strong {
 #edit-chapter-href:hover{
     color: #777;
 }
+
+.chapter-name{
+    color: #333;
+    text-decoration: none;
+}
+
+.chapter-name:hover{
+    color:#777;
+}

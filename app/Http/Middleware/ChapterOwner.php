@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Novel_chapter;
+use App\Models\Book_chapter;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ class ChapterOwner
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $chapter = Novel_chapter::where('novelID',$request->route('novelID'))->where('chapterID',$request->route('chapterID'));
+        $chapter = Book_chapter::where('bookID',$request->route('bookID'))->where('chapterID',$request->route('chapterID'));
         if(!$chapter){
             return redirect()->route("index");
         }

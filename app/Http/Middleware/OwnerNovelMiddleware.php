@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Novel;
+use App\Models\Book;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -18,9 +18,9 @@ class OwnerNovelMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         try{
-            $novelID = $request->route("novelID");
-            $novel = Novel::where("username",Session::get("user")->username)->where("novelID",$novelID)->first();
-            if(isset($novel) && $novel){
+            $bookID = $request->route("bookID");
+            $book = Book::where("username",Session::get("user")->username)->where("bookID", $bookID)->first();
+            if(isset($book) && $book){
                 return $next($request);
             }else{
                 return abort(404);

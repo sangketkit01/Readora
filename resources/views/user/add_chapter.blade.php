@@ -6,7 +6,7 @@
 
 @section("containerClassName","AddChapterContainer")
 @section("content")
-    <form action="{{route("novel.new_chapter",["novelID"=>$novelID])}}" id="form" method="post" enctype="multipart/form-data">
+    <form action="{{route("novel.new_chapter",["bookID"=>$bookID])}}" id="form" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row button-header">
             <div class="col-12 d-flex justify-content-end">
@@ -62,18 +62,18 @@
             </div>
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-12 d-flex justfy-content-start mt-5">
                 <label for="" id="content-label">ตั้งค่าตอน</label>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="row mt-2">
+        {{-- <div class="row mt-2">
             <div class="col-12 d-flex align-item-center">
                 <input type="checkbox" id="checkbox" name="allow_comment">
                 <label for="" class="ms-2">อณุญาตให้แสดงความคิดเห็น</label>
             </div>
-        </div>
+        </div> --}}
 
         <div class="row mt-4">
             <div class="col-12 d-flex justify-content-center">

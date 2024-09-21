@@ -11,19 +11,26 @@ class Userdb extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $primaryKey = 'username';
-    public $incrementing = false;
-    protected $keyType = 'string';
+    protected $table = "userdbs";
+    protected $primaryKey = "username";
 
-    function Novels(){
-        return $this->hasMany(Novel::class,"novelID");
+    function Books(){
+        return $this->hasMany(Book::class,"bookID");
+    }
+
+    function BookAll(){
+        return $this->belongsToMany(Book::class,"bookID");
+    }
+
+    function BookShelves(){
+        return $this->hasMany(BookShelf::class);
     }
 
     function Comments(){
         return $this->hasMany(Chapter_comment::class,"commentID");
     }
 
-    function Comics(){
-        return $this->hasMany(Comic::class,"comicID");
+    function Reports(){
+        return $this->hasMany(Report::class,"reportID");
     }
 }

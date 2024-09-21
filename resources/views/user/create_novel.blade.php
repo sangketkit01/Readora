@@ -21,15 +21,15 @@
                 <div>
                     <label for="" class="form-label mt-3">ตั้งค่าสถานะเรื่อง</label>
                     <select name="status" id="" class="form-control">
-                        <option value="0">เฉพาะฉัน</option>
-                        <option value="1">สาธารณะ</option>
+                        <option value="private">เฉพาะฉัน</option>
+                        <option value="public">สาธารณะ</option>
                     </select>
                 </div>
                 <div>
                     <label for="" class="form-label mt-3">เลือกหมวดหมู่</label>
-                    <select name="type" id="" class="form-control">
-                        @foreach ($novel_types as $type)
-                            <option value="{{$type->novelTypeID}}">{{$type->novelType_name}}</option>
+                    <select name="genre" id="" class="form-control">
+                        @foreach ($book_genres as $genre)
+                            <option value="{{$genre->bookGenreID}}">{{$genre->bookGenre_name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -40,8 +40,10 @@
             </div>
 
             <div class="d-flex flex-column mt-3">
-                <label for="inputImage" id="input-image-label"></label>
-                <input type="file" name="inputImage" id="inputImage" accept="image/*" required>
+                <div class="cover-upload">
+                    <label for="inputImage" id="input-image-label"></label>
+                    <input type="file" name="inputImage" id="inputImage" accept="image/*" required>
+                </div>
                 <div class="d-flex flex-row align-item-center justify-content-center mt-2">
                     <img id="profile-image" src="{{session('user')->profile}}" alt="">
                     <label id="profile-name" for="">{{session('user')->name}}</label>

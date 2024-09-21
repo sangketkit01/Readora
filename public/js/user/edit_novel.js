@@ -19,8 +19,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // document.getElementById("pub-chapter").addEventListener("change",()=>{
-    //     document.getElementById("chapter-form").submit();
-    // })
+ document.querySelectorAll(".pub-chapter").forEach((pub) => {
+     pub.addEventListener("change", function () {
+         const form = this.closest(".chapter-form");
+         if (form) {
+             form.submit(); 
+         }
+     });
+ });
+
 });
 
