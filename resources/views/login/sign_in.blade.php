@@ -25,19 +25,23 @@
                 </div>
             </div>
             <div class="form login">
-                <form action="{{route('login_verify')}}" method="POST">
+                <form action="{{route('login_verify')}}" method="POST" class="form-group">
                     @csrf
-                    <label for="username">Username</label>
-                    <input type="text" name="username" placeholder="Username" required>
-                    <label for="password">Password</label>
-                    <input type="password" name="password" placeholder="Password" required>
+                    <label for="username" class="form-label mt-3">Username</label>
+                    <input type="text" name="username" placeholder="Username" class="form-control" value="{{old('username')}}" required>
+
+                    <label for="password" class="form-label mt-3">Password</label>
+                    <input type="password" name="password" placeholder="Password" class="form-control" required>
+
                     <div class="d-flex flex-column">
                         <a href="{{ url('/forgot_password')}}" id="forgot">ลืมรหัสผ่าน?</a>
                         @if ($errors->has('msg'))
                             <p class="text-danger text-center p-0 mb-0 mt-2 fw-bold">{{$errors->first('msg')}}</p>
                         @endif
                     </div>
+
                     <button type="submit" id="login-button">เข้าสู่ระบบ</button>
+
                     <div class="or">
                         <div class="line"></div>
                         <label for="or" id="or-text">หรือ</label>

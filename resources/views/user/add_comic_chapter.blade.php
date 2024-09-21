@@ -1,12 +1,12 @@
 @extends("user.layout")
 @section("title","Add Chapter")
 @push("style")
-    <link rel="stylesheet" href="{{asset("css/user/add_chapter.css")}}">
+    <link rel="stylesheet" href="{{asset("css/user/add_comic_chapter.css")}}">
 @endpush
 
 @section("containerClassName","AddChapterContainer")
 @section("content")
-    <form action="{{route("novel.new_chapter",["bookID"=>$bookID])}}" id="form" method="post" enctype="multipart/form-data">
+    <form action="{{route("comic.new_chapter",["bookID"=>$bookID])}}" id="form" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row button-header">
             <div class="col-12 d-flex justify-content-end">
@@ -22,7 +22,7 @@
             </div>
             <div class="col-9 d-flex flex-column ms-4 add-name">
                 <label for="">ชื่อตอน</label>
-                <input type="text" name="title" id="title-name" required>
+                <input type="text" name="title" id="title-name">
             </div>
         </div>
 
@@ -34,7 +34,7 @@
 
         <div class="row">
             <div class="col-12 d-flex flex-column mt-2 bg-white">
-                <textarea name="content" id="content" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="15" required></textarea>
+                <textarea name="content" id="content" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="15"></textarea>
                 <hr id="content-hr">
                 <div class="row d-flex align-item-center" id="check-error">
                     <div class="col-6 d-flex">
@@ -52,7 +52,7 @@
 
         <div class="row">
             <div class="col-12 d-flex justfy-content-start mt-5">
-                <label for="" id="content-label">ข้อความจากนักเขียน (ไม่บังคับ)</label>
+                <label for="" id="content-label">ข้อความจากนักเขียน</label>
             </div>
         </div>
 
@@ -85,5 +85,5 @@
 @endsection
 
 @push("scripts")
-    <script src="{{asset('js/user/add_chapter.js')}}"></script>
+    <script src="{{asset('js/user/add_comic_chapter.js')}}"></script>
 @endpush
