@@ -7,7 +7,7 @@
         @csrf
         <label for="new_password">รหัสผ่าน
             <input type="password" min="8" name="password" id="n-password" required>
-            <p class="mt-2 mb-0 text-secondary" id="password-w" style="font-size: 12px; margin-left:2px">รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร</p>
+            <p class="mt-2 mb-0 text-secondary" id="password-w" style="font-size: 12px; margin-left:2px"></p>
         </label> <br>
         <label for="new_password_confirmation">ยืนยันรหัสผ่าน
             <input type="password" name="password_confirmation" id="c-password" required>

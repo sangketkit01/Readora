@@ -23,71 +23,43 @@
 //     event.preventDefault();
 // });
 
-// function handleMenuChange() {
-//     const select = document.getElementById('user-menu');
-//     const selectedOption = select.options[select.selectedIndex].value;
-
-//     if (selectedOption && selectedOption !== "") {
-//         window.location.href = selectedOption;
-//     }
-// }
-
-// function validateForm() {
-//     const password = document.getElementById("n-password").value;
-//     const confirmPassword = document.getElementById("c-password").value;
-//     const passwordP = document.getElementById("password-w");
-//     const confirmPasswordP = document.getElementById("confirm-w");
-
-//     if (password.length < 8) {
-//         passwordP.classList.add("text-danger");
-//         passwordP.classList.remove("text-success");
-//         return false;
-//     } else {
-//         passwordP.classList.remove("text-danger");
-//         passwordP.classList.add("text-success");
-//     }
-
-//     if (confirmPassword !== password) {
-//         confirmPasswordP.textContent = "รหัสผ่านไม่ตรงกัน";
-//         confirmPasswordP.classList.add("text-secondaryr");
-//         return false;
-//     } else {
-//         confirmPasswordP.textContent = "รหัสผ่านตรงกัน";
-//         confirmPasswordP.classList.remove("text-secondary");
-//         confirmPasswordP.classList.add("text-success");
-//     }
-
-//     return true; 
-// }
-
-function validatePasswordLength() {
-    const password = document.getElementById("n-password").value;
-    const passwordP = document.getElementById("password-w");
-
-    if (password.length < 8) {
-        passwordP.classList.add("text-secondary");
-        passwordP.classList.remove("text-success");
-        passwordP.textContent = "รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร";
-    } else {
-        passwordP.classList.remove("text-secondary");
-        passwordP.classList.add("text-success");
-        passwordP.textContent = "รหัสผ่านถูกต้อง";
+function handleMenuChange() {
+    const selectedOption = document.getElementById('user-menu').value;
+    if (selectedOption) {
+        window.location.href = selectedOption;
     }
 }
 
+// password
+function validatePasswordLength() {
+    const password = document.getElementById("n-password").value
+    const passwordP = document.getElementById("password-w")
+    if(password == ""){
+        passwordP.textContent = ""
+    }else if(password.length < 8){
+        passwordP.classList.add("text-secondary")
+        passwordP.classList.remove("text-success")
+        passwordP.textContent = "รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร"
+    }else{
+        passwordP.classList.remove("text-secondary")
+        passwordP.classList.add("text-success")
+        passwordP.textContent = "รหัสผ่านถูกต้อง"
+    }
+}
 document.getElementById("n-password").addEventListener("input", validatePasswordLength);
 document.getElementById("c-password").addEventListener("input", () => {
-    const password = document.getElementById("n-password").value;
+    const password = document.getElementById("n-password").value
     const confirmPassword = document.getElementById("c-password").value;
-    const confirmPasswordP = document.getElementById("confirm-w");
-
-    if (confirmPassword !== password) {
-        confirmPasswordP.classList.add("text-secondary");
-        confirmPasswordP.classList.remove("text-success");
-        confirmPasswordP.textContent = "รหัสผ่านไม่ตรงกัน";
-    } else {
-        confirmPasswordP.classList.remove("text-secondary");
-        confirmPasswordP.classList.add("text-success");
-        confirmPasswordP.textContent = "รหัสผ่านตรงกัน";
+    const confirmPasswordP = document.getElementById("confirm-w")
+    if(confirmPassword == ""){
+        confirmPasswordP.textContent = ""
+    }else if(confirmPassword !== password){
+        confirmPasswordP.classList.add("text-secondary")
+        confirmPasswordP.classList.remove("text-success")
+        confirmPasswordP.textContent = "รหัสผ่านไม่ตรงกัน"
+    }else{
+        confirmPasswordP.classList.remove("text-secondary")
+        confirmPasswordP.classList.add("text-success")
+        confirmPasswordP.textContent = "รหัสผ่านตรงกัน"
     }
 });
