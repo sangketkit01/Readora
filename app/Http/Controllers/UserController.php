@@ -12,11 +12,11 @@ class UserController extends Controller
 {
     function profile(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
+        $novels = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->count();
-        $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
+        $comics = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
-        return view('profile.main', compact('user', 'novel', 'n_count', 'comic', 'c_count'));
+        return view('profile.main', compact('user','novels', 'n_count', 'comics', 'c_count'));
     }
 
     function editInfoPage($username){

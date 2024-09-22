@@ -2,21 +2,6 @@
 @section('title', 'Change password')
 
 @section('content')
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <h5>เปลี่ยนรหัสผ่าน</h5>
     <form action="{{route('change.password')}}" method="post" id="update-password-form">
         @csrf

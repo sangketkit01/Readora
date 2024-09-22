@@ -23,19 +23,17 @@
 //     event.preventDefault();
 // });
 
-// function handleMenuChange() {
-//     const select = document.getElementById('user-menu');
-//     const selectedOption = select.options[select.selectedIndex].value;
+function handleMenuChange() {
+    const selectedOption = document.getElementById('user-menu').value;
+    if (selectedOption) {
+        window.location.href = selectedOption;
+    }
+}
 
-//     if (selectedOption && selectedOption !== "") {
-//         window.location.href = selectedOption;
-//     }
-// }
-
+// password
 function validatePasswordLength() {
     const password = document.getElementById("n-password").value
     const passwordP = document.getElementById("password-w")
-
     if(password == ""){
         passwordP.textContent = ""
     }else if(password.length < 8){
@@ -53,8 +51,7 @@ document.getElementById("c-password").addEventListener("input", () => {
     const password = document.getElementById("n-password").value
     const confirmPassword = document.getElementById("c-password").value;
     const confirmPasswordP = document.getElementById("confirm-w")
-
-    if (confirmPassword == ""){
+    if(confirmPassword == ""){
         confirmPasswordP.textContent = ""
     }else if(confirmPassword !== password){
         confirmPasswordP.classList.add("text-secondary")
