@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
-class OwnerNovelMiddleware
+class OwnerComicMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,18 +17,18 @@ class OwnerNovelMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        try{
+        try {
             $bookID = $request->route("bookID");
-            $book = Book::where("username",Session::get("user")->username)->where("bookID", $bookID)->where("bookTypeID",1)->first();
-            if(isset($book) && $book){
+            $book = Book::where("username", Session::get("user")->username)->where("bookID", $bookID)->where("bookTypeID", 2)->first();
+            if (isset($book) && $book) {
                 return $next($request);
-            }else{
+            } else {
                 return abort(404);
             }
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return abort(404);
         }
-        
+
         return redirect()->route('index');
     }
 }

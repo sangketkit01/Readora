@@ -72,7 +72,9 @@ Route::middleware("checkLogin")->group(function () {
             Route::get('{bookID}/{chapterID}', [NovelController::class, "EditChapter"])->name('novel.edit_chapter')->middleware(['checkChapterOwner']);
             Route::post('update/{bookID}/{chapterID}', [NovelController::class, 'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkChapterOwner']);
         });
+    });
 
+    Route::middleware("checkComicOwner")->group(function(){
         Route::prefix("edit_comic")->group(function () {
             Route::get("{bookID}", [ComicController::class, 'edit'])->name("comic.edit");
             Route::post("insert/{bookID}", [ComicController::class, "EditInsert"])->name("comic.edit_insert");
