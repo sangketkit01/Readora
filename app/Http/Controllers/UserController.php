@@ -12,11 +12,11 @@ class UserController extends Controller
 {
     function profile(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
+        $novels = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->count();
-        $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
+        $comics = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
-        return view('profile.main', compact('user', 'novel', 'n_count', 'comic', 'c_count'));
+        return view('profile.main', compact('user','novels', 'n_count', 'comics', 'c_count'));
     }
 
     function editInfoPage($username){
@@ -31,7 +31,7 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->gender = $request->input('gender');
         $user->save();
-        redirect()->route('profile');
+        return redirect()->route('profile');
     }
 
     function novelInfoPage($username){
@@ -81,9 +81,9 @@ class UserController extends Controller
         if (!Hash::check($request->input('current_password'), $user->password)) {
             echo "<script>alert('รหัสผ่านไม่ตรงกัน') return false;</script>";
         }
-        $user->password = Hash::make($request->input("password"));
+        $user->password = Hash::make($request->input("n-password"));
         $user->save();
-        return redirect()->route('profile');
+        return redirect()->route('profile')->with('status', 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว');
     }
     
     function rec1(){
