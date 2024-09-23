@@ -87,3 +87,17 @@
 </div>
 
             @endsection
+
+    @if (session('msg'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: '{{session("msg")}}',
+                    showConfirmButton: false,
+                    timer: 5000
+                });
+            });
+        </script>
+    @endif
