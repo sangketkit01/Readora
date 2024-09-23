@@ -30,18 +30,13 @@ class NovelController extends Controller
 
         $created_at = now();
 
-        $recommend = $request->recommend;
-        if($recommend === "เพิ่มคำแนะนำเรื่อง" || trim($recommend) === ""){
-            $recommend = "ไม่มีคำแนะนำเรื่อง";
-        }
-
         $data = [
             'username' => Session::get("user")->username,
             'bookGenreID' => (int) $request->genre,
             'bookTypeID' => 1,
             'book_name' => $request->title,
             'book_pic' => $fileUrl,
-            'book_description' => $recommend,
+            'book_description' => $request->book_description,
             "book_status" => $request->status,
             "created_at" => $created_at
         ];
@@ -73,11 +68,6 @@ class NovelController extends Controller
             return abort(404);
         }
 
-        $recommend = $request->recommend;
-        if ($recommend === "เพิ่มคำแนะนำเรื่อง" || trim($recommend) === "") {
-            $recommend = "ไม่มีคำแนะนำเรื่อง";
-        }
-
 
         if($request->has("inputImage")){
             $oldImage = $book->book_pic;
@@ -96,7 +86,7 @@ class NovelController extends Controller
 
         $book->book_name  = $request->title;
         $book->bookgenreID = $request->type;
-        $book->book_description = $recommend;
+        $book->book_description = $request->book_description;
         $book->book_status = $request->status;
         $book->save();
 
@@ -127,6 +117,7 @@ class NovelController extends Controller
             'chapter_image' => $imageUrl,
             'bookID' => $bookID,
             'chapter_content' => $request->content,
+            'chapter_status' => $request->status,
             'chapter_name' => $request->title,
             "writer_message" => $writer_message,
             "created_at" => $created_at
@@ -168,9 +159,11 @@ class NovelController extends Controller
 
             $chapterContent->chapter_image = $imageUrl;
         }
+        $writer_message = $request->writer_message == null ?  "ไม่มีข้อความจากนักเขียน" : $request->writer_message;
+
         $chapterContent->chapter_content = $request->content;
         $chapterContent->chapter_name = $request->title;
-        $chapterContent->writer_message = $request->writer_message;
+        $chapterContent->writer_message = $writer_message;
         $chapterContent->save();
         return redirect()->route('novel.edit',['bookID'=>$bookID])->with(["successMsg" => "แก้ไขตอนสำเร็จ"]);
     }
