@@ -47,7 +47,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <textarea name="writer_message" id="writer_message" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="10">{{ $book->writer_message }}</textarea>
+                    <textarea name="writer_message" id="writer_message" placeholder="เพิ่มข้อความ" cols="30" rows="10">{{$book->writer_message == "ไม่มีข้อความจากนักเขียน" ? "" : $book->writer_message}}</textarea>
                 </div>
             </div>
             <div class="row">
@@ -77,7 +77,7 @@
 
             <div class="row mt-4">
                 <div class="col-12 d-flex justify-content-center">
-                    <button type="button" id="cancel-button">ยกเลิก</button>
+                    <a href="{{route('comic.edit',['bookID'=>$bookID])}}" type="button" id="cancel-button" style="text-decoration: none">ยกเลิก</a>
                     <button type="submit" id="save-button">ยืนยัน</button>
                 </div>
             </div>

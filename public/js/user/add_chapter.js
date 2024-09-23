@@ -19,32 +19,3 @@ imageInput.addEventListener("change",(event)=>{
     }
 })
 
-
-function submitForm() {
-    let title = document.getElementById("title-name");
-    let content = document.getElementById("content");
-    let writerMessage = document.getElementById("writer_message");
-    let form = document.getElementById("form");
-    let imageInput = document.getElementById("image-input"); 
-
-
-    if (title.value.trim() === "" || content.value.trim() === "") {
-        alert("กรุณากรอกข้อมูลให้ครบ");
-        return;
-    }
-    if (writerMessage.value.trim() === "") {
-        document.getElementById("writer_message").value = "No Writer message";
-    }
-
-    if (imageInput.files.length === 0) {
-        alert("กรุณาเลือกรูปภาพ");
-        return;
-    }
-
-    if (form.checkValidity()) {
-        form.submit();
-    } else {
-        alert("ข้อมูลไม่ถูกต้อง");
-        return;
-    }
-}

@@ -16,7 +16,7 @@
                 </div>
                 <div>
                     <label for="" class="form-label mt-3">แนะนำเรื่อง</label>
-                    <textarea name="recommend" class="form-control" id="" cols="100" rows="20" required></textarea>
+                    <textarea name="book_description" class="form-control" id="" cols="100" rows="20" required></textarea>
                 </div>
                 <div>
                     <label for="" class="form-label mt-3">ตั้งค่าสถานะเรื่อง</label>

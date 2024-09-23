@@ -1,57 +1,57 @@
 @extends('user.layout')
 @section('title', 'Create Novel')
 @push('style')
-    <link rel="stylesheet" href="/css/user/create_comic.css" />
-    @section('containerClassName', 'createNovelContainer')
+    <link rel="stylesheet" href="/css/user/create_novel.css" />
+@endpush
+@section('containerClassName', 'createNovelContainer')
 @section('content')
     <div class="container">
-        <div class="box">
-            <div class="left-box">
-                <h2>เพิ่มคอมมิค</h2>
-                <form action="{{ route('comic.insert') }}" method="post" id="form" enctype="multipart/form-data">
-                    @csrf
-
-                    <label id="add-titlecomic-input">เพิ่มคอมมิค</label>
-                    <input type="text" name="book_name" required>
-
-                    <label id="recommend-input">แนะนำเรื่อง</label>
-                    <textarea name="book-description" id="" cols="30" rows="5" required></textarea>
-
-                    <label class="me-2">ตั้งค่าสถานะเรื่อง</label>
-                    <select name="status" id="">
-                        <option value="0">เฉพาะฉัน</option>
-                        <option value="1" selected>สาธารณะ</option>
+        <form action="{{ route('comic.insert') }}" method="post" class="form-group d-flex align-items-center" enctype="multipart/form-data" >
+            @csrf
+            <div class="d-flex flex-column">
+                <h2>สร้างคอมมิก</h2>
+                <div>
+                    <label for="" class="form-label">ชื่อเรื่อง</label>
+                    <input type="text" name="book_name" class="form-control" required>
+                </div>
+                <div>
+                    <label for="" class="form-label mt-3">แนะนำเรื่อง</label>
+                    <textarea name="book_description" class="form-control" id="" cols="100" rows="20" required></textarea>
+                </div>
+                <div>
+                    <label for="" class="form-label mt-3">ตั้งค่าสถานะเรื่อง</label>
+                    <select name="status" id="" class="form-control">
+                        <option value="private">เฉพาะฉัน</option>
+                        <option value="public">สาธารณะ</option>
                     </select>
-
-                    <label id="type-comic">เลือกหมวดหมู่
-                    </label>
-                    <select name="genre" id="genre">
-                        @foreach ($book_genres as $type)
-                            <option value="{{ $type->bookGenreID }}">{{ $type->bookGenre_name }}</option>
+                </div>
+                <div>
+                    <label for="" class="form-label mt-3">เลือกหมวดหมู่</label>
+                    <select name="genre" id="" class="form-control">
+                        @foreach ($book_genres as $genre)
+                            <option value="{{$genre->bookGenreID}}">{{$genre->bookGenre_name}}</option>
                         @endforeach
                     </select>
-                    <div class="buttons">
-                        <button onclick="submitForm()" type="submit" class="btn-submit">ตกลง</button>
-                        <button type="button" class="btn-cancel">ยกเลิก</button>
-                    </div>
-            </div>
-            <div class="right-box">
-                <div class="file-upload">
-                    <div class="image-title text-center">
-                        <label for="inputImage" id="input-image-label"></label>
-                        <input type="file" id="inputImage" required name="inputImage" accept="image/*">
-                    </div>
                 </div>
-                <div class="profile">
-                    <img id="profile-image" src="{{ session('user')->profile }}" alt="">
-                    <p for="profile-image" id="profile-name">{{ session('user')->name }}</p>
+
+                <div class="d-flex mt-4">
+                    <input type="submit" value="สร้างนิยาย" class="btn btn-primary">
                 </div>
-                </form>
             </div>
-        </div>
+
+            <div class="d-flex flex-column mt-3">
+                <div class="cover-upload">
+                    <label for="inputImage" id="input-image-label"></label>
+                    <input type="file" name="inputImage" id="inputImage" accept="image/*" required>
+                </div>
+                <div class="d-flex flex-row align-item-center justify-content-center mt-2">
+                    <img id="profile-image" src="{{session('user')->profile}}" alt="">
+                    <label id="profile-name" for="">{{session('user')->name}}</label>
+                </div>
+            </div>
+        </form>
     </div>
 @endsection
 @push('scripts')
     <script src="{{ asset('js/user/create_novel.js') }}"></script>
-
 @endpush

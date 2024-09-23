@@ -124,7 +124,7 @@ document.getElementById("form").addEventListener("submit", function (e) {
 
     Swal.fire({
         title: "กำลังอัปโหลดไฟล์...",
-        text: "ขณะนี้กำลังอัปโหลดไฟล์กรุณารอสักครู่",
+        text: "กำลังอัปเดตข้อมูล กรุณารอสักครู่",
         icon: "info",
         allowOutsideClick: false,
         showConfirmButton: false,
