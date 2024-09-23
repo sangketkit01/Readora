@@ -58,7 +58,11 @@
                             @endphp
                             <strong>{{ $count }}</strong>
                             <img class="images" src="{{ asset($chapter->chapter_image) }}" alt="">
-                            <strong><a href="{{ route('read.read_chapt', ['bookID' => $book -> bookID, 'chapterID' => $chapter->chapterID]) }}" id="edit-chapter-href">{{ $chapter->chapter_name }}</a></strong>
+                            <strong>
+                                <a href="{{ route('read.read_chapt', ['bookID' => $book->bookID, 'chapterID' => $chapter->chapterID]) }}" id="edit-chapter-href">
+                                    {{ $chapter->chapter_name }}
+                                </a>
+                            </strong>                            
                         </div>
                     @endforeach
                     <hr>

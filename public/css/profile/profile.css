@@ -1,0 +1,85 @@
+/* .container {
+  background-color: white;
+} */
+
+.top {
+  width: 60%;
+  background-color: white;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  /* margin-top: 15px; */
+}
+.top img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+  margin-bottom: 5px;
+
+}
+.top p {
+  font-weight: 500;
+  font-size: 20px;
+  color: #33436F;
+}
+.top table {
+  width: 40%;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  table-layout: fixed;
+}
+.top th, td{
+  padding: 10px 10px;
+  width: 25%;
+  text-align: center;
+  font-size: 14px;
+  color: #6d6d6d;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+  background-color: #f9f9f9;
+  color: black;
+}
+
+p select {
+  font-weight: bold;
+  border: none; 
+  outline: none; 
+  background-color: transparent; 
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 258px;
+}
+
+.text-about{
+  color: #33436F;
+}
+#change-password-btn {
+  border-radius: 100px;
+  color:#33436F;
+  background-color: transparent;
+  border: 2px solid #33436F;
+  padding: 3px 12px;
+  margin-left: 5px;
+}
+
+#edit-info, #logout {
+  border-radius: 100px;
+  padding: 5px 20px;
+  border: 2px solid #33436F;
+}
+#edit-info {
+  color:  #33436F; 
+  background-color: transparent;
+}
+#logout {
+  /* margin-left: 30px; */
+  background-color: #33436F;
+  color:white;
+}
+

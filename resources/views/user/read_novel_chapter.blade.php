@@ -9,7 +9,7 @@
     @foreach ($chapters as $chapter)
     <div class="container">
         <div class="header">
-            <h1>{{$chapter->chapter_name }}</h1>
+            <h1>{{ $chapter->chapter_name }}</h1>
             <p> {!! $chapter->chapter_content !!} <\p>
         </div>
         <div class="buttons">
