@@ -72,7 +72,9 @@ Route::middleware("checkLogin")->group(function () {
             Route::get('{bookID}/{chapterID}', [NovelController::class, "EditChapter"])->name('novel.edit_chapter')->middleware(['checkChapterOwner']);
             Route::post('update/{bookID}/{chapterID}', [NovelController::class, 'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkChapterOwner']);
         });
+    });
 
+    Route::middleware("checkComicOwner")->group(function(){
         Route::prefix("edit_comic")->group(function () {
             Route::get("{bookID}", [ComicController::class, 'edit'])->name("comic.edit");
             Route::post("insert/{bookID}", [ComicController::class, "EditInsert"])->name("comic.edit_insert");
@@ -89,6 +91,8 @@ Route::middleware("checkLogin")->group(function () {
             Route::post('update/{bookID}/{chapterID}', [ComicController::class, 'EditChapterUpdate'])->name('comic.chapter_update')->middleware(['checkChapterOwner']);
         });
     });
+
+    Route::post('/comments', [ReadController::class, 'comment_insert'])->name('comment.insert');
 });
 
 Route::prefix("admin")->group(function () {
@@ -116,6 +120,7 @@ Route::get("/rec1", [IndexController::class, 'rec1'])->name("index.rec1");
 Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
 Route::get("/read/{bookID}", [ReadController::class, "read"])->name("read.read_novel");
 Route::get("/read_chapt/{bookID}/{chapterID}", [ReadController::class, "readnovel_chapt"])->name("read.read_chapt");
+Route::get('/read_first_chapt/{bookID}', [ReadController::class, 'readFirstChapter'])->name('read.read_first_chapt');
 
 
 

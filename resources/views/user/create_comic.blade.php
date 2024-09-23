@@ -12,10 +12,10 @@
                     @csrf
 
                     <label id="add-titlecomic-input">เพิ่มคอมมิค</label>
-                    <input type="text" name="book_name">
+                    <input type="text" name="book_name" required>
 
                     <label id="recommend-input">แนะนำเรื่อง</label>
-                    <textarea name="book-description" id="" cols="30" rows="5"></textarea>
+                    <textarea name="book-description" id="" cols="30" rows="5" required></textarea>
 
                     <label class="me-2">ตั้งค่าสถานะเรื่อง</label>
                     <select name="status" id="">

@@ -124,10 +124,18 @@ class ComicController extends Controller
 
         $image = $request->file('image');
         $newImageFileName = uniqid('', true) . '.' . $image->getClientOriginalExtension();
-        $imageUrl = Storage::putFileAs('public/Chapter', $image, $newImageFileName);
+        $imageUrl = Storage::putFileAs('public/ComicPicture', $image, $newImageFileName);
         $imageUrl = str_replace("public/", "storage/", $imageUrl);
 
+        $pdf = $request->pdf;
+        $newPdfFileName = uniqid('',true) . '.' . $pdf->getClientOriginalExtension();
+        $pdfUrl = Storage::putFileAs('public/ComicPDF',$pdf,$newPdfFileName);
+        $pdfUrl = str_replace("public/","storage/",$pdfUrl);
+
+        $writer_message = $request->writer_message == null ? "ไม่มีข้อความจากนักเขียน" : $request->writer_message;
+
         $created_at = now();
+
         $book = Book::where("bookID", $bookID)->first();
         if (!$book) {
             return redirect()->route('index')->withErrors(["msg" => "Something went wrong."]);
@@ -136,9 +144,10 @@ class ComicController extends Controller
         $data = [
             'chapter_image' => $imageUrl,
             'bookID' => $bookID,
-            'chapter_content' => $request->input("content"),
-            'chapter_name' => $request->input("title"),
-            "writer_message" => $request->input("writer_message"),
+            'chapter_content' => $pdfUrl,
+            'chapter_name' => $request->title,
+            "writer_message" => $writer_message ,
+            "chapter_status" => $request->status,
             "created_at" => $created_at
         ];
 
@@ -173,16 +182,32 @@ class ComicController extends Controller
 
             $image = $request->file('image');
             $newImageFileName = uniqid('', true) . '.' . $image->getClientOriginalExtension();
-            $imageUrl = Storage::putFileAs('public/Chapter', $image, $newImageFileName);
+            $imageUrl = Storage::putFileAs('public/ComicPicture', $image, $newImageFileName);
             $imageUrl = str_replace("public/", "storage/", $imageUrl);
 
             $chapterContent->chapter_image = $imageUrl;
         }
-        $chapterContent->chapter_content = $request->content;
+        if($request->has('pdf')){
+            $oldPdf = $chapterContent->chapter_content;
+            $oldPdf = str_replace("storage/","public/",$oldPdf);
+            if($oldPdf && Storage::exists($oldPdf)){
+                Storage::delete($oldPdf);
+            }
+
+            $pdf = $request->pdf;
+            $newPdfFileName = uniqid('', true) . '.' . $pdf->getClientOriginalExtension();
+            $pdfUrl = Storage::putFileAs('public/ComicPDF', $pdf, $newPdfFileName);
+            $pdfUrl = str_replace("public/", "storage/", $pdfUrl);
+
+            $chapterContent->chapter_content = $pdfUrl;
+        }
+
+        $writer_message = $request->writer_message == null ? "ไม่มีข้อความจากนักเขียน" : $request->writer_message;
+
         $chapterContent->chapter_name = $request->title;
-        $chapterContent->writer_message = $request->writer_message;
+        $chapterContent->writer_message = $writer_message;
         $chapterContent->save();
-        return redirect()->route('novel.edit',['bookID'=>$bookID])->with(["successMsg" => "แก้ไขตอนสำเร็จ"]);
+        return redirect()->route('comic.edit',['bookID'=>$bookID])->with(["successMsg" => "แก้ไขตอนสำเร็จ"]);
     }
 
 }

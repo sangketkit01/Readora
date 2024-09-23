@@ -30,7 +30,7 @@
                     </div>
                     <div class="button">
                         <a href="" class="button_1">เพิ่มเข้าชั้น</a>
-                        <a href="" class="button_2">อ่านเลย</a>
+                        <a href="{{ route('read.read_first_chapt', ['bookID' => $book->bookID]) }}" class="button_2">อ่านเลย</a>
                     </div>
                 </div>
             </div>
