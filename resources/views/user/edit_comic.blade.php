@@ -35,7 +35,7 @@
                 </div>
                 <div>
                     <label for="" class="form-label mt-3">แนะนำเรื่อง</label>
-                    <textarea name="recommend" class="form-control" id="" cols="100" rows="8" required>{{ $data->book_description }}</textarea>
+                    <textarea name="book_description" class="form-control" id="" cols="100" rows="8" required>{{ $data->book_description }}</textarea>
                 </div>
                 <div>
                     <label for="" class="form-label mt-3">ตั้งค่าสถานะเรื่อง</label>
@@ -120,9 +120,9 @@
                             @csrf
 
                             <select name="status_chapter" class="pub-chapter form-control">
-                                <option value="0" {{ $chapter->chapter_status == "public" ? 'selected' : '' }}>เฉพาะฉัน
+                                <option value="public" {{ $chapter->chapter_status == "public" ? 'selected' : '' }}>เฉพาะฉัน
                                 </option>
-                                <option value="1" {{ $chapter->chapter_status == "private" ? 'selected' : '' }}>สาธารณะ
+                                <option value="private" {{ $chapter->chapter_status == "private" ? 'selected' : '' }}>สาธารณะ
                                 </option>
                             </select>
                         </form>

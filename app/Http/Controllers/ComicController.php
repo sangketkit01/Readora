@@ -28,10 +28,6 @@ class ComicController extends Controller
 
         $created_at = now();
 
-        $recommend = $request->input("book-description");
-        if($recommend === "เพิ่มคำแนะนำเรื่อง" || trim($recommend) === ""){
-            $recommend = "ไม่มีคำแนะนำเรื่อง";
-        }
 
         $data = [
             'username' => Session::get("user")->username,
@@ -39,7 +35,7 @@ class ComicController extends Controller
             'bookTypeID' => 2,
             'book_name' => $request->input("book_name"),
             'book_pic' => $fileUrl,
-            'book_description' => $recommend,
+            'book_description' => $request->book_description,
             "book_status" => $request->input("status"),
             "created_at" => $created_at
         ];
@@ -48,7 +44,7 @@ class ComicController extends Controller
 
         $bookID = DB::table("books")->where("username", Session::get("user")->username)->where("created_at", $created_at)->first();
 
-        return redirect("/edit_comic/$bookID->bookID")->with(["successMsg" => "สร้างนิยายสำเร็จ\nคุณอยู่ในหน้าแก้ไขนิยายแล้ว"]);
+        return redirect("/edit_comic/$bookID->bookID")->with(["successMsg" => "สร้างคอมมิกสำเร็จ\nคุณอยู่ในหน้าแก้ไขคอมมิกแล้ว"]);
     }
 
 
@@ -73,11 +69,6 @@ class ComicController extends Controller
             return abort(404);
         }
 
-        $recommend = $request->input("book-description");
-        if ($recommend === "เพิ่มคำแนะนำเรื่อง" || trim($recommend) === "") {
-            $recommend = "ไม่มีคำแนะนำเรื่อง";
-        }
-
 
         if($request->has("inputImage")){
             $oldImage = $book->book_pic;
@@ -96,11 +87,11 @@ class ComicController extends Controller
 
         $book->book_name  = $request->title;
         $book->bookgenreID = $request->type;
-        $book->book_description = $recommend;
+        $book->book_description = $request->book_description;
         $book->book_status = $request->status;
         $book->save();
 
-        return redirect()->route("comic.edit",["bookID"=>$bookID])->with(["successMsg" => "แก้ไขนิยายสำเร็จ"]);
+        return redirect()->route("comic.edit",["bookID"=>$bookID])->with(["successMsg" => "แก้ไขคอมมิกสำเร็จ"]);
     }
 
     function ChapterStatusUpdate(Request $request,$bookID,$chapterID){
