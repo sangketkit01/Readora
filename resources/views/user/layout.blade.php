@@ -18,7 +18,7 @@
         <div class="left-menu">
             <a href="/" id="title">เอาชื่อเว็บมาใส่</a>
             <a href="#">นิยาย</a>
-            <a href="#">คอมมิก</a>
+            <a href="#">คอมมิค</a>
         </div>
         <div class="right-menu">
             <button id="layout-search"><img id="layout-search-image" src="/nav/search.svg" width="30" height="30" alt=""></button>

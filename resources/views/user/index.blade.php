@@ -29,7 +29,6 @@
     </div>
 </div>
 
-
     <div class="container">
     <!-- Recommendation Section for Novels -->
     <div class="recommend" id="recommend1">
@@ -54,13 +53,13 @@
         <h2>แนะนำคอมมิค</h2>
         <br>
         <div class="recommend-section1">
-            @foreach ($novels as $novel)
+            @foreach ($comics as $comic)
                 <div class="recommend-card">
-                    <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
+                    <img src="{{ asset($comic->book_pic) }}" alt="Novel Image">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $novel->book_name }}</h5>
-                        <p class="card-text">{{ $novel->book_description }}</p>
-                        <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
+                        <h5 class="card-title">{{ $comic->book_name }}</h5>
+                        <p class="card-text">{{ $comic->book_description }}</p>
+                        <p class="card-text"><small class="text-body-secondary">{{ $comic->User->name }}</small></p>
                     </div>
                 </div>
             @endforeach

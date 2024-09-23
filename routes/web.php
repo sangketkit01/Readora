@@ -30,11 +30,11 @@ Route::middleware("checkLogin")->group(function () {
 
     // profile
     Route::get('/profile', [UserController::class, "profile"])->name('profile');
+    Route::get('/profile/novel', [UserController::class, 'novelInfoPage'])->name('profile.novel');
+    Route::get('/profile/comic', [UserController::class, 'comicInfoPage'])->name('profile.comic');
+
     Route::get('/profile/{username}', [UserController::class, 'editInfoPage']);
     Route::post('/editInfo', [UserController::class, 'edit_info'])->name('edit.info');
-
-    Route::get('/novelInfo/{novel}', [UserController::class, 'novelInfoPage']);
-    Route::get('/comicInfo/{comic}', [UserController::class, 'comicInfoPage']);
 
     Route::get('/createPassword', [UserController::class, 'viewCreatePassword'])->name('create.password.page');
     Route::post('/create_password', [UserController::class, 'create_password'])->name('create.password');
@@ -118,7 +118,7 @@ Route::post('/reset_password', [ForgotPasswordController::class, 'resetPasswordP
 
 Route::get("/rec1", [IndexController::class, 'rec1'])->name("index.rec1");
 Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
-Route::get("/read/{bookID}", [ReadController::class, "read"])->name("read.read_novel");
+Route::get("/read_novel/{bookID}", [ReadController::class, "read"])->name("read.read_novel");
 Route::get("/read_chapt/{bookID}/{chapterID}", [ReadController::class, "readnovel_chapt"])->name("read.read_chapt");
 Route::get('/read_first_chapt/{bookID}', [ReadController::class, 'readFirstChapter'])->name('read.read_first_chapt');
 

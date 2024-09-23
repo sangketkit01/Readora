@@ -8,35 +8,77 @@ p {
     margin: 0;
     padding: 0;
 }
-.container{
-    Width:100%
-    }
 
-.button ul {
+.container {
+    Width: 100%
+}
+
+.Introducing {
+    background-color: white;
+    width: 70%;
+    padding: 30px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.Introducing a.btn, .Introducing button.btn {
+    text-decoration: none;
+    color: #4F5D87; 
+    background-color: transparent; 
+    border: 1px solid #4F5D87; 
+    padding: 10px 20px; 
+    border-radius: 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+.Introducing a.btn:hover, .Introducing button.btn:hover {
+    background-color: #4F5D87; 
+    color: #ffffff; 
+    border: none; 
+}
+
+.Introducing button.btn[disabled] {
+    color: #ccc;
+    border: 1px solid #ccc; 
+    cursor: not-allowed; 
+    background-color: transparent; 
+}
+
+.Introducing .button {
     display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    justify-content: space-between; 
+    border-top: 1px solid #4F5D87; 
+    padding-top: 10px;
 }
 
-.button li {
+.Introducing .button a.btn:first-child {
+    margin-right: 10px; 
+}
+
+.Introducing .button a.btn:last-child {
+    margin-left: 10px; 
+}
+
+.Introducing .pofile_user_com {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 20px;
+}
+
+.Introducing .pofile_user_com img {
     margin-right: 10px;
+    width: 40px; /
+    height: 40px; 
+    border-radius: 50%; 
+    object-fit: cover; 
 }
 
-.button_1 {
-    border: 1px solid #676767;
-    color: #676767;
-    padding: 10px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-}
-
-.button_2 {
-    background-color: #4F5D87;
-    color: #ffffff;
-    padding: 10px 28px;
-    border-radius: 20px;
-    text-decoration: none;
+.Introducing .pofile_user_com p {
+    margin: 0; 
+    font-size: 16px; 
 }
 
 .type {
