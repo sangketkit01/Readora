@@ -30,11 +30,11 @@ Route::middleware("checkLogin")->group(function () {
 
     // profile
     Route::get('/profile', [UserController::class, "profile"])->name('profile');
+    Route::get('/profile/novel', [UserController::class, 'novelInfoPage'])->name('profile.novel');
+    Route::get('/profile/comic', [UserController::class, 'comicInfoPage'])->name('profile.comic');
+
     Route::get('/profile/{username}', [UserController::class, 'editInfoPage']);
     Route::post('/editInfo', [UserController::class, 'edit_info'])->name('edit.info');
-
-    Route::get('/novelInfo/{novel}', [UserController::class, 'novelInfoPage']);
-    Route::get('/comicInfo/{comic}', [UserController::class, 'comicInfoPage']);
 
     Route::get('/createPassword', [UserController::class, 'viewCreatePassword'])->name('create.password.page');
     Route::post('/create_password', [UserController::class, 'create_password'])->name('create.password');

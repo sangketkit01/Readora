@@ -13,16 +13,16 @@ class UserController extends Controller
     function profile(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $novels = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
-        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->count();
+        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $comics = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
-        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
         return view('profile.main', compact('user','novels', 'n_count', 'comics', 'c_count'));
     }
 
     function editInfoPage($username){
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->count();
-        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
+        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
         return view('profile.main', compact('user', 'username', 'n_count', 'c_count'));
     }
     function edit_info(Request $request){
@@ -34,18 +34,20 @@ class UserController extends Controller
         return redirect()->route('profile');
     }
 
-    function novelInfoPage($username){
+    function novelInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
-        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->count();
-        return view('profile.main', compact('user', 'novel', 'username'));
+        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
+        return view('profile.novel_info', compact('user', 'novel', 'c_count', 'n_count'));
     }
 
-    function comicInfoPage($username){
+    function comicInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
-        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
-        return view('profile.main', compact('user', 'comic', 'username'));
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
+        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
+        return view('profile.comic_info', compact('user', 'comic', 'c_count', 'n_count'));
     }
 
     function viewCreatePassword(){
@@ -78,12 +80,13 @@ class UserController extends Controller
             "confirm.same" => "รหัสผ่านไม่ตรงกัน"
         ]);
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        if (!Hash::check($request->input('current_password'), $user->password)) {
-            echo "<script>alert('รหัสผ่านไม่ตรงกัน') return false;</script>";
+        if(!Hash::check($request->input('current_password'), $user->password)) {
+            $user->password = Hash::make($request->input("n-password"));
+            $user->save();
+            return redirect()->route('profile');
+        }else {
+            return back()->withErrors(['current_password' => 'รหัสผ่านปัจจุบันไม่ถูกต้อง']);
         }
-        $user->password = Hash::make($request->input("n-password"));
-        $user->save();
-        return redirect()->route('profile')->with('status', 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว');
     }
     
     function rec1(){
