@@ -8,11 +8,11 @@ body {
 .container {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    background-color: white;
-    padding: 20px 5px;
-    border-radius: 12px;
-    box-shadow: 1px 1px 5px black;
+    margin-top: 40px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .container form{
@@ -118,10 +118,4 @@ strong {
 
 .chapter-name:hover{
     color:#777;
-}
-
-
-.form-control {
-    max-width: 800px;
-    max-height: 200px;
 }

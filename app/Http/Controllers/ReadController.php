@@ -12,7 +12,7 @@ class ReadController extends Controller
     public function read($bookID){
         $books = Book::where("BookID", $bookID)->get();
         $chapters = Book_chapter::where("bookID", $bookID)
-                    ->where("chapterstatus", 'public') ->get();
+                    ->where("chapter_status", 'public') ->get();
         $count_chapter = Book_chapter::where("bookID", $bookID)->count();
         return view("user.read_novel", compact('books', 'bookID','chapters','count_chapter'));
     }

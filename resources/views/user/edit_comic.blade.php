@@ -1,7 +1,7 @@
 @extends('user.layout')
 @section('title', 'Edit Novel')
 @push('style')
-    <link rel="stylesheet" href="{{ asset('css/user/edit_novel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user/edit_comic.css') }}">
 @endpush
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -24,7 +24,7 @@
     @endif
 
     <div class="container">
-        <form action="{{ route('novel.edit_insert', ['bookID' => $bookID]) }}" method="post" id="form"
+        <form action="{{ route('comic.edit_insert', ['bookID' => $bookID]) }}" method="post" id="form"
             enctype="multipart/form-data" class="form-group">
             @csrf
             <div class="d-flex flex-column">
@@ -35,7 +35,7 @@
                 </div>
                 <div>
                     <label for="" class="form-label mt-3">แนะนำเรื่อง</label>
-                    <textarea name="recommend" class="form-control" id="" cols="100" rows="8" required>{{ $data->book_description }}</textarea>
+                    <textarea name="recommend" class="form-control" id="" cols="100" rows="8">{{ $data->book_description }}</textarea>
                 </div>
                 <div>
                     <label for="" class="form-label mt-3">ตั้งค่าสถานะเรื่อง</label>
@@ -92,7 +92,7 @@
             </div>
             <div class="d-flex ms-auto me-4">
                 <button type="button" class="div37 text-white ms-3"
-                    onclick="window.location.href = '/add_chapter/{{ $bookID }}'">เพิ่มตอนใหม่</button>
+                    onclick="window.location.href = '/add_comic_chapter/{{ $bookID }}'">เพิ่มตอนใหม่</button>
             </div>
         </div>
 
@@ -111,18 +111,18 @@
                         <input type="checkbox" name="chap" class="chap form-check-input mb-1">
                         <strong>{{ $count }}</strong>
                         <img class="images" src="{{ asset($chapter->chapter_image) }}" alt="">
-                        <strong><a class="chapter-name" href="/edit_chapter/{{ $bookID }}/{{ $chapter->chapterID }}">{{ $chapter->chapter_name }}</a></strong>
+                        <strong><a class="chapter-name" href="/edit_comic_chapter/{{ $bookID }}/{{ $chapter->chapterID }}">{{ $chapter->chapter_name }}</a></strong>
                     </div>
                     <div class="d-flex ms-auto me-4 align-items-center">
-                        <form action="{{ route('novel.chapter_status_update', ['bookID' => $bookID, 'chapterID' => $chapter->chapterID]) }}"
+                        <form action="{{ route('comic.chapter_status_update', ['bookID' => $bookID, 'chapterID' => $chapter->chapterID]) }}"
                             class="chapter-form" method="POST">
 
                             @csrf
 
                             <select name="status_chapter" class="pub-chapter form-control">
-                                <option value="private" {{ $chapter->chapter_status == "private" ? 'selected' : '' }}>เฉพาะฉัน
+                                <option value="0" {{ $chapter->chapter_status == "public" ? 'selected' : '' }}>เฉพาะฉัน
                                 </option>
-                                <option value="public" {{ $chapter->chapter_status == "public" ? 'selected' : '' }}>สาธารณะ
+                                <option value="1" {{ $chapter->chapter_status == "private" ? 'selected' : '' }}>สาธารณะ
                                 </option>
                             </select>
                         </form>

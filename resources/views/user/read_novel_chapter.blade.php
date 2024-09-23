@@ -6,11 +6,11 @@
 @section('containerClassName', 'indexContainer')
 
 @section('content')
-    @foreach ($chapters as $ct)
+    @foreach ($chapters as $chapter)
     <div class="container">
         <div class="header">
-            <h1>{{$ct->chapter_name}}</h1>
-            <p> {!! $ct->chapter_content !!} <\p>
+            <h1>{{$chapter->chapter_name }}</h1>
+            <p> {!! $chapter->chapter_content !!} <\p>
         </div>
         <div class="buttons">
             <button class="button">ตอนก่อนหน้า</button>

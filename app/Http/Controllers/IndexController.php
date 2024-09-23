@@ -15,6 +15,7 @@ class IndexController extends Controller
             ->limit(4)
             ->get();
         return view("user.index", compact("novels", 'romanticNovels'));
+
     }
 
     public function rec1()
@@ -27,6 +28,7 @@ class IndexController extends Controller
     {
         $comics = Book::where('BooktypeID', 1)->all();
         return view("user.rec2", compact('comics'));
+
     }
 
 }

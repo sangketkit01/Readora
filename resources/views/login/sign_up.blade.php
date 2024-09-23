@@ -27,37 +27,37 @@
                     <div class="line2"></div>
                 </div>
             </div>
-            <div class="form register" style="">
+            <div class="form register" style="" class="form">
                 <form method="post" action="{{ route('signup_insert') }}">
                     @csrf
-                    <label for="username">ชื่อผู้ใช้</label>
-                    <input type="text" name="username" placeholder="ชื่อผู้ใช้" required>
+
+                    <label for="username" class="form-label">ชื่อผู้ใช้</label>
+                    <input type="text" name="username" placeholder="ชื่อผู้ใช้" value="{{old('username')}}" class="form-control" required>
                     @if ($errors->has('username'))
                         <p class="mt-2 mb-0 text-danger fw-bold" style="font-size: 14px; margin-left:2px">{{$errors->first('username')}}</p>
                     @endif
-                    <label for="email">อีเมลล์</label>
 
-                    @if (session()->has('google_email'))
-                        <input type="email" name="email" value="{{ session('google_email') }}">
-                    @else
-                        <input type="email" name="email" placeholder="อีเมลล์" required>
-                         @if ($errors->has('email'))
-                            <p class="mt-2 mb-0 text-danger fw-bold" style="font-size: 14px; margin-left:2px">{{$errors->first('email')}}</p>
-                        @endif
+                    <label for="email" class="form-label mt-3">อีเมลล์</label>
+                    <input type="email" name="email" placeholder="อีเมลล์" value="{{old('email')}}" class="form-control"  required>
+                    @if ($errors->has('email'))
+                        <p class="mt-2 mb-0 text-danger fw-bold" style="font-size: 14px; margin-left:2px">{{$errors->first('email')}}</p>
                     @endif
-                    <label for="password">รหัสผ่าน</label>
-                    <input type="password" min="8" name="password" placeholder="รหัสผ่าน" id="password-input" required>
+
+                    <label for="password" class="form-label mt-3">รหัสผ่าน</label>
+                    <input type="password" min="8" name="password" placeholder="รหัสผ่าน" id="password-input" class="form-control"  required>
                     <p class="mt-2 mb-0 text-danger fw-bold" id="password-p" style="font-size: 14px; margin-left:2px">รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร</p>
-                    <label for="confirm">ยืนยันรหัสผ่าน</label>
-                    <input type="password" name="confirm" placeholder="ยืนยันรหัสผ่าน" id="confirm-password-input" required>
+
+                    <label for="confirm" class="form-label mt-3">ยืนยันรหัสผ่าน</label>
+                    <input type="password" name="confirm" placeholder="ยืนยันรหัสผ่าน" id="confirm-password-input" class="form-control" required>
                     <p class="mt-2 mb-0 text-danger fw-bold" id="confirm-p" style="font-size: 14px; margin-left:2px">รหัสผ่านไม่ตรงกัน</p>
-                    <label for="gender">เพศ</label>
-                    <select name="gender" class="gender">
+
+                    <label for="gender" class="form-label mt-3">เพศ</label>
+                    <select name="gender"  class="form-control">
                         <option value="none">ไม่ระบุ</option>
-                        <option value="m">ชาย</option>
-                        <option value="f">หญิง</option>
+                        <option value="M">ชาย</option>
+                        <option value="F">หญิง</option>
                     </select>
-                    <button type="submit" id="register-button">สมัครสมาชิก</button>
+                    <button type="submit" class="btn mt-4" id="register-button">สมัครสมาชิก</button>
                 </form>
             </div>
         </div>

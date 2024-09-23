@@ -12,10 +12,10 @@
                     @csrf
 
                     <label id="add-titlecomic-input">เพิ่มคอมมิค</label>
-                    <input type="text" name="comic_name">
+                    <input type="text" name="book_name">
 
                     <label id="recommend-input">แนะนำเรื่อง</label>
-                    <textarea name="comic-description" id="" cols="30" rows="5"></textarea>
+                    <textarea name="book-description" id="" cols="30" rows="5"></textarea>
 
                     <label class="me-2">ตั้งค่าสถานะเรื่อง</label>
                     <select name="status" id="">
@@ -25,9 +25,9 @@
 
                     <label id="type-comic">เลือกหมวดหมู่
                     </label>
-                    <select name="type" id="type">
-                        @foreach ($comic_types as $type)
-                            <option value="{{ $type->comicTypeID }}">{{ $type->comicType_name }}</option>
+                    <select name="genre" id="genre">
+                        @foreach ($book_genres as $type)
+                            <option value="{{ $type->bookGenreID }}">{{ $type->bookGenre_name }}</option>
                         @endforeach
                     </select>
                     <div class="buttons">
