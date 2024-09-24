@@ -41,17 +41,18 @@
 
         <div class="comment">
             <h4>แสดงความคิดเห็น</h4>
-            <form action="{{ route('comment.insert') }}" method="POST">
-                @csrf
-                <input type="hidden" name="chapterID" value="{{ $chapters->id }}">
                 <textarea name="comment_message" rows="5" placeholder="แสดงความคิดเห็นที่นี่....."></textarea>
                 <button type="submit">ส่งความคิดเห็น</button>
-            </form>
-
         </div>
         <div class="com">
-            <h4>ความคิดเห็นทั้งหมด</h4>
-            <textarea readonly>ลูปความเห็นมาใส่นี่</textarea>
+            <h4>ความคิดเห็นทั้งหมด ({{ $commentCount }})</h4>
+
+            @foreach ($chapterComments as $comment)
+                <div class="comment-item">
+                    <strong>{{ $comment->user->name }}</strong>:
+                    <p>{{ $comment->comment_message }}</p>
+                </div>
+            @endforeach
         </div>
     </div>
 

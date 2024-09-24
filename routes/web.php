@@ -113,7 +113,7 @@ Route::middleware("checkLogin")->group(function () {
     Route::get("/read_chapt/{bookID}/{chapterID}", [ReadController::class, "readnovel_chapt"])->name("read.read_chapt");
     Route::get('/read_first_chapt/{bookID}', [ReadController::class, 'readFirstChapter'])->name('read.read_first_chapt');
 
-    Route::post('/comments', [ReadController::class, 'comment_insert'])->name('comment.insert');
+    Route::post('/comments/{$chapterID}', [ReadController::class, 'comment_insert'])->name('comment.insert');
 });
 
 Route::prefix("admin")->group(function () {

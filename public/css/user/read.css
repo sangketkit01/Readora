@@ -329,3 +329,21 @@ p {
     }
 
 }
+
+.comment button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #e0e0e0;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.comment button:hover {
+    background-color: #d4d4d4;
+
+}
