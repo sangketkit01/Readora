@@ -10,6 +10,7 @@ use App\Http\Controllers\NovelController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\ReadController;
+use App\Http\Controllers\SearchController;
 use App\Mail\Hellomail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -126,11 +127,6 @@ Route::prefix("admin")->group(function () {
     Route::post("login/verify", [AdminController::class, 'VerifyLogin'])->name("admin.login_verify");
 });
 
-
-// Route::get("/mail",function(){
-//     Mail::to('auttzeza@gmail.com')
-//         ->Send(new Hellomail());
-// });
 Route::get('/forgot_password', [ForgotPasswordController::class, 'forgot'])->name('forgot.password');
 Route::post('/forgot_password', [ForgotPasswordController::class, 'password'])->name('forgot.password.post');
 Route::get('/reset_password/{token}', [ForgotPasswordController::class, 'resetPassword'])->name('reset_password');
@@ -140,8 +136,8 @@ Route::get("/rec1", [IndexController::class, 'rec1'])->name("index.rec1");
 Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
 
 
-
-
 Route::get("/test", function () {
     return view('user.test');
 });
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');
