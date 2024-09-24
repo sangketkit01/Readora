@@ -30,9 +30,10 @@
     @if (isset($username))
         <div class="row mt-3">
             <div class="edit-info">
-                <p>
-                <h5>แก้ไขข้อมูล</h5>
-                </p>
+                <div class="edit-header">
+                    <button id="back-icon" onclick="window.location.href='/profile'"> <i class="bi bi-arrow-left-circle-fill "></i> </button> 
+                    <h5>แก้ไขข้อมูล</h5>
+                </div>
                 ชื่อผู้ใช้งาน: {{ $user->username }} <br>
                 <form action="{{ route('edit.info') }}" method="post">
                     @csrf
@@ -56,12 +57,10 @@
                             <option value="N" @if ($user->gender == 'N') selected @endif>ไม่ระบุ</option>
                         </select>
                     </label> <br>
-                    <button id="cancle-edit-info" type="button" onclick="window.location.href='/profile'">ยกเลิก</button>
                     <button id="submit-new-info" type="submit">บันทึก</button>
                 </form>
             </div>
         </div>
-
     @else
         <div class="row mt-3">
             <div class="col-8">

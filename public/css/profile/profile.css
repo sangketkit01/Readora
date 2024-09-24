@@ -1,5 +1,3 @@
-
-
 .top {
   width: 70%;
   background-color: rgb(223, 222, 222);
@@ -48,10 +46,6 @@
   margin-left: 320px;
 }
 
-.userInfo {
-  background-color: white;
-}
-
 .text-about{
   color: #33436F;
 }
@@ -80,11 +74,60 @@
   color:white;
 }
 
+/* แก้ไขข้อมูล */
+#back-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  border: none;
+  background-color: transparent;
+  color: #33436F;
+}
+/* .edit-header {
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+} */
+.edit-info {
+  width: 40%;
+  background-color: rgb(255, 255, 255);
+  margin: 0 auto;
+  border-radius: 15px;
+  margin-top: 15px;
+  padding: 10px 20px;
+}
+
+#cancle-edit-info {
+  color: white;
+    background-color: #33436F;
+    border-radius: 100px;
+    padding: 5px 24px;
+    border: 2px solid #33436F;
+}
+
+#submit-new-info {
+  color: white;
+    background-color: #33436F;
+    border-radius: 100px;
+    padding: 5px 24px;
+    border: 2px solid #33436F;
+}
+
+/* นิยาย คอมมิก */
 .create-novel, .create-comic {
   width: 13%;
   background-color: #33436F;
-  color:white;
+  color: white;
   border-radius: 100px;
   padding: 5px 20px;
   border: 2px solid #33436F;
+}
+
+.create-novel-n, .create-comic-n {
+  background-color: #33436F;
+  color: white;
+  border-radius: 100px;
+  padding: 5px 15px;
+  border: 2px solid #33436F;
+  margin-left: 650px;
 }
