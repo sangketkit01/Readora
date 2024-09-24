@@ -15,8 +15,8 @@
 
         <div>
             <select name="" id="">
-                <option value="0">เพิ่มล่าสุด</option>
-                <option value="1">เพิ่มอันแรก</option>
+                <option value="0">เพิ่มอันแรก</option>
+                <option value="1">เพิ่มล่าสุด</option>
             </select>
         </div>
 

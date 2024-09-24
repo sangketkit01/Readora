@@ -17,8 +17,8 @@
 
         <div>
             <select name="" id="">
-                <option value="0">เพิ่มล่าสุด</option>
-                <option value="1">เพิ่มอันแรก</option>
+                <option value="0">เพิ่มอันแรก</option>
+                <option value="1">เพิ่มล่าสุด</option>
             </select>
         </div>
 
@@ -29,7 +29,7 @@
                 <div class="recommend-card">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="{{asset($novel->book__pic)}}" class="img-fluid rounded-start" alt="...">
+                            <img src="{{asset($novel->book_pic)}}" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
