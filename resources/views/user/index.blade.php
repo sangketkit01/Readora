@@ -100,3 +100,17 @@
             });
         </script>
     @endif
+
+    @if (session('successMsg'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: '{{session("successMsg")}}',
+                    showConfirmButton: false,
+                    timer: 5000
+                });
+            });
+        </script>
+    @endif

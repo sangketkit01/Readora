@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-function DeleteNovel(bookName) {
+function DeleteComic(bookName) {
     Swal.fire({
-        title: `คุณต้องการที่จะลบนิยายเรื่อง "${bookName}" หรือไม่?`,
+        title: `คุณต้องการที่จะลบคอมมิกเรื่อง "${bookName}" หรือไม่?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -44,7 +44,6 @@ function DeleteNovel(bookName) {
     });
 }
 
-
 function DeleteChapter(chapterName, chapterID) {
     Swal.fire({
         title: `คุณต้องการที่จะลบตอน "${chapterName}" หรือไม่?`,
@@ -56,7 +55,21 @@ function DeleteChapter(chapterName, chapterID) {
         cancelButtonText: "ยกเลิก",
     }).then((result) => {
         if (result.isConfirmed) {
-            document.getElementById(`delete-chapter-form-${chapterID}`).submit(); 
+            Swal.fire({
+                title: "กำลังลบตอน...",
+                text: "กรุณารอสักครู่",
+                icon: "info",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                },
+            });
+
+            document
+                .getElementById(`delete-chapter-form-${chapterID}`)
+                .submit();
         }
     });
 }
+

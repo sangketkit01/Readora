@@ -37,8 +37,8 @@
                 <div>
                     <label for="" class="form-label mt-3">ตั้งค่าสถานะเรื่อง</label>
                     <select name="status" id="" class="form-control">
-                        <option value="private" {{ $data->book_status == "private" ? 'selected' : '' }}>เฉพาะฉัน</option>
-                        <option value="public" {{ $data->book_status == "public" ? 'selected' : '' }}>สาธารณะ</option>
+                        <option value="private" {{ $data->book_status == 'private' ? 'selected' : '' }}>เฉพาะฉัน</option>
+                        <option value="public" {{ $data->book_status == 'public' ? 'selected' : '' }}>สาธารณะ</option>
                     </select>
                 </div>
                 <div>
@@ -46,7 +46,8 @@
                     <select name="type" id="" class="form-control">
                         @foreach ($book_genres as $genre)
                             <option value="{{ $genre->bookGenreID }}"
-                                {{ $data->bookGenreID == $genre->bookGenreID ? 'selected' : '' }}>{{ $genre->bookGenre_name }}
+                                {{ $data->bookGenreID == $genre->bookGenreID ? 'selected' : '' }}>
+                                {{ $genre->bookGenre_name }}
                             </option>
                         @endforeach
                     </select>
@@ -54,6 +55,8 @@
 
                 <div class="d-flex mt-4">
                     <input type="submit" value="อัปเดตนิยาย" class="btn btn-primary">
+                    <button class="btn btn-danger ms-2" type="button"
+                        onclick="DeleteNovel('{{ $data->book_name }}')">ลบนิยาย</button>
                 </div>
             </div>
 
@@ -71,22 +74,30 @@
 
         </form>
 
+        <form action="{{ route('novel.delete', ['bookID' => $bookID]) }}" method="post" id="delete-form" class="form"
+            style="display:none;">@csrf</form>
+
     </div>
 
     <div class="container" style="margin-top: 50px">
         <h4 class="ms-4">ตอนทั้งหมด {{ $count_chapter }}</h4>
+
         <div class="d-flex ms-4">
             <div class="d-flex align-items-center">
                 <input type="checkbox" name="chap" class="chap form-check-input">
+
                 <select name="chapter" class="chap ms-3 form-control">
                     <option value="0">จัดการตอน</option>
                 </select>
+
                 <select name="srt" class="ms-3 form-control text-center" style="width:125px">
                     <option value="0">เรียงลำดับตอน</option>
                     <option value="1">ตอนล่าสุด</option>
                     <option value="2">ตอนแรก</option>
                 </select>
+
             </div>
+
             <div class="d-flex ms-auto me-4">
                 <button type="button" class="div37 text-white ms-3"
                     onclick="window.location.href = '/add_chapter/{{ $bookID }}'">เพิ่มตอนใหม่</button>
@@ -108,27 +119,41 @@
                         <input type="checkbox" name="chap" class="chap form-check-input mb-1">
                         <strong>{{ $count }}</strong>
                         <img class="images" src="{{ asset($chapter->chapter_image) }}" alt="">
-                        <strong><a class="chapter-name" href="/edit_chapter/{{ $bookID }}/{{ $chapter->chapterID }}">{{ $chapter->chapter_name }}</a></strong>
+                        <strong><a class="chapter-name"
+                                href="/edit_chapter/{{ $bookID }}/{{ $chapter->chapterID }}">{{ $chapter->chapter_name }}</a></strong>
                     </div>
+
                     <div class="d-flex ms-auto me-4 align-items-center">
                         <form action="{{ route('novel.chapter_status_update', ['bookID' => $bookID, 'chapterID' => $chapter->chapterID]) }}"
                             class="chapter-form" method="POST">
 
                             @csrf
 
-                            <select name="status_chapter" class="pub-chapter form-control">
-                                <option value="private" {{ $chapter->chapter_status == "private" ? 'selected' : '' }}>เฉพาะฉัน
+                            <select name="status_chapter" class="pub-chapter form-control me-2">
+                                <option value="private" {{ $chapter->chapter_status == 'private' ? 'selected' : '' }}>
+                                    เฉพาะฉัน
                                 </option>
-                                <option value="public" {{ $chapter->chapter_status == "public" ? 'selected' : '' }}>สาธารณะ
+                                <option value="public" {{ $chapter->chapter_status == 'public' ? 'selected' : '' }}>
+                                    สาธารณะ
                                 </option>
                             </select>
+
                         </form>
+
+                        <button type="button" onclick="DeleteChapter('{{ $chapter->chapter_name }}', '{{ $chapter->chapterID }}')"
+                            id="delete-chapter"><img src="{{ asset('novel/delete.png') }}" width="35" alt=""></button>
+                        <form action="{{ route('novel.delete_chapter', ['bookID' => $bookID, 'chapterID' => $chapter->chapterID]) }}"
+                            id="delete-chapter-form-{{ $chapter->chapterID }}" method="post" style="display: none;">@csrf</form>
                     </div>
 
                 </div>
             @endforeach
         </div>
+
     </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center mt-4">
+        <button type="button" class="div37 text-white" onclick="window.location.href = `{{route('novel.trash',['bookID'=>$bookID])}}`">ดูถังขยะ</button>
     </div>
 @endsection
 

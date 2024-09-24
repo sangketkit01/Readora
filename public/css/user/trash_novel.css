@@ -15,58 +15,6 @@ body {
     box-shadow: 1px 1px 5px black;
 }
 
-.container form{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-
-#cover-image {
-    max-width: 500px;
-}
-
-#inputImage {
-    display: none;
-    margin-top: 15px;
-}
-
-#input-image-label {
-    height: 422px;
-    width: 384px;
-    background-color: #f8f9fa;
-    text-align: center;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    cursor: pointer;
-}
-
-#input-image-label:hover {
-    background-color: #f1f2f2;
-}
-
-.image-title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-#profile-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    position: relative;
-    transform: translateY(20%);
-}
-
-#profile-name {
-    position: relative;
-    transform: translateY(50%);
-    margin-left: 10px;
-}
-
 .div37 {
     text-align: center;
     font-family: "Inter-SemiBold", sans-serif;
@@ -86,7 +34,7 @@ body {
     background-color: #4f5d87;
 }
 
-.div37:hover{
+.div37:hover {
     background-color: #394770;
 }
 
@@ -102,22 +50,22 @@ strong {
     margin-inline: 20px;
 }
 
-#edit-chapter-href{
+#edit-chapter-href {
     text-decoration: none;
     color: #333;
 }
 
-#edit-chapter-href:hover{
+#edit-chapter-href:hover {
     color: #777;
 }
 
-.chapter-name{
+.chapter-name {
     color: #333;
     text-decoration: none;
 }
 
-.chapter-name:hover{
-    color:#777;
+.chapter-name:hover {
+    color: #777;
 }
 
 
@@ -126,7 +74,7 @@ strong {
     max-height: 200px;
 }
 
-#delete-chapter{
+#delete-chapter {
     border: none;
     background-color: transparent;
     outline: none;

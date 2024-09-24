@@ -60,6 +60,17 @@ Route::middleware("checkLogin")->group(function () {
             Route::get("{bookID}", [NovelController::class, 'Edit'])->name("novel.edit");
             Route::post("insert/{bookID}", [NovelController::class, "EditInsert"])->name("novel.edit_insert");
             Route::post('chapter/update/{bookID}/{chapterID}', [NovelController::class, 'ChapterStatusUpdate'])->name('novel.chapter_status_update')->middleware(['checkChapterOwner']);
+            Route::get("/{bookID}/trash",[NovelController::class,"Trash"])->name("novel.trash");
+        });
+
+        Route::prefix("delete_novel")->group(function(){
+            Route::post("{bookID}",[NovelController::class,"Delete"])->name("novel.delete");
+            Route::post("chapter/{bookID}/{chapterID}",[NovelController::class,"DeleteChapter"])->name("novel.delete_chapter")->middleware(["checkChapterOwner"]);
+        });
+
+        Route::prefix("restore")->group(function(){
+            Route::post("all/{bookID}",[NovelController::class,"RestoreAll"])->name("novel.restore_all");
+            Route::post("each/{bookID}/{chapterID}",[NovelController::class,"RestoreEach"])->name("novel.restore_each")->middleware(["checkChapterOwner"]);
         });
 
         Route::prefix("add_chapter")->group(function () {
@@ -67,11 +78,11 @@ Route::middleware("checkLogin")->group(function () {
             Route::post("insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter");
         });
 
-
         Route::prefix('edit_chapter')->group(function () {
             Route::get('{bookID}/{chapterID}', [NovelController::class, "EditChapter"])->name('novel.edit_chapter')->middleware(['checkChapterOwner']);
             Route::post('update/{bookID}/{chapterID}', [NovelController::class, 'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkChapterOwner']);
         });
+
     });
 
     Route::middleware("checkComicOwner")->group(function(){
@@ -79,6 +90,11 @@ Route::middleware("checkLogin")->group(function () {
             Route::get("{bookID}", [ComicController::class, 'edit'])->name("comic.edit");
             Route::post("insert/{bookID}", [ComicController::class, "EditInsert"])->name("comic.edit_insert");
             Route::post('chapter/update/{bookID}/{chapterID}', [ComicController::class, 'ChapterStatusUpdate'])->name('comic.chapter_status_update')->middleware(['checkChapterOwner']);
+        });
+
+        Route::prefix("delete_comic")->group(function(){
+            Route::post("{bookID}",[ComicController::class,"Delete"])->name("comic.delete");
+            Route::post("chapter/{bookID}/{chapterID}",[ComicController::class,"DeleteChapter"])->name("comic.delete_chapter")->middleware(["checkChapterOwner"]);
         });
 
         Route::prefix("add_comic_chapter")->group(function () {
@@ -91,6 +107,10 @@ Route::middleware("checkLogin")->group(function () {
             Route::post('update/{bookID}/{chapterID}', [ComicController::class, 'EditChapterUpdate'])->name('comic.chapter_update')->middleware(['checkChapterOwner']);
         });
     });
+
+    Route::get("/read_novel/{bookID}", [ReadController::class, "read"])->name("read.read_novel");
+    Route::get("/read_chapt/{bookID}/{chapterID}", [ReadController::class, "readnovel_chapt"])->name("read.read_chapt");
+    Route::get('/read_first_chapt/{bookID}', [ReadController::class, 'readFirstChapter'])->name('read.read_first_chapt');
 
     Route::post('/comments', [ReadController::class, 'comment_insert'])->name('comment.insert');
 });
@@ -118,9 +138,7 @@ Route::post('/reset_password', [ForgotPasswordController::class, 'resetPasswordP
 
 Route::get("/rec1", [IndexController::class, 'rec1'])->name("index.rec1");
 Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
-Route::get("/read_novel/{bookID}", [ReadController::class, "read"])->name("read.read_novel");
-Route::get("/read_chapt/{bookID}/{chapterID}", [ReadController::class, "readnovel_chapt"])->name("read.read_chapt");
-Route::get('/read_first_chapt/{bookID}', [ReadController::class, 'readFirstChapter'])->name('read.read_first_chapt');
+
 
 
 

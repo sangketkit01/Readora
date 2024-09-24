@@ -115,7 +115,7 @@ class ComicController extends Controller
 
         $image = $request->file('image');
         $newImageFileName = uniqid('', true) . '.' . $image->getClientOriginalExtension();
-        $imageUrl = Storage::putFileAs('public/ComicPicture', $image, $newImageFileName);
+        $imageUrl = Storage::putFileAs('public/Chapter', $image, $newImageFileName);
         $imageUrl = str_replace("public/", "storage/", $imageUrl);
 
         $pdf = $request->pdf;
@@ -173,7 +173,7 @@ class ComicController extends Controller
 
             $image = $request->file('image');
             $newImageFileName = uniqid('', true) . '.' . $image->getClientOriginalExtension();
-            $imageUrl = Storage::putFileAs('public/ComicPicture', $image, $newImageFileName);
+            $imageUrl = Storage::putFileAs('public/Chapter', $image, $newImageFileName);
             $imageUrl = str_replace("public/", "storage/", $imageUrl);
 
             $chapterContent->chapter_image = $imageUrl;
@@ -199,6 +199,55 @@ class ComicController extends Controller
         $chapterContent->writer_message = $writer_message;
         $chapterContent->save();
         return redirect()->route('comic.edit',['bookID'=>$bookID])->with(["successMsg" => "แก้ไขตอนสำเร็จ"]);
+    }
+
+    function Delete(Request $request,$bookID){
+        $book = Book::where("bookID", $bookID)->first();
+
+        if (!$book) {
+            return abort(404);
+        }
+
+        $book_image = $book->book_pic;
+        $book_image = str_replace("storage/", "public/", $book_image);
+        if ($book_image && Storage::exists($book_image)) {
+            Storage::move($book_image, 'public/Deleted/' . basename($book_image));
+
+            $book->book_pic = 'storage/Deleted/' . basename($book_image);
+            $book->save();
+        }
+        $book->delete();
+
+        return redirect()->route("index")->with(["successMsg" => "ลบนิยายสำเร็จ"]);
+    }
+
+    function DeleteChapter(Request $request ,$bookID , $chapterID){
+        $book_chapter = Book_chapter::where("chapterID", $chapterID)->where("bookID", $bookID)->first();
+        if (!$book_chapter) {
+            return abort(404);
+        }
+
+        $chapter_image = $book_chapter->chapter_image;
+        $chapter_image = str_replace("storage/", "public/", $chapter_image);
+        if ($chapter_image && Storage::exists($chapter_image)) {
+            Storage::move($chapter_image, 'public/DeletedChapter/' . basename($chapter_image));
+
+            $book_chapter->chapter_image = 'storage/DeletedChapter/' . basename($chapter_image);
+            $book_chapter->save();
+        }
+
+        $chapter_content = $book_chapter->chapter_content;
+        $chapter_content = str_replace("storage/","public/",$chapter_content);
+        if($chapter_content && Storage::exists($chapter_content)){
+            Storage::move($chapter_content , 'public/DeletedPDF/' .basename($chapter_content));
+
+            $book_chapter->chapter_content = "storage/DeletedPDF/". basename($chapter_content);
+            $book_chapter->save();
+        }
+
+        $book_chapter->delete();
+
+        return redirect()->route('comic.edit', ['bookID' => $bookID])->with(["successMsg" => "ลบตอนสำเร็จ"]);
     }
 
 }

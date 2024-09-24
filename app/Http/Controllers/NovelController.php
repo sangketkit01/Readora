@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-
+use League\CommonMark\Extension\CommonMark\Node\Inline\Strong;
 
 class NovelController extends Controller
 {
@@ -179,6 +179,113 @@ class NovelController extends Controller
 
         return redirect()->route("novel.edit",["bookID"=>$bookID]);
 
+    }
+
+    function Delete(Request $request , $bookID){
+        $book = Book::where("bookID",$bookID)->first();
+        $book_chapter = Book_chapter::where("bookID",$bookID)->get();
+
+        if(!$book){
+            return abort(404);
+        }
+
+        $book_image = $book->book_pic;
+        $book_image = str_replace("storage/","public/",$book_image);
+        if($book_image && Storage::exists($book_image)){
+            Storage::move($book_image, 'public/Deleted/' . basename($book_image));
+            
+            $book->book_pic = 'storage/Deleted/' . basename($book_image);
+            $book->save();
+        }
+        $book->delete();
+
+        if($book_chapter->isEmpty()){
+            return redirect()->route("index")->with(["successMsg" => "ลบนิยายสำเร็จ"]);
+        }
+
+        foreach($book_chapter as $chapter){
+            $chapter_image = $chapter->chapter_image;
+            $chapter_image = str_replace("storage/","public/",$chapter_image);
+            if($chapter_image && Storage::exists($chapter_image)){
+                Storage::move($chapter_image, 'public/DeletedChapter/' . basename($chapter_image));
+
+                $chapter->chapter_image = 'storage/DeletedChapter/' . basename($chapter_image);
+                $chapter->save();
+            }
+            $chapter->delete();
+        }
+
+        return redirect()->route("index")->with(["successMsg" => "ลบนิยายสำเร็จ"]);
+    }
+
+    function DeleteChapter(Request $request,$bookID,$chapterID){
+        $book_chapter = Book_chapter::where("chapterID",$chapterID)->where("bookID",$bookID)->first();
+        if(!$book_chapter){
+            return abort(404);
+        }
+
+        $chapter_image = $book_chapter->chapter_image;
+        $chapter_image = str_replace("storage/","public/",$chapter_image);
+        if($chapter_image && Storage::exists($chapter_image)){
+            Storage::move($chapter_image,'public/DeletedChapter/'.basename($chapter_image));
+
+            $book_chapter->chapter_image = 'storage/DeletedChapter/' . basename($chapter_image);
+            $book_chapter->save();
+        }
+
+        $book_chapter->delete();
+
+        return redirect()->route('novel.edit', ['bookID' => $bookID])->with(["successMsg" => "ลบตอนสำเร็จ"]);
+    }
+
+    function Trash($bookID){
+        $chapters = Book_chapter::where("bookID",$bookID)->onlyTrashed()->get();
+        $count_chapter = Book_chapter::where("bookID",$bookID)->onlyTrashed()->count();
+
+        return view("user.trash_novel",compact("chapters","count_chapter","bookID"));
+    }
+
+    function RestoreAll(Request $request,$bookID){
+        $chapters = Book_chapter::where("bookID",$bookID)->onlyTrashed()->get();
+        
+        if($chapters->isEmpty()){
+            return redirect()->route("novel.trash",["bookID"=>$bookID])->withErrors(["msg" => "Something went wrong. Please try again"]);
+        }
+
+        foreach($chapters as $chapter){
+            $chapter_image = $chapter->chapter_image;
+            $chapter_image = str_replace("storage/","public/",$chapter_image);
+            if($chapter_image && Storage::exists($chapter_image)){
+                Storage::move($chapter_image,"public/Chapter/". basename($chapter_image));
+
+                $chapter->chapter_image = "storage/Chapter/". basename($chapter_image);
+                $chapter->save(); 
+            }
+
+            $chapter->restore();
+        }
+
+        return redirect()->route("novel.edit",["bookID"=>$bookID])->with(["successMsg"=>"กู้คืนตอนสำเร็จ"]);
+    }
+
+    function RestoreEach(Request $request,$bookID,$chapterID){
+        $chapter = Book_chapter::where("bookID",$bookID)->where("chapterID",$chapterID)->onlyTrashed()->first();
+        
+        if(!$chapter){
+            return redirect()->route("novel.trash", ["bookID" => $bookID])->withErrors(["msg" => "Something went wrong. Please try again"]);
+        }
+
+        $chapter_image = $chapter->chapter_image;
+        $chapter_image = str_replace("storage/", "public/", $chapter_image);
+        if ($chapter_image && Storage::exists($chapter_image)) {
+            Storage::move($chapter_image, "public/Chapter/" . basename($chapter_image));
+
+            $chapter->chapter_image = "storage/Chapter/" . basename($chapter_image);
+            $chapter->save();
+        }
+
+        $chapter->restore();
+        return redirect()->route("novel.edit", ["bookID" => $bookID])->with(["successMsg" => "กู้คืนตอนสำเร็จ"]);
     }
 
 }

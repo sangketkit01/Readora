@@ -56,7 +56,10 @@
                 </div>
 
                 <div class="d-flex mt-4">
-                    <input type="submit" value="อัปเดตนิยาย" class="btn btn-primary">
+                    <input type="submit" value="อัปเดตนิยาย" class="btn btn-primary me-2">
+                    @if ($chapters->isEmpty())
+                        <button class="btn btn-danger ms-2" type="button" onclick="DeleteComic('{{ $data->book_name }}')">ลบคอมมิก</button>
+                    @endif
                 </div>
             </div>
 
@@ -73,6 +76,8 @@
             </div>
 
         </form>
+
+        <form action="{{route('comic.delete',["bookID"=>$bookID])}}" method="post" id="delete-form" class="form" style="display:none;">@csrf</form>
 
     </div>
 
@@ -119,13 +124,16 @@
 
                             @csrf
 
-                            <select name="status_chapter" class="pub-chapter form-control">
+                            <select name="status_chapter" class="pub-chapter form-control me-2">
                                 <option value="public" {{ $chapter->chapter_status == "public" ? 'selected' : '' }}>เฉพาะฉัน
                                 </option>
                                 <option value="private" {{ $chapter->chapter_status == "private" ? 'selected' : '' }}>สาธารณะ
                                 </option>
                             </select>
                         </form>
+                         <button type="button" onclick="DeleteChapter('{{$chapter->chapter_name}}', '{{ $chapter->chapterID }}')" id="delete-chapter"><img src="{{asset('novel/delete.png')}}" width="35" alt=""></button>
+                         <form action="{{route('comic.delete_chapter',["bookID"=>$bookID,"chapterID"=>$chapter->chapterID])}}" 
+                            id="delete-chapter-form-{{ $chapter->chapterID }}" method="post" style="display: none;">@csrf</form>
                     </div>
 
                 </div>
@@ -136,5 +144,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/user/edit_novel.js') }}"></script>
+    <script src="{{ asset('js/user/edit_comic.js') }}"></script>
 @endpush
