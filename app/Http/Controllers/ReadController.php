@@ -8,16 +8,33 @@ use App\Models\Book_chapter;
 use App\Models\Chapter_comment;
 use App\Models\Userdb;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class ReadController extends Controller
 {
     public function read($bookID)
     {
-        $books = Book::where("BookID", $bookID)->get();
+        $books = Book::where('BookID', $bookID)
+            ->where('book_status', 'public') 
+            ->get();
         $chapters = Book_chapter::where("bookID", $bookID)
             ->where("chapter_status", 'public')->get();
+        $chapterComments = [];
+        foreach ($chapters as $chapter) {
+            $comments = Chapter_comment::where('chapterID', $chapter->chapterID)
+                ->with('user')  
+                ->get();
+            $chapterComments[$chapter->chapterID] = $comments;
+        }
         $count_chapter = Book_chapter::where("bookID", $bookID)->count();
-        return view("user.read_novel", compact('books', 'bookID', 'chapters', 'count_chapter'));
+        $count_comment = Chapter_comment::whereIn('chapterID', function ($query) use ($bookID) {
+            $query->select('chapterID')
+                ->from('book_chapters')
+                ->where('bookID', $bookID);
+        })->count();
+        return view("user.read_novel", compact('books', 'bookID', 'chapters', 'count_chapter', 'chapterComments', 'count_comment'));
     }
 
     public function readnovel_chapt($bookID, $chapterID)
@@ -32,7 +49,14 @@ class ReadController extends Controller
             ->where('chapterID', '>', $chapterID)
             ->orderBy('chapterID', 'asc')
             ->first();
-        return view('user.read_novel_chapter', compact("chapters", "chapterID", "books",'previousChapter', 'nextChapter'));
+
+        $chapterComments = Chapter_comment::where('chapterID', $chapterID)
+            ->with('user')  
+            ->get();
+
+        $commentCount = $chapterComments->count();
+
+        return view('user.read_novel_chapter', compact("chapters", "chapterID", "books", 'previousChapter', 'nextChapter', 'chapterComments', 'commentCount'));
     }
 
     public function readFirstChapter($bookID)
@@ -46,15 +70,7 @@ class ReadController extends Controller
             'chapterID' => $firstChapter->chapterID
         ]);
     }
-    public function store(Request $request)
-    {
-        Chapter_comment::create([
-            'chapterID' => $request->input('chapterID'),
-            'username' => Userdb::user()->username,
-            'comment_message' => $request->input('comment_message'),
-        ]);
 
-        return redirect()->back()->with('success', 'ความคิดเห็นของคุณถูกส่งแล้ว!');
-    }
+
 
 }

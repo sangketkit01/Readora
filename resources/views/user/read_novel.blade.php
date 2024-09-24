@@ -30,7 +30,8 @@
                     </div>
                     <div class="button">
                         <a href="" class="button_1">เพิ่มเข้าชั้น</a>
-                        <a href="{{ route('read.read_first_chapt', ['bookID' => $book->bookID]) }}" class="button_2">อ่านเลย</a>
+                        <a href="{{ route('read.read_first_chapt', ['bookID' => $book->bookID]) }}"
+                            class="button_2">อ่านเลย</a>
                     </div>
                 </div>
             </div>
@@ -59,28 +60,25 @@
                             <strong>{{ $count }}</strong>
                             <img class="images" src="{{ asset($chapter->chapter_image) }}" alt="">
                             <strong>
-                                <a href="{{ route('read.read_chapt', ['bookID' => $book->bookID, 'chapterID' => $chapter->chapterID]) }}" id="edit-chapter-href">
+                                <a href="{{ route('read.read_chapt', ['bookID' => $book->bookID, 'chapterID' => $chapter->chapterID]) }}"
+                                    id="edit-chapter-href">
                                     {{ $chapter->chapter_name }}
                                 </a>
-                            </strong>                            
+                            </strong>
                         </div>
                     @endforeach
                     <hr>
                 </div>
             </div>
-            <div class="comment">
-                <h4>แสดงความคิดเห็น</h4>
-                <textarea placeholder="แสดงความคิดเห็นที่นี้..........."></textarea
-                                    <input type="text" >
-                                </div>
-                                <div class="com">
-                                    <div class="pofile_user_com">
-                                        <img src="{{ $book->User->profile }}
-            " alt=""> 
-                                        <p>{{ $book->User->name }}
-            </p> 
-                                    </div>
-                                    <textarea readonly>ลูปความเห็นมาใส่นี่</textarea>
+            <div class="com">
+                <h4>ความคิดเห็นทั้งหมด ( {{ $count_comment }} )</h4>
+            
+                @foreach ($chapterComments[$chapter->chapterID] ?? [] as $comment)
+                    <div class="comment-item">
+                        <strong>{{ $comment->user->name }}</strong>:
+                        <p>{{ $comment->comment_message }}</p>
+                    </div>
+                @endforeach
             </div>
     @endforeach
 

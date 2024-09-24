@@ -9,76 +9,87 @@ p {
     padding: 0;
 }
 
-.container {
-    Width: 100%
-}
-
-.Introducing {
-    background-color: white;
-    width: 70%;
-    padding: 30px;
+.container_user {
+    Margin-top: 20px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+}
+
+.card_user {
+    display: flex;
     margin: 0 auto;
+    width: 73%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    justify-content: center;
+
 }
 
-.Introducing a.btn, .Introducing button.btn {
-    text-decoration: none;
-    color: #4F5D87; 
-    background-color: transparent; 
-    border: 1px solid #4F5D87; 
-    padding: 10px 20px; 
-    border-radius: 20px; 
-    font-size: 16px; 
-    cursor: pointer; 
-    transition: background-color 0.3s, color 0.3s; 
-}
 
-.Introducing a.btn:hover, .Introducing button.btn:hover {
-    background-color: #4F5D87; 
-    color: #ffffff; 
-    border: none; 
-}
-
-.Introducing button.btn[disabled] {
-    color: #ccc;
-    border: 1px solid #ccc; 
-    cursor: not-allowed; 
-    background-color: transparent; 
-}
-
-.Introducing .button {
-    display: flex;
-    justify-content: space-between; 
-    border-top: 1px solid #4F5D87; 
-    padding-top: 10px;
-}
-
-.Introducing .button a.btn:first-child {
-    margin-right: 10px; 
-}
-
-.Introducing .button a.btn:last-child {
-    margin-left: 10px; 
-}
-
-.Introducing .pofile_user_com {
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    margin-bottom: 20px;
-}
-
-.Introducing .pofile_user_com img {
+.img img {
+    width: 384px;
+    height: 422px;
+    object-fit: cover;
     margin-right: 10px;
-    width: 40px; /
-    height: 40px; 
-    border-radius: 50%; 
-    object-fit: cover; 
 }
 
-.Introducing .pofile_user_com p {
-    margin: 0; 
-    font-size: 16px; 
+.user {
+    padding: 20px;
+    background-color: #D9D9D9;
+    border-radius: 0 10px 0 0;
+}
+
+.head {
+    height: 45px;
+    display: flex;
+    overflow: hidden;
+}
+
+.head h1 {
+    font-size: 30px;
+}
+
+.profile_user {
+    display: flex;
+    align-items: center;
+}
+
+.profile_user img {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.button ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.button li {
+    margin-right: 10px;
+}
+
+.button_1 {
+    border: 1px solid #676767;
+    color: #676767;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+
+}
+
+.button_2 {
+    background-color: #4F5D87;
+    color: #ffffff;
+    ;
+    padding: 10px 28px;
+    border-radius: 20px;
+    text-decoration: none;
 }
 
 .type {
@@ -91,27 +102,27 @@ p {
     width: 70%;
     padding: 30px;
     justify-content: center;
-    margin: 0 auto;
+    margin: 10px auto;
+    margin-top: 0px;
+    border-radius: 0 0 10px 10px;
 }
 
 .Introducing a {
     text-decoration: none;
     color: #4F5D87;
 }
-
 .Introducing h2 {
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
+    margin-bottom: 20px; 
 }
-
 .All_episodes {
     background-color: white;
     width: 70%;
     padding: 20px;
     justify-content: center;
     margin: 10px auto;
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
 .All_episodes select {
@@ -141,6 +152,7 @@ p {
     padding: 20px;
     justify-content: center;
     margin: 10px auto;
+    border-radius: 10px;
 }
 
 .comment h4 {
@@ -153,13 +165,14 @@ p {
 }
 
 .com {
-    background-color: #E2E2E2;
-    width: 50%;
-    height: 200px;
+    background-color: #e2e2e2;
+    width: 70%;
+    height: 220px;
     padding: 20px;
     border-radius: 20px;
     justify-content: center;
-    margin: 0px auto;
+    margin: 10px auto;
+
 }
 
 .pofile_user_com {
@@ -173,6 +186,7 @@ p {
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+
 }
 
 .images {
@@ -236,6 +250,7 @@ p {
     .profile_user img {
         width: 20px;
         height: 20px;
+
     }
 
     .profile_user p {
@@ -243,16 +258,21 @@ p {
     }
 
     .button_1 {
+
         padding: 5px 10px;
+
     }
 
     .button_2 {
         padding: 5px 18px;
+
     }
 
     .com {
         width: 70%;
+
     }
+
 }
 
 @media screen and (min-width: 577px) and (max-width: 1040px) {
@@ -286,6 +306,7 @@ p {
     .profile_user img {
         width: 20px;
         height: 20px;
+
     }
 
     .profile_user p {
@@ -293,20 +314,24 @@ p {
     }
 
     .button_1 {
+
         padding: 5px 5px;
+
     }
 
     .button_2 {
         padding: 5px 10px;
+
     }
 }
 
 @media only screen and (max-width: 1200px) {
     .container_user {
         width: 100%;
-    }
-}
 
+    }
+
+}
 .content-box {
     width: 100%;
     max-width: 800px;
@@ -317,7 +342,6 @@ p {
     word-break: break-word;
     overflow-wrap: break-word;
 }
-
 .comment button {
     display: block;
     margin: 20px auto;
@@ -333,4 +357,66 @@ p {
 
 .comment button:hover {
     background-color: #d4d4d4;
+}
+.Introducing {
+    background-color: white;
+    width: 70%;
+    padding: 30px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.Introducing a.btn, .Introducing button.btn {
+    text-decoration: none;
+    color: #4F5D87; 
+    background-color: transparent; 
+    border: 1px solid #4F5D87; 
+    padding: 10px 20px; 
+    border-radius: 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+.Introducing a.btn:hover, .Introducing button.btn:hover {
+    background-color: #4F5D87; 
+    color: #ffffff; 
+    border: none; 
+}
+
+.Introducing button.btn[disabled] {
+    color: #ccc;
+    border: 1px solid #ccc; 
+    cursor: not-allowed; 
+    background-color: transparent; 
+}
+
+.Introducing .button {
+    display: flex;
+    justify-content: space-between; 
+    border-top: 1px solid #4F5D87; 
+    padding-top: 10px;
+}
+
+.Introducing .button a.btn:first-child {
+    margin-right: 10px; 
+}
+
+.Introducing .button a.btn:last-child {
+    margin-left: 10px; 
+}
+
+.Introducing .pofile_user_com {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 20px;
+}
+
+.Introducing .pofile_user_com img {
+    margin-right: 10px;
+    width: 40px; /
+    height: 40px; 
+    border-radius: 50%; 
+    object-fit: cover; 
 }
