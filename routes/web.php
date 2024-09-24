@@ -141,3 +141,6 @@ Route::get("/test", function () {
 });
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+Route::get("/book_shelve", [IndexController::class, 'book_shelve'])->name("index.book_shelve");
+Route::get("/book_shelve_commic", [IndexController::class, "book_shelve_commic"])->name("index.book_shelve_commic");

@@ -89,8 +89,5 @@ class UserController extends Controller
         }
     }
     
-    function rec1(){
-        $novel = Book::all();
-        return view('user.rec1', compact('novel'));
-    }
+
 }
