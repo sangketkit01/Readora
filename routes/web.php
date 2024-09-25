@@ -11,8 +11,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\ReadController;
 use App\Http\Controllers\SearchController;
-use App\Mail\Hellomail;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, "index"])->name('index');
@@ -153,3 +151,5 @@ Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 Route::get("/book_shelve", [IndexController::class, 'book_shelve'])->name("index.book_shelve");
 Route::get("/book_shelve_commic", [IndexController::class, "book_shelve_commic"])->name("index.book_shelve_commic");
+
+Route::get("/genre/{genreID}",[IndexController::class, 'Genre'])->name('genre.newpage');
