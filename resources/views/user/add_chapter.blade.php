@@ -45,7 +45,8 @@
 
             <div class="row">
                 <div class="col-12">
-                    <textarea name="content" id="content" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="10" required></textarea>
+                    <textarea name="content" id="content"  cols="30"
+                        style="height: 90vh" required class="ck form-control"></textarea>
                 </div>
             </div>
 
@@ -57,14 +58,16 @@
 
             <div class="row">
                 <div class="col-12">
-                    <textarea name="writer_message" id="writer_message" placeholder="เพิ่มข้อความ" cols="30" rows="10"></textarea>
+                    <textarea name="writer_message" id="writer_message" placeholder="เพิ่มข้อความ" cols="30"
+                        rows="10"></textarea>
                 </div>
             </div>
 
 
             <div class="row mt-4">
                 <div class="col-12 d-flex justify-content-center">
-                    <a href="{{route('novel.edit',["bookID"=>$bookID])}}" type="button" id="cancel-button" style="text-decoration:none;">ยกเลิก</a>
+                    <a href="{{ route('novel.edit', ['bookID' => $bookID]) }}" type="button" id="cancel-button"
+                        style="text-decoration:none;">ยกเลิก</a>
                     <button type="submit" id="save-button">ยืนยัน</button>
                 </div>
             </div>
@@ -75,4 +78,5 @@
 @push('scripts')
     <script src="{{ asset('js/user/add_chapter.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @endpush

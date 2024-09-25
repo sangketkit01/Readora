@@ -91,11 +91,16 @@ Route::middleware("checkLogin")->group(function () {
             Route::get("{bookID}", [ComicController::class, 'edit'])->name("comic.edit");
             Route::post("insert/{bookID}", [ComicController::class, "EditInsert"])->name("comic.edit_insert");
             Route::post('chapter/update/{bookID}/{chapterID}', [ComicController::class, 'ChapterStatusUpdate'])->name('comic.chapter_status_update')->middleware(['checkChapterOwner']);
+            Route::get("/{bookID}/trash", [ComicController::class, "Trash"])->name("comic.trash");
         });
 
         Route::prefix("delete_comic")->group(function(){
             Route::post("{bookID}",[ComicController::class,"Delete"])->name("comic.delete");
             Route::post("chapter/{bookID}/{chapterID}",[ComicController::class,"DeleteChapter"])->name("comic.delete_chapter")->middleware(["checkChapterOwner"]);
+        });
+
+        Route::prefix("restore")->group(function () {
+            Route::post("comic/each/{bookID}/{chapterID}", [ComicController::class, "RestoreEach"])->name("comic.restore_each")->middleware(["checkChapterOwner"]);
         });
 
         Route::prefix("add_comic_chapter")->group(function () {
@@ -109,7 +114,7 @@ Route::middleware("checkLogin")->group(function () {
         });
     });
 
-    Route::get("/read_novel/{bookID}", [ReadController::class, "read"])->name("read.read_novel");
+    Route::get("/read_novel/{bookID}", [ReadController::class, "read_novel"])->name("read.read_novel");
     Route::get("/read_chapt/{bookID}/{chapterID}", [ReadController::class, "readnovel_chapt"])->name("read.read_chapt");
     Route::get('/read_first_chapt/{bookID}', [ReadController::class, 'readFirstChapter'])->name('read.read_first_chapt');
 
@@ -141,3 +146,6 @@ Route::get("/test", function () {
 });
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+Route::get("/book_shelve", [IndexController::class, 'book_shelve'])->name("index.book_shelve");
+Route::get("/book_shelve_commic", [IndexController::class, "book_shelve_commic"])->name("index.book_shelve_commic");

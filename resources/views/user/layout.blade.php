@@ -24,7 +24,8 @@
         <div class="right-menu">
             <form action="/search" method="GET" class="search-form">
                 <input type="text" name="query" placeholder="ค้นหา..." class="search-input">
-                <button type="submit" class="search-button"><img src="/nav/search.svg" width="20" height="20" alt=""></button>
+                <button type="submit" class="search-button"><img src="/nav/search.svg" width="20" height="20"
+                        alt=""></button>
             </form>
             @if (session()->has('user'))
                 <div class="dropdown">
@@ -38,6 +39,8 @@
 
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
+                        <li><a class="dropdown-item" href="{{ route('create_novel') }}">สร้างคอมมิค</a></li>
+                        <li><a class="dropdown-item" href="{{ route('create_comic') }}">สร้างนิยาย</a></li>
                         <li><a class="dropdown-item" href="{{ route('sign_out') }}">Logout</a></li>
                     </ul>
                 </div>
@@ -60,5 +63,26 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-</html>
+<script src="https://cdn.tiny.cloud/1/zhehvkk9eiqyglv55vqlvab85y9f4f3j86swwbmx496wzw13/tinymce/7/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '.ck', 
+        setup: function(editor) {
+            editor.on('init', function() {
+                editor.execCommand('mceInsertContent', false, '<p style="text-align: left;"></p>');
+            });
+        },
+        formats: {
+            alignleft: {
+                selector: 'p,h1,h2,h3,h4,h5,h6',
+                styles: {
+                    'text-align': 'left'
+                }
+            }
+        },
+        content_style: "p { text-align: left; }",
+    });
+</script>
 
+</html>

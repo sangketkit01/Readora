@@ -16,6 +16,7 @@
         <a class="btn" id="btn1" href="#" target="_self" role="button">commic</a>
         <div class="recommend-section1">
             @foreach ($comics as $comic)
+
             <div class="recommend-card">
                 <div class="row g-0">
                     <div class="col-md-4">
@@ -27,10 +28,10 @@
                             <h5 class="card-title">{{$comic->book_name}}</h5>
                             <p class="card-text">{{$comic->book_description}}</p>
                             <p class="card-text"><small class="text-body-secondary">{{$comic->User->name}}</small></p>
+
                         </div>
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
     </div>

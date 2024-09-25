@@ -43,7 +43,9 @@
 }
 
 .dropdown-option {
-  margin-left: 320px;
+  /* /*margin-left: 320px; */
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .text-about{
