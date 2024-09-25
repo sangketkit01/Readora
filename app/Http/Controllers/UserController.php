@@ -94,6 +94,7 @@ class UserController extends Controller
             Session::put('user',$user); 
             return redirect()->route('profile');
         }else {
+            dd($user);
             return back()->withErrors(['current_password' => 'รหัสผ่านปัจจุบันไม่ถูกต้อง']);
         }
     }
