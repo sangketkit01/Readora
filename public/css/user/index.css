@@ -158,3 +158,29 @@ h2 {
 a{
     text-decoration: none;
 }
+
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.category-tag {
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* You'll need to assign specific background colors to each category */
+.category-tag:nth-child(1) { background-color: #4e5be8; }
+.category-tag:nth-child(2) { background-color: #ff6b6b; }
+.category-tag:nth-child(3) { background-color: #00BFA5; }
+.category-tag:nth-child(4) { background-color: #FF4081; }
+.category-tag:nth-child(5) { background-color: #FFC107; }
+.category-tag:nth-child(6) { background-color: #8E24AA; }
+.category-tag:nth-child(7) { background-color: #3F51B5; }
+.category-tag:nth-child(8) { background-color: #FF5722; }
+.category-tag:nth-child(9) { background-color: #009688; }

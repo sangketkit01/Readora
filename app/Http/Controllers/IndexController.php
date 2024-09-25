@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Book_type;
+use App\Models\Book_genre;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -11,13 +12,14 @@ class IndexController extends Controller
     {
         $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->take(4)->get();
         $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->take(4)->get();
+        $genres = Book_genre::all();
         $romanticNovels = Book::where('BooktypeID', 1)
             ->where('BookgenreID', 1)
             ->where('book_status', 'public')
             ->limit(4)
             ->get();
-
-        return view("user.index", compact("novels", 'romanticNovels', 'comics'));
+        
+        return view("user.index", compact("novels", 'romanticNovels', 'comics','genres'));
 
     }
 
