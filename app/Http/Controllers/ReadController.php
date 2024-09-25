@@ -63,13 +63,13 @@ class ReadController extends Controller
         return view('user.read_novel_chapter', compact("chapters", "chapterID", "books", 'previousChapter', 'nextChapter', 'chapterComments', 'commentCount'));
     }
 
-    public function readFirstChapter($bookID)
+    public function readFirstChapterNovel($bookID)
     {
         $book = Book::where("BookID", $bookID)->first();
         $firstChapter = Book_chapter::where("bookID", $bookID)
             ->orderBy('chapterID', 'asc')
             ->first();
-        return redirect()->route('read.read_chapt', [
+        return redirect()->route('read.read_chaptnovel', [
             'bookID' => $bookID,
             'chapterID' => $firstChapter->chapterID
         ]);
@@ -122,6 +122,17 @@ class ReadController extends Controller
         $commentCount = $chapterComments->count();
 
         return view('user.read_comic_chapter', compact("chapters", "chapterID", "books", 'previousChapter', 'nextChapter', 'chapterComments', 'commentCount'));
+    }
+    public function readFirstChapterComic($bookID)
+    {
+        $book = Book::where("BookID", $bookID)->first();
+        $firstChapter = Book_chapter::where("bookID", $bookID)
+            ->orderBy('chapterID', 'asc')
+            ->first();
+        return redirect()->route('read.read_chaptcomic', [
+            'bookID' => $bookID,
+            'chapterID' => $firstChapter->chapterID
+        ]);
     }
 
 }

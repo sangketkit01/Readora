@@ -11,7 +11,7 @@
             <div class="card_user">
                 <div class="img row col-4 md-6 sm-12">
                     <img src="{{ asset($book->book_pic) }}
-            " alt="">
+                " alt="">
 
                 </div>
                 <div class="user col-8 md-6 sm-12">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="profile_user">
                         <img src="{{ $book->User->profile }}
-            " alt="">
+                " alt="">
                         <p>{{ $book->User->name }}
                         </p>
                     </div>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="button">
                         <a href="" class="button_1">เพิ่มเข้าชั้น</a>
-                        <a href="{{ route('read.read_first_chapt', ['bookID' => $book->bookID]) }}"
+                        <a href="{{ route('read.read_first_chaptcomic', ['bookID' => $book->bookID]) }}"
                             class="button_2">อ่านเลย</a>
                     </div>
                 </div>
@@ -47,12 +47,13 @@
                     <option value="1">ตอนล่าสุด</option>
                     <option value="2">ตอนแรก</option>
                 </select>
-                <div class="">
-                    <hr>
-                    @php
-                        $count = 0;
-                    @endphp
-                    @foreach ($chapters as $chapter)
+                @php
+                    $count = 0;
+                @endphp
+                @foreach ($chapters as $chapter)
+                    <div class="">
+                        <hr>
+
                         <div class="col-8" id="sub-chap">
                             @php
                                 $count += 1;
@@ -60,26 +61,30 @@
                             <strong>{{ $count }}</strong>
                             <img class="images" src="{{ asset($chapter->chapter_image) }}" alt="">
                             <strong>
-                                <a href="{{ route('read.read_chapt', ['bookID' => $book->bookID, 'chapterID' => $chapter->chapterID]) }}"
+                                <a href="{{ route('read.read_chaptcomic', ['bookID' => $book->bookID, 'chapterID' => $chapter->chapterID]) }}"
                                     id="edit-chapter-href">
                                     {{ $chapter->chapter_name }}
                                 </a>
                             </strong>
                         </div>
-                    @endforeach
-                    <hr>
-                </div>
+                    </div>
+                @endforeach
+                <hr>
             </div>
             <div class="com">
                 <h4>ความคิดเห็นทั้งหมด ( {{ $count_comment }} )</h4>
-            
-                @foreach ($chapterComments[$chapter->chapterID] ?? [] as $comment)
-                    <div class="comment-item">
-                        <strong>{{ $comment->user->name }}</strong>:
-                        <p>{{ $comment->comment_message }}</p>
+                @foreach ($chapters as $chapter)
+                    <div class="chapter-section">
+                        @foreach ($chapterComments[$chapter->chapterID] ?? [] as $comment)
+                            <div class="comment-item">
+                                <strong>{{ $comment->user->name }}</strong>:
+                                <p>{{ $comment->comment_message }}</p>
+                            </div>
+                        @endforeach
                     </div>
                 @endforeach
             </div>
     @endforeach
+
 
 @endsection

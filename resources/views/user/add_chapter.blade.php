@@ -11,6 +11,7 @@
             enctype="multipart/form-data">
             @csrf
 
+            <input type="hidden" name="hidden_content" id="hidden_content">
             <div class="row d-flex">
                 <div class="col-2 d-flex justify-content-start">
                     <label for="image-input" id="image-input-label"></label>
@@ -46,7 +47,7 @@
             <div class="row">
                 <div class="col-12">
                     <textarea name="content" id="content"  cols="30"
-                        style="height: 90vh" required class="ck form-control"></textarea>
+                        style="height: 90vh" class="ck form-control"></textarea>
                 </div>
             </div>
 
@@ -78,5 +79,28 @@
 @push('scripts')
     <script src="{{ asset('js/user/add_chapter.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('form');
+            const hiddenContent = document.getElementById('hidden_content');
+
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const content = tinymce.get('content').getContent();
+                    hiddenContent.value = content;
+                    if (content.trim() === '') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Content cannot be empty',
+                        });
+                    } else {
+                        this.submit();
+                    }
+                });
+            }
+        });
+    </script>
 
 @endpush
