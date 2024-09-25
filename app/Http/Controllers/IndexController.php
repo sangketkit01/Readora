@@ -13,6 +13,7 @@ class IndexController extends Controller
         $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->take(4)->get();
         $romanticNovels = Book::where('BooktypeID', 1)
             ->where('BookgenreID', 1)
+            ->where('book_status', 'public')
             ->limit(4)
             ->get();
 
