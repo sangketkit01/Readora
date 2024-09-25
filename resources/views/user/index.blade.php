@@ -83,7 +83,17 @@
             @endforeach
         </div>
     </div>
+    <div class="recommend">
+        <h2 class="section-title">หมวดหมู่</h2>
+        <div class="category-tags">
+            @foreach ($genres as $genre)
+                <a href="#" class="category-tag">{{ $genre->bookGenre_name}}</a>
+            @endforeach
+        </div>
+    </div>
 </div>
+{{-- ฉันต้องการให้ส่วนนี้เป็นแยกหมวดหมู่ --}}
+
 
             @endsection
 
