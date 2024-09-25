@@ -40,7 +40,7 @@ class UserController extends Controller
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
         $n_chapter = null;
-        if(!$novel->isEmpty){
+        if(!$novel->isEmpty()){
             $n_chapter =  Book_chapter::where('bookID', $novel->first()->bookID)->where('chapter_status', 'public')->count();
         }
         $n_chapter = Book_chapter::where('bookID', $novel->first()->bookID)->where('chapter_status', 'public')->count();
@@ -55,7 +55,7 @@ class UserController extends Controller
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
         $c_chapter = null;
-        if(!$comic->isEmpty){
+        if(!$comic->isEmpty()){
             $c_chapter =  Book_chapter::where('bookID', $comic->first()->bookID)->where('chapter_status', 'public')->count();
         }
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();

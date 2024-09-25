@@ -60,7 +60,7 @@
                             <strong>{{ $count }}</strong>
                             <img class="images" src="{{ asset($chapter->chapter_image) }}" alt="">
                             <strong>
-                                <a href="{{ route('read.read_chapt', ['bookID' => $book->bookID, 'chapterID' => $chapter->chapterID]) }}"
+                                <a href="{{ route('read.read_chaptnovel', ['bookID' => $book->bookID, 'chapterID' => $chapter->chapterID]) }}"
                                     id="edit-chapter-href">
                                     {{ $chapter->chapter_name }}
                                 </a>
