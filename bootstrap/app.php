@@ -20,7 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         //
         $middleware->alias([
             'checkLogin' => UserMiddleware::class,
-            'checkOwner' => OwnerNovelMiddleware::class,
+            'checkNovelOwner' => OwnerNovelMiddleware::class,
             'checkAdminLogin' => AdminMiddleware::class,
             'checkChapterOwner' => ChapterOwner::class,
             'checkComicOwner' => OwnerComicMiddleware::class,

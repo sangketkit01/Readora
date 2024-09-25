@@ -76,16 +76,6 @@
         },
         content_style: "p { text-align: left; }",
     });
-
-   document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('form');
-
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                tinymce.triggerSave(); 
-            });
-        }
-    });
 </script>
 
 </html>
