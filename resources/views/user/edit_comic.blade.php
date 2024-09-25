@@ -125,9 +125,9 @@
                             @csrf
 
                             <select name="status_chapter" class="pub-chapter form-control me-2">
-                                <option value="public" {{ $chapter->chapter_status == "public" ? 'selected' : '' }}>เฉพาะฉัน
+                                <option value="private" {{ $chapter->chapter_status == "private" ? 'selected' : '' }}>เฉพาะฉัน
                                 </option>
-                                <option value="private" {{ $chapter->chapter_status == "private" ? 'selected' : '' }}>สาธารณะ
+                                <option value="public" {{ $chapter->chapter_status == "public" ? 'selected' : '' }}>สาธารณะ
                                 </option>
                             </select>
                         </form>
