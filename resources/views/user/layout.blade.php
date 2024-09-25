@@ -66,22 +66,25 @@
 <script src="https://cdn.tiny.cloud/1/zhehvkk9eiqyglv55vqlvab85y9f4f3j86swwbmx496wzw13/tinymce/7/tinymce.min.js"
     referrerpolicy="origin"></script>
 <script>
-    tinymce.init({
+   tinymce.init({
         selector: '.ck', 
-        setup: function(editor) {
-            editor.on('init', function() {
-                editor.execCommand('mceInsertContent', false, '<p style="text-align: left;"></p>');
-            });
-        },
         formats: {
             alignleft: {
                 selector: 'p,h1,h2,h3,h4,h5,h6',
-                styles: {
-                    'text-align': 'left'
-                }
+                styles: { 'text-align': 'left' }
             }
         },
         content_style: "p { text-align: left; }",
+    });
+
+   document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('form');
+
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                tinymce.triggerSave(); 
+            });
+        }
     });
 </script>
 

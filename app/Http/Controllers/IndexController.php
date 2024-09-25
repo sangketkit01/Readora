@@ -15,6 +15,7 @@ class IndexController extends Controller
         $genres = Book_genre::all();
         $romanticNovels = Book::where('BooktypeID', 1)
             ->where('BookgenreID', 1)
+            ->where('book_status', 'public')
             ->limit(4)
             ->get();
         
