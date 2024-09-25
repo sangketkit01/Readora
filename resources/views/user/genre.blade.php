@@ -15,7 +15,7 @@
         </div>
 
         @if ($books->isEmpty())
-            <p class="warning">ไม่พบหนังสือตามที่ค้นหา</p>
+            <p class="warning">ไม่พบหนังสือในหมวดหมู่ตามที่ค้นหา</p>
         @else
             {{-- <p class="title">นี่คือหมวดหมู่{{ $book->genre->bookGenre_name }}</p> --}}
             <div class="title-genre">
