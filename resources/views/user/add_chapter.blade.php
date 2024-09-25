@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-12">
                     <textarea name="content" id="content"  cols="30"
-                        rows="10" required class="ck form-control"></textarea>
+                        style="height: 90vh" required class="ck form-control"></textarea>
                 </div>
             </div>
 
