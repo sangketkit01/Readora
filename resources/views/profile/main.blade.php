@@ -4,7 +4,17 @@
     <link rel="stylesheet" href="/css/profile/profile.css">
 @endpush
 @section('containerClassName', 'ProfileContainer')
-
+<style>
+    .top {
+        background-image: url("/login/login.png");
+        background-size: cover;
+        /* ขยายภาพให้เต็มพื้นที่ container */
+        background-position: 0x ;
+        /* จัดให้อยู่ตรงกลาง */
+        background-repeat: no-repeat;
+        /* ป้องกันไม่ให้ภาพซ้ำ */
+    }
+</style>
 @section('content')
     <div class="row mt-3">
         <div class="top">
@@ -26,56 +36,67 @@
             </table>
         </div>
     </div>
-
     @if (isset($username))
-        <div class="row mt-3">
-            <div class="edit-info">
-                <div class="edit-header">
-                    <button id="back-icon" onclick="window.location.href='/profile'"> <i class="bi bi-arrow-left-circle-fill "></i> </button> 
+        <div class="edit-info mt-4">
+            <div class="edit-header">
+                <button id="back-icon" onclick="window.location.href='/profile'"> <i
+                        class="bi bi-arrow-left-circle-fill "></i> </button>
+                <div class="h5">
                     <h5>แก้ไขข้อมูล</h5>
                 </div>
-                ชื่อผู้ใช้งาน: {{ $user->username }} <br>
-                <form action="{{ route('edit.info') }}" method="post">
-                    @csrf
-                    ชื่อที่ใช้แสดง <input type="text" name="name" value="{{ $user->name }}" required> <br>
-                    <label for="email">
-                        อีเมล <input type="email" name="email" value="{{ $user->email }}" required>
-                    </label> <br>
-                    <label for="password">
-                        @if (!empty($user->password))
-                            รหัสผ่าน <a href="/changePassword" id="link-change-password">เปลี่ยนรหัสผ่าน</a>
-                        @else
-                            รหัสผ่าน <button type="button" id="add-password-btn"
-                                onclick="window.location.href='/createPassword'">สร้างรหัสผ่าน</button>
-                        @endif
-                    </label> <br>
-                    <label for="gender">
-                        เพศ
-                        <select name="gender">
-                            <option value="F" @if ($user->gender == 'F') selected @endif>หญิง</option>
-                            <option value="M" @if ($user->gender == 'M') selected @endif>ชาย</option>
-                            <option value="N" @if ($user->gender == 'N') selected @endif>ไม่ระบุ</option>
-                        </select>
-                    </label> <br>
-                    <button id="submit-new-info" type="submit">บันทึก</button>
-                </form>
+
             </div>
+            <hr>
+            <form action="{{ route('edit.info') }}" method="post" class="form_edit">
+                @csrf
+                <div class="nameuser">
+                    <label for="">ชื่อที่ใช้แสดง</label>
+                    <span class="span">{{ $user->username }}</span>
+                </div>
+                <div class="showname">
+                    <label for="">ชื่อที่ใช้แสดง</label>
+                    <input type="text" name="name" value="{{ $user->name }}" required>
+                </div>
+                <div class="email">
+                    <label for="email">อีเมล</label>
+                    <input type="email" name="email" value="{{ $user->email }}" required>
+                </div>
+                <div class="password">
+                    <label for="password">รหัสผ่าน</label>
+                    @if (!empty($user->password))
+                        <a href="/changePassword" id="link-change-password">เปลี่ยนรหัสผ่าน</a>
+                    @else
+                        รหัสผ่าน <button type="button" id="add-password-btn"
+                            onclick="window.location.href='/createPassword'">สร้างรหัสผ่าน</button>
+                    @endif
+                </div>
+
+                <div class="gender">
+                    <label for="gender">เพศ</label> <br>
+                    <select name="gender">
+                        <option value="F" @if ($user->gender == 'F') selected @endif>หญิง</option>
+                        <option value="M" @if ($user->gender == 'M') selected @endif>ชาย</option>
+                        <option value="N" @if ($user->gender == 'N') selected @endif>ไม่ระบุ</option>
+                    </select>
+                </div>
+                <div class="sub">
+                    <button id="submit-new-info" type="submit">บันทึก</button>
+                </div>
+            </form>
         </div>
     @else
-        <div class="row mt-3">
-            <div class="col-8">
-                <div class="dropdown-option">
-                    <a class="btn btn-black dropdown-toggle fs-4 fw-semibold" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        ข้อมูลส่วนตัว
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยาย</a></li>
-                        <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิค</a></li>
-                    </ul>
-                </div>
+        <div class="mt-3 else_user">
+            <div class="dropdown-option">
+                <a class="btn btn-black dropdown-toggle fs-4 fw-semibold" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    ข้อมูลส่วนตัว
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยาย</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิค</a></li>
+                </ul>
             </div>
-            <div class="col-4">
+            <div class="">
                 <button id="edit-info" onclick="window.location.href='/profile/{{ $user->username }}'"
                     class="ms-5">แก้ไขข้อมูล</button>
             </div>

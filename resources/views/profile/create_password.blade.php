@@ -8,19 +8,29 @@
 
 @section('content')
     <div class="password">
-        <h5>สร้างรหัสผ่าน</h5>
-        <form action="{{ route('create.password') }}" method="POST" id="add-password-form">
+        <h5>เปลี่ยนรหัสผ่าน</h5>
+        <form action="{{ route('create.password') }}" method="post" id="update-password-form" class="form_password">
             @csrf
-            <label for="new_password">รหัสผ่าน
-                <input type="password" min="8" name="password" id="n-password" required>
-                <p class="mt-2 mb-0 text-secondary" id="password-w" style="font-size: 12px; margin-left:2px"></p>
-            </label> <br>
-            <label for="new_password_confirmation">ยืนยันรหัสผ่าน
-                <input type="password" name="password_confirmation" id="c-password" required>
-                <p class="mt-2 mb-0 text-secondary" id="confirm-w" style="font-size: 12px; margin-left:2px"></p>
-            </label> <br>
-            <button type="button" id="back" onclick="window.location.href='/profile'">ย้อนกลับ</button>
-            <button type="submit" id="create-new-password">บันทึก</button>
+            <div class="current_password">
+                <label for="new_password">รหัสผ่านใหม่</label>
+                <input type="password" min="8" id="n-password" name="n-password" required>
+                <div class="password_c">
+                    <p class="text-secondary" id="password-w" style="font-size: 12px; margin-left:2px"></p>
+                </div>
+            </div>
+
+            <div class="current_password">
+                <label for="confirm_password">ยืนยันรหัสผ่าน</label>
+                <input type="password" id="c-password" required>
+                <div class="password_c">
+                    <p class="text-secondary" id="confirm-w" style="font-size: 12px; margin-left:2px"></p>
+                </div>
+            </div>
+
+            <div class="sub">
+                <button type="button" id="back" onclick="window.location.href='/profile'">ย้อนกลับ</button>
+                <button type="submit" id="create-new-password">บันทึก</button>
+            </div>
         </form>
     </div>
 
