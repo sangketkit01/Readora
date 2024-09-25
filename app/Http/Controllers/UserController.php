@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Userdb;
 use App\Models\Book;
+use App\Models\Book_chapter;
+use App\Models\Chapter_comment;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
@@ -37,17 +39,22 @@ class UserController extends Controller
     function novelInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
+        $n_chapter = Book_chapter::where('bookID', $novel->first()->bookID)->where('chapter_status', 'public')->count();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
+        // $comment_comic = 
+        // $comment_novel = 
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        return view('profile.novel_info', compact('user', 'novel', 'c_count', 'n_count'));
+        return view('profile.novel_info', compact('user', 'novel', 'c_count', 'n_count', 'n_chapter'));
     }
 
     function comicInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
-        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
+        $c_chapter = Book_chapter::where('bookID', $comic->first()->bookID)->where('chapter_status', 'public')->count();
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
+        // $comment_comic = Chapter_comment::all('bookTypeID', 2)->where('chapterID')->count(); //เช็คจำนวนคอมเม้นของทุกตอนในเรื่องนั้นยังไง
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
-        return view('profile.comic_info', compact('user', 'comic', 'c_count', 'n_count'));
+        return view('profile.comic_info', compact('user', 'comic', 'c_count', 'n_count', 'c_chapter'));
     }
 
     function viewCreatePassword(){
@@ -71,6 +78,7 @@ class UserController extends Controller
         return view('profile.change_password');
     }
     function change_password(Request $request){
+
         $request->validate([
             "current_password" => "required",
             "password" => "min:8",
@@ -80,9 +88,10 @@ class UserController extends Controller
             "confirm.same" => "รหัสผ่านไม่ตรงกัน"
         ]);
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        if(!Hash::check($request->input('current_password'), $user->password)) {
+        if(Hash::check($request->input('current_password'), $user->password)) {
             $user->password = Hash::make($request->input("n-password"));
             $user->save();
+            Session::put('user',$user); 
             return redirect()->route('profile');
         }else {
             return back()->withErrors(['current_password' => 'รหัสผ่านปัจจุบันไม่ถูกต้อง']);

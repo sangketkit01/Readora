@@ -1,10 +1,10 @@
 .top {
   width: 70%;
-  background-color: rgb(223, 222, 222);
   margin: 0 auto;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 10px #a9a9a9;
+
   text-align: center;
   /* margin-top: 15px; */
 }
@@ -17,10 +17,15 @@
   margin-bottom: 5px;
 
 }
+.card_user{
+  margin: 0 auto;
+  width: 70%;
+}
+
 .top p {
   font-weight: 500;
   font-size: 20px;
-  color: #33436F;
+  color: #ffffff;
 }
 .top table {
   width: 30%;
@@ -41,13 +46,11 @@
   background-color: #f9f9f9;
   color: black;
 }
-
 .dropdown-option {
   /* /*margin-left: 320px; */
   display: flex;
   justify-content: space-evenly;
 }
-
 .text-about{
   color: #33436F;
 }
@@ -75,7 +78,11 @@
   background-color: #33436F;
   color:white;
 }
-
+#add-password-btn{
+  border-radius: 100px;
+  padding: 3px 15px;
+  border: 2px solid #33436F;
+}
 /* แก้ไขข้อมูล */
 #back-icon {
   width: 40px;
@@ -85,11 +92,21 @@
   background-color: transparent;
   color: #33436F;
 }
-/* .edit-header {
+.edit-header {
   display: flex; 
   align-items: center; 
-  justify-content: center;
-} */
+}
+.h5{
+  margin: 0;
+  align-items: center;
+  text-align: center;
+  width: 85%;
+  margin-top: 5px;
+
+}
+.h5 h5{
+  margin: 0;
+}
 .edit-info {
   width: 40%;
   background-color: rgb(255, 255, 255);
@@ -98,7 +115,6 @@
   margin-top: 15px;
   padding: 10px 20px;
 }
-
 #cancle-edit-info {
   color: white;
     background-color: #33436F;
@@ -107,17 +123,80 @@
     border: 2px solid #33436F;
 }
 
+.sub{
+  display: flex;
+  justify-content: end;
+  margin-bottom: 9px;
+}
 #submit-new-info {
   color: white;
     background-color: #33436F;
     border-radius: 100px;
     padding: 5px 24px;
     border: 2px solid #33436F;
+    margin-top: 10px;
+    width: 20%;
+}
+.form_edit{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.form_edit label{
+  text-align: end;
+  width: 35%;
+  margin-right: 25px;
+}
+.form_edit input{
+  margin: 6px 0;
+  width: 40%;
+}
+.gender{
+  display: flex;
+}
+.span{
+  text-align: center;
+}
+.gender{
+  margin: 10px 0;
+}
+.gender select{
+  margin-left: 3px;
 }
 
 /* นิยาย คอมมิก */
+.img_user{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+
+}
+
+
+.else{
+  display: flex;
+  margin: 0 auto;
+  width: 65%;
+  justify-content: space-between;
+}
+.n_user{
+  margin: 0 auto;
+  width: 70%;
+  justify-content: center !important;
+}
+.new{
+  text-align: center;
+}
+.else_user{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 65%;
+  margin: 0 auto;
+}
 .create-novel, .create-comic {
-  width: 13%;
+  width: 20%;
+  margin-top: 15px;
   background-color: #33436F;
   color: white;
   border-radius: 100px;
@@ -126,10 +205,10 @@
 }
 
 .create-novel-n, .create-comic-n {
-  background-color: #33436F;
+  background-color: #33436F ;
   color: white;
   border-radius: 100px;
-  padding: 5px 15px;
+  padding: 2px 20px;
   border: 2px solid #33436F;
-  margin-left: 650px;
 }
+
