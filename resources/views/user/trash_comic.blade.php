@@ -6,15 +6,10 @@
 @section('containerClassName', 'TrashNovelContainer')
 @section('content')
     @if ($chapters->isEmpty())
-        <div class="d-flex justify-content-center align-items-center" style="height: 90vh"><label for=""
-                style="font-size: 22px">ไม่มีตอนที่ถูกลบ</label></div>
+        <div class="d-flex justify-content-center align-items-center" style="height: 90vh"><label for="" style="font-size: 22px">ไม่มีตอนที่ถูกลบ</label></div>
     @else
         <div class="container" style="margin-top: 50px">
             <h4 class="ms-4">ตอนทั้งหมด {{ $count_chapter }}</h4>
-            <div class="d-flex ms-auto me-4">
-                <button type="button" class="btn btn-primary" onclick="RestoreAll()">กูคืนทั้งหมด</button>
-                <form action="{{route('novel.restore_all',["bookID"=>$bookID])}}" style="display: none;" method="POST" id="restore-all">@csrf</form>
-            </div>
 
             <div class="d-flex flex-column justify-content-between">
                 @php
@@ -35,7 +30,7 @@
                         <div class="d-flex ms-auto me-4 align-items-center">
                             <button class="btn btn-primary" type="button"
                                 onclick="RestoreEach({{$chapter->chapterID}},'{{$chapter->chapter_name}}')">กู้คืน</button>
-                            <form action="{{route("novel.restore_each",["bookID" => $bookID , "chapterID" => $chapter->chapterID])}}" style="display: none;" method="POST"
+                            <form action="{{route("comic.restore_each",["bookID" => $bookID , "chapterID" => $chapter->chapterID])}}" style="display: none;" method="POST"
                                 id="restore-each-{{ $chapter->chapterID }}">@csrf</form>
                         </div>
 

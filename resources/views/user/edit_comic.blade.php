@@ -56,9 +56,9 @@
                 </div>
 
                 <div class="d-flex mt-4">
-                    <input type="submit" value="อัปเดตนิยาย" class="btn btn-primary me-2">
+                    <input type="submit" value="อัปเดตคอมมิค" class="btn btn-primary me-2">
                     @if ($chapters->isEmpty())
-                        <button class="btn btn-danger ms-2" type="button" onclick="DeleteComic('{{ $data->book_name }}')">ลบคอมมิก</button>
+                        <button class="btn btn-danger ms-2" type="button" onclick="DeleteComic('{{ $data->book_name }}')">ลบคอมมิค</button>
                     @endif
                 </div>
             </div>
@@ -140,6 +140,9 @@
             @endforeach
         </div>
     </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center mt-4">
+        <button type="button" class="div37 text-white" onclick="window.location.href = `{{route('comic.trash',['bookID'=>$bookID])}}`">ดูถังขยะ</button>
     </div>
 @endsection
 

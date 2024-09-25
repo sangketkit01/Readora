@@ -45,7 +45,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <textarea name="content" id="content" placeholder="เพิ่มเนื้อเรื่อง" cols="30" rows="10" required>{{$book->chapter_content}}</textarea>
+                    <textarea name="content" id="content"  class="ck"  cols="30" rows="10" required>{{$book->chapter_content}}</textarea>
                 </div>
             </div>
 

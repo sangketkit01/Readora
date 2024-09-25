@@ -9,7 +9,7 @@
         <form action="{{ route('comic.insert') }}" method="post" class="form-group d-flex align-items-center" enctype="multipart/form-data" >
             @csrf
             <div class="d-flex flex-column">
-                <h2>สร้างคอมมิก</h2>
+                <h2>สร้างคอมมิค</h2>
                 <div>
                     <label for="" class="form-label">ชื่อเรื่อง</label>
                     <input type="text" name="book_name" class="form-control" required>
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="d-flex mt-4">
-                    <input type="submit" value="สร้างนิยาย" class="btn btn-primary">
+                    <input type="submit" value="สร้างคอมมิค" class="btn btn-primary">
                 </div>
             </div>
 

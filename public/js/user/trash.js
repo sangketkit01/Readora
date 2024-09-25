@@ -28,6 +28,16 @@ function RestoreEach(chapterID,chapterName){
         cancelButtonText: "ยกเลิก",
     }).then((result) => {
         if (result.isConfirmed) {
+            Swal.fire({
+                title: "กำลังกู้คืนตอน...",
+                text: "กรุณารอสักครู่",
+                icon: "info",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                },
+            });
             document.getElementById(`restore-each-${chapterID}`).submit();
         }
     });

@@ -92,3 +92,18 @@
     padding: 7px 15px;
     border-radius: 8px;
 } 
+
+.search-form{
+   max-width: 260px;
+   max-height: 46px;
+}
+
+.search-input{
+    min-width: 205px;
+}
+
+.search-button{
+    width: 32px;
+    height: 26px;
+    padding: 1px 6px;
+}

@@ -91,11 +91,16 @@ Route::middleware("checkLogin")->group(function () {
             Route::get("{bookID}", [ComicController::class, 'edit'])->name("comic.edit");
             Route::post("insert/{bookID}", [ComicController::class, "EditInsert"])->name("comic.edit_insert");
             Route::post('chapter/update/{bookID}/{chapterID}', [ComicController::class, 'ChapterStatusUpdate'])->name('comic.chapter_status_update')->middleware(['checkChapterOwner']);
+            Route::get("/{bookID}/trash", [ComicController::class, "Trash"])->name("comic.trash");
         });
 
         Route::prefix("delete_comic")->group(function(){
             Route::post("{bookID}",[ComicController::class,"Delete"])->name("comic.delete");
             Route::post("chapter/{bookID}/{chapterID}",[ComicController::class,"DeleteChapter"])->name("comic.delete_chapter")->middleware(["checkChapterOwner"]);
+        });
+
+        Route::prefix("restore")->group(function () {
+            Route::post("comic/each/{bookID}/{chapterID}", [ComicController::class, "RestoreEach"])->name("comic.restore_each")->middleware(["checkChapterOwner"]);
         });
 
         Route::prefix("add_comic_chapter")->group(function () {
