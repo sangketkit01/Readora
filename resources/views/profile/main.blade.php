@@ -4,17 +4,6 @@
     <link rel="stylesheet" href="/css/profile/profile.css">
 @endpush
 @section('containerClassName', 'ProfileContainer')
-<style>
-    .top {
-        background-image: url("/login/login.png");
-        background-size: cover;
-        /* ขยายภาพให้เต็มพื้นที่ container */
-        background-position: 0x ;
-        /* จัดให้อยู่ตรงกลาง */
-        background-repeat: no-repeat;
-        /* ป้องกันไม่ให้ภาพซ้ำ */
-    }
-</style>
 @section('content')
     <div class="row mt-3">
         <div class="top">

@@ -4,9 +4,11 @@
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 0px 10px #a9a9a9;
-
+  background-image: url("/login/login.png");
+  background-size: cover;
+  background-position: 0x ;
+  background-repeat: no-repeat;
   text-align: center;
-  /* margin-top: 15px; */
 }
 .top img {
   width: 70px;

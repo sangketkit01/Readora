@@ -4,9 +4,7 @@
     <link rel="stylesheet" href="/css/profile/profile.css">
 @endpush
 @section('containerClassName', 'NovelInfoContainer')
-<style>
-     
-</style>
+
 @section('content')
     <div class="row mt-3">
         <div class="top">
