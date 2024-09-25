@@ -11,8 +11,50 @@
     <div class="container">
         <div class="Introducing">
             <h2>{{ $chapters->chapter_name }}</h2>
-            <div class="content-box">
-                {!! nl2br($chapters->chapter_content) !!}
+            <div id="output" class="d-flex justify-content-center align-items-center flex-column">
+                @if ($chapters->chapter_content)
+                    <!-- Load PDF.js -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+                    
+                    <!-- JavaScript to Render PDF -->
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const pdfUrl = "{{ asset($chapters->chapter_content) }}";
+                            loadPdfFromUrl(pdfUrl);
+                        });
+        
+                        function loadPdfFromUrl(url) {
+                            const output = document.getElementById("output");
+                            output.innerHTML = "";
+                            
+                            pdfjsLib.getDocument(url).promise.then(function(pdf) {
+                                for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+                                    pdf.getPage(pageNumber).then(function(page) {
+                                        const scale = 0.8;
+                                        const viewport = page.getViewport({ scale: scale });
+                                        const canvas = document.createElement("canvas");
+                                        const context = canvas.getContext("2d");
+                                        canvas.height = viewport.height;
+                                        canvas.width = viewport.width;
+                                        const renderContext = {
+                                            canvasContext: context,
+                                            viewport: viewport,
+                                        };
+                                        page.render(renderContext).promise.then(function() {
+                                            const img = document.createElement("img");
+                                            img.src = canvas.toDataURL("image/png");
+                                            img.style.margin = "10px";
+                                            output.appendChild(img);
+                                        });
+                                    });
+                                }
+                            });
+                        }
+                    </script>
+                @endif
+            </div>
+            <div class="writer-message">
+                <strong>Writer:</strong> {{ $chapters->writer_message ?? 'No message from the writer.' }}
             </div>
             <br><br><br><br>
             <div class="pofile_user_com">

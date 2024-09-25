@@ -32,7 +32,9 @@ class ReadController extends Controller
                 ->get();
             $chapterComments[$chapter->chapterID] = $comments;
         }
-        $count_chapter = Book_chapter::where("bookID", $bookID)->count();
+        $count_chapter = Book_chapter::where("bookID", $bookID)
+            ->where("chapter_status", 'public')
+            ->count();
         $count_comment = Chapter_comment::whereIn('chapterID', function ($query) use ($bookID) {
             $query->select('chapterID')
                 ->from('book_chapters')
@@ -66,12 +68,19 @@ class ReadController extends Controller
     public function readFirstChapterNovel($bookID)
     {
         $book = Book::where("BookID", $bookID)->first();
+
+        if (!$book) {
+            return redirect()->route('user.read_novel');
+        }
+
         $firstChapter = Book_chapter::where("bookID", $bookID)
+            ->where("chapter_status", 'public')
             ->orderBy('chapterID', 'asc')
             ->first();
-        return redirect()->route('read.read_chaptnovel', [
-            'bookID' => $bookID,
-            'chapterID' => $firstChapter->chapterID
+
+        return view('user.read_novel', [
+            'book' => $book,
+            'firstChapter' => $firstChapter,
         ]);
     }
 
@@ -93,7 +102,9 @@ class ReadController extends Controller
                 ->get();
             $chapterComments[$chapter->chapterID] = $comments;
         }
-        $count_chapter = Book_chapter::where("bookID", $bookID)->count();
+        $count_chapter = Book_chapter::where("bookID", $bookID)
+            ->where("chapter_status", 'public')
+            ->count();
         $count_comment = Chapter_comment::whereIn('chapterID', function ($query) use ($bookID) {
             $query->select('chapterID')
                 ->from('book_chapters')
@@ -106,6 +117,7 @@ class ReadController extends Controller
     {
         $books = Book::where("BookID", $bookID)->first();
         $chapters = Book_chapter::where("chapterID", $chapterID)->where("bookID", $bookID)->first();
+        $pdfPath = $chapters ? $chapters->pdf_path : null;
         $previousChapter = Book_chapter::where('bookID', $bookID)
             ->where('chapterID', '<', $chapterID)
             ->orderBy('chapterID', 'desc')
@@ -126,13 +138,21 @@ class ReadController extends Controller
     public function readFirstChapterComic($bookID)
     {
         $book = Book::where("BookID", $bookID)->first();
+
+        if (!$book) {
+            return redirect()->route('user.read_comic');
+        }
+
         $firstChapter = Book_chapter::where("bookID", $bookID)
+            ->where("chapter_status", 'public')
             ->orderBy('chapterID', 'asc')
             ->first();
-        return redirect()->route('read.read_chaptcomic', [
-            'bookID' => $bookID,
-            'chapterID' => $firstChapter->chapterID
+
+        return view('user.read_comic', [
+            'book' => $book,
+            'firstChapter' => $firstChapter,
         ]);
     }
+
 
 }

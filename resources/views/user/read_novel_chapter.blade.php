@@ -13,7 +13,12 @@
             <h2>{{ $chapters->chapter_name }}</h2>
             <div class="content-box">
                 {!! nl2br($chapters->chapter_content) !!}
+                <br><br><br>
+                <div class="writer-message">
+                    <strong>Writer:</strong> {{ $chapters->writer_message ?? 'No message from the writer.' }}
+                </div>
             </div>
+            <br>
             <br><br><br><br>
             <div class="pofile_user_com">
                 <img src="{{ $books->User->profile }}" alt="">
