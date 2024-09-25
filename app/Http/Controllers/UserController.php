@@ -39,6 +39,11 @@ class UserController extends Controller
     function novelInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
+
+        $n_chapter = null;
+        if(!$novel->isEmpty()){
+            $n_chapter =  Book_chapter::where('bookID', $novel->first()->bookID)->where('chapter_status', 'public')->count();
+        }
         $n_chapter = Book_chapter::where('bookID', $novel->first()->bookID)->where('chapter_status', 'public')->count();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         // $comment_comic = 
@@ -50,7 +55,11 @@ class UserController extends Controller
     function comicInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
-        $c_chapter = Book_chapter::where('bookID', $comic->first()->bookID)->where('chapter_status', 'public')->count();
+
+        $c_chapter = null;
+        if(!$comic->isEmpty()){
+            $c_chapter =  Book_chapter::where('bookID', $comic->first()->bookID)->where('chapter_status', 'public')->count();
+        }
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
         // $comment_comic = Chapter_comment::all('bookTypeID', 2)->where('chapterID')->count(); //เช็คจำนวนคอมเม้นของทุกตอนในเรื่องนั้นยังไง
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
