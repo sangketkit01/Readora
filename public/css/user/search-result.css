@@ -88,6 +88,15 @@ p {
 .result {
     font-size: x-large;
 }
+.warning {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.title-genre {
+    font-size: xx-large;
+    text-align: center;
+}
 
 #pagination {
     display: flex;
