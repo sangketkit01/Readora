@@ -46,7 +46,11 @@
   background-color: #f9f9f9;
   color: black;
 }
-
+.dropdown-option {
+  /* /*margin-left: 320px; */
+  display: flex;
+  justify-content: space-evenly;
+}
 .text-about{
   color: #33436F;
 }
@@ -75,7 +79,6 @@
   color:white;
 }
 #add-password-btn{
- 
   border-radius: 100px;
   padding: 3px 15px;
   border: 2px solid #33436F;

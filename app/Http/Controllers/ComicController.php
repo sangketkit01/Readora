@@ -250,4 +250,42 @@ class ComicController extends Controller
         return redirect()->route('comic.edit', ['bookID' => $bookID])->with(["successMsg" => "ลบตอนสำเร็จ"]);
     }
 
+    function Trash($bookID) {
+        $chapters = Book_chapter::where("bookID", $bookID)->onlyTrashed()->get();
+        $count_chapter = Book_chapter::where("bookID", $bookID)->onlyTrashed()->count();
+
+        return view("user.trash_comic", compact("chapters", "count_chapter", "bookID"));
+    }
+
+    function RestoreEach(Request $request, $bookID, $chapterID)
+    {
+        $chapter = Book_chapter::where("bookID", $bookID)->where("chapterID", $chapterID)->onlyTrashed()->first();
+
+        if (!$chapter) {
+            return redirect()->route("novel.trash", ["bookID" => $bookID])->withErrors(["msg" => "Something went wrong. Please try again"]);
+        }
+
+        $chapter_image = $chapter->chapter_image;
+        $chapter_image = str_replace("storage/", "public/", $chapter_image);
+        if ($chapter_image && Storage::exists($chapter_image)) {
+            Storage::move($chapter_image, "public/Chapter/" . basename($chapter_image));
+
+            $chapter->chapter_image = "storage/Chapter/" . basename($chapter_image);
+            $chapter->save();
+        }
+
+        $chapter_content = $chapter->chapter_content;
+        $chapter_content = str_replace("storage/","public/",$chapter_content);
+        if($chapter_content && Storage::exists($chapter_content)){
+            Storage::move($chapter_content,"public/ComicPDF/". basename($chapter_content));
+
+            $chapter->chapter_content = "storage/ComicPDF/". basename($chapter_content);
+            $chapter->save();
+        }
+
+        $chapter->restore();
+        return redirect()->route("comic.edit", ["bookID" => $bookID])->with(["successMsg" => "กู้คืนตอนสำเร็จ"]);
+    }
+
+
 }

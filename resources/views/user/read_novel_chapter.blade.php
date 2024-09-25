@@ -12,7 +12,7 @@
         <div class="Introducing">
             <h2>{{ $chapters->chapter_name }}</h2>
             <div class="content-box">
-                {!! nl2br(e($chapters->chapter_content)) !!}
+                {!! nl2br($chapters->chapter_content) !!}
             </div>
             <br><br><br><br>
             <div class="pofile_user_com">

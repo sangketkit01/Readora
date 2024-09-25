@@ -285,7 +285,7 @@ class NovelController extends Controller
         }
 
         $chapter->restore();
-        return redirect()->route("novel.edit", ["bookID" => $bookID])->with(["successMsg" => "กู้คืนตอนสำเร็จ"]);
+        return redirect()->route("comic.edit", ["bookID" => $bookID])->with(["successMsg" => "กู้คืนตอนสำเร็จ"]);
     }
 
 }
