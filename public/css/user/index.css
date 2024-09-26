@@ -90,6 +90,15 @@ h2 {
     margin-bottom: -100px;
 }
 
+#recommend2 {
+    margin-top: 150px;
+    margin-bottom: -100px;
+}
+#recommend3 {
+    margin-top: 150px;
+    margin-bottom: -100px;
+}
+
 .recommend {
     margin-top: 100px;
     padding: 20px;
@@ -175,7 +184,15 @@ h2 {
 
 a {
     text-decoration: none;
+    color: #454040;
 
+}
+
+h2 a:hover {
+    color: #1a1515;
+    border: #1a1515 solid  1px;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .category-tags {

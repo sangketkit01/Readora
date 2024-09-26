@@ -32,7 +32,7 @@
 <div class="container">
     <!-- Recommendation Section for Novels -->
     <div class="recommend" id="recommend1">
-        <h2>แนะนำนิยาย</h2>
+        <h2><a href="{{ route('index.rec1') }}">แนะนำนิยาย</a></h2>
         <br>
         <div class="recommend-section1">
             @foreach ($novels as $novel)
@@ -51,8 +51,8 @@
     </div>
 
     <!-- Recommendation Section for Comics -->
-    <div class="recommend" id="recommend1">
-        <h2>แนะนำคอมมิค</h2>
+    <div class="recommend" id="recommend2">
+        <h2><a href="{{ route('index.rec2') }}">แนะนำคอมมิค</a></h2>
         <br>
         <div class="recommend-section1">
             @foreach ($comics as $comic)
@@ -71,7 +71,7 @@
     </div>
 
     <!-- Romance Section -->
-    <div class="recommend" id="recommend1">
+    <div class="recommend" id="recommend3">
         <h2>แนะนำนิยายโรแมนติก</h2>
         <br>
         <div class="recommend-section1">

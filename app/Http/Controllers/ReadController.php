@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\click;
 
 use App\Models\Book;
 use App\Models\Book_type;
@@ -72,5 +73,20 @@ class ReadController extends Controller
     }
 
 
+    public function incrementClickAndRedirect($bookID)
+    {
+        // เพิ่มค่า click_count
+        $novel = Book::find($bookID);
+        if ($novel) {
+            $novel->increment('click_count');
+        }
+
+        // เรียงลำดับ novels ตาม click_count
+        $novels = Book::orderBy('click_count', 'desc')->get();
+
+        // ทำการ redirect ไปยังหน้าอ่านนิยายและส่งข้อมูล novels ไปด้วย
+        return redirect()->route('read.read_novel', ['bookID' => $bookID])
+            ->with(['novel' => $novel, 'novels' => $novels]);
+    }
 
 }

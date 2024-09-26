@@ -8,23 +8,18 @@ p {
     margin: 0;
     padding: 0;
 }
-
-.container_user {
+.container{
+            margin: 0 auto;
+            padding: 0% auto;
     Margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.card_user {
-    display: flex;
-    margin: 0 auto;
-    width: 73%;
-    padding: 0 10px;
-    box-sizing: border-box;
-    justify-content: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
 
 }
+
+
 
 
 .img img {

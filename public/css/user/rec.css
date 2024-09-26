@@ -32,6 +32,7 @@ p ._1 {
     color: #33436F;
 }
 
+
 ._1 {
     text-align: right;
     -webkit-text-stroke: 7px #000000;
@@ -59,62 +60,82 @@ p ._1 {
     width: 17%;
 }
 
-#recommend1 {
-    margin-top: 250px;
-    padding: 20px;
-    text-align: center;
-}
-
-.recommend {
-    margin-top: 100px;
-    padding: 20px;
-    text-align: center;
-}
-
-.recommend-section1,
-.recommend-section2,
-.recommend-section3 {
+.recommend-section1 {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    justify-content: space-between;
     gap: 20px;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.recommend-card-link {
+    flex: 1 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
 }
 
 .recommend-card {
-    width: 48%;
-    text-align: center;
-    padding: 10px;
+    padding: 12px;
     background-color: #f8f9fa;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
-    word-wrap: break-word;
-    white-space: normal;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 154px;
+    /* Fixed height */
 }
-
 
 .recommend-card img {
-    width: 100%;
-    height: 120px;
-    border-radius: 10px;
+    width: 150px;
+    height: 130px;
+    border-radius: 7px;
     object-fit: cover;
+    margin-right: 10px;
+    flex-shrink: 0;
 }
 
-.recommend-card h3 {
-    margin-top: 10px;
+.recommend-card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.recommend-card h5 {
     font-size: 18px;
     color: #333;
+    margin: 0 0 5px 0;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .recommend-card p {
     font-size: 14px;
     color: #666;
-    margin-left: 10px;
+    margin: 5px 0;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .recommend-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+a {
+    text-decoration: none;
+    color: #454040;
+
 }
 
 select{
