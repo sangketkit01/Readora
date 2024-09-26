@@ -26,14 +26,20 @@ class IndexController extends Controller
     public function rec1()
     {
 
-        $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->get();
+        $novels = Book::where('BooktypeID', 1)
+            ->where('book_status', 'public')
+            ->orderBy('click_count', 'DESC')
+            ->get();
         return view("user.rec1", compact('novels'));
     }
 
     public function rec2()
     {
 
-        $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->get();
+        $comics = Book::where('BooktypeID', 2)
+        ->where('book_status', 'public')
+        ->orderBy('click_count', 'DESC')
+        ->get();
 
         return view("user.rec2", compact('comics'));
     }
