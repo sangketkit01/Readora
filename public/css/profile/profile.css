@@ -251,3 +251,6 @@ form select{
   align-items: center;
 }
 
+.status-button{
+  align-items: end;
+}

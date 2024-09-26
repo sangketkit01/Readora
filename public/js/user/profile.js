@@ -1,10 +1,6 @@
-document.getElementById('camera-icon').addEventListener('click', function() {
-    document.getElementById('inputImage').click();
-});
-
 // password
 function validatePasswordLength() {
-    const newPassword = document.getElementById("new_password").value
+    const newPassword = document.getElementById("n-password").value
     const passwordP = document.getElementById("password-w")
     if(newPassword == ""){
         passwordP.textContent = ""
@@ -19,11 +15,11 @@ function validatePasswordLength() {
     }
 }
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("new_password").addEventListener("input", validatePasswordLength);
-    document.getElementById("comfirm_password").addEventListener("input", () => {
-        let newPassword = document.getElementById("new_password").value;
-        let confirmPassword = document.getElementById("comfirm_password").value;
-        let confirmPasswordP = document.getElementById("confirm-w");
+    document.getElementById("n-password").addEventListener("input", validatePasswordLength);
+    document.getElementById("c-password").addEventListener("input", () => {
+        const newPassword = document.getElementById("n-password").value;
+        const confirmPassword = document.getElementById("c-password").value;
+        const confirmPasswordP = document.getElementById("confirm-w");
 
         if (confirmPassword == "") {
             confirmPasswordP.textContent = "";
@@ -38,4 +34,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+document.getElementById('camera-icon').addEventListener('click', function() {
+    document.getElementById('inputImage').click();
+});
+
 

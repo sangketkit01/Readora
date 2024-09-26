@@ -32,13 +32,6 @@ Route::middleware("checkLogin")->group(function () {
     Route::get('/profile/novel', [UserController::class, 'novelInfoPage'])->name('profile.novel');
     Route::get('/profile/comic', [UserController::class, 'comicInfoPage'])->name('profile.comic');
 
-
-    Route::prefix("user")->group(function(){
-        Route::get('bin/{bookTypeID}',[UserController::class,"Trash"])->name("user.bin");
-        Route::post("restore/all/{bookTypeID}",[UserController::class,"RestoreAll"])->name("user.restore_all");
-        Route::post("restore/each/{bookTypeID}/{bookID}",[UserController::class,"RestoreEach"])->name("user.restore_each");
-    });
-
     Route::get('/profile/{username}', [UserController::class, 'editInfoPage']);
     Route::post('/editInfo', [UserController::class, 'edit_info'])->name('edit.info');
 
@@ -46,6 +39,16 @@ Route::middleware("checkLogin")->group(function () {
     Route::post('/create_password', [UserController::class, 'create_password'])->name('create.password');
     Route::get('/changePassword', [UserController::class, 'viewChangePassword'])->name('change.password.page');
     Route::post('/change_password', [UserController::class, 'change_password'])->name('change.password');
+
+    Route::get("/profile/book_shelve", [UserController::class, 'book_shelve'])->name("book_shelve");
+    Route::get("/profile/book_shelve_novel", [IndexController::class, 'book_shelve_novel'])->name("book.shelve.novel");
+    Route::get("/profile/book_shelve_commic", [UserController::class, "book_shelve_commic"])->name("index.book_shelve_commic");
+
+    Route::prefix("user")->group(function(){
+        Route::get('bin/{bookTypeID}',[UserController::class,"Trash"])->name("user.bin");
+        Route::post("restore/all/{bookTypeID}",[UserController::class,"RestoreAll"])->name("user.restore_all");
+        Route::post("restore/each/{bookTypeID}/{bookID}",[UserController::class,"RestoreEach"])->name("user.restore_each");
+    });
     //
 
     Route::get('/signout', [LoginController::class, 'Logout'])->name('sign_out');

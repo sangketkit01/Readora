@@ -37,11 +37,12 @@
             <div class="dropdown-option if">
                 <a class="btn btn-black dropdown-toggle fs-4 fw-semibold" href="#" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    นิยาย
+                    นิยายของฉัน
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิค</a></li>
+                    <li><a class="dropdown-item" href="{{ route('book.shelve.novel') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
                 </ul>
             </div>
         </div>
@@ -62,6 +63,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile') }}">ชั้นหนังสือ</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิค</a></li>
                 </ul>
                 <button class="create-novel-n" onclick="window.location.href='/create_novel'">สร้างเรื่องใหม่</button>
@@ -73,10 +75,13 @@
             <div class="col-3 mt-3 d-flex justify-content-center" onclick="window.location.href='{{ route('novel.edit', ['bookID' => $n->bookID]) }}'">
                     <div class="card" style="width: 14rem; max-width: 14rem;">
                         <img src="{{asset($n->book_pic)}}" class="card-img-top img_user" alt="...">
-                        <select name="" id="">
-                            <option value="public" @if($n->book_status == 'public') selected @endif>สาธารณะ</option>
-                            <option value="private" @if($n->book_status == 'private') selected @endif>ส่วนตัว</option>
-                        </select>
+                        <div class="status-button">
+                            @if($n->book_status == 'public')
+                            <button disabled > <i class="bi bi-globe-americas"></i> สาธารณะ</button>
+                            @else
+                                <button disabled> <i class="bi bi-lock-fill"></i></i> ส่วนตัว</button>
+                            @endif
+                        </div>
                         <div class="card-body">
                             <span>{{$n->book_name}}</span> <br> 
                             <span id="writer">{{$n->username}}</span> <br>

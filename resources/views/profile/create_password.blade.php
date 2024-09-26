@@ -12,22 +12,26 @@
         <hr>
         <form action="{{ route('create.password') }}" method="post" id="update-password-form" class="form_password">
             @csrf
-            <div class="current_password">
-                <label for="new_password">รหัสผ่านใหม่</label>
-                    <input type="password" min="8" id="n-password" name="new_password" required>
+            <div class="c_password">
+
+                <label for="n-password">รหัสผ่านใหม่</label>
+                <input type="password" min="8" id="n-password" name="new_password" required>
+
                 <div class="password_c">
                     <p class="text-secondary" id="password-w" style="font-size: 12px; margin-left:2px"></p>
                 </div>
             </div>
+            
+            <div class="c_password">
+                
+                <label for="c-password">ยืนยันรหัสผ่าน</label>
+                <input type="password" id="c-password" required>
 
-            <div class="current_password">
-                <label for="confirm_password">ยืนยันรหัสผ่าน</label>
-                    <input type="password" id="c-password" required>
                 <div class="password_c">         
-                    <p class="text-secondary" id="confirm-w" style="font-size: 12px; margin-left:2px">ฟกฟไกก</p>
+                    <p class="text-secondary" id="confirm-w" style="font-size: 12px; margin-left:2px"></p>
                 </div>
             </div>
-
+            
             <div class="sub">
                 <button type="button" id="back" onclick="window.location.href='/profile'">ย้อนกลับ</button>
                 <button type="submit" id="create-new-password">บันทึก</button>

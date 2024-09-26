@@ -86,8 +86,9 @@
                     ข้อมูลส่วนตัว
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยาย</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิค</a></li>
+                    <li><a class="dropdown-item" href="{{ route('book.shelve.novel') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยายของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
                 </ul>
             </div>
             <div class="">

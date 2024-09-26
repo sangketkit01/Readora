@@ -37,6 +37,18 @@ class UserController extends Controller
         return redirect()->route('profile');
     }
 
+    function book_shelve(){
+
+    }
+    function book_shelve_novel(){
+        $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->get();
+        return view("book_shelve", compact('novels'));
+    }
+    function book_shelve_commic(){
+        $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->get();
+        return view("book_shelve_commic", compact('comics'));
+    }
+
     function novelInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
@@ -45,7 +57,6 @@ class UserController extends Controller
         if(!$novel->isEmpty()){
             $n_chapter =  Book_chapter::where('bookID', $novel->first()->bookID)->where('chapter_status', 'public')->count();
         }
-        $n_chapter = Book_chapter::where('bookID', $novel->first()->bookID)->where('chapter_status', 'public')->count();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         // $comment_comic = 
         // $comment_novel = 
@@ -62,7 +73,7 @@ class UserController extends Controller
             $c_chapter =  Book_chapter::where('bookID', $comic->first()->bookID)->where('chapter_status', 'public')->count();
         }
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
-        // $comment_comic = Chapter_comment::all('bookTypeID', 2)->where('chapterID')->count(); //เช็คจำนวนคอมเม้นของทุกตอนในเรื่องนั้นยังไง
+    
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         return view('profile.comic_info', compact('user', 'comic', 'c_count', 'n_count', 'c_chapter'));
     }
@@ -72,14 +83,14 @@ class UserController extends Controller
     }
     function create_password(Request $request){
         $request->validate([
-            "password" => "min:8",
-            "confirm" => "same:password"
+            "new_password" => "required|min:8|confirmed",
+            "confirm_password" => "same:new_password"
         ],[
-            "password.min" => "รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร",
-            "confirm.same" => "รหัสผ่านไม่ตรงกัน"
+            "new_password.min" => "รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร",
+            "confirm_password.confirmed" => "รหัสผ่านไม่ตรงกัน"
         ]);
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $user->password = Hash::make($request->input("password"));
+        $user->password = Hash::make($request->input("new_password"));
         $user->save();
         return redirect()->route('profile');
     }
@@ -88,21 +99,21 @@ class UserController extends Controller
         return view('profile.change_password');
     }
     function change_password(Request $request){
-
         $request->validate([
             "current_password" => "required",
-            "password" => "min:8",
-            "confirm" => "same:password"
+            "new_password" => "required|min:8|confirmed",
+            "confirm_password" => "same:new_password"
         ],[
-            "password.min" => "รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร",
-            "confirm.same" => "รหัสผ่านไม่ตรงกัน"
+            "new_password.min" => "รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร",
+            "confirm_password.confirmed" => "รหัสผ่านไม่ตรงกัน"
         ]);
         $user = Userdb::where('username', Session::get('user')->username)->first();
+
         if(Hash::check($request->input('current_password'), $user->password)) {
             $user->password = Hash::make($request->input("new_password"));
             $user->save();
             Session::put('user',$user); 
-            return redirect()->route('profile');
+            return redirect()->route('profile')->with(['new_password' => '[เปลี่ยนรหัสผ่านสำเร็จ]']);
         }else {
             return back()->withErrors(['current_password' => 'รหัสผ่านปัจจุบันไม่ถูกต้อง']);
         }
