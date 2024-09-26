@@ -13,9 +13,9 @@
             {{ $errors->first('current_password') }}
         </div>
     @endif
-    @if ($errors->has('new_password'))
+    @if (session()->has('new_password'))
         <div class="alert alert-success " style="border: 1px">
-            {{ $errors->first('new_password') }}
+            {{ session('new_password') }}
         </div>
     @endif
     <h5>เปลี่ยนรหัสผ่าน</h5>
@@ -51,7 +51,7 @@
         </div>
 
         <div class="sub">
-            <button type="button" id="back" onclick="window.location.href='/profile'">ย้อนกลับ</button>
+            <button type="button" id="back" onclick="window.location.href='/profile'">ยกเลิก</button>
             <button type="submit" id="create-new-password">บันทึก</button>
         </div>
         <a href="/forgot_password" class="forgot">ลืมรหัสผ่าน?</a>

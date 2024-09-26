@@ -187,12 +187,11 @@ form select{
 }
 .gender{
   display: flex;
+  margin-top: 7px;
+  margin-bottom: 15px;
 }
 .span{
   text-align: center;
-}
-.gender{
-  margin: 10px 0;
 }
 .gender select{
   margin-left: 3px;
@@ -236,6 +235,7 @@ form select{
   border-radius: 100px;
   padding: 5px 20px;
   border: 2px solid #33436F;
+  
 }
 
 .create-novel-n, .create-comic-n {
@@ -244,13 +244,58 @@ form select{
   border-radius: 100px;
   padding: 0px 20px;
   border: 2px solid #33436F;
-}
-.create-novel-n{
   display: flex;
   height: 40px;
   align-items: center;
 }
 
-.status-button{
-  align-items: end;
+
+.btinfo{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: end ;
 }
+.btinfo a{
+  text-decoration: none;
+}
+.deltitle{
+  margin-right: 10px;
+  background-color: #9e9e9e ;
+  color: white;
+  border-radius: 100px;
+  padding: 6px 20px;
+  border: 2px solid #929292 !important;
+}
+
+.status-button{
+  margin-right: 2px;
+  display:flex;
+  align-items: end;
+  justify-content: end;
+  font-size: 13px;
+  z-index: 100;
+  position: absolute;
+
+  width: 100%;
+  height: 57%;
+  padding-right: 5px;
+}
+.card-body{
+  padding-top: 0px;
+  cursor: pointer;
+}
+.card{
+  cursor: pointer;
+}
+.her h5{
+
+ margin: 0;
+ margin-top: 10px;
+ font-size: 20px;
+}
+.her p{
+   font-size: 15px; 
+   color:#838383;
+}
+
