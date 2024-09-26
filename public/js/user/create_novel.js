@@ -8,15 +8,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (file && file.type.startsWith("image/")) {
             if (file.size > maxFileSize) {
-                alert("ขนาดไฟล์ต้องไม่เกิน 10 MB");
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "ขนาดไฟล์ต้องไม่เกิน 10 MB",
+                });
                 return;
             }
 
             const imageUrl = URL.createObjectURL(file);
             inputImageLabel.style.backgroundImage = `url(${imageUrl})`;
             inputImageLabel.style.backgroundSize = "contain";
-
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "กรุณาเพิ่มรูปภาพ",
+            });
         }
     });
 });
 
+
+function submitForm() {
+        const form = document.getElementById("form");
+
+        if (form.checkValidity()) {
+            form.submit();
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "กรุณากรอกข้อมูลให้ครบถ้วน",
+            });
+        }
+}

@@ -6,7 +6,7 @@
 @section('containerClassName', 'createNovelContainer')
 @section('content')
     <div class="container">
-        <form action="{{ route('comic.insert') }}" method="post" class="form-group d-flex align-items-center" enctype="multipart/form-data" >
+        <form action="{{ route('comic.insert') }}" method="post" class="form-group d-flex align-items-center" enctype="multipart/form-data" id="form">
             @csrf
             <div class="d-flex flex-column">
                 <h2>สร้างคอมมิค</h2>
@@ -35,8 +35,8 @@
                 </div>
 
                 <div class="d-flex mt-4">
-                    <input type="submit" value="สร้างคอมมิค" class="btn btn-primary">
-                </div>
+                    <input type="button" onclick="submitForm()" value="สร้างคอมมิค" class="btn btn-primary">
+                </div> 
             </div>
 
             <div class="d-flex flex-column mt-3">

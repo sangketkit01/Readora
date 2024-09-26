@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="d-flex mt-4">
-                    <input type="submit" value="อัปเดตคอมมิค" class="btn btn-primary me-2">
+                    <input type="button" onclick="submitForm()" value="อัปเดตคอมมิค" class="btn btn-primary me-2">
                     @if ($chapters->isEmpty())
                         <button class="btn btn-danger ms-2" type="button" onclick="DeleteComic('{{ $data->book_name }}')">ลบคอมมิค</button>
                     @endif
