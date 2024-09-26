@@ -288,14 +288,13 @@ form select{
 .card{
   cursor: pointer;
 }
-.her h5{
-
- margin: 0;
- margin-top: 10px;
- font-size: 20px;
+.n-info h5{
+  margin: 0;
+  margin-top: 10px;
+  font-size: 20px;
 }
-.her p{
-   font-size: 15px; 
-   color:#838383;
+.n-info p{
+  font-size: 15px; 
+  color:#838383;
 }
 

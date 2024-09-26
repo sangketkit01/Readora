@@ -87,11 +87,12 @@
                         </div>
 
                         <div class="card-body">
-                            <div class="her">
+                            <div class="n-info">
                                 <h5>{{$c->book_name}}</h5>
                                 <p id="writer">{{$c->username}}</p>
                             </div>
-                            <span id="chapter"><i class="fa-solid fa-list-ul"></i>{{$c->n_chapter}} chapter </span> <span><i class="fa-solid fa-comment"></i> comment</span> <br>
+                            <span id="chapter"><i class="fa-solid fa-list-ul"></i>{{$c->c_chapter}} chapter </span> 
+                            <span id="comment"><i class="fa-solid fa-comment"></i> comment</span> <br>
                             <span id="genre">ประเภท {{$c->Genre->bookGenre_name}}</span>
                         </div>
                     </div>

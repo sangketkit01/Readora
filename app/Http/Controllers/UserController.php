@@ -12,8 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
-class UserController extends Controller
-{
+class UserController extends Controller{
     function profile(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $novels = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
@@ -31,25 +30,21 @@ class UserController extends Controller
     }
     function edit_info(Request $request){
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        // if ($request->hasFile('inputImage')) {
-        //     if ($user->profile) {
-        //         $oldImage = str_replace("storage/", "public/", $user->profile);
-        //         if (Storage::exists($oldImage)) {
-        //             Storage::delete($oldImage);
-        //         }else{
-        //             Log::warning('ไฟล์เก่าหายไปจากระบบ: ' . $oldImage);
-        //         }
-        //     }
-        //     $image = $request->file('inputImage');
-        //     $newImageFileName = uniqid('', true) . '.' . $image->getClientOriginalExtension();
-        //     $imageUrl = Storage::putFileAs('public/Profile', $image, $newImageFileName);
-        //     $imageUrl = str_replace("public/", "storage/", $imageUrl);
+        if ($request->hasFile('inputImage')) {
+            $user = Userdb::where('username', Session::get('user')->username)->first();
+            if ($user->profile) {
+                $oldImage = str_replace("storage/", "public/", $user->profile);
+                if (Storage::exists($oldImage)) {
+                    Storage::delete($oldImage);
+                }
+            }
+            $image = $request->file('inputImage');
+            $newImageFileName = uniqid('', true) . '.' . $image->getClientOriginalExtension();
+            $imageUrl = Storage::putFileAs('public/Profile', $image, $newImageFileName);
+            $imageUrl = str_replace("public/", "storage/", $imageUrl);
 
-        //     $user->profile = $imageUrl;
-        //     $user->save();
-        // }
-
-        
+            $user->profile = $imageUrl;
+        }
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->gender = $request->input('gender');
@@ -90,16 +85,14 @@ class UserController extends Controller
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
         $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
+        $n_chapter = Book_chapter::where('BookID', $novel)->count();
         // $sum_comments = 0;
         // foreach($novel as $n){
         //     $chapters = $n->Chapters;
         //     dd($chapters);
         // }
 
-        $n_chapter = null;
-        if(!$novel->isEmpty()){
-            $n_chapter =  Book_chapter::where('bookID', $novel->first()->bookID)->where('chapter_status', 'public')->count();
-        }
+        
         // $comment_comic = 
         $comment_novel = Chapter_comment::where('chapterID',)->count();
         return view('profile.novel_info', compact('user', 'novel', 'c_count', 'n_count', 'n_chapter'));
@@ -206,3 +199,4 @@ class UserController extends Controller
         return redirect()->route("index")->with(["successMsg" => "กู้คืนนิยายสำเร็จ"]);
     }
 }
+
