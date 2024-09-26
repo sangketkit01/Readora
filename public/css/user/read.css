@@ -186,8 +186,9 @@ p {
 }
 
 .images {
+    width: 100px;
     height: 100px;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 10px;
     margin-inline: 20px;
 }
