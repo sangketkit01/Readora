@@ -35,8 +35,8 @@ class Book extends Model
         return $this->hasMany(Book_chapter::class,"chapterID");
     }
 
-    function BookShelves(){
-        return $this->hasMany(BookShelf::class);
+    function Bookshelves(){
+        return $this->hasMany(Bookshelf::class);
     }
 
     function Reports(){

@@ -8,14 +8,15 @@ p {
     margin: 0;
     padding: 0;
 }
-.container{
-            margin: 0 auto;
-            padding: 0% auto;
+
+.container {
+    margin: 0 auto;
+    padding: 0% auto;
     Margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
 
 }
 
@@ -77,11 +78,18 @@ p {
     text-decoration: none;
 
 }
+.button_1:hover {
+    border: 1px solid #4F5D87;
+    color: #ffffff;
+    background-color: #4F5D87;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+}
 
 .button_2 {
     background-color: #4F5D87;
     color: #ffffff;
-    ;
     padding: 10px 28px;
     border-radius: 20px;
     text-decoration: none;
@@ -106,10 +114,12 @@ p {
     text-decoration: none;
     color: #4F5D87;
 }
+
 .Introducing h2 {
     text-align: center;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
+
 .All_episodes {
     background-color: white;
     width: 70%;
@@ -327,6 +337,7 @@ p {
     }
 
 }
+
 .content-box {
     width: 100%;
     max-width: 800px;
@@ -337,6 +348,7 @@ p {
     word-break: break-word;
     overflow-wrap: break-word;
 }
+
 .comment button {
     display: block;
     margin: 20px auto;
@@ -353,6 +365,7 @@ p {
 .comment button:hover {
     background-color: #d4d4d4;
 }
+
 .Introducing {
     background-color: white;
     width: 70%;
@@ -361,57 +374,58 @@ p {
     margin: 0 auto;
 }
 
-.Introducing a.btn, .Introducing button.btn {
+.Introducing a.btn,
+.Introducing button.btn {
     text-decoration: none;
-    color: #4F5D87; 
-    background-color: transparent; 
-    border: 1px solid #4F5D87; 
-    padding: 10px 20px; 
-    border-radius: 20px; 
-    font-size: 16px; 
-    cursor: pointer; 
-    transition: background-color 0.3s, color 0.3s; 
+    color: #4F5D87;
+    background-color: transparent;
+    border: 1px solid #4F5D87;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.Introducing a.btn:hover, .Introducing button.btn:hover {
-    background-color: #4F5D87; 
-    color: #ffffff; 
-    border: none; 
+.Introducing a.btn:hover,
+.Introducing button.btn:hover {
+    background-color: #4F5D87;
+    color: #ffffff;
+    border: none;
 }
 
 .Introducing button.btn[disabled] {
     color: #ccc;
-    border: 1px solid #ccc; 
-    cursor: not-allowed; 
-    background-color: transparent; 
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+    background-color: transparent;
 }
 
 .Introducing .button {
     display: flex;
-    justify-content: space-between; 
-    border-top: 1px solid #4F5D87; 
+    justify-content: space-between;
+    border-top: 1px solid #4F5D87;
     padding-top: 10px;
 }
 
 .Introducing .button a.btn:first-child {
-    margin-right: 10px; 
+    margin-right: 10px;
 }
 
 .Introducing .button a.btn:last-child {
-    margin-left: 10px; 
+    margin-left: 10px;
 }
 
 .Introducing .pofile_user_com {
     display: flex;
-    align-items: center; 
-    justify-content: center; 
+    align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
 .Introducing .pofile_user_com img {
     margin-right: 10px;
-    width: 40px; /
-    height: 40px; 
-    border-radius: 50%; 
-    object-fit: cover; 
+    width: 40px;/ height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }

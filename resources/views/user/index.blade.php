@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="container">
-    <div class="recommend">
+    <div class="recommend" id="gen">
         <h2 class="section-title">หมวดหมู่</h2>
         <div class="category-tags">
             @foreach ($genres as $genre)
@@ -102,7 +102,7 @@
         </div>
     </div>
 </div>
-{{-- ฉันต้องการให้ส่วนนี้เป็นแยกหมวดหมู่ --}}
+
 
 
 @endsection

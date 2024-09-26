@@ -12,6 +12,8 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\ReadController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\UserMiddleware;
+
 
 Route::get('/', [IndexController::class, "index"])->name('index');
 
@@ -148,6 +150,8 @@ Route::post('/reset_password', [ForgotPasswordController::class, 'resetPasswordP
 
 Route::get("/rec1", [IndexController::class, 'rec1'])->name("index.rec1");
 Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
+Route::get('/increment-click-and-redirect-novel/{bookID}', [ReadController::class, 'incrementClickAndRedirect'])->name('novel.incrementAndRedirect');
+Route::get('/increment-click-and-redirect-comic/{bookID}', [ReadController::class, 'incrementClickAndRedirectComic'])->name('novel.incrementAndRedirectcomic');
 
 
 Route::get("/test", function () {
@@ -156,9 +160,10 @@ Route::get("/test", function () {
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
-Route::get("/book_shelve", [IndexController::class, 'book_shelve'])->name("index.book_shelve");
 Route::get("/book_shelve_commic", [IndexController::class, "book_shelve_commic"])->name("index.book_shelve_commic");
+Route::group(['middleware' => UserMiddleware::class], function () {
+    Route::post('/add-to-shelf', [ReadController::class, 'addToShelf'])->name('add_to_shelf');
+});
+Route::get('/book_shelve', [IndexController::class, 'book_shelve'])->name('index.book_shelve');
 
 Route::get("/genre/{genreID}",[IndexController::class, 'Genre'])->name('genre.newpage');
-Route::get('/increment-click-and-redirect-novel/{bookID}', [ReadController::class, 'incrementClickAndRedirect'])->name('novel.incrementAndRedirect');
-Route::get('/increment-click-and-redirect-comic/{bookID}', [ReadController::class, 'incrementClickAndRedirectComic'])->name('novel.incrementAndRedirectcomic');

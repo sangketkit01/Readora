@@ -6,26 +6,26 @@
 @endpush
 
 @section('content')
-    <div class="container">
-        <div class="tabs">
-            <div class="tab active">ทั้งหมด</div>
-            <div class="tab">ชื่อผู้แต่ง</div>
-            <div class="tab">นิยาย</div>
-            <div class="tab">คอมมิค</div>
+<div class="container">
+    <div class="tabs">
+        <div class="tab active">ทั้งหมด</div>
+        <div class="tab">ชื่อผู้แต่ง</div>
+        <div class="tab">นิยาย</div>
+        <div class="tab">คอมมิค</div>
+    </div>
+
+    @if ($books->isEmpty())
+        <p class="warning">ไม่พบหนังสือในหมวดหมู่ตามที่ค้นหา</p>
+    @else
+        {{-- <p class="title">นี่คือหมวดหมู่{{ $book->genre->bookGenre_name }}</p> --}}
+        <div class="title-genre">
+            <p>หมวดหมู่
+                {{ optional($books->first()->genre)->bookGenre_name ?? 'ไม่มีข้อมูลหมวดหมู่' }}
+            </p>
         </div>
-
-        @if ($books->isEmpty())
-            <p class="warning">ไม่พบหนังสือในหมวดหมู่ตามที่ค้นหา</p>
-        @else
-            {{-- <p class="title">นี่คือหมวดหมู่{{ $book->genre->bookGenre_name }}</p> --}}
-            <div class="title-genre">
-                <p>หมวดหมู่
-                    {{ optional($books->first()->genre)->bookGenre_name ?? 'ไม่มีข้อมูลหมวดหมู่' }}</p>
-            </div>
-            <ul id="bookList" class="list-group">
-                @foreach ($books as $item)
-                    {{-- {{ dd($book) }} --}}
-
+        <ul id="bookList" class="list-group">
+            @foreach ($books as $item)
+                {{-- {{ dd($book) }} --}}
                     <li class="list-group-item">
                         <div class="book-info">
                             <img src="{{ asset($item->book_pic) }}" alt="{{ $item->book_name }}" class="book-thumbnail">
@@ -38,11 +38,11 @@
                             </div>
                         </div>
                     </li>
-                @endforeach
-            </ul>
-            <div id="pagination"></div>
-        @endif
-    </div>
+            @endforeach
+        </ul>
+        <div id="pagination"></div>
+    @endif
+</div>
 @endsection
 
 @push('scripts')
