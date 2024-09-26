@@ -17,11 +17,11 @@ class Userdb extends Model
     protected $keyType = 'string'; 
 
     function Books(){
-        return $this->hasMany(Book::class,"bookID");
+        return $this->hasMany(Book::class);
     }
 
     function BookAll(){
-        return $this->belongsToMany(Book::class,"bookID");
+        return $this->belongsToMany(Book::class);
     }
 
     function BookShelves(){
@@ -29,10 +29,10 @@ class Userdb extends Model
     }
 
     function Comments(){
-        return $this->hasMany(Chapter_comment::class,"commentID");
+        return $this->hasMany(Chapter_comment::class);
     }
 
     function Reports(){
-        return $this->hasMany(Report::class,"reportID");
+        return $this->hasMany(Report::class);
     }
 }
