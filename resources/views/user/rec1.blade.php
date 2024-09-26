@@ -6,7 +6,7 @@
 @section('containerClassName', "indexContainer")
 
 @section('content')
-    <div class="row">
+<div class="row">
     <div class="side">
         <p class="_1">1</p>
     </div>
@@ -14,19 +14,20 @@
         <h1>ยอดนิยม</h1>
         <a class="btn" id="btn2" href="#" target="_self" role="button">novel</a>
         <a class="btn" id="btn1" href="{{ route('index.rec2') }}" target="_self" role="button">commic</a>
-        <div class="recommend-section1" id="recommendSection">
+        <div class="recommend-section1">
             @foreach ($novels as $novel)
-                <div class="recommend-card">
-                    <a href="{{ route('read.read_novel', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
-                        <img src="{{ asset($novel->book_pic) }}" alt="Novel Image" class="card-img-top">
+                <a href="{{ route('novel.incrementAndRedirect', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
+                    <div class="recommend-card">
+                        <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
                         <div class="card-body">
                             <h5 class="card-title">{{ $novel->book_name }}</h5>
                             <p class="card-text">{{ $novel->book_description }}</p>
-                            <p class="card-text"><small class="text-body-secondary">ผู้แต่ง: {{ $novel->User->name }}</small></p>
-                            <p class="card-text"><small class="text-body-secondary">ยอดคลิก: {{ $novel->click_count }}</small></p>
+                            <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
+                            <p class="card-text"><small class="text-body-secondary">ยอดคลิก:
+                                    {{ $novel->click_count }}</small></p>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
             @endforeach
         </div>
 
@@ -36,4 +37,4 @@
     </div>
 
 
-@endsection
+    @endsection

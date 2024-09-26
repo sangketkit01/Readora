@@ -48,7 +48,7 @@
         <br>
         <div class="recommend-section1">
             @foreach ($novels as $novel)
-                <a href="{{ route('read.read_novel', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
+                <a href="{{ route('novel.incrementAndRedirect', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
                         <div class="recommend-card">
                             <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
                             <div class="card-body">
@@ -68,7 +68,7 @@
         <br>
         <div class="recommend-section1">
             @foreach ($comics as $comic)
-                <a href="{{ route('read.read_novel', ['bookID' => $comic->bookID]) }}" class="recommend-card-link">
+                <a href="{{ route('novel.incrementAndRedirectcomic', ['bookID' => $comic->bookID]) }}" class="recommend-card-link">
                     <div class="recommend-card">
                         <img src="{{ asset($comic->book_pic) }}" alt="Novel Image">
                         <div class="card-body">
@@ -88,7 +88,7 @@
         <br>
         <div class="recommend-section1">
             @foreach ($romanticNovels as $novel)
-                <a href="{{ route('read.read_novel', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
+                <a href="{{ route('novel.incrementAndRedirect', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
                     <div class="recommend-card">
                         <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
                         <div class="card-body">
