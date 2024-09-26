@@ -30,15 +30,8 @@
                     </div>
                     <div class="button">
                         <a href="" class="button_1">เพิ่มเข้าชั้น</a>
-                        @php
-                            $hasFirstChapter = isset($firstChapter) && $firstChapter;
-                        @endphp
-
-                        <a href="{{ $hasFirstChapter ? route('read.read_chaptcomic', ['bookID' => $book->bookID, 'chapterID' => $firstChapter->chapterID]) : '#' }}"
-                            class="button_2 {{ $hasFirstChapter ? '' : 'disabled-button' }}"
-                            {{ $hasFirstChapter ? '' : 'aria-disabled="true"' }}>
-                            อ่านเลย
-                        </a>
+                        <a href="{{ route('read.read_first_chaptcomic', ['bookID' => $book->bookID]) }}"
+                            class="button_2">อ่านเลย</a>
 
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 @section('title', 'Home')
 @push('style')
     <link rel="stylesheet" href="/css/user/read.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 @endpush
 @section('containerClassName', 'indexContainer')
 
@@ -20,8 +21,7 @@
                         </h1>
                     </div>
                     <div class="profile_user">
-                        <img src="{{ $book->User->profile }}
-                " alt="">
+                        <img src="{{ $book->User->profile }}" alt="">
                         <p>{{ $book->User->name }}
                         </p>
                     </div>
@@ -29,16 +29,14 @@
                         <h4>{{ $book->Genre->bookGenre_name }}</h4>
                     </div>
                     <div class="button">
-                        <a href="" class="button_1">เพิ่มเข้าชั้น</a>
-                        @php
-                            $hasFirstChapter = isset($firstChapter) && $firstChapter;
-                        @endphp
-
-                        <a href="{{ $hasFirstChapter ? route('read.read_chaptcomic', ['bookID' => $book->bookID, 'chapterID' => $firstChapter->chapterID]) : '#' }}"
-                            class="button_2 {{ $hasFirstChapter ? '' : 'disabled-button' }}"
-                            {{ $hasFirstChapter ? '' : 'aria-disabled="true"' }}>
-                            อ่านเลย
-                        </a>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mr-2">             <a href="" class="btn button_1">เพิ่มเข้าชั้น</a>
+                                <a href="{{ route('read.read_first_chaptnovel', ['bookID' => $book->bookID]) }}" class="btn button_2">อ่านเลย</a>
+                            </div>
+                            <button type="submit" class="btn report-button">
+                                <i class="fas fa-exclamation-triangle"></i> <!-- ไอคอน warning -->
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

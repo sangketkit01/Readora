@@ -70,20 +70,18 @@ class ReadController extends Controller
     public function readFirstChapterNovel($bookID)
     {
         $book = Book::where("BookID", $bookID)->first();
-
-        if (!$book) {
-            return redirect()->route('user.read_novel');
-        }
-
         $firstChapter = Book_chapter::where("bookID", $bookID)
-            ->where("chapter_status", 'public')
+            ->where('chapter_status', 'public')
             ->orderBy('chapterID', 'asc')
             ->first();
-
-        return view('user.read_novel', [
-            'book' => $book,
-            'firstChapter' => $firstChapter,
-        ]);
+        if ($firstChapter) {
+            return redirect()->route('read.read_chaptnovel', [
+                'bookID' => $bookID,
+                'chapterID' => $firstChapter->chapterID
+            ]);
+        } else {
+            return redirect()->route('read.read_novel', ['bookID' => $bookID]);
+        }
     }
 
     public function read_comic($bookID)
@@ -140,20 +138,18 @@ class ReadController extends Controller
     public function readFirstChapterComic($bookID)
     {
         $book = Book::where("BookID", $bookID)->first();
-
-        if (!$book) {
-            return redirect()->route('user.read_comic');
-        }
-
         $firstChapter = Book_chapter::where("bookID", $bookID)
-            ->where("chapter_status", 'public')
+            ->where('chapter_status', 'public')
             ->orderBy('chapterID', 'asc')
             ->first();
-
-        return view('user.read_comic', [
-            'book' => $book,
-            'firstChapter' => $firstChapter,
-        ]);
+        if ($firstChapter) {
+            return redirect()->route('read.read_chaptcomic', [
+                'bookID' => $bookID,
+                'chapterID' => $firstChapter->chapterID
+            ]);
+        } else {
+            return redirect()->route('read.read_comic', ['bookID' => $bookID]);
+        }
     }
 
 
