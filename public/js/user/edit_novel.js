@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function DeleteNovel(bookName) {
     Swal.fire({
         title: `คุณต้องการที่จะลบนิยายเรื่อง "${bookName}" หรือไม่?`,
+        text : "ตอนทั้งหมดจะถูกย้ายไปที่ถังขยะอัตโนมัติ",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",

@@ -32,6 +32,13 @@ Route::middleware("checkLogin")->group(function () {
     Route::get('/profile/novel', [UserController::class, 'novelInfoPage'])->name('profile.novel');
     Route::get('/profile/comic', [UserController::class, 'comicInfoPage'])->name('profile.comic');
 
+
+    Route::prefix("user")->group(function(){
+        Route::get('bin/{bookTypeID}',[UserController::class,"Trash"])->name("user.bin");
+        Route::post("restore/all/{bookTypeID}",[UserController::class,"RestoreAll"])->name("user.restore_all");
+        Route::post("restore/each/{bookTypeID}/{bookID}",[UserController::class,"RestoreEach"])->name("user.restore_each");
+    });
+
     Route::get('/profile/{username}', [UserController::class, 'editInfoPage']);
     Route::post('/editInfo', [UserController::class, 'edit_info'])->name('edit.info');
 

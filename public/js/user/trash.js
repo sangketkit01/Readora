@@ -19,7 +19,7 @@ function RestoreAll(){
 
 function RestoreEach(chapterID,chapterName){
     Swal.fire({
-        title: `คุณต้องการที่จะกู้คืนตอน ${chapterName}`,
+        title: `คุณต้องการที่จะกู้คืนตอน "${chapterName}" หรือไม่`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
