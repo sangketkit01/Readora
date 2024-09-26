@@ -14,6 +14,6 @@ class Book_type extends Model
 
     function Books()
     {
-        return $this->hasMany(Book::class, "bookID");
+        return $this->hasMany(Book::class, "bookTypeID");
     }
 }

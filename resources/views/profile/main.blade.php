@@ -5,27 +5,31 @@
 @endpush
 @section('containerClassName', 'ProfileContainer')
 @section('content')
-    <div class="row mt-3">
-        <div class="top">
-            <img src="{{ $user->profile }}" alt="" onclick="">
-            <p>{{ $user->name }}</p>
-            <table>
-                <thead>
-                    <th>นิยาย</th>
-                    <th>คอมมิค</th>
-                    <th>ความคิดเห็น</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
-                        <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                        <td>-</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
     @if (isset($username))
+        <div class="row mt-3">
+            <div class="top">
+                <img src="{{ $user->profile }}" alt="" onclick="">
+                <div class="cover-upload">
+                    <i class="bi bi-camera-fill icon_cam" id="camera-icon" style="cursor: pointer;"></i>
+                    <input type="file" name="inputImage" id="inputImage" accept="image/*" style="display:none;">
+                </div>            
+                <p>{{ $user->name }}</p>
+                <table>
+                    <thead>
+                        <th>นิยาย</th>
+                        <th>คอมมิค</th>
+                        <th>ความคิดเห็น</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
+                            <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div class="edit-info mt-4">
             <div class="edit-header">
                 <button id="back-icon" onclick="window.location.href='/profile'"> <i
@@ -33,7 +37,6 @@
                 <div class="h5">
                     <h5>แก้ไขข้อมูล</h5>
                 </div>
-
             </div>
             <hr>
             <form action="{{ route('edit.info') }}" method="post" class="form_edit">
@@ -50,16 +53,6 @@
                     <label for="email">อีเมล</label>
                     <input type="email" name="email" value="{{ $user->email }}" required>
                 </div>
-                <div class="password">
-                    <label for="password">รหัสผ่าน</label>
-                    @if (!empty($user->password))
-                        <a href="/changePassword" id="link-change-password">เปลี่ยนรหัสผ่าน</a>
-                    @else
-                        รหัสผ่าน <button type="button" id="add-password-btn"
-                            onclick="window.location.href='/createPassword'">สร้างรหัสผ่าน</button>
-                    @endif
-                </div>
-
                 <div class="gender">
                     <label for="gender">เพศ</label> <br>
                     <select name="gender">
@@ -68,12 +61,42 @@
                         <option value="N" @if ($user->gender == 'N') selected @endif>ไม่ระบุ</option>
                     </select>
                 </div>
+                <div class="password">
+                    <label for="password">รหัสผ่าน</label>
+                    @if (!empty($user->password))
+                        <a href="/changePassword" id="link-change-password">เปลี่ยนรหัสผ่าน</a>
+                    @else
+                        <button type="button" id="add-password-btn"
+                            onclick="window.location.href='/createPassword'">สร้างรหัสผ่าน</button>
+                    @endif
+                </div>
                 <div class="sub">
                     <button id="submit-new-info" type="submit">บันทึก</button>
                 </div>
             </form>
         </div>
+        
     @else
+        <div class="row mt-3">
+            <div class="top">
+                <img src="{{ $user->profile }}" alt="" onclick="">           
+                <p>{{ $user->name }}</p>
+                <table>
+                    <thead>
+                        <th>นิยาย</th>
+                        <th>คอมมิค</th>
+                        <th>ความคิดเห็น</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
+                            <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div class="mt-3 else_user">
             <div class="dropdown-option">
                 <a class="btn btn-black dropdown-toggle fs-4 fw-semibold" href="#" role="button"
@@ -81,8 +104,9 @@
                     ข้อมูลส่วนตัว
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยาย</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิค</a></li>
+                    <li><a class="dropdown-item" href="{{ route('bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยายของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
                 </ul>
             </div>
             <div class="">

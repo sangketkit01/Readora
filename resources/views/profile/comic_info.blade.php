@@ -9,7 +9,7 @@
 
     <div class="row mt-3">
         <div class="top">
-            <img src="{{ $user->profile }}" alt="" onclick="">
+            <img src="{{ $user->profile }}" alt="" onclick="">  
             <p>{{ $user->name }}</p>
             <table>
                 <thead>
@@ -37,8 +37,12 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
+                    <li><a class="dropdown-item" href="{{ route('bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยาย</a></li>
                 </ul>
+                <div class="btinfo">
+                    <a class="deltitle" href="{{route("user.bin",["bookTypeID"=>2])}}"><i class="bi bi-trash3-fill"></i> เรื่องที่ลบไป</a>
+                </div>
             </div>
         </div>
         
@@ -54,30 +58,42 @@
         <div class="row mt-3">
             <div class="dropdown-option else">
                 <a class="btn btn-black dropdown-toggle fs-4 fw-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    คอมมิค
+                    คอมมิคของฉัน
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยาย</a></li>
+                    <li><a class="dropdown-item" href="{{ route('bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยายของฉัน</a></li>
                 </ul>
-                <button class="create-comic-n" onclick="window.location.href='/create_comic'">สร้างเรื่องใหม่</button>
+                <div class="btinfo">
+                    <button class="deltitle"><i class="bi bi-trash3-fill"></i> เรื่องที่ลบไป</button>
+                    <button class="create-novel-n" onclick="window.location.href='/create_novel'">สร้างเรื่องใหม่</button>
+                </div>
             </div>
         </div>
 
         <div class="row mt-3 card_user">
             @foreach ($comic as $c)
-                <div class="col-3 mt-3 d-flex justify-content-center ">
-                    <div class="card"  style="width: 14rem; max-width: 14rem;">
+                <div class="col-3 mt-3 d-flex justify-content-center" onclick="window.location.href='{{ route('comic.edit', ['bookID' => $c->bookID]) }}'">
+                    <div class="card" style="width: 14rem; max-width: 14rem;">
                         <img src="{{asset($c->book_pic)}}" class="card-img-top img_user" alt="...">
-                        <select name="" id="">
-                            <option value="public" @if($c->book_status == 'public') selected @endif>สาธารณะ</option>
-                            <option value="private" @if($c->book_status == 'private') selected @endif>ส่วนตัว</option>
-                        </select>
+
+                        <div class="status-button">
+                            @if($c->book_status == 'public')
+                                <button class="rounded-pill mt-2  " disabled > <i class="bi bi-globe-americas"></i> สาธารณะ</button>
+                            @else
+                                <button disabled> <i class="bi bi-lock-fill"></i></i> ส่วนตัว</button>
+                            @endif
+                        </div>
+
                         <div class="card-body">
-                            <span><a href="" id="book-name">{{$c->book_name}}</a></span> <br> 
-                            <span id="writer">{{$c->username}}</span> <br>
-                            <span id="chapter"><i class="bi bi-list-ul"></i> {{$c->c_chapter}} </span>  <br>
-                            <span id="genre">{{$c->Genre->bookGenre_name}}</span>
+                            <div class="n-info">
+                                <h5>{{$c->book_name}}</h5>
+                                <p id="writer">{{$c->username}}</p>
+                            </div>
+                            <span id="chapter"><i class="fa-solid fa-list-ul"></i>{{$c->c_chapter}} chapter </span> 
+                            <span id="comment"><i class="fa-solid fa-comment"></i> comment</span> <br>
+                            <span id="genre">ประเภท {{$c->Genre->bookGenre_name}}</span>
                         </div>
                     </div>
                 </div>

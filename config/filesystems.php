@@ -75,4 +75,5 @@ return [
 
     'max_filesize' => env('UPLOAD_MAX_FILESIZE', 100 * 1024 * 1024), 
 
+    
 ];

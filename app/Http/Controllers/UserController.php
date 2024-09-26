@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Userdb;
 use App\Models\Book;
 use App\Models\Book_chapter;
+use App\Models\BookShelf;
 use App\Models\Chapter_comment;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
-class UserController extends Controller
-{
+class UserController extends Controller{
     function profile(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $novels = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
@@ -30,6 +30,21 @@ class UserController extends Controller
     }
     function edit_info(Request $request){
         $user = Userdb::where('username', Session::get('user')->username)->first();
+        if ($request->hasFile('inputImage')) {
+            $user = Userdb::where('username', Session::get('user')->username)->first();
+            if ($user->profile) {
+                $oldImage = str_replace("storage/", "public/", $user->profile);
+                if (Storage::exists($oldImage)) {
+                    Storage::delete($oldImage);
+                }
+            }
+            $image = $request->file('inputImage');
+            $newImageFileName = uniqid('', true) . '.' . $image->getClientOriginalExtension();
+            $imageUrl = Storage::putFileAs('public/Profile', $image, $newImageFileName);
+            $imageUrl = str_replace("public/", "storage/", $imageUrl);
+
+            $user->profile = $imageUrl;
+        }
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->gender = $request->input('gender');
@@ -37,19 +52,49 @@ class UserController extends Controller
         return redirect()->route('profile');
     }
 
+    // function book_shelve()
+    // {
+    //     $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->get();
+    //     return view("user.book_shelve", compact('novels'));
+    // }
+
+    // public function book_shelve_commic()
+    // {
+    //     $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->get();
+    //     return view("user.book_shelve_commic", compact('comics'));
+    // }
+    function BookShelfPage(){
+        $user = Userdb::where('username', Session::get('user')->username)->first();
+        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
+        $novels = BookShelf::where('username', Session::get('user')->username)->where('bookTypeID', 1)->get();
+        $comics = BookShelf::where('username', Session::get('user')->username)->where('bookTypeID', 2)->get();
+        return view('profile.book_shelf', compact('user', 'n_count', 'c_count', 'novels', 'comics'));
+    }
+    // function book_shelf_novel(){
+    //     $novels = BookShelf::where('username', Session::get('user')->username)->where('BooktypeID', 1)->get();
+    //     return view("book_shelve", compact('novels'));
+    // }
+    // function book_shelf_commic(){
+
+    //     return view("book_shelve_commic", compact('comics'));
+    // }
+
     function novelInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
-
-        $n_chapter = null;
-        if(!$novel->isEmpty()){
-            $n_chapter =  Book_chapter::where('bookID', $novel->first()->bookID)->where('chapter_status', 'public')->count();
-        }
-        $n_chapter = Book_chapter::where('bookID', $novel->first()->bookID)->where('chapter_status', 'public')->count();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
-        // $comment_comic = 
-        // $comment_novel = 
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
+        $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
+        $n_chapter = Book_chapter::where('BookID', $novel)->count();
+        // $sum_comments = 0;
+        // foreach($novel as $n){
+        //     $chapters = $n->Chapters;
+        //     dd($chapters);
+        // }
+
+        
+        // $comment_comic = 
+        $comment_novel = Chapter_comment::where('chapterID',)->count();
         return view('profile.novel_info', compact('user', 'novel', 'c_count', 'n_count', 'n_chapter'));
     }
 
@@ -62,7 +107,7 @@ class UserController extends Controller
             $c_chapter =  Book_chapter::where('bookID', $comic->first()->bookID)->where('chapter_status', 'public')->count();
         }
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
-        // $comment_comic = Chapter_comment::all('bookTypeID', 2)->where('chapterID')->count(); //เช็คจำนวนคอมเม้นของทุกตอนในเรื่องนั้นยังไง
+    
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         return view('profile.comic_info', compact('user', 'comic', 'c_count', 'n_count', 'c_chapter'));
     }
@@ -72,37 +117,31 @@ class UserController extends Controller
     }
     function create_password(Request $request){
         $request->validate([
-            "password" => "min:8",
-            "confirm" => "same:password"
-        ],[
-            "password.min" => "รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร",
-            "confirm.same" => "รหัสผ่านไม่ตรงกัน"
+            "new_password" => "required|min:8",
+            "confirm_password" => "same:new_password"
         ]);
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $user->password = Hash::make($request->input("password"));
+        $user->password = Hash::make($request->input("new_password"));
         $user->save();
-        return redirect()->route('profile');
+        return redirect()->route('create.password.page')->with(['new_password' => 'สร้างรหัสผ่านสำเร็จ']);
     }
     
     function viewChangePassword(){
         return view('profile.change_password');
     }
     function change_password(Request $request){
-
         $request->validate([
             "current_password" => "required",
-            "password" => "min:8",
-            "confirm" => "same:password"
-        ],[
-            "password.min" => "รหัสผ่านต้องมีขั้นต่ำ 8 ตัวอักษร",
-            "confirm.same" => "รหัสผ่านไม่ตรงกัน"
+            "new_password" => "required",
+            "confirm_password" => "same:new_password"
         ]);
         $user = Userdb::where('username', Session::get('user')->username)->first();
+
         if(Hash::check($request->input('current_password'), $user->password)) {
-            $user->password = Hash::make($request->input("n-password"));
+            $user->password = Hash::make($request->input("new_password"));
             $user->save();
             Session::put('user',$user); 
-            return redirect()->route('profile');
+            return redirect()->route('change.password.page')->with(['new_password' => 'เปลี่ยนรหัสผ่านสำเร็จ']);
         }else {
             return back()->withErrors(['current_password' => 'รหัสผ่านปัจจุบันไม่ถูกต้อง']);
         }
@@ -160,3 +199,4 @@ class UserController extends Controller
         return redirect()->route("index")->with(["successMsg" => "กู้คืนนิยายสำเร็จ"]);
     }
 }
+
