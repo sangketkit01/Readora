@@ -18,8 +18,8 @@
     <div class="navbar-layout">
         <div class="left-menu">
             <a href="/" id="title">เอาชื่อเว็บมาใส่</a>
-            <a href="#">นิยาย</a>
-            <a href="#">คอมมิค</a>
+            <a href="{{ route('index.rec1') }}">แนะนำนิยาย</a>
+            <a href="{{ route('index.rec2') }}">แนะนำคอมมิค</a>
         </div>
         <div class="right-menu">
             <form action="/search" method="GET" class="search-form">

@@ -44,11 +44,11 @@
     
     <!-- Recommendation Section for Novels -->
     <div class="recommend" id="recommend1">
-        <h2>แนะนำนิยาย</h2>
+        <h2><a href="{{ route('index.rec1') }}">แนะนำนิยาย</a></h2>
         <br>
         <div class="recommend-section1">
             @foreach ($novels as $novel)
-                <a href="{{ route('read.read_novel', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
+                <a href="{{ route('novel.incrementAndRedirect', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
                         <div class="recommend-card">
                             <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
                             <div class="card-body">
@@ -63,12 +63,12 @@
     </div>
 
     <!-- Recommendation Section for Comics -->
-    <div class="recommend" id="recommend1">
-        <h2>แนะนำคอมมิค</h2>
+    <div class="recommend" id="recommend2">
+        <h2><a href="{{ route('index.rec2') }}">แนะนำคอมมิค</a></h2>
         <br>
         <div class="recommend-section1">
             @foreach ($comics as $comic)
-                <a href="{{ route('read.read_novel', ['bookID' => $comic->bookID]) }}" class="recommend-card-link">
+                <a href="{{ route('novel.incrementAndRedirectcomic', ['bookID' => $comic->bookID]) }}" class="recommend-card-link">
                     <div class="recommend-card">
                         <img src="{{ asset($comic->book_pic) }}" alt="Novel Image">
                         <div class="card-body">
@@ -83,12 +83,12 @@
     </div>
 
     <!-- Romance Section -->
-    <div class="recommend" id="recommend1">
+    <div class="recommend" id="recommend3">
         <h2>แนะนำนิยายโรแมนติก</h2>
         <br>
         <div class="recommend-section1">
             @foreach ($romanticNovels as $novel)
-                <a href="{{ route('read.read_novel', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
+                <a href="{{ route('novel.incrementAndRedirect', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
                     <div class="recommend-card">
                         <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
                         <div class="card-body">

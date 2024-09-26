@@ -163,3 +163,5 @@ Route::get("/book_shelve", [IndexController::class, 'book_shelve'])->name("index
 Route::get("/book_shelve_commic", [IndexController::class, "book_shelve_commic"])->name("index.book_shelve_commic");
 
 Route::get("/genre/{genreID}",[IndexController::class, 'Genre'])->name('genre.newpage');
+Route::get('/increment-click-and-redirect-novel/{bookID}', [ReadController::class, 'incrementClickAndRedirect'])->name('novel.incrementAndRedirect');
+Route::get('/increment-click-and-redirect-comic/{bookID}', [ReadController::class, 'incrementClickAndRedirectComic'])->name('novel.incrementAndRedirectcomic');
