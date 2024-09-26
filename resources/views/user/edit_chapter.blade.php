@@ -11,6 +11,8 @@
             enctype="multipart/form-data">
             @csrf
 
+            <input type="hidden" name="hidden_content" id="hidden_content">
+
             <div class="row d-flex">
                 <div class="col-2 d-flex justify-content-start">
                     <label for="image-input" id="image-input-label" style="background-image: url({{asset($book->chapter_image)}})"></label>
@@ -45,7 +47,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <textarea name="content" id="content"  class="ck"  cols="30" style="height: 90vh"  required >{{$book->chapter_content}}</textarea>
+                    <textarea name="content" id="content"  class="ck"  cols="30" style="height: 90vh"  >{{$book->chapter_content}}</textarea>
                 </div>
             </div>
 
@@ -75,4 +77,26 @@
 @push('scripts')
     <script src="{{ asset('js/user/add_chapter.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('form');
+            const hiddenContent = document.getElementById('hidden_content');
+
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const content = tinymce.get('content').getContent();
+                    hiddenContent.value = content;
+                    if (content.trim() === '') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'กรุณาเพิ่มเนื้อหา',
+                        });
+                    } else {
+                        this.submit();
+                    }
+                });
+            }
+        });
+    </script>
 @endpush

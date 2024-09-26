@@ -6,7 +6,18 @@
 @section('containerClassName', "indexContainer")
 
 @section('content')
+<div class="container">
+    <div class="recommend">
+        <h2 class="section-title">หมวดหมู่</h2>
+        <div class="category-tags">
+            @foreach ($genres as $genre)
+                <a href="{{ route('genre.newpage', ['genreID' => $genre->bookGenreID]) }}" class="category-tag">{{ $genre->bookGenre_name}}</a>
+            @endforeach
+        </div>
+    </div>
+</div>
 <div id="banner" class="container">
+    
     <input type="radio" name="slider" id="item-1" checked>
     <input type="radio" name="slider" id="item-2">
     <input type="radio" name="slider" id="item-3">
@@ -29,21 +40,24 @@
     </div>
 </div>
 
-    <div class="container">
+<div class="container">
+    
     <!-- Recommendation Section for Novels -->
     <div class="recommend" id="recommend1">
         <h2>แนะนำนิยาย</h2>
         <br>
         <div class="recommend-section1">
             @foreach ($novels as $novel)
-                <div class="recommend-card">
-                    <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $novel->book_name }}</h5>
-                        <p class="card-text">{{ $novel->book_description }}</p>
-                        <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
-                    </div>
-                </div>
+                <a href="{{ route('read.read_novel', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
+                        <div class="recommend-card">
+                            <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $novel->book_name }}</h5>
+                                <p class="card-text">{{ $novel->book_description }}</p>
+                                <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
+                            </div>
+                        </div>
+                    </a>
             @endforeach
         </div>
     </div>
@@ -54,63 +68,69 @@
         <br>
         <div class="recommend-section1">
             @foreach ($comics as $comic)
-                <div class="recommend-card">
-                    <img src="{{ asset($comic->book_pic) }}" alt="Novel Image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $comic->book_name }}</h5>
-                        <p class="card-text">{{ $comic->book_description }}</p>
-                        <p class="card-text"><small class="text-body-secondary">{{ $comic->User->name }}</small></p>
+                <a href="{{ route('read.read_novel', ['bookID' => $comic->bookID]) }}" class="recommend-card-link">
+                    <div class="recommend-card">
+                        <img src="{{ asset($comic->book_pic) }}" alt="Novel Image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $comic->book_name }}</h5>
+                            <p class="card-text">{{ $comic->book_description }}</p>
+                            <p class="card-text"><small class="text-body-secondary">{{ $comic->User->name }}</small></p>
+                        </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>
 
     <!-- Romance Section -->
-    <div class="recommend">
-        <h2>รักโรแมนติก</h2>
+    <div class="recommend" id="recommend1">
+        <h2>แนะนำนิยายโรแมนติก</h2>
         <br>
-        <div class="recommend-section2">
+        <div class="recommend-section1">
             @foreach ($romanticNovels as $novel)
-                <div class="recommend-card">
-                    <img src="{{ asset($novel->book_pic) }}" alt="Romance Novel Image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $novel->book_name }}</h5>
-                        <p class="card-text">{{ $novel->book_description }}</p>
-                        <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
+                <a href="{{ route('read.read_novel', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
+                    <div class="recommend-card">
+                        <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $novel->book_name }}</h5>
+                            <p class="card-text">{{ $novel->book_description }}</p>
+                            <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
+                        </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>
 </div>
+{{-- ฉันต้องการให้ส่วนนี้เป็นแยกหมวดหมู่ --}}
 
-            @endsection
 
-    @if (session('msg'))
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: '{{session("msg")}}',
-                    showConfirmButton: false,
-                    timer: 5000
-                });
+@endsection
+
+@if (session('msg'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: '{{session("msg")}}',
+                showConfirmButton: false,
+                timer: 5000
             });
-        </script>
-    @endif
+        });
+    </script>
+@endif
 
-    @if (session('successMsg'))
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: '{{session("successMsg")}}',
-                    showConfirmButton: false,
-                    timer: 5000
-                });
+@if (session('successMsg'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: '{{session("successMsg")}}',
+                showConfirmButton: false,
+                timer: 5000
             });
-        </script>
-    @endif
+        });
+    </script>
+@endif

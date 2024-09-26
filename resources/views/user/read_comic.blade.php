@@ -39,6 +39,7 @@
                             {{ $hasFirstChapter ? '' : 'aria-disabled="true"' }}>
                             อ่านเลย
                         </a>
+
                     </div>
                 </div>
             </div>
@@ -68,7 +69,7 @@
                             <strong>{{ $count }}</strong>
                             <img class="images" src="{{ asset($chapter->chapter_image) }}" alt="">
                             <strong>
-                                <a href="{{ route('read.read_chaptnovel', ['bookID' => $book->bookID, 'chapterID' => $chapter->chapterID]) }}"
+                                <a href="{{ route('read.read_chaptcomic', ['bookID' => $book->bookID, 'chapterID' => $chapter->chapterID]) }}"
                                     id="edit-chapter-href">
                                     {{ $chapter->chapter_name }}
                                 </a>

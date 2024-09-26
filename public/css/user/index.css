@@ -9,6 +9,7 @@ body {
     padding: 0;
 }
 
+
 #banner {
     display: flex;
     padding: 30px 10px;
@@ -83,10 +84,12 @@ h2 {
     text-align: left;
     margin-bottom: 20px;
 }
-#recommend1{
+
+#recommend1 {
     margin-top: 250px;
     margin-bottom: -100px;
 }
+
 .recommend {
     margin-top: 100px;
     padding: 20px;
@@ -94,21 +97,23 @@ h2 {
     justify-content: center;
 }
 
-.recommend-section1,
-.recommend-section2,
-.recommend-section3 {
+.recommend-section1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
     max-width: 1150px;
     margin: 0 auto;
+}
 
+.recommend-card-link {
+    flex: 1 1 calc(50% - 20px);
+    max-width: 100%;
+    text-decoration: none;
+    color: inherit;
 }
 
 .recommend-card {
-    flex: 1 1 calc(50% - 20px);
-    max-width: 100%;
     padding: 12px;
     background-color: #f8f9fa;
     border-radius: 10px;
@@ -131,11 +136,13 @@ h2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: left;
 }
 
 .recommend-card h5 {
     font-size: 18px;
     color: #333;
+    margin: 0;
 }
 
 .recommend-card p {
@@ -148,39 +155,32 @@ h2 {
     transform: translateY(-10px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
-@media (max-width: 715px) {
-    body {
-            min-width: 600px;
-            overflow-x: auto;
-        }
-    .recommend-card {
-        flex: 1 1 100%;
-        max-width: 500px;
-        width: 80%;
-        padding: 12px;
-        background-color: #f8f9fa;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease-in-out;
-        flex-direction: row;
-        /* Horizontal layout for image and text */
-        align-items: center;
-    }
-
-    .recommend-card img {
-        width: 130px;
-        height: 100px;
-        border-radius: 7px;
-        object-fit: cover;
-        margin-right: 10px;
-    }
-
-    .recommend-card .card-body {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-        width: calc(100% - 150px);
-    }
+a{
+    text-decoration: none;
 }
 
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.category-tag {
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* You'll need to assign specific background colors to each category */
+.category-tag:nth-child(1) { background-color: #4e5be8; }
+.category-tag:nth-child(2) { background-color: #ff6b6b; }
+.category-tag:nth-child(3) { background-color: #00BFA5; }
+.category-tag:nth-child(4) { background-color: #FF4081; }
+.category-tag:nth-child(5) { background-color: #FFC107; }
+.category-tag:nth-child(6) { background-color: #8E24AA; }
+.category-tag:nth-child(7) { background-color: #3F51B5; }
+.category-tag:nth-child(8) { background-color: #FF5722; }
+.category-tag:nth-child(9) { background-color: #009688; }

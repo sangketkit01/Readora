@@ -13,7 +13,12 @@
             <h2>{{ $chapters->chapter_name }}</h2>
             <div class="content-box">
                 {!! nl2br($chapters->chapter_content) !!}
+                <br><br><br>
+                <div class="writer-message">
+                    <strong>Writer:</strong> {{ $chapters->writer_message ?? 'No message from the writer.' }}
+                </div>
             </div>
+            <br>
             <br><br><br><br>
             <div class="pofile_user_com">
                 <img src="{{ $books->User->profile }}" alt="">
@@ -21,14 +26,14 @@
             </div><br>
             <div class="button">
                 @if ($previousChapter)
-                    <a href="{{ route('read.read_chapt', ['bookID' => $books->bookID, 'chapterID' => $previousChapter->chapterID]) }}"
+                    <a href="{{ route('read.read_chaptnovel', ['bookID' => $books->bookID, 'chapterID' => $previousChapter->chapterID]) }}"
                         class="btn btn-primary">ตอนก่อนหน้า</a>
                 @else
                     <button class="btn btn-primary" disabled>ตอนก่อนหน้า</button>
                 @endif
     
                 @if ($nextChapter)
-                    <a href="{{ route('read.read_chapt', ['bookID' => $books->bookID, 'chapterID' => $nextChapter->chapterID]) }}"
+                    <a href="{{ route('read.read_chaptnovel', ['bookID' => $books->bookID, 'chapterID' => $nextChapter->chapterID]) }}"
                         class="btn btn-primary">ตอนถัดไป</a>
                 @else
                     <button class="btn btn-primary" disabled>ตอนถัดไป</button>

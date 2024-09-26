@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function DeleteNovel(bookName) {
     Swal.fire({
         title: `คุณต้องการที่จะลบนิยายเรื่อง "${bookName}" หรือไม่?`,
+        text : "ตอนทั้งหมดจะถูกย้ายไปที่ถังขยะอัตโนมัติ",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -59,4 +60,18 @@ function DeleteChapter(chapterName, chapterID) {
             document.getElementById(`delete-chapter-form-${chapterID}`).submit(); 
         }
     });
+}
+
+function submitForm() {
+    const form = document.getElementById("form");
+
+    if (form.checkValidity()) {
+        form.submit();
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "กรุณากรอกข้อมูลให้ครบถ้วน",
+        });
+    }
 }

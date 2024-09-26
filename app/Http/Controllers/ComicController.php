@@ -218,7 +218,7 @@ class ComicController extends Controller
         }
         $book->delete();
 
-        return redirect()->route("index")->with(["successMsg" => "ลบนิยายสำเร็จ"]);
+        return redirect()->route("index")->with(["successMsg" => "ลบคอมมิคสำเร็จ"]);
     }
 
     function DeleteChapter(Request $request ,$bookID , $chapterID){

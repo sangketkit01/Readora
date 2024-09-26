@@ -11,8 +11,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\ReadController;
 use App\Http\Controllers\SearchController;
-use App\Mail\Hellomail;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, "index"])->name('index');
@@ -33,6 +31,13 @@ Route::middleware("checkLogin")->group(function () {
     Route::get('/profile', [UserController::class, "profile"])->name('profile');
     Route::get('/profile/novel', [UserController::class, 'novelInfoPage'])->name('profile.novel');
     Route::get('/profile/comic', [UserController::class, 'comicInfoPage'])->name('profile.comic');
+
+
+    Route::prefix("user")->group(function(){
+        Route::get('bin/{bookTypeID}',[UserController::class,"Trash"])->name("user.bin");
+        Route::post("restore/all/{bookTypeID}",[UserController::class,"RestoreAll"])->name("user.restore_all");
+        Route::post("restore/each/{bookTypeID}/{bookID}",[UserController::class,"RestoreEach"])->name("user.restore_each");
+    });
 
     Route::get('/profile/{username}', [UserController::class, 'editInfoPage']);
     Route::post('/editInfo', [UserController::class, 'edit_info'])->name('edit.info');
@@ -55,7 +60,7 @@ Route::middleware("checkLogin")->group(function () {
         Route::post("insert", [ComicController::class, "insertNewComic"])->name("comic.insert");
     });
 
-    Route::middleware("checkOwner")->group(function () {
+    Route::middleware("checkNovelOwner")->group(function () {
 
         Route::prefix("edit_novel")->group(function () {
             Route::get("{bookID}", [NovelController::class, 'Edit'])->name("novel.edit");
@@ -114,9 +119,13 @@ Route::middleware("checkLogin")->group(function () {
         });
     });
 
-    Route::get("/read_novel/{bookID}", [ReadController::class, "read"])->name("read.read_novel");
-    Route::get("/read_chapt/{bookID}/{chapterID}", [ReadController::class, "readnovel_chapt"])->name("read.read_chapt");
-    Route::get('/read_first_chapt/{bookID}', [ReadController::class, 'readFirstChapter'])->name('read.read_first_chapt');
+    Route::get("/read_novel/{bookID}", [ReadController::class, "read_novel"])->name("read.read_novel");
+    Route::get("/read_chaptnovel/{bookID}/{chapterID}", [ReadController::class, "readnovel_chapt"])->name("read.read_chaptnovel");
+    Route::get('/read_first_chaptNovel/{bookID}', [ReadController::class, 'readFirstChapterNovel'])->name('read.read_first_chaptnovel');
+
+    Route::get("/read_comic/{bookID}", [ReadController::class, "read_comic"])->name("read.read_comic");
+    Route::get("/read_chaptcomic/{bookID}/{chapterID}", [ReadController::class, "readcomic_chapt"])->name("read.read_chaptcomic");
+    Route::get('/read_first_chaptComic/{bookID}', [ReadController::class, 'readFirstChapterComic'])->name('read.read_first_chaptcomic');
 
     Route::post('/comments/{$chapterID}', [ReadController::class, 'comment_insert'])->name('comment.insert');
 });
@@ -149,3 +158,5 @@ Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 Route::get("/book_shelve", [IndexController::class, 'book_shelve'])->name("index.book_shelve");
 Route::get("/book_shelve_commic", [IndexController::class, "book_shelve_commic"])->name("index.book_shelve_commic");
+
+Route::get("/genre/{genreID}",[IndexController::class, 'Genre'])->name('genre.newpage');

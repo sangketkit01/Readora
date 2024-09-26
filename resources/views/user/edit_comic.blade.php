@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="d-flex mt-4">
-                    <input type="submit" value="อัปเดตคอมมิค" class="btn btn-primary me-2">
+                    <input type="button" onclick="submitForm()" value="อัปเดตคอมมิค" class="btn btn-primary me-2">
                     @if ($chapters->isEmpty())
                         <button class="btn btn-danger ms-2" type="button" onclick="DeleteComic('{{ $data->book_name }}')">ลบคอมมิค</button>
                     @endif
@@ -125,9 +125,9 @@
                             @csrf
 
                             <select name="status_chapter" class="pub-chapter form-control me-2">
-                                <option value="public" {{ $chapter->chapter_status == "public" ? 'selected' : '' }}>เฉพาะฉัน
+                                <option value="private" {{ $chapter->chapter_status == "private" ? 'selected' : '' }}>เฉพาะฉัน
                                 </option>
-                                <option value="private" {{ $chapter->chapter_status == "private" ? 'selected' : '' }}>สาธารณะ
+                                <option value="public" {{ $chapter->chapter_status == "public" ? 'selected' : '' }}>สาธารณะ
                                 </option>
                             </select>
                         </form>
