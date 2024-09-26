@@ -10,6 +10,11 @@
     <div class="row mt-3">
         <div class="top">
             <img src="{{ $user->profile }}" alt="" onclick="">
+            <div class="cover-upload">
+                <label for="inputImage" id="input-image-label" style="background-image:url({{ asset($user->profile) }})"></label>
+                <i class="bi bi-camera-fill icon_cam" id="camera-icon" style="cursor: pointer;"></i>
+                <input type="file" name="inputImage" id="inputImage" accept="image/*" style="display:none;">
+            </div>    
             <p>{{ $user->name }}</p>
             <table>
                 <thead>
@@ -66,7 +71,7 @@
 
         <div class="row mt-3 card_user">
             @foreach ($comic as $c)
-                <div class="col-3 mt-3 d-flex justify-content-center ">
+            <div class="col-3 mt-3 d-flex justify-content-center" onclick="window.location.href='{{ route('comic.edit', ['bookID' => $n->bookID]) }}'">
                     <div class="card"  style="width: 14rem; max-width: 14rem;">
                         <img src="{{asset($c->book_pic)}}" class="card-img-top img_user" alt="...">
                         <select name="" id="">
@@ -74,7 +79,7 @@
                             <option value="private" @if($c->book_status == 'private') selected @endif>ส่วนตัว</option>
                         </select>
                         <div class="card-body">
-                            <span><a href="" id="book-name">{{$c->book_name}}</a></span> <br> 
+                            <span><a href="{{route('comic.edit',["bookID"=>$n->bookID])}}" id="book-name">{{$c->book_name}}</a></span> <br> 
                             <span id="writer">{{$c->username}}</span> <br>
                             <span id="chapter"><i class="bi bi-list-ul"></i> {{$c->c_chapter}} </span>  <br>
                             <span id="genre">{{$c->Genre->bookGenre_name}}</span>

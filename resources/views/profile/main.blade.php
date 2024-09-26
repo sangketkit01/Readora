@@ -8,6 +8,11 @@
     <div class="row mt-3">
         <div class="top">
             <img src="{{ $user->profile }}" alt="" onclick="">
+            <div class="cover-upload">
+                <label for="inputImage" id="input-image-label" style="background-image:url({{ asset($user->profile) }})"></label>
+                <i class="bi bi-camera-fill icon_cam" id="camera-icon" style="cursor: pointer;"></i>
+                <input type="file" name="inputImage" id="inputImage" accept="image/*" style="display:none;">
+            </div>            
             <p>{{ $user->name }}</p>
             <table>
                 <thead>
@@ -33,7 +38,6 @@
                 <div class="h5">
                     <h5>แก้ไขข้อมูล</h5>
                 </div>
-
             </div>
             <hr>
             <form action="{{ route('edit.info') }}" method="post" class="form_edit">
@@ -50,15 +54,7 @@
                     <label for="email">อีเมล</label>
                     <input type="email" name="email" value="{{ $user->email }}" required>
                 </div>
-                <div class="password">
-                    <label for="password">รหัสผ่าน</label>
-                    @if (!empty($user->password))
-                        <a href="/changePassword" id="link-change-password">เปลี่ยนรหัสผ่าน</a>
-                    @else
-                        รหัสผ่าน <button type="button" id="add-password-btn"
-                            onclick="window.location.href='/createPassword'">สร้างรหัสผ่าน</button>
-                    @endif
-                </div>
+
 
                 <div class="gender">
                     <label for="gender">เพศ</label> <br>
@@ -67,6 +63,15 @@
                         <option value="M" @if ($user->gender == 'M') selected @endif>ชาย</option>
                         <option value="N" @if ($user->gender == 'N') selected @endif>ไม่ระบุ</option>
                     </select>
+                </div>
+                <div class="password">
+                    <label for="password">รหัสผ่าน</label>
+                    @if (!empty($user->password))
+                        <a href="/changePassword" id="link-change-password">เปลี่ยนรหัสผ่าน</a>
+                    @else
+                        <button type="button" id="add-password-btn"
+                            onclick="window.location.href='/createPassword'">สร้างรหัสผ่าน</button>
+                    @endif
                 </div>
                 <div class="sub">
                     <button id="submit-new-info" type="submit">บันทึก</button>

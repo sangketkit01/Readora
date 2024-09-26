@@ -96,7 +96,7 @@ class UserController extends Controller
         ]);
         $user = Userdb::where('username', Session::get('user')->username)->first();
         if(Hash::check($request->input('current_password'), $user->password)) {
-            $user->password = Hash::make($request->input("n-password"));
+            $user->password = Hash::make($request->input("new_password"));
             $user->save();
             Session::put('user',$user); 
             return redirect()->route('profile');

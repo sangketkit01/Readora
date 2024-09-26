@@ -19,6 +19,19 @@
   margin-bottom: 5px;
 
 }
+.icon_cam{
+  font-size: 17px;
+  color: white;
+  background-color: rgba(125, 125, 125, 0.8);
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  position: absolute;
+  translate: 10px -25px;
+}
+.cover-upload{
+  height: 1px;
+}
 .card_user{
   margin: 0 auto;
   width: 70%;
@@ -82,9 +95,11 @@
   color:white;
 }
 #add-password-btn{
-  border-radius: 100px;
+  border-radius: 15px;
   padding: 3px 15px;
   border: 2px solid #33436F;
+
+  background-color: rgba(37, 89, 194, 0);;
 }
 /* แก้ไขข้อมูล */
 #back-icon {
@@ -105,10 +120,10 @@
   text-align: center;
   width: 85%;
   margin-top: 5px;
-
 }
 .h5 h5{
   margin: 0;
+  
 }
 .edit-info {
   width: 40%;
@@ -151,8 +166,24 @@
   margin-right: 25px;
 }
 .form_edit input{
-  margin: 6px 0;
-  width: 40%;
+  width: 50%;
+    margin: 8px 0;
+    border:0;
+    outline: 1px solid #CCC;
+    border-radius: 5px;
+    padding: 4px;
+
+}
+.form_edit input:focus{
+  outline: 1px solid rgba(37, 89, 194, 0.5);
+  box-shadow: 0 0 0 4px rgba(86, 140, 249, 0.5); 
+}
+form select{
+  width: 100px;
+  border: 0px;
+  outline: 1px solid #CCC;
+  border-radius: 5px;
+  text-align: center;
 }
 .gender{
   display: flex;
