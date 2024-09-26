@@ -11,8 +11,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\ReadController;
 use App\Http\Controllers\SearchController;
-use App\Mail\Hellomail;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, "index"])->name('index');
@@ -114,9 +112,13 @@ Route::middleware("checkLogin")->group(function () {
         });
     });
 
-    Route::get("/read_novel/{bookID}", [ReadController::class, "read"])->name("read.read_novel");
-    Route::get("/read_chapt/{bookID}/{chapterID}", [ReadController::class, "readnovel_chapt"])->name("read.read_chapt");
-    Route::get('/read_first_chapt/{bookID}', [ReadController::class, 'readFirstChapter'])->name('read.read_first_chapt');
+    Route::get("/read_novel/{bookID}", [ReadController::class, "read_novel"])->name("read.read_novel");
+    Route::get("/read_chaptnovel/{bookID}/{chapterID}", [ReadController::class, "readnovel_chapt"])->name("read.read_chaptnovel");
+    Route::get('/read_first_chaptNovel/{bookID}', [ReadController::class, 'readFirstChapterNovel'])->name('read.read_first_chaptnovel');
+
+    Route::get("/read_comic/{bookID}", [ReadController::class, "read_comic"])->name("read.read_comic");
+    Route::get("/read_chaptcomic/{bookID}/{chapterID}", [ReadController::class, "readcomic_chapt"])->name("read.read_chaptcomic");
+    Route::get('/read_first_chaptComic/{bookID}', [ReadController::class, 'readFirstChapterComic'])->name('read.read_first_chaptcomic');
 
     Route::post('/comments/{$chapterID}', [ReadController::class, 'comment_insert'])->name('comment.insert');
 });
@@ -149,4 +151,9 @@ Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 Route::get("/book_shelve", [IndexController::class, 'book_shelve'])->name("index.book_shelve");
 Route::get("/book_shelve_commic", [IndexController::class, "book_shelve_commic"])->name("index.book_shelve_commic");
+<<<<<<< HEAD
 Route::get('/increment-click-and-redirect/{bookID}', [ReadController::class, 'incrementClickAndRedirect'])->name('novel.incrementAndRedirect');
+=======
+
+Route::get("/genre/{genreID}",[IndexController::class, 'Genre'])->name('genre.newpage');
+>>>>>>> main
