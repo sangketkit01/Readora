@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="d-flex mt-4">
-                    <input type="submit" value="อัปเดตนิยาย" class="btn btn-primary">
+                    <input type="button" onclick="submitForm()" value="อัปเดตนิยาย" class="btn btn-primary">
                     <button class="btn btn-danger ms-2" type="button"
                         onclick="DeleteNovel('{{ $data->book_name }}')">ลบนิยาย</button>
                 </div>

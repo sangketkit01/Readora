@@ -61,3 +61,17 @@ function DeleteChapter(chapterName, chapterID) {
         }
     });
 }
+
+function submitForm() {
+    const form = document.getElementById("form");
+
+    if (form.checkValidity()) {
+        form.submit();
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "กรุณากรอกข้อมูลให้ครบถ้วน",
+        });
+    }
+}
