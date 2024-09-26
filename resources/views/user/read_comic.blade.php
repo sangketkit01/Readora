@@ -20,8 +20,8 @@
                                 </h1>
                             </div>
                             <div class="profile_user">
-                                <img src="{{ $book->User->profile }}
-                        " alt="">
+                                <img src="{{ asset($book->User->profile) }}
+                        " alt="" style="object-fit: cover">
                                 <p>{{ $book->User->name }}
                                 </p>
                             </div>

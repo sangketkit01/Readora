@@ -70,7 +70,7 @@
                     <input type="file" name="inputImage" id="inputImage" accept="image/*">
                 </div>
                 <div class="d-flex flex-row align-item-center justify-content-center">
-                    <img id="profile-image" src="{{ session('user')->profile }}" alt="">
+                    <img id="profile-image" src="{{ asset(session('user')->profile) }}" alt="" style="object-fit: cover">
                     <label id="profile-name" for="">{{ session('user')->name }}</label>
                 </div>
             </div>

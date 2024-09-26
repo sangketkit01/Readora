@@ -5,13 +5,12 @@
 @endpush
 @section('containerClassName', 'ProfileContainer')
 @section('content')
-    @if (isset($username))
+    @if (isset($edit))
         <div class="row mt-3">
             <div class="top">
-                <img src="{{ $user->profile }}" alt="" onclick="">
+                <img id="profile-image" src="{{asset( $user->profile) }}" alt="" onclick="">
                 <div class="cover-upload">
                     <i class="bi bi-camera-fill icon_cam" id="camera-icon" style="cursor: pointer;"></i>
-                    <input type="file" name="inputImage" id="inputImage" accept="image/*" style="display:none;">
                 </div>            
                 <p>{{ $user->name }}</p>
                 <table>
@@ -39,8 +38,10 @@
                 </div>
             </div>
             <hr>
-            <form action="{{ route('edit.info') }}" method="post" class="form_edit">
+            <form action="{{ route('edit.info') }}" method="post" class="form_edit" enctype="multipart/form-data">
                 @csrf
+                <input type="file" name="inputImage" id="inputImageID" accept="image/*" style="opacity: 0; position: absolute; left: -9999px;">
+
                 <div class="nameuser">
                     <label for="">ชื่อที่ใช้แสดง</label>
                     <span class="span">{{ $user->username }}</span>
@@ -79,7 +80,7 @@
     @else
         <div class="row mt-3">
             <div class="top">
-                <img src="{{ $user->profile }}" alt="" onclick="">           
+                <img src="{{asset( $user->profile )}}" alt="" onclick="" style="object-fit: cover">            
                 <p>{{ $user->name }}</p>
                 <table>
                     <thead>
@@ -110,7 +111,7 @@
                 </ul>
             </div>
             <div class="">
-                <button id="edit-info" onclick="window.location.href='/profile/{{ $user->username }}'"
+                <button id="edit-info" onclick="window.location.href='/profile/edit'"
                     class="ms-5">แก้ไขข้อมูล</button>
             </div>
         </div>

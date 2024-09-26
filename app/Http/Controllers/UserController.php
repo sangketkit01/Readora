@@ -22,11 +22,12 @@ class UserController extends Controller{
         return view('profile.main', compact('user','novels', 'n_count', 'comics', 'c_count'));
     }
 
-    function editInfoPage($username){
+    function editInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        return view('profile.main', compact('user', 'username', 'n_count', 'c_count'));
+        $edit = true;
+        return view('profile.main', compact('user', 'n_count', 'c_count','edit'));
     }
     function edit_info(Request $request){
         $user = Userdb::where('username', Session::get('user')->username)->first();
@@ -49,6 +50,11 @@ class UserController extends Controller{
         $user->email = $request->input('email');
         $user->gender = $request->input('gender');
         $user->save();
+        
+        $user = Userdb::where("username",Session::get("user")->username)->first();
+        Session::put("user",$user);
+        
+
         return redirect()->route('profile');
     }
 

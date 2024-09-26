@@ -35,7 +35,7 @@ Route::middleware("checkLogin")->group(function () {
     Route::get('/profile/comic', [UserController::class, 'comicInfoPage'])->name('profile.comic');
     Route::get("/profile/bookshelf", [UserController::class, 'BookShelfPage'])->name("bookshelf");
 
-    Route::get('/profile/{username}', [UserController::class, 'editInfoPage']);
+    Route::get('/profile/edit', [UserController::class, 'editInfoPage']);
     Route::post('/editInfo', [UserController::class, 'edit_info'])->name('edit.info');
 
     Route::get('/createPassword', [UserController::class, 'viewCreatePassword'])->name('create.password.page');

@@ -36,7 +36,7 @@
                         @if (session('user')->profile == null)
                             <img src="{{ asset('novel/midoriya.png') }}" id="avatar-picture" alt="">
                         @else
-                            <img src="{{ session('user')->profile }}" id="avatar-picture" alt="">
+                            <img src="{{ asset(session('user')->profile) }}" style="object-fit: cover" id="avatar-picture" alt="">
                         @endif
                     </a>
 

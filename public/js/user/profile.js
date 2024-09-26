@@ -36,7 +36,17 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.getElementById('camera-icon').addEventListener('click', function() {
-    document.getElementById('inputImage').click();
+    document.getElementById('inputImageID').click();
+
+    document.getElementById("inputImageID").addEventListener("change",(event)=>{
+        const file = event.target.files[0];
+        const maxFileSize = 10 * 1024 * 1024;
+
+        if(file){
+            const imageUrl = URL.createObjectURL(file)
+            document.getElementById("profile-image").src = imageUrl
+        }
+    })
 });
 
 

@@ -8,7 +8,7 @@
 @section('content')
     <div class="row mt-3">
         <div class="top">
-            <img src="{{ $user->profile }}" alt="" onclick="">
+            <img src="{{ asset($user->profile) }}" alt="" onclick="" style="object-fit: cover">
             <p>{{ $user->name }}</p>
             <table>
                 <thead>

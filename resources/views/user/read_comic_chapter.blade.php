@@ -58,7 +58,7 @@
             </div>
             <br><br><br><br>
             <div class="pofile_user_com">
-                <img src="{{ $books->User->profile }}" alt="">
+                <img src="{{ asset($books->User->profile) }}" alt="" style="object-fit: cover">
                 <p>{{ $books->User->name }}</p>
             </div><br>
             <div class="button">
