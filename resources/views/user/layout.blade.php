@@ -33,11 +33,7 @@
             @if (session()->has('user'))
                 <div class="dropdown">
                     <a class="dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        @if (session('user')->profile == null)
-                            <img src="{{ asset('novel/midoriya.png') }}" id="avatar-picture" alt="">
-                        @else
-                            <img src="{{ asset(session('user')->profile) }}" style="object-fit: cover" id="avatar-picture" alt="">
-                        @endif
+                        <img src="{{ asset(session('user')->profile) }}" style="object-fit: cover" id="avatar-picture" alt="">
                     </a>
 
                     <ul class="dropdown-menu">
