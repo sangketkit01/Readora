@@ -6,6 +6,8 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Models\Book;
+
 
 class AdminController extends Controller
 {
@@ -42,4 +44,6 @@ class AdminController extends Controller
     function Home(){
         return view("admin.dashboard");
     }
+
+
 }

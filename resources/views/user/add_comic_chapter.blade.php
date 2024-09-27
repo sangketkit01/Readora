@@ -5,7 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 @endpush
 
-@section('containerClassName', 'AddChapterContainer')
+@section('containerClassName')
 @section('content')
     <div class="container">
          <a href="{{route("comic.edit",["bookID"=>$bookID])}}" id="back-icon"><i class="bi bi-arrow-left-circle-fill fs-1"></i> </a>

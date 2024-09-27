@@ -174,3 +174,6 @@ Route::get('/book_shelve', [IndexController::class, 'book_shelve'])->name('index
 
 Route::get("/genre/{genreID}",[IndexController::class, 'Genre'])->name('genre.newpage');
 Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
+
+
+Route::get('/searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
