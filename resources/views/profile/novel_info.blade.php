@@ -92,7 +92,7 @@
                                 <p id="writer">{{$c->username}}</p>
                             </div>
                             <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->chapters_count}}</span> 
-                            <span id="comment"><i class="fa-solid fa-comment"></i> comment</span> <br>
+                            <span id="comment"><i class="fa-solid fa-comment"></i> {{$c->comments_count}}</span> <br>
                             <span id="genre">{{$c->Genre->bookGenre_name}}</span>
                         </div>
                     </div>
