@@ -136,7 +136,7 @@ Route::prefix("admin")->group(function () {
     Route::middleware("checkAdminLogin")->group(function () {
         Route::get("index", [AdminController::class, 'Index'])->name("admin.index");
         Route::get("signout", [AdminController::class, 'SignOut'])->name("admin.signout");
-        
+        Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
     });
 
     Route::get("login", [AdminController::class, 'Login'])->name("admin.login");
@@ -167,4 +167,3 @@ Route::group(['middleware' => UserMiddleware::class], function () {
 Route::get('/book_shelve', [IndexController::class, 'book_shelve'])->name('index.book_shelve');
 
 Route::get("/genre/{genreID}",[IndexController::class, 'Genre'])->name('genre.newpage');
-Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
