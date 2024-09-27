@@ -53,7 +53,7 @@
 
                     <label for="gender" class="form-label mt-3">เพศ</label>
                     <select name="gender"  class="form-control">
-                        <option value="none">ไม่ระบุ</option>
+                        <option value="N">ไม่ระบุ</option>
                         <option value="M">ชาย</option>
                         <option value="F">หญิง</option>
                     </select>

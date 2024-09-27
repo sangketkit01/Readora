@@ -8,7 +8,7 @@
 
     @if (session('successMsg'))
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function() {  
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -25,7 +25,9 @@
             enctype="multipart/form-data" class="form-group">
             @csrf
             <div class="d-flex flex-column">
-                <h2>แก้ไข {{ $data->book_name }}</h2>
+                <a href="{{route("profile.novel")}}" id="back-icon"><i class="bi bi-arrow-left-circle-fill fs-1"></i> </a>
+                <h2 style="margin-top: 20px">แก้ไข {{ $data->book_name }}</h2>
+
                 <div>
                     <label for="" class="form-label">ชื่อเรื่อง</label>
                     <input type="text" name="title" class="form-control" required value="{{ $data->book_name }}">

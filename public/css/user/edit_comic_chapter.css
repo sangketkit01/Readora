@@ -20,7 +20,7 @@ body {
 
 }
 
-form {
+#form {
     display: flex;
     flex-direction: column;
 }
@@ -136,4 +136,15 @@ textarea {
 
 #status {
     width: auto;
+}
+
+#back-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    border: none;
+    background-color: transparent;
+    color: #33436F;
+    align-items: start;
+    margin-bottom: 20px;
 }
