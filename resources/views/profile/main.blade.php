@@ -43,7 +43,7 @@
                 <input type="file" name="inputImage" id="inputImageID" accept="image/*" style="opacity: 0; position: absolute; left: -9999px;">
 
                 <div class="nameuser">
-                    <label for="">ชื่อที่ใช้แสดง</label>
+                    <label for="">ชื่อผู้ใช้งาน</label>
                     <span class="span">{{ $user->username }}</span>
                 </div>
                 <div class="showname">

@@ -7,96 +7,112 @@
 
 @section('content')
     @foreach ($books as $book)
-                <div class="container_user">
-                    <div class="card_user">
-                        <div class="img row col-4 md-6 sm-12">
-                            <img src="{{ asset($book->book_pic) }}
+        <div class="container_user">
+            <div class="card_user">
+                <div class="img row col-4 md-6 sm-12">
+                    <img src="{{ asset($book->book_pic) }}
                         " alt="">
-
-                        </div>
-                        <div class="user col-8 md-6 sm-12">
-                            <div class="head">
-                                <h1>{{ $book->book_name }}
-                                </h1>
-                            </div>
-                            <div class="profile_user">
-                                <img src="{{ asset($book->User->profile) }}
-                        " alt="" style="object-fit: cover">
-                                <p>{{ $book->User->name }}
-                                </p>
-                            </div>
-                            <div class="type">
-                                <h4>{{ $book->Genre->bookGenre_name }}</h4>
-                            </div>
-                            <div class="button">
+                </div>
+                <div class="user col-8 md-6 sm-12">
+                    <div class="head">
+                        <h1>{{ $book->book_name }}
+                        </h1>
+                    </div>
+                    <div class="profile_user">
+                        <img src="{{ $book->User->profile }}
+                        " alt="">
+                        <p>{{ $book->User->name }}
+                        </p>
+                    </div>
+                    <div class="type">
+                        <h4>{{ $book->Genre->bookGenre_name }}</h4>
+                    </div>
+                    <div class="button">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mr-2">
                                 <form action="{{ route('add_to_shelf') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="bookID" value="{{ $book->bookID }}">
                                     <button type="submit" class="button_1">เพิ่มเข้าชั้น</button>
-
-                                @php
-        $hasFirstChapter = isset($firstChapter) && $firstChapter;
-                                @endphp
-
-                                <a href="{{ $hasFirstChapter ? route('read.read_chaptcomic', ['bookID' => $book->bookID, 'chapterID' => $firstChapter->chapterID]) : '#' }}"
-                                    class="button_2 {{ $hasFirstChapter ? '' : 'disabled-button' }}"
-                                    {{ $hasFirstChapter ? '' : 'aria-disabled="true"' }}>
-                                    อ่านเลย
-                                </a>
-                            </form>
+                                    <a href="{{ route('read.read_first_chaptnovel', ['bookID' => $book->bookID]) }}"
+                                        class="btn button_2">อ่านเลย</a>
+                                </form>
                             </div>
+                            <button type="button" class="btn report-button" onclick="openModal()">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </button>
+
                         </div>
                     </div>
-                    <div class="Introducing">
-                        <h4>แนะนำเนื้อเรื่อง</h4>
-                        <p>{{ $book->book_description }}
-                        </p>{{-- loopข้อมูลมาวส่สะ --}}
-                    </div>
-                    <div class="All_episodes">
-                        <h4>ตอนทั้งหมด ( {{ $count_chapter }} )</h4>
-                        <select name="" id="">
-                            <option value="0">ตอนทั้งหมด</option>
-                            <option value="1">ตอนล่าสุด</option>
-                            <option value="2">ตอนแรก</option>
-                        </select>
-                        @php
-        $count = 0;
-                        @endphp
-                        @foreach ($chapters as $chapter)
-                            <div class="">
-                                <hr>
-
-                                <div class="col-8" id="sub-chap">
-                                    @php
-            $count += 1;
-                                    @endphp
-                                    <strong>{{ $count }}</strong>
-                                    <img class="images" src="{{ asset($chapter->chapter_image) }}" alt="">
-                                    <strong>
-                                        <a href="{{ route('read.read_chaptcomic', ['bookID' => $book->bookID, 'chapterID' => $chapter->chapterID]) }}"
-                                            id="edit-chapter-href">
-                                            {{ $chapter->chapter_name }}
-                                        </a>
-                                    </strong>
-                                </div>
-                            </div>
-                        @endforeach
+                </div>
+            </div>
+            <div class="Introducing">
+                <h4>แนะนำเนื้อเรื่อง</h4>
+                <p>{{ $book->book_description }}
+                </p>{{-- loopข้อมูลมาวส่สะ --}}
+            </div>
+            <div class="All_episodes">
+                <h4>ตอนทั้งหมด ( {{ $count_chapter }} )</h4>
+                <select name="" id="">
+                    <option value="0">ตอนทั้งหมด</option>
+                    <option value="1">ตอนล่าสุด</option>
+                    <option value="2">ตอนแรก</option>
+                </select>
+                @php
+                    $count = 0;
+                @endphp
+                @foreach ($chapters as $chapter)
+                    <div class="">
                         <hr>
+
+                        <div class="col-8" id="sub-chap">
+                            @php
+                                $count += 1;
+                            @endphp
+                            <strong>{{ $count }}</strong>
+                            <img class="images" src="{{ asset($chapter->chapter_image) }}" alt="">
+                            <strong>
+                                <a href="{{ route('read.read_chaptcomic', ['bookID' => $book->bookID, 'chapterID' => $chapter->chapterID]) }}"
+                                    id="edit-chapter-href">
+                                    {{ $chapter->chapter_name }}
+                                </a>
+                            </strong>
+                        </div>
                     </div>
-                    <div class="com">
-                        <h4>ความคิดเห็นทั้งหมด ( {{ $count_comment }} )</h4>
-                        @foreach ($chapters as $chapter)
-                            <div class="chapter-section">
-                                @foreach ($chapterComments[$chapter->chapterID] ?? [] as $comment)
-                                    <div class="comment-item">
-                                        <strong>{{ $comment->user->name }}</strong>:
-                                        <p>{{ $comment->comment_message }}</p>
-                                    </div>
-                                @endforeach
+                @endforeach
+                <hr>
+            </div>
+            <div class="com">
+                <h4>ความคิดเห็นทั้งหมด ( {{ $count_comment }} )</h4>
+                @foreach ($chapters as $chapter)
+                    <div class="chapter-section">
+                        @foreach ($chapterComments[$chapter->chapterID] ?? [] as $comment)
+                            <div class="comment-item">
+                                <strong>{{ $comment->user->name }}</strong>:
+                                <p>{{ $comment->comment_message }}</p>
                             </div>
                         @endforeach
                     </div>
+                @endforeach
+            </div>
     @endforeach
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>รายงานนิยายเรื่อง: {{ $book->book_name }}</h3>
+            <form id="reportForm" method="POST" action="{{ route('report.submit') }}">
+                @csrf
+                <input type="hidden" name="bookID" value="{{ $book->bookID }}">
+                <input type="hidden" name="username" value="{{ Session::get('user')->username }}">
+                <textarea class="form-control" id="report_message" name="report_message" rows="4" required
+                    placeholder="เขียนข้อความรายงานที่นี่....."></textarea>
 
+                <button type="submit" class="btn btn-primary">รายงาน</button>
+            </form>
+        </div>
+    </div>
 
 @endsection
+@push('scripts')
+    <script src="/js/user/read_report.js"></script>
+@endpush

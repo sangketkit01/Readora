@@ -8,6 +8,7 @@ use App\Models\BookShelf;
 use App\Models\Book_type;
 use App\Models\Book_chapter;
 use App\Models\Chapter_comment;
+use App\Models\Report;
 use App\Models\Userdb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 
-class    ReadController extends Controller
+class ReadController extends Controller
 {
     public function read_novel($bookID)
     {
@@ -48,6 +49,7 @@ class    ReadController extends Controller
 
     public function readnovel_chapt($bookID, $chapterID)
     {
+        $user = Userdb::where('username', Session::get('user')->username)->first();
         $books = Book::where("BookID", $bookID)->first();
         $chapters = Book_chapter::where("chapterID", $chapterID)->where("bookID", $bookID)->first();
         $previousChapter = Book_chapter::where('bookID', $bookID)
@@ -65,26 +67,24 @@ class    ReadController extends Controller
 
         $commentCount = $chapterComments->count();
 
-        return view('user.read_novel_chapter', compact("chapters", "chapterID", "books", 'previousChapter', 'nextChapter', 'chapterComments', 'commentCount'));
+        return view('user.read_novel_chapter', compact('user', "chapters", "chapterID", "books", 'previousChapter', 'nextChapter', 'chapterComments', 'commentCount'));
     }
 
     public function readFirstChapterNovel($bookID)
     {
         $book = Book::where("BookID", $bookID)->first();
-
-        if (!$book) {
-            return redirect()->route('user.read_novel');
-        }
-
         $firstChapter = Book_chapter::where("bookID", $bookID)
-            ->where("chapter_status", 'public')
+            ->where('chapter_status', 'public')
             ->orderBy('chapterID', 'asc')
             ->first();
-
-        return view('user.read_novel', [
-            'book' => $book,
-            'firstChapter' => $firstChapter,
-        ]);
+        if ($firstChapter) {
+            return redirect()->route('read.read_chaptnovel', [
+                'bookID' => $bookID,
+                'chapterID' => $firstChapter->chapterID
+            ]);
+        } else {
+            return redirect()->route('read.read_novel', ['bookID' => $bookID]);
+        }
     }
 
     public function read_comic($bookID)
@@ -118,6 +118,7 @@ class    ReadController extends Controller
 
     public function readcomic_chapt($bookID, $chapterID)
     {
+        $user = Userdb::where('username', Session::get('user')->username)->first();
         $books = Book::where("BookID", $bookID)->first();
         $chapters = Book_chapter::where("chapterID", $chapterID)->where("bookID", $bookID)->first();
         $pdfPath = $chapters ? $chapters->pdf_path : null;
@@ -136,27 +137,38 @@ class    ReadController extends Controller
 
         $commentCount = $chapterComments->count();
 
-        return view('user.read_comic_chapter', compact("chapters", "chapterID", "books", 'previousChapter', 'nextChapter', 'chapterComments', 'commentCount'));
+        return view('user.read_comic_chapter', compact('user', "chapters", "chapterID", "books", 'previousChapter', 'nextChapter', 'chapterComments', 'commentCount'));
     }
     public function readFirstChapterComic($bookID)
     {
         $book = Book::where("BookID", $bookID)->first();
-
-        if (!$book) {
-            return redirect()->route('user.read_comic');
-        }
-
         $firstChapter = Book_chapter::where("bookID", $bookID)
-            ->where("chapter_status", 'public')
+            ->where('chapter_status', 'public')
             ->orderBy('chapterID', 'asc')
             ->first();
-
-        return view('user.read_comic', [
-            'book' => $book,
-            'firstChapter' => $firstChapter,
-        ]);
+        if ($firstChapter) {
+            return redirect()->route('read.read_chaptcomic', [
+                'bookID' => $bookID,
+                'chapterID' => $firstChapter->chapterID
+            ]);
+        } else {
+            return redirect()->route('read.read_comic', ['bookID' => $bookID]);
+        }
     }
+    public function submitReport(Request $request)
+    {
+        $request->validate([
+            'bookID' => 'required|integer',
+            'report_message' => 'required|string',
+        ]);
+        Report::create([
+            'bookID' => $request->input('bookID'),
+            'username' => $request->input('username'),
+            'report_message' => $request->input('report_message'),
+        ]);
 
+        return back()->with('success', 'รายงานนิยายเรียบร้อยแล้ว');
+    }
 
 
 

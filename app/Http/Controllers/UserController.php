@@ -29,13 +29,14 @@ class UserController extends Controller{
         $edit = true;
         return view('profile.main', compact('user', 'n_count', 'c_count','edit'));
     }
+
     function edit_info(Request $request){
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        if ($request->hasFile('inputImage')) {
+        if($request->hasFile('inputImage')){
             $user = Userdb::where('username', Session::get('user')->username)->first();
             if ($user->profile) {
                 $oldImage = str_replace("storage/", "public/", $user->profile);
-                if (Storage::exists($oldImage)) {
+                if (Storage::exists($oldImage)){
                     Storage::delete($oldImage);
                 }
             }
@@ -51,7 +52,6 @@ class UserController extends Controller{
         $user->gender = $request->input('gender');
         $user->save();
         Session::put("user",$user);
-
         return redirect()->route('profile');
     }
 
@@ -59,18 +59,19 @@ class UserController extends Controller{
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $novels = BookShelf::where('username', Session::get('user')->username)->where('bookTypeID', 1)->get();
-        $comics = BookShelf::where('username', Session::get('user')->username)->where('bookTypeID', 2)->get();
-        return view('profile.book_shelf', compact('user', 'n_count', 'c_count', 'novels', 'comics'));
+
+    
+        return view('profile.book_shelf', compact('user', 'n_count', 'c_count'));
     }
 
     function novelInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $novels = Book::where('username', $user->username)->where('bookTypeID', 1)->withCount(['Chapters' => function($query) {$query->whereNull('deleted_at');}])->get();
+        $novels = Book::where('username', $user->username)->where('bookTypeID', 1)
+        ->withCount(['Chapters' => function($query) {$query->whereNull('deleted_at');}])
+        ->withCount(['Chapters as comments_count' => function($query) {$query->withCount('comments');}])->get();
         $all_novel = $novels->count();
-        // $comment_novel = Chapter_comment::where('chapterID',)->count();
         return view('profile.novel_info', compact('user', 'c_count', 'n_count', 'novels', 'all_novel'));
     }
 
@@ -78,19 +79,17 @@ class UserController extends Controller{
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $comics = Book::where('username', $user->username)->where('bookTypeID', 2)->withCount(['Chapters' => function($query) {$query->whereNull('deleted_at');}])->get();
+        $comics = Book::where('username', $user->username)->where('bookTypeID', 2)
+        ->withCount(['Chapters' => function($query) {$query->whereNull('deleted_at');}])
+        ->withCount(['Chapters as comments_count' => function($query) {$query->withCount('comments');}])->get();
         $all_comic = $comics->count();
-        // dd($comics);
-        // $c_chapter = null;
-        // if(!$comics->isEmpty()){
-        //     $c_chapter =  Book_chapter::where('bookID', $comics->first()->bookID)->where('chapter_status', 'public')->count();
-        // }
         return view('profile.comic_info', compact('user', 'c_count', 'n_count', 'comics', 'all_comic'));
     }
 
     function viewCreatePassword(){
         return view('profile.create_password');
     }
+
     function create_password(Request $request){
         $request->validate([
             "new_password" => "required|min:8",
@@ -105,6 +104,7 @@ class UserController extends Controller{
     function viewChangePassword(){
         return view('profile.change_password');
     }
+
     function change_password(Request $request){
         $request->validate([
             "current_password" => "required",
@@ -138,32 +138,25 @@ class UserController extends Controller{
         $book = Book::where("bookID",$bookID)->where("bookTypeID", $bookTypeID)->onlyTrashed()->first();
         $bookType_name = $bookTypeID == 1 ? "novel" : "comic";
         $bookType_name_thai = $bookTypeID == 1 ? "นิยาย" : "คอมมิค";
-
         if(!$book){
             return abort(404);
         }
-
         $book_pic = $book->book_pic;
         $book_pic = str_replace("storage/","public/",$book_pic);
         if($book_pic && Storage::exists($book_pic)){
             Storage::move($book_pic,"public/Picture/". basename($book_pic));
-
             $book->book_pic = "storage/Picture/". basename($book_pic);
             $book->save();
         }
-
         $book->restore();
-
         return redirect()->route("$bookType_name.edit",["bookID"=>$bookID])->with(["successMsg"=>"กู้คืน".$bookType_name_thai."สำเร็จ"]);
     }
 
     function RestoreAll(Request $request,$bookTypeID){
         $books = Book::where("username",Session::get("user")->username)->where("bookTypeID",$bookTypeID)->onlyTrashed()->get();
-
         if($books->isEmpty()){
             return abort(404);
         }
-
         foreach($books as $book){
             $book_pic = $book->book_pic;
             $book_pic = str_replace("storage/", "public/", $book_pic);
@@ -173,10 +166,8 @@ class UserController extends Controller{
                 $book->book_pic = "storage/Picture/" . basename($book_pic);
                 $book->save();
             }
-
             $book->restore();
         }
-
         return redirect()->route("index")->with(["successMsg" => "กู้คืนนิยายสำเร็จ"]);
     }
 }
