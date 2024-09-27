@@ -46,6 +46,7 @@ class LoginController extends Controller
         $insert = [
             "username" =>  $request->username , 
             "name" => $request->username,
+            "profile" => "novel/midoriya.png",
             "email" => $request->email , 
             "password" => Hash::make($request->password) ,
             "gender" => $request->gender , 

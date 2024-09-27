@@ -35,16 +35,6 @@ class Book extends Model
         return $this->hasMany(Book_chapter::class,"bookID");
     }
 
-
-    //$book = Book::where("bookID",$bookID)->first()
-    // $book->chapters->count()
-    //$comments = $book->Chapters->Comments->count()
-
-    //$chapters = $book->chapters;
-    //
-    //
-    //
-
     function BookShelves(){
         return $this->hasMany(BookShelf::class,"bookID","bookID");
 

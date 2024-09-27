@@ -7,6 +7,7 @@
 @section('containerClassName', 'EditChapterContainer')
 @section('content')
     <div class="container">
+        <a href="{{route("novel.edit",["bookID"=>$bookID])}}" id="back-icon"><i class="bi bi-arrow-left-circle-fill fs-1"></i> </a>
         <form action="{{ route('novel.chapter_update', ['bookID' => $bookID , "chapterID"=>$chapterID]) }}" id="form" method="post"
             enctype="multipart/form-data">
             @csrf

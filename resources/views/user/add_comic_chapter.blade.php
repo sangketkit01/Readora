@@ -8,6 +8,7 @@
 @section('containerClassName', 'AddChapterContainer')
 @section('content')
     <div class="container">
+         <a href="{{route("comic.edit",["bookID"=>$bookID])}}" id="back-icon"><i class="bi bi-arrow-left-circle-fill fs-1"></i> </a>
         <form action="{{ route('comic.new_chapter', ['bookID' => $bookID]) }}" id="form" method="post"
             enctype="multipart/form-data">
             @csrf

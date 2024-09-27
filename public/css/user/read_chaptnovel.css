@@ -425,7 +425,12 @@ p {
 
 .Introducing .pofile_user_com img {
     margin-right: 10px;
-    width: 40px;/ height: 40px;
+    width: 40px; 
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.comment-item{
+    
 }
