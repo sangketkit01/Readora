@@ -415,7 +415,7 @@ p {
 }
 
 .modal button {
-    background-color: #007bff;
+    background-color: #1d5a9b;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -424,5 +424,5 @@ p {
 }
 
 .modal button:hover {
-    background-color: #0056b3;
+    background-color: #4e8fd4;
 }
