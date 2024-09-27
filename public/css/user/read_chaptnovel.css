@@ -432,5 +432,7 @@ p {
 }
 
 .comment-item{
-    
+    background-color:  white;
+    border: 1px solid red;
+    margin-bottom: 10px;
 }

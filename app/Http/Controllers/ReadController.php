@@ -49,6 +49,7 @@ class ReadController extends Controller
 
     public function readnovel_chapt($bookID, $chapterID)
     {
+        $user = Userdb::where('username', Session::get('user')->username)->first();
         $books = Book::where("BookID", $bookID)->first();
         $chapters = Book_chapter::where("chapterID", $chapterID)->where("bookID", $bookID)->first();
         $previousChapter = Book_chapter::where('bookID', $bookID)
@@ -66,7 +67,7 @@ class ReadController extends Controller
 
         $commentCount = $chapterComments->count();
 
-        return view('user.read_novel_chapter', compact("chapters", "chapterID", "books", 'previousChapter', 'nextChapter', 'chapterComments', 'commentCount'));
+        return view('user.read_novel_chapter', compact('user', "chapters", "chapterID", "books", 'previousChapter', 'nextChapter', 'chapterComments', 'commentCount'));
     }
 
     public function readFirstChapterNovel($bookID)
@@ -117,6 +118,7 @@ class ReadController extends Controller
 
     public function readcomic_chapt($bookID, $chapterID)
     {
+        $user = Userdb::where('username', Session::get('user')->username)->first();
         $books = Book::where("BookID", $bookID)->first();
         $chapters = Book_chapter::where("chapterID", $chapterID)->where("bookID", $bookID)->first();
         $pdfPath = $chapters ? $chapters->pdf_path : null;
@@ -135,7 +137,7 @@ class ReadController extends Controller
 
         $commentCount = $chapterComments->count();
 
-        return view('user.read_comic_chapter', compact("chapters", "chapterID", "books", 'previousChapter', 'nextChapter', 'chapterComments', 'commentCount'));
+        return view('user.read_comic_chapter', compact('user', "chapters", "chapterID", "books", 'previousChapter', 'nextChapter', 'chapterComments', 'commentCount'));
     }
     public function readFirstChapterComic($bookID)
     {
