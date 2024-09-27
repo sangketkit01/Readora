@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                         <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                        <td>-</td>
+                        <td>{{$totalComments == 0 ? '-' : $totalComments}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -36,7 +36,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
-                    <li><a class="dropdown-item" href="{{ route('bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
                 </ul>
                 <div class="btinfo">
@@ -62,7 +62,7 @@
                 </a>
                 <ul class="dropdown-menu ">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
-                    <li><a class="dropdown-item" href="{{ route('bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
                 </ul>
                 <div class="btinfo">
@@ -77,7 +77,6 @@
                 <div class="col-3 mt-3 d-flex justify-content-center" onclick="window.location.href='{{ route('novel.edit', ['bookID' => $c->bookID]) }}'">
                     <div class="card" style="width: 14rem; max-width: 14rem;">
                         <img src="{{asset($c->book_pic)}}" class="card-img-top img_user" alt="...">
-
                         <div class="status-button">
                             @if($c->book_status == 'public')
                                 <button class="rounded-pill mt-2" onclick="return false;"> <i class="fa-solid fa-earth-americas"></i> สาธารณะ</button>
@@ -85,7 +84,6 @@
                                 <button class="rounded-pill mt-2" onclick="return false;"> <i class="fa-solid fa-lock"></i></i></i> ส่วนตัว</button>
                             @endif
                         </div>
-
                         <div class="card-body">
                             <div class="n-info">
                                 <h5>{{$c->book_name}}</h5>

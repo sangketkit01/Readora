@@ -87,12 +87,25 @@
                     <div class="chapter-section">
                         @foreach ($chapterComments[$chapter->chapterID] ?? [] as $comment)
                             <div class="comment-item">
-                                <strong>{{ $comment->user->name }}</strong>:
-                                <p>{{ $comment->comment_message }}</p>
+                                <div class="header_com">
+                                    <p>{{ $comment->comment_message }}</p>
+                                </div>
+                                <div class="user_com">
+                                    <div class="img_com">
+                                        <img src="{{ asset($comment->User->profile) }}" alt="">
+                                    </div>
+                                    <div class="r_com">
+                                        <div class="name_com">
+                                            <p>{{ $comment->User->name }}</p>
+                                        </div>
+                                        <p class="p_smaill">{{ $comment->created_at }}</p>
+                                    </div>
+                                </div>
                             </div>
                         @endforeach
                     </div>
                 @endforeach
+                
             </div>
     @endforeach
     <div id="reportModal" class="modal">

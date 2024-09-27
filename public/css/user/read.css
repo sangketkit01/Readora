@@ -426,3 +426,45 @@ p {
 .modal button:hover {
     background-color: #4e8fd4;
 }
+
+.comment-item{
+    background-color:  white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.user_com{
+    display: flex ;
+    align-items: center;
+    margin-top: 20px;
+}
+.name_com{
+    display: flex;
+    height: 20px;
+}
+.name_com p{
+    font-size: 15px;
+}
+p.p_smaill{
+    color: #ccc;
+    font-size: 12.5px;
+    align-items: start;
+    
+}
+.header_com{
+    margin-left: 10px;
+} 
+
+.img_com{
+    margin-right: 5px;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.img_com img{
+    width: 100%;
+    height: 100%;
+}

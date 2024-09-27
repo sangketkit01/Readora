@@ -1,5 +1,5 @@
 @extends('user.layout')
-@section('title', 'Your bookshelve')
+@section('title', 'Your bookshelf')
 @push('style')
     <link rel="stylesheet" href="/css/profile/profile.css">
 @endpush
@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                         <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                        <td>-</td>
+                        <td>{{$totalComments == 0 ? '-' : $totalComments}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -34,15 +34,15 @@
                 ชั้นหนังสือของฉัน
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
+                <li><a class="dropdown-item" href="{{ route('profile') }}"> ข้อมูลส่วนตัว</a></li>
                 <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยายของฉัน</a></li>
                 <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
             </ul>
         </div>
     </div>
 
-    <div class="row">
-    
+    <div class="row mt-3">
+        
     </div>
 
 

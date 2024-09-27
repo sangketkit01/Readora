@@ -33,7 +33,7 @@ Route::middleware("checkLogin")->group(function () {
     Route::get('/profile', [UserController::class, "profile"])->name('profile');
     Route::get('/profile/novel', [UserController::class, 'novelInfoPage'])->name('profile.novel');
     Route::get('/profile/comic', [UserController::class, 'comicInfoPage'])->name('profile.comic');
-    Route::get("/profile/bookshelf", [UserController::class, 'BookShelfPage'])->name("bookshelf");
+    Route::get("/profile/bookshelf", [UserController::class, 'BookShelfPage'])->name("profile.bookshelf");
 
     Route::get('/profile/edit', [UserController::class, 'editInfoPage']);
     Route::post('/editInfo', [UserController::class, 'edit_info'])->name('edit.info');
@@ -129,15 +129,9 @@ Route::middleware("checkLogin")->group(function () {
     Route::get("/read_comic/{bookID}", [ReadController::class, "read_comic"])->name("read.read_comic");
     Route::get("/read_chaptcomic/{bookID}/{chapterID}", [ReadController::class, "readcomic_chapt"])->name("read.read_chaptcomic");
     Route::get('/read_first_chaptComic/{bookID}', [ReadController::class, 'readFirstChapterComic'])->name('read.read_first_chaptcomic');
-<<<<<<< HEAD
     Route::post("/commentcomic/{bookID}/{chapterID}",[ReadController::class, 'comment_comic']);
 
     Route::post('/report/submit', [ReadController::class, 'submitReport'])->name('report.submit');
-
-=======
-
-    Route::post("/commentcomic/{bookID}/{chapterID}",[ReadController::class, 'comment_comic'])->name('comment');
->>>>>>> f0a485f017dd13801ad8074633bf4473825d0265
     Route::post('/comments/{$chapterID}', [ReadController::class, 'comment_insert'])->name('comment.insert');
 });
 
