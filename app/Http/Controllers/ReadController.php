@@ -234,4 +234,31 @@ class    ReadController extends Controller
 
     }
 
+    function comment_novel($bookID, $chapterID, Request $request){
+        $user = Userdb::where('username', Session::get('user')->username)->first();
+        $chapter = Book_chapter::where("chapterID", $chapterID)->where("bookID", $bookID)->first();
+        
+        $comment = new Chapter_comment;
+        $comment->chapterID = $chapter->chapterID;
+        $comment->username = $user->username;
+        $comment->comment_message = $request->input('comment_message');
+        $comment->save();
+
+        return redirect("/read_chaptnovel/{$bookID}/{$chapterID}");
+    }
+
+    function comment_comic($bookID, $chapterID, Request $request){
+        $user = Userdb::where('username', Session::get('user')->username)->first();
+        $chapter = Book_chapter::where("chapterID", $chapterID)->where("bookID", $bookID)->first();
+        
+        $comment = new Chapter_comment;
+        $comment->chapterID = $chapter->chapterID;
+        $comment->username = $user->username;
+        $comment->comment_message = $request->input('comment_message');
+        $comment->save();
+        
+        return redirect("/read_chaptcomic/{$bookID}/{$chapterID}");
+    }
+
+
 }

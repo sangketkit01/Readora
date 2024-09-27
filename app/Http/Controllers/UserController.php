@@ -50,25 +50,11 @@ class UserController extends Controller{
         $user->email = $request->input('email');
         $user->gender = $request->input('gender');
         $user->save();
-        
-        $user = Userdb::where("username",Session::get("user")->username)->first();
         Session::put("user",$user);
-        
 
         return redirect()->route('profile');
     }
 
-    // function book_shelve()
-    // {
-    //     $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->get();
-    //     return view("user.book_shelve", compact('novels'));
-    // }
-
-    // public function book_shelve_commic()
-    // {
-    //     $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->get();
-    //     return view("user.book_shelve_commic", compact('comics'));
-    // }
     function BookShelfPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
@@ -77,45 +63,29 @@ class UserController extends Controller{
         $comics = BookShelf::where('username', Session::get('user')->username)->where('bookTypeID', 2)->get();
         return view('profile.book_shelf', compact('user', 'n_count', 'c_count', 'novels', 'comics'));
     }
-    // function book_shelf_novel(){
-    //     $novels = BookShelf::where('username', Session::get('user')->username)->where('BooktypeID', 1)->get();
-    //     return view("book_shelve", compact('novels'));
-    // }
-    // function book_shelf_commic(){
-
-    //     return view("book_shelve_commic", compact('comics'));
-    // }
 
     function novelInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $novel = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
-        $n_chapter = Book_chapter::where('BookID', $novel)->count();
-        // $sum_comments = 0;
-        // foreach($novel as $n){
-        //     $chapters = $n->Chapters;
-        //     dd($chapters);
-        // }
-
-        
-        // $comment_comic = 
-        $comment_novel = Chapter_comment::where('chapterID',)->count();
-        return view('profile.novel_info', compact('user', 'novel', 'c_count', 'n_count', 'n_chapter'));
+        $novels = Book::where('username', $user->username)->where('bookTypeID', 1)->withCount(['Chapters' => function($query) {$query->whereNull('deleted_at');}])->get();
+        $all_novel = $novels->count();
+        // $comment_novel = Chapter_comment::where('chapterID',)->count();
+        return view('profile.novel_info', compact('user', 'c_count', 'n_count', 'novels', 'all_novel'));
     }
 
     function comicInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
-        $comic = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
-
-        $c_chapter = null;
-        if(!$comic->isEmpty()){
-            $c_chapter =  Book_chapter::where('bookID', $comic->first()->bookID)->where('chapter_status', 'public')->count();
-        }
-        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->count();
-    
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
-        return view('profile.comic_info', compact('user', 'comic', 'c_count', 'n_count', 'c_chapter'));
+        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
+        $comics = Book::where('username', $user->username)->where('bookTypeID', 2)->withCount(['Chapters' => function($query) {$query->whereNull('deleted_at');}])->get();
+        $all_comic = $comics->count();
+        // dd($comics);
+        // $c_chapter = null;
+        // if(!$comics->isEmpty()){
+        //     $c_chapter =  Book_chapter::where('bookID', $comics->first()->bookID)->where('chapter_status', 'public')->count();
+        // }
+        return view('profile.comic_info', compact('user', 'c_count', 'n_count', 'comics', 'all_comic'));
     }
 
     function viewCreatePassword(){

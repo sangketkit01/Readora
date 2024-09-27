@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    @if ($n_count == 0)
+    @if ($all_novel == 0)
         <div class="row mt-3 ">
             <div class="dropdown-option if">
                 <a class="btn btn-black dropdown-toggle fs-4 fw-semibold" href="#" role="button"
@@ -52,6 +52,7 @@
                 <button class="create-novel" onclick="window.location.href='/create_novel'">สร้างเรื่องใหม่</button>
             </div>
         </div>
+
     @else
         <div class="row mt-3 ">
             <div class="dropdown-option else">
@@ -65,39 +66,40 @@
                     <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
                 </ul>
                 <div class="btinfo">
-                    <button class="deltitle"><i class="bi bi-trash3-fill"></i> เรื่องที่ลบไป</button>
+                    <a class="deltitle" href="{{route("user.bin",["bookTypeID"=>1])}}"><i class="bi bi-trash3-fill"></i> เรื่องที่ลบไป</a>
                     <button class="create-novel-n" onclick="window.location.href='/create_novel'">สร้างเรื่องใหม่</button>
                 </div>
             </div>
         </div>
 
         <div class="row mt-3 card_user">
-            @foreach ($novel as $n)
-                <div class="col-3 mt-3 d-flex justify-content-center" onclick="window.location.href='{{ route('novel.edit', ['bookID' => $n->bookID]) }}'">
+            @foreach ($novels as $c)
+                <div class="col-3 mt-3 d-flex justify-content-center" onclick="window.location.href='{{ route('novel.edit', ['bookID' => $c->bookID]) }}'">
                     <div class="card" style="width: 14rem; max-width: 14rem;">
-                        <img src="{{asset($n->book_pic)}}" class="card-img-top img_user" alt="...">
+                        <img src="{{asset($c->book_pic)}}" class="card-img-top img_user" alt="...">
 
                         <div class="status-button">
-                            @if($n->book_status == 'public')
-                                <button class="rounded-pill mt-2  " disabled > <i class="bi bi-globe-americas"></i> สาธารณะ</button>
+                            @if($c->book_status == 'public')
+                                <button class="rounded-pill mt-2" onclick="return false;"> <i class="fa-solid fa-earth-americas"></i> สาธารณะ</button>
                             @else
-                                <button disabled> <i class="bi bi-lock-fill"></i></i> ส่วนตัว</button>
+                                <button class="rounded-pill mt-2" onclick="return false;"> <i class="fa-solid fa-lock"></i></i></i> ส่วนตัว</button>
                             @endif
                         </div>
 
                         <div class="card-body">
-                            <div class="her">
-                                <h5>{{$n->book_name}}</h5>
-                                <p id="writer">{{$n->username}}</p>
+                            <div class="n-info">
+                                <h5>{{$c->book_name}}</h5>
+                                <p id="writer">{{$c->username}}</p>
                             </div>
-                            <span id="chapter"><i class="fa-solid fa-list-ul"></i>{{$n->n_chapter}} chapter </span> 
+                            <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->chapters_count}}</span> 
                             <span id="comment"><i class="fa-solid fa-comment"></i> comment</span> <br>
-                            <span id="genre">ประเภท {{$n->Genre->bookGenre_name}}</span>
+                            <span id="genre">{{$c->Genre->bookGenre_name}}</span>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
+        
     @endif
 
 @endsection
