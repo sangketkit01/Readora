@@ -6,21 +6,22 @@
 @endpush
 
 @section('content')
-    <div class="container">
-        <div class="tabs">
-            <div class="tab active">ทั้งหมด</div>
-            <div class="tab">ชื่อผู้แต่ง</div>
-            <div class="tab">นิยาย</div>
-            <div class="tab">คอมมิค</div>
-        </div>
-        <h1 class="result">ผลการค้นหาสำหรับ: "{{ $query }}"</h1>
+<div class="container">
+    <div class="tabs">
+        <div class="tab active">ทั้งหมด</div>
+        <div class="tab">ชื่อผู้แต่ง</div>
+        <div class="tab">นิยาย</div>
+        <div class="tab">คอมมิค</div>
+    </div>
+    <h1 class="result">ผลการค้นหาสำหรับ: "{{ $query }}"</h1>
 
-        @if ($books->isEmpty())
-            <p>ไม่พบหนังสือตามที่ค้นหา</p>
-        @else
-            <ul id="bookList" class="list-group">
-                @foreach ($books as $book)
-                    {{-- {{ dd($book) }} --}}
+    @if ($books->isEmpty())
+        <p>ไม่พบหนังสือตามที่ค้นหา</p>
+    @else
+        <ul id="bookList" class="list-group">
+            @foreach ($books as $book)
+                {{-- {{ dd($book) }} --}}
+                <a href="{{ route('novel.incrementAndRedirect', ['bookID' => $book->bookID]) }}">
                     <li class="list-group-item">
                         <div class="book-info">
                             <img src="{{ asset($book->book_pic) }}" alt="{{ $book->book_name }}" class="book-thumbnail">
@@ -33,11 +34,12 @@
                             </div>
                         </div>
                     </li>
-                @endforeach
-            </ul>
-            <div id="pagination"></div>
-        @endif
-    </div>
+                </a>
+            @endforeach
+        </ul>
+        <div id="pagination"></div>
+    @endif
+</div>
 @endsection
 
 @push('scripts')

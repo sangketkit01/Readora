@@ -1,7 +1,7 @@
 @extends('user.layout')
 @section('title', 'Home')
 @push('style')
-    <link rel="stylesheet" href="/css/user/rec.css">
+    <link rel="stylesheet" href="/css/user/shelvecomic.css">
 @endpush
 @section('containerClassName', 'indexContainer')
 
@@ -12,13 +12,6 @@
         <h1>ชั้นหนังสือของฉัน</h1>
         <a class="btn" id="btn2" href="{{ route('index.book_shelve') }}" target="_self" role="button">novel</a>
         <a class="btn" id="btn1" href="#" target="_self" role="button">commic</a>
-
-        <div>
-            <select name="" id="">
-                <option value="0">เพิ่มอันแรก</option>
-                <option value="1">เพิ่มล่าสุด</option>
-            </select>
-        </div>
 
 
         <div class="recommend-section1" id="recommendSection">
@@ -41,3 +34,7 @@
     
 
     @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/user/new_page.js') }}"></script>
+@endpush

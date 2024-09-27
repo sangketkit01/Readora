@@ -20,6 +20,6 @@ class Book_chapter extends Model
     }
 
     function Comments(){
-        return $this->hasMany(Chapter_comment::class,"commentID");
+        return $this->hasMany(Chapter_comment::class,"chapterID");
     }
 }

@@ -17,8 +17,7 @@
                 </div>
                 <div class="user col-8 md-6 sm-12">
                     <div class="head">
-                        <h1>{{ $book->book_name }}
-                        </h1>
+                        <h1>{{ $book->book_name }}</h1>
                     </div>
                     <div class="profile_user">
                         <img src="{{ $book->User->profile }}" alt="">
@@ -30,8 +29,14 @@
                     </div>
                     <div class="button">
                         <div class="d-flex justify-content-between align-items-center">
-                            <div class="mr-2">             <a href="" class="btn button_1">เพิ่มเข้าชั้น</a>
-                                <a href="{{ route('read.read_first_chaptnovel', ['bookID' => $book->bookID]) }}" class="btn button_2">อ่านเลย</a>
+                            <div class="mr-2">
+                                <form action="{{ route('add_to_shelf') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="bookID" value="{{ $book->bookID }}">
+                                    <button type="submit" class="button_1">เพิ่มเข้าชั้น</button>
+                                    <a href="{{ route('read.read_first_chaptnovel', ['bookID' => $book->bookID]) }}"
+                                        class="btn button_2">อ่านเลย</a>
+                                </form>
                             </div>
                             <button type="submit" class="btn report-button">
                                 <i class="fas fa-exclamation-triangle"></i> <!-- ไอคอน warning -->

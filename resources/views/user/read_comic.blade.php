@@ -11,7 +11,7 @@
             <div class="card_user">
                 <div class="img row col-4 md-6 sm-12">
                     <img src="{{ asset($book->book_pic) }}
-                " alt="">
+                        " alt="">
 
                 </div>
                 <div class="user col-8 md-6 sm-12">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="profile_user">
                         <img src="{{ $book->User->profile }}
-                " alt="">
+                        " alt="">
                         <p>{{ $book->User->name }}
                         </p>
                     </div>
@@ -29,10 +29,17 @@
                         <h4>{{ $book->Genre->bookGenre_name }}</h4>
                     </div>
                     <div class="button">
-                        <a href="" class="button_1">เพิ่มเข้าชั้น</a>
-                        <a href="{{ route('read.read_first_chaptcomic', ['bookID' => $book->bookID]) }}"
-                            class="button_2">อ่านเลย</a>
+                        
+                                <form action="{{ route('add_to_shelf') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="bookID" value="{{ $book->bookID }}">
+                                    <button type="submit" class="button_1">เพิ่มเข้าชั้น</button>
 
+                                    <a href="{{ route('read.read_first_chaptnovel', ['bookID' => $book->bookID]) }}"
+                                        class="btn button_2">อ่านเลย</a>
+                                </form>
+                            
+                        
                     </div>
                 </div>
             </div>

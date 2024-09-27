@@ -16,7 +16,7 @@ class Book extends Model
 
     function Genre()
     {
-        return $this->belongsTo(Book_genre::class, "bookGenreID","bookGenreID");
+        return $this->belongsTo(Book_genre::class, "bookGenreID");
     }
 
     function Type(){
@@ -32,14 +32,25 @@ class Book extends Model
     }
 
     function Chapters(){
-        return $this->hasMany(Book_chapter::class,"chapterID");
+        return $this->hasMany(Book_chapter::class,"bookID");
     }
 
+
+    //$book = Book::where("bookID",$bookID)->first()
+    // $book->chapters->count()
+    //$comments = $book->Chapters->Comments->count()
+
+    //$chapters = $book->chapters;
+    //
+    //
+    //
+
     function BookShelves(){
-        return $this->hasMany(BookShelf::class);
+        return $this->hasMany(BookShelf::class,"bookID");
+
     }
 
     function Reports(){
-        return $this->hasMany(Report::class,"reportID");
+        return $this->hasMany(Report::class,"bookID");
     }
 }
