@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 
-class ReadController extends Controller
+class    ReadController extends Controller
 {
     public function read_novel($bookID)
     {

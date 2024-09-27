@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-9 d-flex flex-column ms-4 add-name">
                     <label for="">ชื่อตอน</label>
-                    <input type="text" name="title" id="title-name" required>
+                    <input type="text" name="title" id="title-name" required> 
                 </div>
             </div>
 
