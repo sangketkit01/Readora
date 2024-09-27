@@ -126,6 +126,11 @@ class UserController extends Controller{
 
     function Trash($bookTypeID){
         $books = Book::where("username",Session::get("user")->username)->where("bookTypeID",$bookTypeID)->onlyTrashed()->get();
+        
+        if($bookTypeID != 1 && $bookTypeID != 2){
+            return abort(404);
+        }
+
         return view("user.user_bin",compact("books","bookTypeID"));
     }
 
