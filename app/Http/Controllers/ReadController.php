@@ -8,6 +8,7 @@ use App\Models\BookShelf;
 use App\Models\Book_type;
 use App\Models\Book_chapter;
 use App\Models\Chapter_comment;
+use App\Models\Report;
 use App\Models\Userdb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -152,7 +153,20 @@ class ReadController extends Controller
             return redirect()->route('read.read_comic', ['bookID' => $bookID]);
         }
     }
+    public function submitReport(Request $request)
+    {
+        $request->validate([
+            'bookID' => 'required|integer',
+            'report_message' => 'required|string',
+        ]);
+        Report::create([
+            'bookID' => $request->input('bookID'),
+            'username' => $request->input('username'),
+            'report_message' => $request->input('report_message'),
+        ]);
 
+        return back()->with('success', 'รายงานนิยายเรียบร้อยแล้ว');
+    }
 
 
 

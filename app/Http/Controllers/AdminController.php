@@ -40,6 +40,6 @@ class AdminController extends Controller
     }
 
     function Home(){
-        return view("admin.home");
+        return view("admin.dashboard");
     }
 }

@@ -16,12 +16,12 @@
 
         <div class="recommend-section1" id="recommendSection">
             @foreach ($comics as $comic)
-                <a href="{{ route('read.read_novel', ['bookID' => $comic->bookID]) }}" class="recommend-card-link">
+                <a href="{{ route('read.read_novel', ['bookID' => $comic->book->bookID]) }}" class="recommend-card-link">
                     <div class="recommend-card">
-                        <img src="{{ asset($comic->book_pic) }}" alt="Novel Image">
+                        <img src="{{ asset($comic->book->book_pic) }}" alt="Novel Image">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $comic->book_name }}</h5>
-                            <p class="card-text">{{ $comic->book_description }}</p>
+                            <h5 class="card-title">{{ $comic->book->book_name }}</h5>
+                            <p class="card-text">{{ $comic->book->book_description }}</p>
                             <p class="card-text"><small class="text-body-secondary">{{ $comic->User->name }}</small></p>
                         </div>
                     </div>

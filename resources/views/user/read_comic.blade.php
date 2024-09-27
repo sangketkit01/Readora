@@ -12,7 +12,6 @@
                 <div class="img row col-4 md-6 sm-12">
                     <img src="{{ asset($book->book_pic) }}
                         " alt="">
-
                 </div>
                 <div class="user col-8 md-6 sm-12">
                     <div class="head">
@@ -29,17 +28,21 @@
                         <h4>{{ $book->Genre->bookGenre_name }}</h4>
                     </div>
                     <div class="button">
-                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mr-2">
                                 <form action="{{ route('add_to_shelf') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="bookID" value="{{ $book->bookID }}">
                                     <button type="submit" class="button_1">เพิ่มเข้าชั้น</button>
-
                                     <a href="{{ route('read.read_first_chaptnovel', ['bookID' => $book->bookID]) }}"
                                         class="btn button_2">อ่านเลย</a>
                                 </form>
-                            
-                        
+                            </div>
+                            <button type="button" class="btn report-button" onclick="openModal()">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </button>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,6 +96,23 @@
                 @endforeach
             </div>
     @endforeach
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>รายงานนิยายเรื่อง: {{ $book->book_name }}</h3>
+            <form id="reportForm" method="POST" action="{{ route('report.submit') }}">
+                @csrf
+                <input type="hidden" name="bookID" value="{{ $book->bookID }}">
+                <input type="hidden" name="username" value="{{ Session::get('user')->username }}">
+                <textarea class="form-control" id="report_message" name="report_message" rows="4" required
+                    placeholder="เขียนข้อความรายงานที่นี่....."></textarea>
 
+                <button type="submit" class="btn btn-primary">รายงาน</button>
+            </form>
+        </div>
+    </div>
 
 @endsection
+@push('scripts')
+    <script src="/js/user/read_report.js"></script>
+@endpush

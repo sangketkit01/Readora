@@ -127,3 +127,11 @@ p {
     font-size: 16px;
     margin: 0 10px;
 }
+#authorList {
+    list-style-type: none;
+    padding: 0;
+}
+#authorList li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}

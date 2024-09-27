@@ -14,6 +14,12 @@ class Report extends Model
     protected $table = "reports";
     protected $primaryKey = "reportID";
 
+    protected $fillable = [
+        'bookID',         
+        'username',       
+        'report_message', 
+    ];
+
     function Book(){
         return $this->belongsTo(Book::class,"bookID");
     }

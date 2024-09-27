@@ -35,7 +35,7 @@ Route::middleware("checkLogin")->group(function () {
     Route::get('/profile/comic', [UserController::class, 'comicInfoPage'])->name('profile.comic');
     Route::get("/profile/bookshelf", [UserController::class, 'BookShelfPage'])->name("bookshelf");
 
-    Route::get('/profile/{username}', [UserController::class, 'editInfoPage']);
+    Route::get('/profile/edit', [UserController::class, 'editInfoPage']);
     Route::post('/editInfo', [UserController::class, 'edit_info'])->name('edit.info');
 
     Route::get('/createPassword', [UserController::class, 'viewCreatePassword'])->name('create.password.page');
@@ -128,6 +128,7 @@ Route::middleware("checkLogin")->group(function () {
     Route::get("/read_comic/{bookID}", [ReadController::class, "read_comic"])->name("read.read_comic");
     Route::get("/read_chaptcomic/{bookID}/{chapterID}", [ReadController::class, "readcomic_chapt"])->name("read.read_chaptcomic");
     Route::get('/read_first_chaptComic/{bookID}', [ReadController::class, 'readFirstChapterComic'])->name('read.read_first_chaptcomic');
+    Route::post('/report/submit', [ReadController::class, 'submitReport'])->name('report.submit');
 
     Route::post('/comments/{$chapterID}', [ReadController::class, 'comment_insert'])->name('comment.insert');
 });
@@ -136,7 +137,7 @@ Route::prefix("admin")->group(function () {
     Route::middleware("checkAdminLogin")->group(function () {
         Route::get("index", [AdminController::class, 'Index'])->name("admin.index");
         Route::get("signout", [AdminController::class, 'SignOut'])->name("admin.signout");
-        Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
+        
     });
 
     Route::get("login", [AdminController::class, 'Login'])->name("admin.login");
@@ -167,3 +168,4 @@ Route::group(['middleware' => UserMiddleware::class], function () {
 Route::get('/book_shelve', [IndexController::class, 'book_shelve'])->name('index.book_shelve');
 
 Route::get("/genre/{genreID}",[IndexController::class, 'Genre'])->name('genre.newpage');
+Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");

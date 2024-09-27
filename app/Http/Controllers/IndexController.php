@@ -59,6 +59,9 @@ class IndexController extends Controller
 
         $novels = Bookshelf::with('book')
             ->where('username', $username)
+            ->whereHas('book', function ($query) {
+                $query->where('BooktypeID', 1);
+            })
             ->orderBy('created_at', 'desc')
             ->get(); 
 
@@ -77,6 +80,9 @@ class IndexController extends Controller
 
         $comics = Bookshelf::with('book')
             ->where('username', $username)
+            ->whereHas('book', function ($query) {
+                $query->where('BooktypeID', 2);
+            })
             ->orderBy('created_at', 'desc')
             ->get();  
 
