@@ -87,6 +87,8 @@ p {
 
 .result {
     font-size: x-large;
+    display: flex;
+    justify-content: center;
 }
 .warning {
     font-size: xx-large;
