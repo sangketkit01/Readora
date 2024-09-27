@@ -129,15 +129,9 @@ Route::middleware("checkLogin")->group(function () {
     Route::get("/read_comic/{bookID}", [ReadController::class, "read_comic"])->name("read.read_comic");
     Route::get("/read_chaptcomic/{bookID}/{chapterID}", [ReadController::class, "readcomic_chapt"])->name("read.read_chaptcomic");
     Route::get('/read_first_chaptComic/{bookID}', [ReadController::class, 'readFirstChapterComic'])->name('read.read_first_chaptcomic');
-<<<<<<< HEAD
-    Route::post("/commentcomic/{bookID}/{chapterID}",[ReadController::class, 'comment_comic']);
 
-    Route::post('/report/submit', [ReadController::class, 'submitReport'])->name('report.submit');
-
-=======
 
     Route::post("/commentcomic/{bookID}/{chapterID}",[ReadController::class, 'comment_comic'])->name('comment');
->>>>>>> f0a485f017dd13801ad8074633bf4473825d0265
     Route::post('/comments/{$chapterID}', [ReadController::class, 'comment_insert'])->name('comment.insert');
 });
 
