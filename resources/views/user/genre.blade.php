@@ -6,12 +6,11 @@
 @endpush
 
 @section('content')
-<div class="container">
+<div id="mainContainer" class="container">
     <div class="tabs">
-        <div class="tab active">ทั้งหมด</div>
-        <div class="tab">ชื่อผู้แต่ง</div>
-        <div class="tab">นิยาย</div>
-        <div class="tab">คอมมิค</div>
+        <div class="tab active" id="all">ทั้งหมด</div>
+        <div class="tab" id="novel">นิยาย</div>
+        <div class="tab" id="comic">คอมมิค</div>
     </div>
 
     @if ($books->isEmpty())
