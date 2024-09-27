@@ -78,24 +78,25 @@
             </div>
         </div>
 
-        
-
-
         <div class="comment">
             <h4>แสดงความคิดเห็น</h4>
-                <textarea name="comment_message" rows="5" placeholder="แสดงความคิดเห็นที่นี่....."></textarea>
+            <form action="/commentnovel/{{$books->bookID}}/{{$chapters->ID}}" method="post">
+                @csrf
+                <textarea name="comment_message" rows="5" placeholder="แสดงความคิดเห็นที่นี่....." required></textarea>
                 <button type="submit">ส่งความคิดเห็น</button>
+            </form>
         </div>
         <div class="com">
             <h4>ความคิดเห็นทั้งหมด ({{ $commentCount }})</h4>
-
             @foreach ($chapterComments as $comment)
+            
                 <div class="comment-item">
                     <strong>{{ $comment->user->name }}</strong>:
                     <p>{{ $comment->comment_message }}</p>
                 </div>
             @endforeach
         </div>
+
     </div>
 
 @endsection
