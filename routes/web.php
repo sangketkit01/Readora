@@ -124,12 +124,12 @@ Route::middleware("checkLogin")->group(function () {
     Route::get("/read_novel/{bookID}", [ReadController::class, "read_novel"])->name("read.read_novel");
     Route::get("/read_chaptnovel/{bookID}/{chapterID}", [ReadController::class, "readnovel_chapt"])->name("read.read_chaptnovel");
     Route::get('/read_first_chaptNovel/{bookID}', [ReadController::class, 'readFirstChapterNovel'])->name('read.read_first_chaptnovel');
-    Route::post("/commentnovel/{bookID}/{chapterID}",[ReadController::class, 'comment'])->name('comment');
+    Route::post("/commentnovel/{bookID}/{chapterID}",[ReadController::class, 'comment_novel']);
 
     Route::get("/read_comic/{bookID}", [ReadController::class, "read_comic"])->name("read.read_comic");
     Route::get("/read_chaptcomic/{bookID}/{chapterID}", [ReadController::class, "readcomic_chapt"])->name("read.read_chaptcomic");
     Route::get('/read_first_chaptComic/{bookID}', [ReadController::class, 'readFirstChapterComic'])->name('read.read_first_chaptcomic');
-    Route::post("/commentcomic/{bookID}/{chapterID}",[ReadController::class, 'comment'])->name('comment');
+    Route::post("/commentcomic/{bookID}/{chapterID}",[ReadController::class, 'comment_comic'])->name('comment');
 
     Route::post('/comments/{$chapterID}', [ReadController::class, 'comment_insert'])->name('comment.insert');
 });

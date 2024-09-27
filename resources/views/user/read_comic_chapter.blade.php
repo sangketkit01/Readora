@@ -80,7 +80,7 @@
 
         <div class="comment">
             <h4>แสดงความคิดเห็น</h4>
-            <form action="/commentnovel/{{$books->bookID}}/{{$chapters->ID}}" method="post">
+            <form action="/commentcomic/{{$books->bookID}}/{{$chapters->ID}}" method="post">
                 @csrf
                 <textarea name="comment_message" rows="5" placeholder="แสดงความคิดเห็นที่นี่....." required></textarea>
                 <button type="submit">ส่งความคิดเห็น</button>
