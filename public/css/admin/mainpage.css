@@ -7,7 +7,6 @@
 }
 
 .box {
-    background-color: pink;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -23,25 +22,35 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: background-color 0.3s;
+    
 }
 
 .box{
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 
 }
 .action-box {
     margin:10px  10px;
+    
 }
 .action-box img {
-    width: 48px;
-    height: 48px;
+    width: 80px;
+    height: 80px;
     margin-bottom: 10px;
 }
 
 .action-box p {
-    font-size: 1.2rem;
+    font-size: 30px;
+    
 }
 
 .action-box:hover {
     background-color: #3949ab;
 }
+
+.action-box a {
+    text-decoration: none;
+}
+

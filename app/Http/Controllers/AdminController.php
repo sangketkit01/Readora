@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Userdb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -42,7 +43,14 @@ class AdminController extends Controller
     }
 
     function Home(){
-        return view("admin.dashboard");
+        $user = Userdb::all();
+        $userCount = $user->count();
+        $comic = Book::where('bookTypeID',2)->get();
+        $comicCount = $comic->count();
+        $novel = Book::where('bookTypeID',1)->get();
+        $novelCount = $novel->count();
+
+        return view("admin.dashboard",compact('user','userCount','comicCount','novelCount'));
     }
 
 

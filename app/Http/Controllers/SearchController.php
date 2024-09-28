@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Userdb;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -81,5 +82,20 @@ class SearchController extends Controller
 
         return view('admin.searchcomic_admin', compact('books', 'query', 'comics'));
     }
+    function searchAdminUser(){
+        return view('admin.searchUser');
+    }
+
+    function searchUser(Request $request){
+        $query = $request->input('query');
+
+        // ค้นหาหนังสือจากฐานข้อมูล
+        $user = Userdb::where('name', 'LIKE', "%{$query}%")->get();
+
+        // ส่งผลลัพธ์การค้นหาไปที่ view
+        return view('user.searchUser', compact('user', 'query'));
+    }
+
+    
 }
 

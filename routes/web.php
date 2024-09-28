@@ -14,6 +14,7 @@ use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\UserMiddleware;
 
+use function Laravel\Prompts\search;
 
 Route::get('/', [IndexController::class, "index"])->name('index');
 
@@ -170,8 +171,11 @@ Route::group(['middleware' => UserMiddleware::class], function () {
 Route::get('/book_shelve', [IndexController::class, 'book_shelve'])->name('index.book_shelve');
 
 Route::get("/genre/{genreID}",[IndexController::class, 'Genre'])->name('genre.newpage');
+
 Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
 
 
 Route::get('/searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
 Route::get('/searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
+Route::get('/searchUserAdmin', [SearchController::class, 'searchAdminUser'])->name('admin.search_user');
+Route::get('/searchUser', [SearchController::class, 'searchUser'])->name('admin.get_info_search');
