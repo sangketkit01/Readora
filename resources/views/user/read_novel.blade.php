@@ -38,7 +38,7 @@
                                 </form>
                             </div>
                             <button type="button" class="btn report-button" onclick="openModal()">
-                                <i class="fas fa-exclamation-triangle"></i> 
+                                <i class="fas fa-exclamation-triangle"></i>
                             </button>
 
                         </div>
