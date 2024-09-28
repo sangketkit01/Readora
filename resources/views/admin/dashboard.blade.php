@@ -28,8 +28,10 @@
         </a>
     </div>
     <div class="action-box">
-        <img src="admin/User.png" alt="Users">
-        <p>Users</p>
+        <a href="{{ route('admin.search_user') }}">
+            <img src="admin/User.png" alt="Users">
+            <p>Users</p>
+        </a>
     </div>
     <div class="action-box">
         <img src="admin/Group108.png" alt="Blocked Novels">

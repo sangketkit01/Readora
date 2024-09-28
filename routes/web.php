@@ -177,4 +177,5 @@ Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
 
 Route::get('/searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
 Route::get('/searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
-Route::get('searchUserAdmin', [SearchController::class, 'searchAdminuser'])->name('admin.search_user');
+Route::get('/searchUserAdmin', [SearchController::class, 'searchAdminUser'])->name('admin.search_user');
+Route::get('/searchUser', [SearchController::class, 'searchUser'])->name('admin.get_info_search');
