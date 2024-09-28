@@ -83,5 +83,7 @@ class SearchController extends Controller
 
         return view('admin.searchcomic_admin', compact('books', 'query', 'novels', 'comics'));
     }
+
+    
 }
 

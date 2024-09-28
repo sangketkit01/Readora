@@ -14,6 +14,7 @@ use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\UserMiddleware;
 
+use function Laravel\Prompts\search;
 
 Route::get('/', [IndexController::class, "index"])->name('index');
 
@@ -181,3 +182,4 @@ Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
 
 Route::get('/searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
 Route::get('/searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
+Route::get('searchUserAdmin', [SearchController::class, 'searchAdminuser'])->name('admin.search_user');
