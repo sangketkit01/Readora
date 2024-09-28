@@ -21,6 +21,7 @@ class UserMiddleware
             return $next($request);
         }
 
+        Session::put('url.intended', $request->fullUrl());
         return redirect()->route("sign_in");
     }
 }
