@@ -81,6 +81,24 @@
                 @endforeach
                 <hr>
             </div>
+            
+            <div class="share-div p-4 d-flex flex-column justify-content-center align-items-center">
+                <button id="share-button" onclick="shareClicked()">Share</button>
+                <div class="modal-container">
+                    <div class="modal-content-share">
+                        <div class="modal-header d-flex flex-column">
+                            <a id="exit-modal-button" onclick="closeShare()"><img src="{{asset("novel/exit.png")}}" width="30" alt=""></a>
+                            <label for="" id="modal-label">แชร์ {{$book->book_name}}</label>
+                        </div>
+                        <div class="modal-element d-flex align-items-center">
+                            <input type="text" readonly id="link" class="form-control">
+                            <a id="share-modal-button" onclick="copyLink()"><img src="{{asset("novel/copy.png")}}" width="30" alt=""></a>
+                        </div>
+                        <div id="alert-container" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9999;"></div>
+                    </div>
+                </div>
+            </div>
+
             <div class="com">
                 <h4>ความคิดเห็นทั้งหมด ( {{ $count_comment }} )</h4>
                 @foreach ($chapters as $chapter)
@@ -99,7 +117,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h3>รายงานนิยายเรื่อง: {{ $book->book_name }}</h3>
-            <form id="reportForm" method="POST" action="{{ route('report.submit') }}">
+            <form id="reportForm" method="POST" action="{{ route('report.submit') }}" >
                 @csrf
                 <input type="hidden" name="bookID" value="{{ $book->bookID }}">
                 <input type="hidden" name="username" value="{{ Session::get('user')->username }}">
@@ -114,4 +132,9 @@
 @endsection
 @push('scripts')
     <script src="/js/user/read_report.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            document.getElementById("link").value = window.location.href;
+        })
+    </script>
 @endpush
