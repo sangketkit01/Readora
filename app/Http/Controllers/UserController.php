@@ -66,19 +66,6 @@ class UserController extends Controller{
         return redirect()->route('profile');
     }
 
-    function BookShelfPage(){
-        $user = Userdb::where('username', Session::get('user')->username)->first();
-        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
-        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
-        $allComments = 0;
-        foreach ($books as $book) {
-            foreach ($book->Chapters as $chapter) {
-                $allComments += $chapter->Comments->count();
-            }
-        }
-        return view('profile.book_shelf', compact('user', 'n_count', 'c_count', 'allComments'));
-    }
     function novelInfoPage(){ 
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
