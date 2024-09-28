@@ -62,7 +62,7 @@
                 </a>
                 <ul class="dropdown-menu ">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('index.book_shelve') }}">ชั้นหนังสือของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
                 </ul>
                 <div class="btinfo">
