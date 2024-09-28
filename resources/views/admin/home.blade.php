@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{ asset('css/admin/navigator.css') }}">
     @stack('style')
     <link rel="stylesheet" href="{{ asset('css/admin/mainpage.css') }}">
-    @yield('css')
 </head>
 <body>
     <div class="navbar">
@@ -23,12 +22,12 @@
         </div>
     </div>
     
-    <div class="container">
+    <div class="@yield("containerClassName")">
         @yield('content')
     </div>
 
-    @yield('additional_js')
-</body>
 
+</body>
+@stack("scripts")
 
 </html>
