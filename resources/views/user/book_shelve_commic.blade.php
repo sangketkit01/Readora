@@ -1,9 +1,10 @@
 @extends('user.layout')
 @section('title', 'Home')
 @push('style')
+    <link rel="stylesheet" href="/css/user/search-result.css">
     <link rel="stylesheet" href="/css/user/shelvecomic.css">
 @endpush
-@section('containerClassName', 'indexContainer')
+@section('containerClassName', )
 
 @section('content')
 <div class="row">
@@ -16,7 +17,7 @@
 
         <div class="recommend-section1" id="recommendSection">
             @foreach ($comics as $comic)
-                <a href="{{ route('read.read_novel', ['bookID' => $comic->book->bookID]) }}" class="recommend-card-link">
+                <a href="{{ route('read.read_comic', ['bookID' => $comic->book->bookID]) }}" class="recommend-card-link">
                     <div class="recommend-card">
                         <img src="{{ asset($comic->book->book_pic) }}" alt="Novel Image">
                         <div class="card-body">
@@ -31,9 +32,9 @@
     </div>
     <div class="side"></div>
 </div>
-    
 
-    @endsection
+
+@endsection
 
 @push('scripts')
     <script src="{{ asset('js/user/new_page.js') }}"></script>
