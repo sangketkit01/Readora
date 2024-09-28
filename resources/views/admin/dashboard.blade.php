@@ -13,12 +13,16 @@
         <h2>Users</h2>
     </div>
     <div class="action-box">
+        <a href="{{ route('admin.search_admin') }}">
         <img src="https://img.icons8.com/material/48/000000/book.png" alt="Novels">
         <p>Novels</p>
+        </a>
     </div>
     <div class="action-box center">
+        <a href="{{ route('admin.search_admincomic') }}">
         <img src="https://img.icons8.com/material/48/000000/book.png" alt="Comics">
         <p>Comics</p>
+        </a>
     </div>
     <div class="action-box">
         <img src="https://img.icons8.com/material/48/000000/user.png" alt="Users">

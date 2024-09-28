@@ -40,6 +40,7 @@
                         <li><a class="dropdown-item" href="{{ route('profile') }}">โปรไฟล์</a></li>
                         <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยายของฉัน</a></li>
                         <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
+                        <li><a class="dropdown-item" href="{{ route('index.book_shelve') }}">ชั้นหนังสือของฉัน</a></li>
                         <li><a class="dropdown-item" href="{{ route('create_novel') }}">สร้างนิยาย</a></li>
                         <li><a class="dropdown-item" href="{{ route('create_comic') }}">สร้างคอมมิค</a></li>
                         <li><a class="dropdown-item" href="{{ route('sign_out') }}">ออกจากระบบ</a></li>

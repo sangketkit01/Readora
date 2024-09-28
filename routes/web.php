@@ -131,7 +131,12 @@ Route::middleware("checkLogin")->group(function () {
     Route::get('/read_first_chaptComic/{bookID}', [ReadController::class, 'readFirstChapterComic'])->name('read.read_first_chaptcomic');
 
 
+    Route::post('/report/submit', [ReadController::class, 'submitReport'])->name('report.submit');
+
+    Route::post("/commentcomic/{bookID}/{chapterID}",[ReadController::class, 'comment'])->name('comment');
+
     Route::post("/commentcomic/{bookID}/{chapterID}",[ReadController::class, 'comment_comic'])->name('comment');
+
     Route::post('/comments/{$chapterID}', [ReadController::class, 'comment_insert'])->name('comment.insert');
 });
 
@@ -172,3 +177,7 @@ Route::get('/book_shelve', [IndexController::class, 'book_shelve'])->name('index
 Route::get("/genre/{genreID}",[IndexController::class, 'Genre'])->name('genre.newpage');
 
 Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
+
+
+Route::get('/searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
+Route::get('/searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
