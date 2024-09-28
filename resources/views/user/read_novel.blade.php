@@ -117,7 +117,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h3>รายงานนิยายเรื่อง: {{ $book->book_name }}</h3>
-            <form id="reportForm" method="POST" {{-- action="{{ route('report.submit') }}" --}} >
+            <form id="reportForm" method="POST" action="{{ route('report.submit') }}" >
                 @csrf
                 <input type="hidden" name="bookID" value="{{ $book->bookID }}">
                 <input type="hidden" name="username" value="{{ Session::get('user')->username }}">
