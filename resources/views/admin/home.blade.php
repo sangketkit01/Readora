@@ -7,7 +7,7 @@
     <title>@yield('title', 'Admin Dashboard')</title>
     <link rel="stylesheet" href="{{ asset('css/admin/navigator.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/mainpage.css') }}">
-    
+    @yield('css')
 </head>
 <body>
     <div class="navbar">
@@ -28,4 +28,6 @@
 
     @yield('additional_js')
 </body>
+
+
 </html>
