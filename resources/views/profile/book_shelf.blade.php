@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                         <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                        <td>{{$totalComments == 0 ? '-' : $totalComments}}</td>
+                        <td>{{$allComments == 0 ? '-' : $allComments}}</td>
                     </tr>
                 </tbody>
             </table>

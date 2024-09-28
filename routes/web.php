@@ -43,6 +43,9 @@ Route::middleware("checkLogin")->group(function () {
     Route::get('/changePassword', [UserController::class, 'viewChangePassword'])->name('change.password.page');
     Route::post('/change_password', [UserController::class, 'change_password'])->name('change.password');
 
+    Route::get('/book_shelve', [IndexController::class, 'book_shelve'])->name('index.book_shelve');
+    Route::get("/book_shelve_commic", [IndexController::class, "book_shelve_commic"])->name("index.book_shelve_commic");
+
     Route::prefix("user")->group(function(){
         Route::get('bin/{bookTypeID}',[UserController::class,"Trash"])->name("user.bin");
         Route::post("restore/all/{bookTypeID}",[UserController::class,"RestoreAll"])->name("user.restore_all");
@@ -129,15 +132,9 @@ Route::middleware("checkLogin")->group(function () {
     Route::get("/read_comic/{bookID}", [ReadController::class, "read_comic"])->name("read.read_comic");
     Route::get("/read_chaptcomic/{bookID}/{chapterID}", [ReadController::class, "readcomic_chapt"])->name("read.read_chaptcomic");
     Route::get('/read_first_chaptComic/{bookID}', [ReadController::class, 'readFirstChapterComic'])->name('read.read_first_chaptcomic');
-<<<<<<< HEAD
     Route::post("/commentcomic/{bookID}/{chapterID}",[ReadController::class, 'comment_comic']);
 
     Route::post('/report/submit', [ReadController::class, 'submitReport'])->name('report.submit');
-=======
-
-
-    Route::post("/commentcomic/{bookID}/{chapterID}",[ReadController::class, 'comment_comic'])->name('comment');
->>>>>>> main
     Route::post('/comments/{$chapterID}', [ReadController::class, 'comment_insert'])->name('comment.insert');
 });
 

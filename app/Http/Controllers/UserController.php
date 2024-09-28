@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Userdb;
 use App\Models\Book;
+use App\Models\Book_type;
 use App\Models\BookShelf;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -15,33 +16,31 @@ class UserController extends Controller{
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $books = Book::where('username', $user->username)->get();
-        $totalComments = 0;
+        $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
+        $allComments = 0;
         foreach ($books as $book) {
             foreach ($book->Chapters as $chapter) {
-                $totalComments += $chapter->Comments->count();
+                $allComments += $chapter->Comments->count();
             }
         }
-
-
         $novels = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
         $comics = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
-        return view('profile.main', compact('user','novels', 'n_count', 'comics', 'c_count', 'totalComments'));
+        return view('profile.main', compact('user','novels', 'n_count', 'comics', 'c_count', 'allComments'));
     }
 
     function editInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $books = Book::where('username', $user->username)->get();
-        $totalComments = 0;
+        $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
+        $allComments = 0;
         foreach ($books as $book) {
             foreach ($book->Chapters as $chapter) {
-                $totalComments += $chapter->Comments->count();
+                $allComments += $chapter->Comments->count();
             }
         }
         $edit = true;
-        return view('profile.main', compact('user', 'n_count', 'c_count','edit', 'totalComments'));
+        return view('profile.main', compact('user', 'n_count', 'c_count','edit', 'allComments'));
     }
 
     function edit_info(Request $request){
@@ -73,50 +72,47 @@ class UserController extends Controller{
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $books = Book::where('username', $user->username)->get();
-        $totalComments = 0;
+        $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
+        $allComments = 0;
         foreach ($books as $book) {
             foreach ($book->Chapters as $chapter) {
-                $totalComments += $chapter->Comments->count();
+                $allComments += $chapter->Comments->count();
             }
         }
-        return view('profile.book_shelf', compact('user', 'n_count', 'c_count', 'totalComments'));
+        return view('profile.book_shelf', compact('user', 'n_count', 'c_count', 'allComments'));
     }
-
-    function novelInfoPage(){
+    function novelInfoPage(){ 
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $books = Book::where('username', $user->username)->get();
-        $totalComments = 0;
+        $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
+        $allComments = 0;
         foreach ($books as $book) {
             foreach ($book->Chapters as $chapter) {
-                $totalComments += $chapter->Comments->count();
+                $allComments += $chapter->Comments->count();
             }
         }
         $novels = Book::where('username', $user->username)->where('bookTypeID', 1)
-        ->withCount(['Chapters' => function($query) {$query->whereNull('deleted_at');}])
-        ->withCount(['Chapters as comments_count' => function($query) {$query->withCount('comments');}])->get();
+        ->withCount(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
         $all_novel = $novels->count();
-        return view('profile.novel_info', compact('user', 'c_count', 'n_count', 'novels', 'all_novel', 'totalComments'));
+        return view('profile.novel_info', compact('user', 'c_count', 'n_count', 'allComments', 'novels', 'all_novel'));
     }
 
     function comicInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $books = Book::where('username', $user->username)->get();
-        $totalComments = 0;
+        $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
+        $allComments = 0;
         foreach ($books as $book) {
             foreach ($book->Chapters as $chapter) {
-                $totalComments += $chapter->Comments->count();
+                $allComments += $chapter->Comments->count();
             }
         }
         $comics = Book::where('username', $user->username)->where('bookTypeID', 2)
-        ->withCount(['Chapters' => function($query) {$query->whereNull('deleted_at');}])
-        ->withCount(['Chapters as comments_count' => function($query) {$query->withCount('comments');}])->get();
+        ->withCount(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
         $all_comic = $comics->count();
-        return view('profile.comic_info', compact('user', 'c_count', 'n_count', 'comics', 'all_comic', 'totalComments'));
+        return view('profile.comic_info', compact('user', 'c_count', 'n_count', 'comics', 'all_comic','allComments'));
     }
 
     function viewCreatePassword(){

@@ -8,7 +8,7 @@
     @if (isset($edit))
         <div class="row mt-3">
             <div class="top">
-                <img id="profile-image" src="{{asset( $user->profile) }}" alt="" onclick="">
+                <img id="profile-image" src="{{asset( $user->profile) }}" alt="">
                 <div class="cover-upload">
                     <i class="bi bi-camera-fill icon_cam" id="camera-icon" style="cursor: pointer;"></i>
                 </div>            
@@ -23,7 +23,7 @@
                         <tr>
                             <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                             <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                            <td>{{$totalComments == 0 ? '-' : $totalComments}}</td>
+                            <td>{{$allComments == 0 ? '-' : $allComments}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -92,7 +92,7 @@
                         <tr>
                             <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                             <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                            <td>{{$totalComments == 0 ? '-' : $totalComments}}</td>
+                            <td>{{$allComments == 0 ? '-' : $allComments}}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                         <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                        <td>{{$totalComments == 0 ? '-' : $totalComments}}</td>
+                        <td>{{$allComments == 0 ? '-' : $allComments}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -89,8 +89,8 @@
                                 <h5>{{$c->book_name}}</h5>
                                 <p id="writer">{{$c->username}}</p>
                             </div>
-                            <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->chapters_count}}</span> 
-                            <span id="comment"><i class="fa-solid fa-comment"></i> {{$c->comments_count}}</span> <br>
+                            <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->chapters_count}}</span> <br>
+                            {{-- <span id="comment"><i class="fa-solid fa-comment"></i> {{$c->comments_count}}</span> <br> --}}
                             <span id="genre">{{$c->Genre->bookGenre_name}}</span>
                         </div>
                     </div>
