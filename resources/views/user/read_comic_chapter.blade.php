@@ -80,7 +80,7 @@
 
         <div class="comment">
             <h4>แสดงความคิดเห็น</h4>
-            <form action="/commentcomic/{{$books->bookID}}/{{$chapters->ID}}" method="post">
+            <form action="/commentcomic/{{ $books->bookID }}/{{ $chapters->chapterID }}" method="post">
                 @csrf
                 <textarea name="comment_message" rows="5" placeholder="แสดงความคิดเห็นที่นี่....." required></textarea>
                 <button type="submit">ส่งความคิดเห็น</button>
@@ -89,10 +89,21 @@
         <div class="com">
             <h4>ความคิดเห็นทั้งหมด ({{ $commentCount }})</h4>
             @foreach ($chapterComments as $comment)
-            
                 <div class="comment-item">
-                    <strong>{{ $comment->user->name }}</strong>:
-                    <p>{{ $comment->comment_message }}</p>
+                    <div class="header_com">
+                        <p>{{ $comment->comment_message }}</p>
+                    </div>
+                    <div class="user_com">
+                        <div class="img_com">
+                            <img src="{{ asset($comment->User->profile) }}" alt="">
+                        </div>
+                        <div class="r_com">
+                            <div class="name_com">
+                                <p>{{ $comment->User->name }}</p>
+                            </div>
+                            <p class="p_smaill">{{ $comment->created_at }}</p>
+                        </div>
+                    </div>
                 </div>
             @endforeach
         </div>

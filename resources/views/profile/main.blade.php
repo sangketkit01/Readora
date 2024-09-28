@@ -8,7 +8,7 @@
     @if (isset($edit))
         <div class="row mt-3">
             <div class="top">
-                <img id="profile-image" src="{{asset( $user->profile) }}" alt="" onclick="">
+                <img id="profile-image" src="{{asset( $user->profile) }}" alt="">
                 <div class="cover-upload">
                     <i class="bi bi-camera-fill icon_cam" id="camera-icon" style="cursor: pointer;"></i>
                 </div>            
@@ -23,7 +23,7 @@
                         <tr>
                             <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                             <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                            <td>-</td>
+                            <td>{{$allComments == 0 ? '-' : $allComments}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -92,12 +92,13 @@
                         <tr>
                             <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                             <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                            <td>-</td>
+                            <td>{{$allComments == 0 ? '-' : $allComments}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+
         <div class="mt-3 else_user">
             <div class="dropdown-option">
                 <a class="btn btn-black dropdown-toggle fs-4 fw-semibold" href="#" role="button"
@@ -105,7 +106,7 @@
                     ข้อมูลส่วนตัว
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('index.book_shelve') }}">ชั้นหนังสือของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยายของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
                 </ul>
@@ -144,11 +145,9 @@
                     </p>
                     <p>
                         @if (!empty($user->password))
-                            ************* <button id="change-password-btn"
-                                onclick="window.location.href='/changePassword'">เปลี่ยนรหัสผ่าน</button>
+                            ************* <button id="change-password-btn" onclick="window.location.href='/changePassword'">เปลี่ยนรหัสผ่าน</button>
                         @else
-                            <button type="button" id="add-password-btn"
-                                onclick="window.location.href='/createPassword'">สร้างรหัสผ่าน</button>
+                            <button type="button" id="add-password-btn" onclick="window.location.href='/createPassword'">สร้างรหัสผ่าน</button>
                         @endif
                     </p>
                 </div>
