@@ -1,16 +1,14 @@
 @extends('user.layout')
 @section('title', 'Home')
 @push('style')
-    <link rel="stylesheet" href="/css/user/shelvenovel.css">
     <link rel="stylesheet" href="/css/user/search-result.css">
+    <link rel="stylesheet" href="/css/user/shelvenovel.css">
 @endpush
 
 
 @section('content')
 <div class="row">
-    <div class="side">
-
-    </div>
+    <div class="side"></div>
     <div class="container">
         <h1>ชั้นหนังสือของฉัน</h1>
         <a class="btn" id="btn2" href="#" target="_self" role="button">novel</a>

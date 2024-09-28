@@ -23,7 +23,7 @@
                             <h5 class="card-title">{{ $comic->book_name }}</h5>
                             <p class="card-text">{{ $comic->book_description }}</p>
                             <p class="card-text"><small class="text-body-secondary">{{ $comic->User->name }}</small></p>
-                            <p class="card-text"><small class="text-body-secondary">ยอดคลิก:
+                            <p class="card-text"><small class="text-body-secondary">ยอดชม:
                                     {{ $comic->click_count }}</small></p>
                         </div>
                     </div>

@@ -21,8 +21,8 @@
                 <div>
                     <label for="" class="form-label mt-3">ตั้งค่าสถานะเรื่อง</label>
                     <select name="status" id="" class="form-control">
-                        <option value="private">เฉพาะฉัน</option>
                         <option value="public">สาธารณะ</option>
+                        <option value="private">เฉพาะฉัน</option>
                     </select>
                 </div>
                 <div>
