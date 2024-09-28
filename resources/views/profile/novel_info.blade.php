@@ -36,7 +36,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('index.book_shelve') }}">ชั้นหนังสือของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
                 </ul>
                 <div class="btinfo">
@@ -89,8 +89,16 @@
                                 <h5>{{$c->book_name}}</h5>
                                 <p id="writer">{{$c->username}}</p>
                             </div>
-                            <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->chapters_count}}</span> <br>
-                            {{-- <span id="comment"><i class="fa-solid fa-comment"></i> {{$c->comments_count}}</span> <br> --}}
+                            <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->Chapters->count()}}</span>
+                                @php
+                                    $totalComments = 0;
+                                @endphp
+                                @foreach($c->Chapters as $chapter)
+                                    @php
+                                        $totalComments += $chapter->comments_count;
+                                    @endphp
+                                @endforeach
+                                <span id="comment"><i class="fa-solid fa-comment"></i> {{$totalComments}}</span> <br>
                             <span id="genre">{{$c->Genre->bookGenre_name}}</span>
                         </div>
                     </div>

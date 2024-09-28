@@ -428,7 +428,6 @@ p {
     background-color: #4e8fd4;
 }
 
-<<<<<<< HEAD
 .comment-item{
     background-color:  white;
     padding: 10px;
@@ -470,7 +469,7 @@ p.p_smaill{
     width: 100%;
     height: 100%;
 }
-=======
+
 
 .report-button {
     background-color: #4F5D87; 
@@ -567,6 +566,3 @@ p.p_smaill{
 #share-modal-button:hover {
     background-color: #FAFAFA;
 }
-
-
->>>>>>> main

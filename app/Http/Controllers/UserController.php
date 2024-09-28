@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Userdb;
 use App\Models\Book;
-use App\Models\Book_type;
-use App\Models\BookShelf;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -93,7 +91,8 @@ class UserController extends Controller{
             }
         }
         $novels = Book::where('username', $user->username)->where('bookTypeID', 1)
-        ->withCount(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
+        ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])->get();
+
         $all_novel = $novels->count();
         return view('profile.novel_info', compact('user', 'c_count', 'n_count', 'allComments', 'novels', 'all_novel'));
     }
@@ -110,9 +109,18 @@ class UserController extends Controller{
             }
         }
         $comics = Book::where('username', $user->username)->where('bookTypeID', 2)
-        ->withCount(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
+        ->withCount(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])   
+        ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');
+        }])
+        ->get();
+        $totalComments = 0;
+        foreach ($comics as $comic) {
+            foreach ($comic->Chapters as $chapter) {
+                $totalComments += $chapter->comments_count;
+            }
+        }
         $all_comic = $comics->count();
-        return view('profile.comic_info', compact('user', 'c_count', 'n_count', 'comics', 'all_comic','allComments'));
+        return view('profile.comic_info', compact('user', 'c_count', 'n_count', 'comics', 'all_comic','allComments', 'totalComments'));
     }
 
     function viewCreatePassword(){
