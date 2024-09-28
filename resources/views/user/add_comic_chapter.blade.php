@@ -33,8 +33,8 @@
             <div class="row">
                 <div class="col-12">
                     <select name="status" id="status" class="form-control">
+                        <option value="public">สาธารณะ</option>
                         <option value="private">เฉพาะฉัน</option>
-                         <option value="public">สาธารณะ</option>
                     </select>
                 </div>
             </div>
