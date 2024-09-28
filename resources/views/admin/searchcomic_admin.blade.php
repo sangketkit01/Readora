@@ -162,10 +162,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <form action="{{ route('admin.search_admin') }}" method="GET" class="search-form">
+        <form action="{{ route('admin.search_admincomic') }}" method="GET" class="search-form">
             <input type="text" name="query" placeholder="ค้นหา..." class="search-input" value="{{ $query }}">
             <button type="submit" class="search-button">
-                <img src="{{ asset('nav/search.svg') }}" width="20" height="20" alt="Search">
+                <img src="{{ asset('nav/search.svg') }}" width="20" height="20" alt="ค้นหา">
             </button>
         </form>
         <div>
@@ -175,7 +175,7 @@
             <p>ไม่พบหนังสือตามที่ค้นหา</p>
         @else
             <div class="recommend-section1">
-                @foreach ($comics as $comic)
+                @foreach ($books as $comic)
                     <a href="{{ route('read.read_comic', ['bookID' => $comic->bookID]) }}" class="recommend-card-link">
                         <div class="recommend-card">
                             <img src="{{ asset($comic->book_pic) }}" alt="{{ htmlspecialchars($comic->book_name) }}">
