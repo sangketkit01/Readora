@@ -13,6 +13,11 @@ class LoginController extends Controller
     //
 
     function Verify(Request $request){
+        $intended = null;
+        if (Session::has('url.intended')) {
+            $intended = Session::get('url.intended');
+        }
+
         try{
             $user = DB::table("userdbs")->where("username", $request->username)->first();
             $password = $request->password;
@@ -27,10 +32,20 @@ class LoginController extends Controller
             return redirect()->route('sign_in')->withErrors(["msg" => "Login failed. Please try again."]);
         }
 
+        if ($intended) {
+            return redirect($intended);
+        }
+
         return redirect()->route("index");
     }
 
     function Insert(Request $request){
+        $intended = null;
+        if (Session::has('url.intended')) {
+            $intended = Session::get('url.intended');
+        }
+
+
         $request->validate([
             "username" => "unique:userdbs,username",
             "email" => "unique:userdbs,email",
@@ -59,6 +74,10 @@ class LoginController extends Controller
         $user = Userdb::where("username",$request->username)->first();
         Session::flush();
         Session::put("user",$user);
+
+        if($intended){
+            return redirect($intended);
+        }
 
         return redirect()->route("index");
     }

@@ -426,3 +426,81 @@ p {
 .modal button:hover {
     background-color: #4e8fd4;
 }
+
+#share-button{
+    width: 154px;
+    height: 39px;
+    border: none;
+    border-radius: 20px;
+    background-color: #D9D9D9;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#share-button:hover{
+    background-color: #D3D3D3;
+}
+
+.modal-container{
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-element{
+    padding: 5px 0;
+}
+
+.modal-content-share{
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    border-radius: 10px;
+}
+
+#link{
+    margin-right: 10px;
+}
+
+#modal-label{
+    align-self: self-start;
+    font-size: 1.4rem;
+}
+
+#exit-modal-button{
+    align-self: self-end;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+#exit-modal-button:hover {
+    background-color: #FAFAFA;
+}
+
+#share-modal-button{
+    border: none;
+    background-color: transparent;
+    outline: none;
+    margin: auto 0;
+    background-color: white;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#share-modal-button:hover {
+    background-color: #FAFAFA;
+}
+
+
