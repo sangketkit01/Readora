@@ -70,8 +70,8 @@
         .recommend-card-link {
             text-decoration: none;
             color: inherit;
-            flex-basis: calc(50% - 10px);
-            max-width: calc(50% - 10px);
+            flex-basis: calc(100% - 10px);
+            max-width: calc(100% - 10px);
         }
 
         .recommend-card {
@@ -162,10 +162,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <form action="{{ route('admin.search_admincomic') }}" method="GET" class="search-form">
+        <form action="{{ route('admin.search_admin') }}" method="GET" class="search-form">
             <input type="text" name="query" placeholder="ค้นหา..." class="search-input" value="{{ $query }}">
             <button type="submit" class="search-button">
-                <img src="{{ asset('nav/search.svg') }}" width="20" height="20" alt="ค้นหา">
+                <img src="{{ asset('nav/search.svg') }}" width="20" height="20" alt="Search">
             </button>
         </form>
         <div>

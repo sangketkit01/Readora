@@ -50,11 +50,10 @@ class SearchController extends Controller
             ->where('book_status', 'public')
             ->paginate(20);
 
-        $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->take(4)->get();
-        $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->take(4)->get();
+        $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->get();
         
 
-        return view('admin.search_admin', compact('books', 'query', 'novels', 'comics'));
+        return view('admin.search_admin', compact('books', 'query', 'novels'));
     }
 
     public function searchAdmincomic(Request $request)
@@ -77,11 +76,10 @@ class SearchController extends Controller
             ->where('book_status', 'public')
             ->paginate(20);
 
-        $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->take(4)->get();
         $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->take(4)->get();
         
 
-        return view('admin.searchcomic_admin', compact('books', 'query', 'novels', 'comics'));
+        return view('admin.searchcomic_admin', compact('books', 'query', 'comics'));
     }
 }
 
