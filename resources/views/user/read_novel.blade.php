@@ -19,7 +19,7 @@
                         <h1>{{ $book->book_name }}</h1>
                     </div>
                     <div class="profile_user">
-                        <img src="{{ $book->User->profile }}" alt="">
+                        <img src="{{ asset($book->User->profile) }}" alt="">
                         <p>{{ $book->User->name }}
                         </p>
                     </div>
