@@ -1,0 +1,139 @@
+body {
+    background-color: #f9f9f9;
+    font-family: 'Kanit', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* สไตล์สำหรับแท็บ */
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.tab.active {
+    border-bottom: 2px solid #000;
+    font-weight: bold;
+}
+
+/* สไตล์สำหรับรายการหนังสือ */
+.list-group {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 20px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-group-item {
+    display: flex;
+    width: auto; /* 2 คอลัมน์ต่อแถว */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.list-group-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.book-thumbnail {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.book-info {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin: 0 0 10px 0;
+}
+
+p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.read-more {
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 0.9em;
+    align-self: flex-start;
+}
+
+.result {
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+}
+.warning {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.title-genre {
+    font-size: xx-large;
+    text-align: center;
+}
+
+#pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#pagination button {
+    margin: 0 10px;
+    padding: 5px 15px;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+#pagination button:hover:not(:disabled) {
+    background-color: #e8e8e8;
+}
+
+#pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#pageIndicator {
+    font-size: 16px;
+    margin: 0 10px;
+}
+#authorList {
+    list-style-type: none;
+    padding: 0;
+}
+#authorList li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}

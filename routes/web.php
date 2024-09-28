@@ -175,3 +175,5 @@ Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
 
 Route::get('/searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
 Route::get('/searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
+
+Route::get('/checkreport',[AdminController::class,'Checkreport'])->name('admin.checkreport');

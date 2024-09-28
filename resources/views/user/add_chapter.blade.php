@@ -33,14 +33,14 @@
             <div class="row">
                 <div class="col-12">
                     <select name="status" id="status" class="form-control">
-                        <option value="private">เฉพาะฉัน</option>
                         <option value="public">สาธารณะ</option>
+                        <option value="private">เฉพาะฉัน</option>
                     </select>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-12 d-flex justfy-content-start mt-5">
+            <div class="col-12 d-flex justfy-content-start mt-5">
                     <label for="" id="content-label">เนื้อหา</label>
                 </div>
             </div>

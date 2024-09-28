@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -45,5 +46,9 @@ class AdminController extends Controller
         return view("admin.dashboard");
     }
 
+    function Checkreport(){
+        $reports = Report::all();
 
+        return view('admin.checkreport_admin',compact('reports'));
+    }
 }
