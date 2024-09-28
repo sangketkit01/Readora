@@ -162,7 +162,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <form action="{{ route('admin.search_admin') }}" method="GET" class="search-form">
+        <form action="{{ route('admin.search_admincomic') }}" method="GET" class="search-form">
             <input type="text" name="query" placeholder="ค้นหา..." class="search-input" value="{{ $query }}">
             <button type="submit" class="search-button">
                 <img src="{{ asset('nav/search.svg') }}" width="20" height="20" alt="ค้นหา">
@@ -175,15 +175,15 @@
             <p>ไม่พบหนังสือตามที่ค้นหา</p>
         @else
             <div class="recommend-section1">
-                @foreach ($novels as $novel)
-                    <a href="{{ route('read.read_novel', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
+                @foreach ($comics as $comic)
+                    <a href="{{ route('read.read_comic', ['bookID' => $comic->bookID]) }}" class="recommend-card-link">
                         <div class="recommend-card">
-                            <img src="{{ asset($novel->book_pic) }}" alt="{{ htmlspecialchars($novel->book_name) }}">
+                            <img src="{{ asset($comic->book_pic) }}" alt="{{ htmlspecialchars($comic->book_name) }}">
                             <div class="card-body">
-                                <h5 class="card-title">{{ htmlspecialchars($novel->book_name) }}</h5>
-                                <p class="card-text">{{ Str::limit(htmlspecialchars($novel->book_description), 100) }}</p>
+                                <h5 class="card-title">{{ htmlspecialchars($comic->book_name) }}</h5>
+                                <p class="card-text">{{ Str::limit(htmlspecialchars($comic->book_description), 100) }}</p>
                                 <p class="card-text"><small
-                                        class="text-body-secondary">{{ htmlspecialchars($novel->User->name) }}</small></p>
+                                        class="text-body-secondary">{{ htmlspecialchars($comic->User->name) }}</small></p>
                             </div>
                         </div>
                     </a>
