@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComicController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\IndexController;
@@ -27,6 +28,9 @@ Route::post("/signup_insert", [LoginController::class, "Insert"])->name("signup_
 
 Route::get('/auth/google', [GoogleController::class, "Redirect"])->name("google-auth");
 Route::get("/auth/google/call-back", [GoogleController::class, "CallbackGoogle"]);
+
+Route::get("/auth/facebook",[FacebookController::class,"Redirect"])->name("facebook-auth");
+Route::get("/auth/facebook/call-back",[FacebookController::class,"CallbackFacebook"]);
 
 Route::middleware("checkLogin")->group(function () {
 
