@@ -157,6 +157,11 @@ Route::prefix("admin")->group(function () {
         Route::get('/searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
         Route::get('/searchUserAdmin', [SearchController::class, 'searchAdminUser'])->name('admin.search_user');
         Route::get('/searchUser', [SearchController::class, 'searchUser'])->name('admin.get_info_search');
+
+        Route::post('/admin.delete_user', [AdminController::class, 'adminDeleteUser'])->name('admin.delete_user');
+
+        Route::get('/admin/deleted-users', [AdminController::class, 'deletedUsers'])->name('admin.deleted_users');
+        Route::post('/admin.restore_user', [AdminController::class, 'adminRestoreUser'])->name('admin.restore_user');
         
     });
 
