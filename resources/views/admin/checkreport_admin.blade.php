@@ -1,9 +1,10 @@
-@extends('user.layout')
-@section('title', 'Home')
+@extends('admin.home')
+@section('title', 'Checkreport')
 @push('style')
-    <link rel="stylesheet" href="/css/user/index.css">
     <link rel="stylesheet" href="/css/admin/checkreport_admin.css">
 @endpush
+
+@section('containerClassName', 'checkreportContainer')
 
 @section('content')
 <div id="mainContainer" class="container">
