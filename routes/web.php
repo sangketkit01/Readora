@@ -13,9 +13,6 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\ReadController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\UserMiddleware;
-
-use function Laravel\Prompts\search;
 
 Route::get('/', [IndexController::class, "index"])->name('index');
 
@@ -34,17 +31,21 @@ Route::get("/auth/facebook/call-back",[FacebookController::class,"CallbackFacebo
 
 Route::middleware("checkLogin")->group(function () {
 
+    Route::get('/signout', [LoginController::class, 'Logout'])->name('sign_out');
     // profile
-    Route::get('/profile', [UserController::class, "profile"])->name('profile');
-    Route::get('/profile/novel', [UserController::class, 'novelInfoPage'])->name('profile.novel');
-    Route::get('/profile/comic', [UserController::class, 'comicInfoPage'])->name('profile.comic');
-    Route::get("/profile/bookshelf", [UserController::class, 'BookShelfPage'])->name("profile.bookshelf");
+    Route::prefix("profile")->group(function(){
+        Route::get('/', [UserController::class, "profile"])->name('profile');
+        Route::get('novel', [UserController::class, 'novelInfoPage'])->name('profile.novel');
+        Route::get('comic', [UserController::class, 'comicInfoPage'])->name('profile.comic');
+        Route::get("bookshelf", [UserController::class, 'BookShelfPage'])->name("profile.bookshelf");
+        Route::get('edit', [UserController::class, 'editInfoPage']);
+    });
 
-    Route::get('/profile/edit', [UserController::class, 'editInfoPage']);
     Route::post('/editInfo', [UserController::class, 'edit_info'])->name('edit.info');
 
     Route::get('/createPassword', [UserController::class, 'viewCreatePassword'])->name('create.password.page');
     Route::post('/create_password', [UserController::class, 'create_password'])->name('create.password');
+
     Route::get('/changePassword', [UserController::class, 'viewChangePassword'])->name('change.password.page');
     Route::post('/change_password', [UserController::class, 'change_password'])->name('change.password');
 
@@ -54,8 +55,6 @@ Route::middleware("checkLogin")->group(function () {
         Route::post("restore/each/{bookTypeID}/{bookID}",[UserController::class,"RestoreEach"])->name("user.restore_each");
     });
     //
-
-    Route::get('/signout', [LoginController::class, 'Logout'])->name('sign_out');
 
     Route::prefix("create_novel")->group(function () {
         Route::get("/", [NovelController::class, "Page"])->name("create_novel");
@@ -138,12 +137,26 @@ Route::middleware("checkLogin")->group(function () {
 
     Route::post('/report/submit', [ReadController::class, 'submitReport'])->name('report.submit');
     Route::post('/comments/{$chapterID}', [ReadController::class, 'comment_insert'])->name('comment.insert');
+
+    Route::get("/book_shelve_commic", [IndexController::class, "book_shelve_commic"])->name("index.book_shelve_commic");
+    Route::get('/book_shelve', [IndexController::class, 'book_shelve'])->name('index.book_shelve');
+    Route::post('/add-to-shelf', [ReadController::class, 'addToShelf'])->name('add_to_shelf');
+
+    Route::get('/increment-click-and-redirect-novel/{bookID}', [ReadController::class, 'incrementClickAndRedirect'])->name('novel.incrementAndRedirect');
+    Route::get('/increment-click-and-redirect-comic/{bookID}', [ReadController::class, 'incrementClickAndRedirectComic'])->name('novel.incrementAndRedirectcomic');
 });
 
 Route::prefix("admin")->group(function () {
     Route::middleware("checkAdminLogin")->group(function () {
         Route::get("index", [AdminController::class, 'Index'])->name("admin.index");
         Route::get("signout", [AdminController::class, 'SignOut'])->name("admin.signout");
+
+        Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
+
+        Route::get('/searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
+        Route::get('/searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
+        Route::get('/searchUserAdmin', [SearchController::class, 'searchAdminUser'])->name('admin.search_user');
+        Route::get('/searchUser', [SearchController::class, 'searchUser'])->name('admin.get_info_search');
         
     });
 
@@ -158,8 +171,6 @@ Route::post('/reset_password', [ForgotPasswordController::class, 'resetPasswordP
 
 Route::get("/rec1", [IndexController::class, 'rec1'])->name("index.rec1");
 Route::get("/rec2",[IndexController::class,"rec2"])->name("index.rec2");
-Route::get('/increment-click-and-redirect-novel/{bookID}', [ReadController::class, 'incrementClickAndRedirect'])->name('novel.incrementAndRedirect');
-Route::get('/increment-click-and-redirect-comic/{bookID}', [ReadController::class, 'incrementClickAndRedirectComic'])->name('novel.incrementAndRedirectcomic');
 
 
 Route::get("/test", function () {
@@ -167,19 +178,6 @@ Route::get("/test", function () {
 });
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
-
-Route::get("/book_shelve_commic", [IndexController::class, "book_shelve_commic"])->name("index.book_shelve_commic");
-Route::group(['middleware' => UserMiddleware::class], function () {
-    Route::post('/add-to-shelf', [ReadController::class, 'addToShelf'])->name('add_to_shelf');
-});
-Route::get('/book_shelve', [IndexController::class, 'book_shelve'])->name('index.book_shelve');
-
 Route::get("/genre/{genreID}",[IndexController::class, 'Genre'])->name('genre.newpage');
 
-Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
 
-
-Route::get('/searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
-Route::get('/searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
-Route::get('/searchUserAdmin', [SearchController::class, 'searchAdminUser'])->name('admin.search_user');
-Route::get('/searchUser', [SearchController::class, 'searchUser'])->name('admin.get_info_search');
