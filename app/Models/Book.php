@@ -36,7 +36,7 @@ class Book extends Model
     }
 
     function BookShelves(){
-        return $this->hasMany(BookShelf::class,"bookID","bookID");
+        return $this->hasMany(Bookshelf::class,"bookID","bookID");
     }
 
     function Reports(){

@@ -25,7 +25,7 @@ class Userdb extends Model
     }
 
     function BookShelves(){
-        return $this->hasMany(BookShelf::class);
+        return $this->hasMany(Bookshelf::class);
     }
 
     function Comments(){

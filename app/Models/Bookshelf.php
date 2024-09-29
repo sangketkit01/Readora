@@ -23,12 +23,12 @@ class Bookshelf extends Model{
         'username'
     ];
 
-    public function Books()
+    public function book()
     {
         return $this->belongsTo(Book::class, 'bookID');
     }
 
-    public function Users()
+    public function user()
     {
         return $this->belongsTo(Userdb::class, 'username');
     }
