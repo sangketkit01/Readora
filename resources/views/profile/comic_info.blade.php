@@ -87,7 +87,7 @@
                         <div class="card-body">
                             <div class="n-info">
                                 <h5>{{$c->book_name}}</h5>
-                                <p id="writer">{{$c->username}}</p>
+                                <p id="writer">{{$c->User->name}}</p>
                             </div>
                             <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->Chapters->count()}}</span>
                                 @php
