@@ -31,7 +31,7 @@ class AdminController extends Controller
         Session::flush();
         Session::put("admin_user", $user);
 
-        return redirect()->route("admin.index");
+        return redirect()->route("Home_admin");
     }
 
     function Index()

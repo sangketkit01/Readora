@@ -72,7 +72,7 @@ Route::middleware("checkLogin")->group(function () {
             Route::get("{bookID}", [NovelController::class, 'Edit'])->name("novel.edit");
             Route::post("insert/{bookID}", [NovelController::class, "EditInsert"])->name("novel.edit_insert");
             Route::post('chapter/update/{bookID}/{chapterID}', [NovelController::class, 'ChapterStatusUpdate'])->name('novel.chapter_status_update')->middleware(['checkChapterOwner']);
-            Route::get("/{bookID}/trash",[NovelController::class,"Trash"])->name("novel.trash");
+            Route::get("/{bookID}/trash",[NovelController::class,"Trash"])->name("novel.trash")->middleware(["checkBookBlock"]);
         });
 
         Route::prefix("delete_novel")->group(function(){
@@ -80,20 +80,24 @@ Route::middleware("checkLogin")->group(function () {
             Route::post("chapter/{bookID}/{chapterID}",[NovelController::class,"DeleteChapter"])->name("novel.delete_chapter")->middleware(["checkChapterOwner"]);
         });
 
-        Route::prefix("restore")->group(function(){
-            Route::post("all/{bookID}",[NovelController::class,"RestoreAll"])->name("novel.restore_all");
-            Route::post("each/{bookID}/{chapterID}",[NovelController::class,"RestoreEach"])->name("novel.restore_each")->middleware(["checkChapterOwner"]);
+        Route::middleware("checkBookBlock")->group(function(){
+
+            Route::prefix("restore")->group(function(){
+                Route::post("all/{bookID}",[NovelController::class,"RestoreAll"])->name("novel.restore_all");
+                Route::post("each/{bookID}/{chapterID}",[NovelController::class,"RestoreEach"])->name("novel.restore_each")->middleware(["checkChapterOwner"]);
+            });
+    
+            Route::prefix("add_chapter")->group(function () {
+                Route::get("{bookID}", [NovelController::class, "AddChapter"])->name("novel.add_chapter");
+                Route::post("insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter");
+            });
+    
+            Route::prefix('edit_chapter')->group(function () {
+                Route::get('{bookID}/{chapterID}', [NovelController::class, "EditChapter"])->name('novel.edit_chapter')->middleware(['checkChapterOwner']);
+                Route::post('update/{bookID}/{chapterID}', [NovelController::class, 'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkChapterOwner']);
+            });
         });
 
-        Route::prefix("add_chapter")->group(function () {
-            Route::get("{bookID}", [NovelController::class, "AddChapter"])->name("novel.add_chapter");
-            Route::post("insert/{bookID}", [NovelController::class, "InsertNewChapter"])->name("novel.new_chapter");
-        });
-
-        Route::prefix('edit_chapter')->group(function () {
-            Route::get('{bookID}/{chapterID}', [NovelController::class, "EditChapter"])->name('novel.edit_chapter')->middleware(['checkChapterOwner']);
-            Route::post('update/{bookID}/{chapterID}', [NovelController::class, 'EditChapterUpdate'])->name('novel.chapter_update')->middleware(['checkChapterOwner']);
-        });
 
     });
 
@@ -102,7 +106,7 @@ Route::middleware("checkLogin")->group(function () {
             Route::get("{bookID}", [ComicController::class, 'edit'])->name("comic.edit");
             Route::post("insert/{bookID}", [ComicController::class, "EditInsert"])->name("comic.edit_insert");
             Route::post('chapter/update/{bookID}/{chapterID}', [ComicController::class, 'ChapterStatusUpdate'])->name('comic.chapter_status_update')->middleware(['checkChapterOwner']);
-            Route::get("/{bookID}/trash", [ComicController::class, "Trash"])->name("comic.trash");
+            Route::get("/{bookID}/trash", [ComicController::class, "Trash"])->name("comic.trash")->middleware(["checkBookBlock"]);;
         });
 
         Route::prefix("delete_comic")->group(function(){
@@ -110,19 +114,23 @@ Route::middleware("checkLogin")->group(function () {
             Route::post("chapter/{bookID}/{chapterID}",[ComicController::class,"DeleteChapter"])->name("comic.delete_chapter")->middleware(["checkChapterOwner"]);
         });
 
-        Route::prefix("restore")->group(function () {
-            Route::post("comic/each/{bookID}/{chapterID}", [ComicController::class, "RestoreEach"])->name("comic.restore_each")->middleware(["checkChapterOwner"]);
+        Route::middleware("checkBookBlock")->group(function(){
+
+            Route::prefix("restore")->group(function () {
+                Route::post("comic/each/{bookID}/{chapterID}", [ComicController::class, "RestoreEach"])->name("comic.restore_each")->middleware(["checkChapterOwner"]);
+            });
+    
+            Route::prefix("add_comic_chapter")->group(function () {
+                Route::get("{bookID}", [ComicController::class, "AddChapter"])->name("comic.add_comic_chapter");
+                Route::post("insert/{bookID}", [ComicController::class, "InsertNewChapter"])->name("comic.new_chapter");
+            });
+    
+            Route::prefix('edit_comic_chapter')->group(function () {
+                Route::get('{bookID}/{chapterID}', [ComicController::class, "EditChapter"])->name('comic.edit_comic_chapter')->middleware(['checkChapterOwner']);
+                Route::post('update/{bookID}/{chapterID}', [ComicController::class, 'EditChapterUpdate'])->name('comic.chapter_update')->middleware(['checkChapterOwner']);
+            });
         });
 
-        Route::prefix("add_comic_chapter")->group(function () {
-            Route::get("{bookID}", [ComicController::class, "AddChapter"])->name("comic.add_comic_chapter");
-            Route::post("insert/{bookID}", [ComicController::class, "InsertNewChapter"])->name("comic.new_chapter");
-        });
-
-        Route::prefix('edit_comic_chapter')->group(function () {
-            Route::get('{bookID}/{chapterID}', [ComicController::class, "EditChapter"])->name('comic.edit_comic_chapter')->middleware(['checkChapterOwner']);
-            Route::post('update/{bookID}/{chapterID}', [ComicController::class, 'EditChapterUpdate'])->name('comic.chapter_update')->middleware(['checkChapterOwner']);
-        });
     });
 
     Route::get("/read_novel/{bookID}", [ReadController::class, "read_novel"])->name("read.read_novel");
