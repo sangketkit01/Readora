@@ -67,13 +67,11 @@
                 <div class="d-flex mt-4">
                     @if ($data->book_status != 'block')
                         <input type="button" onclick="submitForm()" value="อัปเดตคอมมิค" class="btn btn-primary me-2">
-                        <button class="btn btn-danger ms-2" type="button"
-                            onclick="DeleteComic('{{ $data->book_name }}')">ลบคอมมิค</button>
                     @else
                         <button class="btn btn-danger ms-2" type="button"
                             onclick="DeleteComic('{{ $data->book_name }}')">ลบคอมมิค</button>
                     @endif
-                    @if ($chapters->isEmpty())
+                    @if ($chapters->isEmpty() && $data->book_status != "block")
                         <button class="btn btn-danger ms-2" type="button"
                             onclick="DeleteComic('{{ $data->book_name }}')">ลบคอมมิค</button>
                     @endif

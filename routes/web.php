@@ -53,6 +53,8 @@ Route::middleware("checkLogin")->group(function () {
         Route::get('bin/{bookTypeID}',[UserController::class,"Trash"])->name("user.bin");
         Route::post("restore/all/{bookTypeID}",[UserController::class,"RestoreAll"])->name("user.restore_all");
         Route::post("restore/each/{bookTypeID}/{bookID}",[UserController::class,"RestoreEach"])->name("user.restore_each");
+        Route::post("delete/all/{bookTypeID}",[UserController::class,"DeleteAll"])->name("user.delete_all");
+        Route::post("delete/each/{bookTypeID}/{bookID}", [UserController::class, "DeleteEach"])->name("user.delete_each");
     });
     //
 
@@ -86,6 +88,11 @@ Route::middleware("checkLogin")->group(function () {
                 Route::post("all/{bookID}",[NovelController::class,"RestoreAll"])->name("novel.restore_all");
                 Route::post("each/{bookID}/{chapterID}",[NovelController::class,"RestoreEach"])->name("novel.restore_each")->middleware(["checkChapterOwner"]);
             });
+
+            Route::prefix("force/delete")->group(function () {
+                Route::post("novel/all/{bookID}",[NovelController::class,"ForceDeleteAll"])->name("novel.force-delete-all");
+                Route::post("novel/each/{bookID}/{chapterID}", [NovelController::class, "ForceDeleteEach"])->name("novel.force-delete-each")->middleware(["checkChapterOwner"]);
+            });
     
             Route::prefix("add_chapter")->group(function () {
                 Route::get("{bookID}", [NovelController::class, "AddChapter"])->name("novel.add_chapter");
@@ -118,6 +125,10 @@ Route::middleware("checkLogin")->group(function () {
 
             Route::prefix("restore")->group(function () {
                 Route::post("comic/each/{bookID}/{chapterID}", [ComicController::class, "RestoreEach"])->name("comic.restore_each")->middleware(["checkChapterOwner"]);
+            });
+
+            Route::prefix("force/delete")->group(function(){
+                Route::post("comic/each/{bookID}/{chapterID}",[ComicController::class,"ForceDeleteEach"])->name("comic.force-delete-each")->middleware(["checkChapterOwner"]);
             });
     
             Route::prefix("add_comic_chapter")->group(function () {

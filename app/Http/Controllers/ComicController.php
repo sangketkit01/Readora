@@ -218,7 +218,7 @@ class ComicController extends Controller
         }
         $book->delete();
 
-        return redirect()->route("index")->with(["successMsg" => "ลบคอมมิคสำเร็จ"]);
+        return redirect()->route("profile")->with(["successMsg" => "ลบคอมมิคสำเร็จ"]);
     }
 
     function DeleteChapter(Request $request ,$bookID , $chapterID){
@@ -287,5 +287,30 @@ class ComicController extends Controller
         return redirect()->route("comic.edit", ["bookID" => $bookID])->with(["successMsg" => "กู้คืนตอนสำเร็จ"]);
     }
 
+
+    function ForceDeleteEach(Request $request,$bookID, $chapterID){
+        $chapter = Book_chapter::where("bookID",$bookID)->where("chapterID",$chapterID)->onlyTrashed()->first();
+
+        if(!$chapter){
+            return abort(404);
+        }
+
+        $chapter_image = $chapter->chapter_image;
+        $chapter_image = str_replace("storage/","public/",$chapter_image);
+        if($chapter_image && Storage::exists($chapter_image)){
+            Storage::delete($chapter_image);
+        }
+
+        $chapter_content = $chapter->chapter_content;
+        $chapter_content = str_replace("storage/","public/",$chapter_content);
+        if($chapter_content && Storage::exists($chapter_content)){
+            Storage::delete($chapter_content);
+        }
+
+        $chapter->forceDelete();
+
+        return redirect()->route("comic.edit",["bookID"=>$bookID])->with(["successMsg" => "ลบตอนสำเร็จ"]);
+        
+    }
 
 }

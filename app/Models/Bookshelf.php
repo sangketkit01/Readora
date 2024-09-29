@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Bookshelf extends Model
-{
+class Bookshelf extends Model{
+
     use HasFactory, SoftDeletes;
 
     protected $table = 'book_shelves';
+
+    protected $primaryKey = 'bookID';
+    public $incrementing = false;
+
+    protected $keyType = 'string';
     public $timestamps = true;
 
     protected $fillable = [
@@ -18,17 +23,13 @@ class Bookshelf extends Model
         'username'
     ];
 
-
-    public function book()
+    public function Books()
     {
-        return $this->belongsTo(Book::class, "bookID","bookID");
+        return $this->belongsTo(Book::class, 'bookID');
     }
 
-    public function user()
+    public function Users()
     {
-        return $this->belongsTo(Userdb::class, "username");
+        return $this->belongsTo(Userdb::class, 'username');
     }
-
-
-
 }

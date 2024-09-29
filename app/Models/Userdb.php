@@ -20,8 +20,8 @@ class Userdb extends Model
         return $this->hasMany(Book::class);
     }
 
-    function BookAll(){
-        return $this->belongsToMany(Book::class);
+    public function BookAll(){
+        return $this->belongsToMany(Book::class, 'book_shelves', 'username', 'bookID');
     }
 
     function BookShelves(){

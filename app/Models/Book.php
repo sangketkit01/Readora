@@ -27,8 +27,8 @@ class Book extends Model
         return $this->belongsTo(Userdb::class,"username");
     }
 
-    function Users(){
-        return $this->belongsToMany(Userdb::class,"username");
+    public function Users() {
+        return $this->belongsToMany(Userdb::class, 'book_shelves', 'bookID', 'username');
     }
 
     function Chapters(){
@@ -37,7 +37,6 @@ class Book extends Model
 
     function BookShelves(){
         return $this->hasMany(BookShelf::class,"bookID","bookID");
-
     }
 
     function Reports(){
