@@ -24,17 +24,17 @@
     <div class="cards">
         <label class="card" for="item-1" id="song-1">
             <img class="images"
-                src="https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80"
+                src="{{ asset('index/แบนเนอร์-1-1024x512.png') }}"
                 alt="song">
         </label>
         <label class="card" for="item-2" id="song-2">
             <img class="images"
-                src="https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80"
+                src="{{ asset('index/onboarding-banner-mobile.webp') }}"
                 alt="song">
         </label>
         <label class="card" for="item-3" id="song-3">
             <img class="images"
-                src="https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
+                src="{{ asset('index/20221223-notable-banner-scaled.jpg') }}"
                 alt="song">
         </label>
     </div>

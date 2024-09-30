@@ -15,10 +15,16 @@ ul {
     float: right;
     margin: 8px;
     color: white;
+    
 }
+.right a:visited,a{
+    color: white;
+    text-decoration: none;
+}
+
 .nav {
     padding: 25px;
 }
 .navbar {
-    background-color: black;
+    background-color: rgb(61, 52, 52);
 }

@@ -158,7 +158,20 @@
             <button id="logout" onclick="window.location.href='/signout'">ออกจากระบบ</button>
         </div>
     @endif
-
+    
+    @if (session('successMsg'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: `{!! nl2br(e(session('successMsg'))) !!}`,
+                    showConfirmButton: false,
+                    timer: 5000
+                });
+            });
+        </script>
+    @endif
 
 @endsection
 

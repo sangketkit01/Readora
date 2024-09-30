@@ -15,17 +15,17 @@ class SearchController extends Controller
 
         // ค้นหาหนังสือจากฐานข้อมูล
         $books = Book::where('book_name', 'LIKE', "%{$query}%")
-                    ->orWhere('book_description', 'LIKE', "%{$query}%")
-                    ->orWhereHas('User', function($q) use ($query){
-                        $q->where('name','LIKE',"%{$query}%");
-                    })
-                    ->orWhereHas('Genre', function($q) use ($query){
-                        $q->where('bookGenre_name','LIKE',"%{$query}%");
-                    })
-                    ->orWhereHas('Type', function($q) use ($query){
-                        $q->where('bookType_name','LIKE',"%{$query}%");
-                    })
-                    ->get();
+            ->orWhere('book_description', 'LIKE', "%{$query}%")
+            ->orWhereHas('User', function ($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%");
+            })
+            ->orWhereHas('Genre', function ($q) use ($query) {
+                $q->where('bookGenre_name', 'LIKE', "%{$query}%");
+            })
+            ->orWhereHas('Type', function ($q) use ($query) {
+                $q->where('bookType_name', 'LIKE', "%{$query}%");
+            })
+            ->get();
         // ส่งผลลัพธ์การค้นหาไปที่ view
         return view('user.search-result', compact('books', 'query'));
     }
@@ -52,7 +52,7 @@ class SearchController extends Controller
             ->paginate(20);
 
         $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->get();
-        
+
 
         return view('admin.search_admin', compact('books', 'query', 'novels'));
     }
@@ -78,24 +78,29 @@ class SearchController extends Controller
             ->paginate(20);
 
         $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->take(4)->get();
-        
+
 
         return view('admin.searchcomic_admin', compact('books', 'query', 'comics'));
     }
-    function searchAdminUser(){
-        return view('admin.searchUser');
+    function searchAdminUser()
+    {
+        $query = '';
+        $user = Userdb::all();
+        return view('admin.searchUser' ,compact('user','query'));
     }
 
-    function searchUser(Request $request){
+    function searchUser(Request $request)
+    {
+
         $query = $request->input('query');
 
-        // ค้นหาหนังสือจากฐานข้อมูล
-        $user = Userdb::where('name', 'LIKE', "%{$query}%")->get();
-
+        if ($query) {
+            // ค้นหาหนังสือจากฐานข้อมูล
+            $user = Userdb::where('name', 'LIKE', "%{$query}%")->get();
+        } else {
+            $user = null; // หรือเป็น Collection ว่างก็ได้ เช่น collect([]);
+        }
         // ส่งผลลัพธ์การค้นหาไปที่ view
-        return view('user.searchUser', compact('user', 'query'));
+        return view('admin.searchUser', compact('user', 'query'));
     }
-
-    
 }
-
