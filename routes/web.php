@@ -144,7 +144,6 @@ Route::prefix("admin")->group(function () {
     Route::middleware("checkAdminLogin")->group(function () {
         Route::get("index", [AdminController::class, 'Index'])->name("admin.index");
         Route::get("signout", [AdminController::class, 'SignOut'])->name("admin.signout");
-        
     });
 
     Route::get("login", [AdminController::class, 'Login'])->name("admin.login");
