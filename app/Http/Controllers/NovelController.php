@@ -215,7 +215,7 @@ class NovelController extends Controller
             $chapter->delete();
         }
 
-        return redirect()->route("index")->with(["successMsg" => "ลบนิยายสำเร็จ"]);
+        return redirect()->route("profile")->with(["successMsg" => "ลบคอมมิคสำเร็จ"]);
     }
 
     function DeleteChapter(Request $request,$bookID,$chapterID){
@@ -285,7 +285,46 @@ class NovelController extends Controller
         }
 
         $chapter->restore();
-        return redirect()->route("comic.edit", ["bookID" => $bookID])->with(["successMsg" => "กู้คืนตอนสำเร็จ"]);
+        return redirect()->route("novel.edit", ["bookID" => $bookID])->with(["successMsg" => "กู้คืนตอนสำเร็จ"]);
+    }
+
+    function ForceDeleteAll(Request $request,$bookID){
+        $chapters = Book_chapter::where("bookID",$bookID)->onlyTrashed()->get();
+
+        if($chapters->isEmpty()){
+            return abort(404);
+        }
+
+        foreach($chapters as $chapter){
+            $chapter_image = $chapter->chapter_image;
+            $chapter_image = str_replace("storage/", "public/", $chapter_image);
+            if ($chapter_image && Storage::exists($chapter_image)) {
+                Storage::delete($chapter_image);
+            }
+
+            $chapter->forceDelete();
+        }
+
+        return redirect()->route("novel.edit",["bookID"=>$bookID])->with(["successMsg" => "ลบตอนทั้งหมดสำเร็จ"]);
+    }
+
+    function ForceDeleteEach(Request $request,$bookID, $chapterID){
+        $chapter = Book_chapter::where("bookID",$bookID)->where("chapterID",$chapterID)->onlyTrashed()->first();
+
+        if(!$chapter){
+            return abort(404);
+        }
+
+        $chapter_image = $chapter->chapter_image;
+        $chapter_image = str_replace("storage/","public/",$chapter_image);
+        if($chapter_image && Storage::exists($chapter_image)){
+            Storage::delete($chapter_image);
+        }
+
+        $chapter->forceDelete();
+
+        return redirect()->route("novel.edit",["bookID"=>$bookID])->with(["successMsg" => "ลบตอนสำเร็จ"]);
+        
     }
 
 }

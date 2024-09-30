@@ -34,7 +34,7 @@ class AdminController extends Controller
         Session::flush();
         Session::put("admin_user", $user);
 
-        return redirect()->route("admin.index");
+        return redirect()->route("Home_admin");
     }
 
     function Index()
@@ -62,39 +62,81 @@ class AdminController extends Controller
     }
 
 
-    function Checkreport(){
+    function Checkreport()
+    {
         $reports = Report::all();
 
-        return view('admin.checkreport_admin',compact('reports'));
+        return view('admin.checkreport_admin', compact('reports'));
     }
-    public function novel_detail($bookID)
+    public function book_detail($bookID)
     {
         $books = Book::where('BookID', $bookID)
-            ->where('book_status', 'public')
-            ->where('booktypeID', 1)
             ->get();
         if ($books->isEmpty()) {
             abort(404, 'Book not found');
         }
-        $chapters = Book_chapter::where("bookID", $bookID)
-            ->where("chapter_status", 'public')->get();
-        $chapterComments = [];
-        foreach ($chapters as $chapter) {
-            $comments = Chapter_comment::where('chapterID', $chapter->chapterID)
-                ->with('user')
-                ->get();
-            $chapterComments[$chapter->chapterID] = $comments;
-        }
-        $count_chapter = Book_chapter::where("bookID", $bookID)
-            ->where("chapter_status", 'public')
-            ->count();
-        $count_comment = Chapter_comment::whereIn('chapterID', function ($query) use ($bookID) {
-            $query->select('chapterID')
-                ->from('book_chapters')
-                ->where('bookID', $bookID);
-        })->count();
-        return view("admin.novel_detail", compact('books', 'bookID', 'chapters', 'count_chapter', 'chapterComments', 'count_comment'));
+        $reports = Report::join('userdbs','reports.username','userdbs.username')
+            ->where('bookID', $bookID)
+            ->get();
+        return view("admin.book_detail", compact('books', 'bookID', 'reports'));
     }
+    public function block($bookID)
+    {
+        $book = Book::find($bookID);
+
+        if ($book) {
+            // เปลี่ยนค่า book_status เป็น 'block'
+            $book->book_status = 'block';
+            $book->save();
+
+            return redirect()->back()->with('success', 'Book has been blocked successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Book not found.');
+        }
+    }
+
+    public function unblock($bookID)
+    {
+        $book = Book::find($bookID);
+
+        if ($book) {
+            // เปลี่ยนค่า book_status กลับเป็น 'public'
+            $book->book_status = 'public'; // หรือ 'private' ตามที่คุณต้องการ
+            $book->save();
+
+            return redirect()->back()->with('success', 'Book has been unblocked successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Book not found.');
+        }
+    }
+    public function viewBlockedBooks()
+    {
+        // Query ข้อมูลหนังสือที่ถูกบล็อก
+        $books = Book::where('book_status', 'block')
+        ->where('bookTypeID','1')->get();
+
+        // ส่งข้อมูลไปที่ view
+        return view('admin.block_book', compact('books'));
+    }
+    public function viewBlockedComic()
+    {
+        // Query ข้อมูลหนังสือที่ถูกบล็อก
+        $books = Book::where('book_status', 'block')
+        ->where('bookTypeID','2')->get();
+
+        // ส่งข้อมูลไปที่ view
+        return view('admin.block_commic', compact('books'));
+    }
+    public function unblockBook($bookID)
+    {
+        // หา book ตาม ID และเปลี่ยนสถานะ
+        $book = Book::findOrFail($bookID);
+        $book->book_status = 'active';
+        $book->save();
+
+        return redirect()->route('admin.block_book')->with('success', 'หนังสือถูกปลดบล็อกแล้ว');
+    }
+
 
     function adminDeleteUser(Request $request)
     {
@@ -152,5 +194,5 @@ class AdminController extends Controller
         return view('admin.restore', compact('deletedUsers', 'query'));
     }
 
-    
+
 }

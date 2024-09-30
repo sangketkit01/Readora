@@ -188,3 +188,7 @@ body {
         width: 100%;  
     }
 }
+.result-card-link {
+    text-decoration: none;
+    color: inherit;
+}

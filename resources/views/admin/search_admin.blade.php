@@ -176,7 +176,7 @@
         @else
             <div class="recommend-section1">
                 @foreach ($books as $novel)
-                    <a href="{{ route('read.read_novel', ['bookID' => $novel->bookID]) }}" class="recommend-card-link">
+                    <a href="{{ route('admin.book_detail', ['bookID' => $novel->bookID])}}" class="recommend-card-link">
                         <div class="recommend-card">
                             <img src="{{ asset($novel->book_pic) }}" alt="{{ htmlspecialchars($novel->book_name) }}">
                             <div class="card-body">

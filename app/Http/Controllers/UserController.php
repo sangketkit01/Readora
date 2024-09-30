@@ -181,7 +181,110 @@ class UserController extends Controller{
             }
             $book->restore();
         }
-        return redirect()->route("index")->with(["successMsg" => "กู้คืนนิยายสำเร็จ"]);
+        return redirect()->route("profile")->with(["successMsg" => "กู้คืนนิยายสำเร็จ"]);
+    }
+
+    function DeleteAll(Request $request,$bookTypeID){
+        $books = Book::where("username",Session::get("user")->username)->where("bookTypeID",$bookTypeID)->onlyTrashed()->get();
+        $bookType_name_thai = $bookTypeID == 1 ? "นิยาย" : "คอมมิค";
+
+        if($books->isEmpty()){
+            return abort(404);
+        }
+
+        foreach($books as $book){
+            $book_pic = $book->book_pic;
+            $book_pic = str_replace("storage/", "public/", $book_pic);
+            if ($book_pic && Storage::exists($book_pic)) {
+                Storage::delete($book_pic);
+            }
+
+            $book_shelves = $book->BookShelves;
+            foreach ($book_shelves as $book_shelf) {
+                $book_shelf->forceDelete();
+            }
+
+            $chapters = $book->Chapters()->onlyTrashed()->get();
+            if ($chapters->isEmpty()) {
+
+                $book->forceDelete();
+
+                return redirect()->route("index")->with(["successMsg" => "ลบ" . $bookType_name_thai . "สำเร็จ"]);
+            }
+
+            foreach ($chapters as $chapter) {
+                $chapter_image = $chapter->chapter_image;
+                $chapter_image = str_replace("storage/", "public/", $chapter_image);
+                if ($chapter_image && Storage::exists($chapter_image)) {
+                    Storage::delete($chapter_image);
+                }
+
+                if ($bookTypeID == 2) {
+                    $chapter_content = $chapter->chapter_content;
+                    $chapter_content = str_replace("storage/", "public/", $chapter_content);
+                    if ($chapter_content && Storage::exists($chapter_content)) {
+                        Storage::delete($chapter_content);
+                    }
+                }
+
+                $chapter->forceDelete();
+            }
+
+            $book->forceDelete();
+        }
+
+        return redirect()->route("profile")->with(["successMsg" => "ลบ" . $bookType_name_thai . "สำเร็จ"]);
+    }
+
+    function DeleteEach(Request $request,$bookTypeID,$bookID){
+        $book = Book::where("username",Session::get("user")->username)->where("bookID",$bookID)->onlyTrashed()->first();
+        $bookType_name_thai = $bookTypeID == 1 ? "นิยาย" : "คอมมิค";
+
+        if (!$book) {
+            return abort(404);
+        }
+
+        $book_pic = $book->book_pic;
+        $book_pic = str_replace("storage/", "public/", $book_pic);
+        if ($book_pic && Storage::exists($book_pic)) {
+            Storage::delete($book_pic);
+        }
+
+
+        $book_shelves = $book->BookShelves;
+        foreach ($book_shelves as $book_shelf) {
+            $book_shelf->forceDelete();
+        }
+
+        $chapters = $book->Chapters()->onlyTrashed()->get();
+        if($chapters->isEmpty()){
+
+            $book->forceDelete();
+
+            return redirect()->route("index")->with(["successMsg" => "ลบ" . $bookType_name_thai . "สำเร็จ"]);
+        }
+
+        foreach($chapters as $chapter){
+            $chapter_image = $chapter->chapter_image;
+            $chapter_image = str_replace("storage/", "public/", $chapter_image);
+            if ($chapter_image && Storage::exists($chapter_image)) {
+                Storage::delete($chapter_image);
+            }
+
+            if ($bookTypeID == 2) {
+                $chapter_content = $chapter->chapter_content;
+                $chapter_content = str_replace("storage/","public/",$chapter_content);
+                if($chapter_content && Storage::exists($chapter_content)){
+                    Storage::delete($chapter_content);
+                }
+            }
+
+            $chapter->forceDelete();
+        }
+
+        $book->forceDelete();
+
+        return redirect()->route("profile")->with(["successMsg" => "ลบ" . $bookType_name_thai . "สำเร็จ"]);
     }
 }
 
