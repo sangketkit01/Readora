@@ -15,9 +15,11 @@
         <div class="d-flex flex-column justify-content-between bin">
 
             <div class="d-flex mb-3" style="width: 100%">
-                <button class="btn btn-primary ms-auto me-4" type="button" onclick="RestoreAll({{$bookTypeID}})">กู้คืนทั้งหมด</button>
+                <button class="btn btn-primary ms-auto me-2" type="button" onclick="RestoreAll({{$bookTypeID}})">กู้คืนทั้งหมด</button>
+                <button class="btn btn-danger me-4" type="button" onclick="DeleteAll({{$bookTypeID}})">ลบฐาวรทั้งหมด</button>
             </div>
             <form action="{{route('user.restore_all',["bookTypeID"=>$bookTypeID])}}" method="POST" id="restore-all" style="display: none">@csrf</form>
+            <form action="{{route('user.delete_all',["bookTypeID"=>$bookTypeID])}}" method="POST" id="delete-all" style="display: none">@csrf</form>
 
             @php
                 $count = 0;
@@ -40,6 +42,12 @@
                         <form
                             action="{{ route('user.restore_each', ['bookTypeID'=>$bookTypeID,'bookID' => $book->bookID]) }}"
                             style="display: none;" method="POST" id="restore-each-{{ $book->bookID }}">@csrf</form>
+
+                        <button class="btn btn-danger ms-2" type="button"
+                            onclick="DeleteEach({{$book->bookID}},{{$bookTypeID}},'{{ $book->book_name }}')">ลบฐาวร</button>
+                        <form
+                            action="{{ route('user.delete_each', ['bookTypeID'=>$bookTypeID,'bookID' => $book->bookID]) }}"
+                            style="display: none;" method="POST" id="delete-each-{{ $book->bookID }}">@csrf</form>
                     </div>
 
                 </div>
