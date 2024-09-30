@@ -21,9 +21,5 @@ class Chapter_comment extends Model
     function User(){
         return $this->belongsTo(Userdb::class,"username");
     }
-
-    public function getCreatedAtAttribute($value) {
-        return \Carbon\Carbon::parse($value)->format('Y-m-d');
-    }
     
 }
