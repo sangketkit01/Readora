@@ -50,7 +50,7 @@
 
                     <div class="third-party-login">
                         <a href="{{route('google-auth')}}" type="button" id="google"><img src="/login/Google.png" alt="" id="google-img"> เข้าสู่ระบบด้วย Google</a>
-                        <a href="#" type="button" id="facebook">เข้าสู่ระบบด้วย Facebook</a>
+                        <a href="{{route("facebook-auth")}}" type="button" id="facebook">เข้าสู่ระบบด้วย Facebook</a>
                     </div>
                 </form>
             </div>

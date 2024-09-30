@@ -26,10 +26,6 @@ class GoogleController extends Controller
 
             $user = DB::table("userdbs")->where("email",$google_user->getEmail())->first();
             if(!$user){
-                
-                if (Session::has('url.intended')) {
-                    $intended = Session::get('url.intended');
-                }
 
                 Session::flush();
                 Session::put("google_email",$google_user->getEmail());

@@ -1,17 +1,48 @@
+/* ตั้งค่าพื้นฐาน */
 body {
-    background-color: #f9f9f9;
-    font-family: 'Kanit', Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
-    padding: 0;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
+/* จัดรูปแบบฟอร์มค้นหา */
+.search-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
 }
 
-/* สไตล์สำหรับแท็บ */
+.search-input {
+    width: 70%;
+    max-width: 500px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 25px 0 0 25px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.search-input:focus {
+    border-color: #007bff;
+}
+
+.search-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* จัดรูปแบบแท็บ */
 .tabs {
     display: flex;
     border-bottom: 1px solid #ddd;
@@ -29,111 +60,131 @@ body {
     font-weight: bold;
 }
 
-/* สไตล์สำหรับรายการหนังสือ */
-.list-group {
+/* จัดรูปแบบผลลัพธ์การค้นหา */
+.box-result {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.results-container {
     display: grid;
-    grid-template-columns: 50% 50%;
-    gap: 20px;
-    list-style-type: none;
-    padding: 0;
+    grid-template-columns: repeat(4, 1fr); /* แสดงการ์ด 4 ใบต่อแถว */
+    align-items: stretch;
+    grid-gap: 30px;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 
-.list-group-item {
-    display: flex;
-    width: auto; /* 2 คอลัมน์ต่อแถว */
-    border: 1px solid #ddd;
+.result-card {
+    background-color: white;
     border-radius: 8px;
-    overflow: hidden;
-    background-color: #fff;
-}
-
-.list-group-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.book-thumbnail {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.book-info {
-    flex: 1;
-    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
     display: flex;
     flex-direction: row;
-    gap: 20px;
-}
-
-h2 {
-    font-size: 1.2em;
-    margin: 0 0 10px 0;
-}
-
-p {
-    margin: 5px 0;
-    font-size: 0.9em;
-    color: #666;
-}
-
-.read-more {
-    color: #0066cc;
-    text-decoration: none;
-    font-size: 0.9em;
-    align-self: flex-start;
-}
-
-.result {
-    font-size: x-large;
-    display: flex;
-    justify-content: center;
-}
-.warning {
-    font-size: xx-large;
-    text-align: center;
-}
-
-.title-genre {
-    font-size: xx-large;
-    text-align: center;
-}
-
-#pagination {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    gap: 15px;
+    transition: transform 0.2s;
 }
 
-#pagination button {
-    margin: 0 10px;
-    padding: 5px 15px;
-    font-size: 18px;
-    border: 1px solid #ddd;
-    background-color: #f8f8f8;
+.result-card:hover {
+    transform: scale(1.02);
+}
+
+.result-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd; /* ขอบรอบภาพ */
+}
+
+.result-info {
+    text-align: left;
+    width: 100%;
+}
+
+.result-info h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: black; /* เปลี่ยนสีชื่อเรื่องเป็นสีดำ */
+}
+
+.result-info p {
+    margin: 5px 0;
+}
+
+/* จัดรูปแบบปุ่มการดำเนินการ */
+.action-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-#pagination button:hover:not(:disabled) {
-    background-color: #e8e8e8;
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
 }
 
-#pagination button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+.btn-danger:hover {
+    background-color: #c82333;
 }
 
-#pageIndicator {
-    font-size: 16px;
-    margin: 0 10px;
+.btn-success {
+    background-color: #28a745;
+    color: white;
 }
-#authorList {
-    list-style-type: none;
-    padding: 0;
+
+.btn-success:hover {
+    background-color: #218838;
 }
-#authorList li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+
+/* สไตล์สำหรับไอคอน */
+.fas {
+    margin-right: 5px;
+}
+
+.btn-warning {
+    background-color: #007bff;
+}
+
+.box-restore {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.restore-button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.restore-button:hover {
+    background-color: #218838;
+}
+
+/* การตอบสนอง */
+@media (max-width: 768px) {
+    .search-input {
+        width: 60%;
+    }
+
+    .result-card {
+        width: 100%;  
+    }
 }

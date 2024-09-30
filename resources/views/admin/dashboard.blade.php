@@ -3,6 +3,7 @@
 @section('title', 'Admin Dashboard')
 
 @section('content')
+<div class="container">
     <div class="box">
         <h2>Novels</h2>
         <h2>{{ $novelCount }}</h2>
@@ -45,5 +46,5 @@
         <img src="admin/Group111.png" alt="Blocked Users">
         <p>Blocked Users</p>
     </div>
-
+</div>
 @endsection

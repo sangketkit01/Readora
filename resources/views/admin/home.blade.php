@@ -6,29 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Admin Dashboard')</title>
     <link rel="stylesheet" href="{{ asset('css/admin/navigator.css') }}">
-    @stack('style')
+ @stack('style')
     <link rel="stylesheet" href="{{ asset('css/admin/mainpage.css') }}">
-    @yield('css')
 </head>
 <body>
     <div class="navbar">
         <div class="nav">
             <ul>
                 <li class="left">เอาชื่อเวปมาใส่</li>
-                <li class="right"><img src="https://static.vecteezy.com/system/resources/thumbnails/019/879/186/small_2x/user-icon-on-transparent-background-free-png.png" alt="profile" width="35px"></li>
-                <li class="right"><a href="#"></a>Dashboard</li>
-                <li class="right"><a href="#"></a>Support</li>
-                <li class="right"><a href="#"></a>Home</li>
+                <li class="right"><a href="{{route('Home_admin')}}">Dashboard</a></li>
             </ul>
         </div>
     </div>
     
-    <div class="container">
+    <div class="@yield("containerClassName")">
         @yield('content')
     </div>
 
-    @yield('additional_js')
-</body>
 
+</body>
+@stack("scripts")
 
 </html>

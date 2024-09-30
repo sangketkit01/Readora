@@ -89,7 +89,7 @@
                                 <h5>{{$c->book_name}}</h5>
                                 <p id="writer">{{$c->username}}</p>
                             </div>
-                            <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->chapters_count}}</span>
+                            <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->Chapters->count()}}</span>
                                 @php
                                     $totalComments = 0;
                                 @endphp
