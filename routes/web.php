@@ -173,6 +173,25 @@ Route::prefix("admin")->group(function () {
         Route::get("index", [AdminController::class, 'Index'])->name("admin.index");
         Route::get("signout", [AdminController::class, 'SignOut'])->name("admin.signout");
 
+        Route::get('/checkreport', [AdminController::class, 'Checkreport'])->name('admin.checkreport');
+        Route::get('/book_detail/{bookID}', [AdminController::class, 'book_detail'])->name('admin.book_detail');
+        Route::post('/books/block/{bookID}', [AdminController::class, 'block'])->name('book.block');
+        Route::post('/books/unblock/{bookID}', [AdminController::class, 'unblock'])->name('book.unblock');
+        Route::get('/admin/blockedbooks', [AdminController::class, 'viewBlockedBooks'])->name('admin.blocked_books');
+        Route::post('/admin/unblockbook/{bookID}', [AdminController::class, 'unblockBook'])->name('admin.unblock_book');
+        Route::get('/admin/blockedcomic', [AdminController::class, 'viewBlockedComic'])->name('admin.blocked_comic');
+
+        Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
+
+        Route::get('/searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
+        Route::get('/searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
+        Route::get('/searchUserAdmin', [SearchController::class, 'searchAdminUser'])->name('admin.search_user');
+        Route::get('/searchUser', [SearchController::class, 'searchUser'])->name('admin.get_info_search');
+
+        Route::post('/admin.delete_user', [AdminController::class, 'adminDeleteUser'])->name('admin.delete_user');
+
+        Route::get('/admin/deleted-users', [AdminController::class, 'deletedUsers'])->name('admin.deleted_users');
+        Route::post('/admin.restore_user', [AdminController::class, 'adminRestoreUser'])->name('admin.restore_user');
 
     });
 
@@ -195,26 +214,3 @@ Route::get("/test", function () {
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get("/genre/{genreID}", [IndexController::class, 'Genre'])->name('genre.newpage');
-
-Route::get('/checkreport', [AdminController::class, 'Checkreport'])->name('admin.checkreport');
-Route::get('/book_detail/{bookID}', [AdminController::class, 'book_detail'])->name('admin.book_detail');
-Route::post('/books/block/{bookID}', [AdminController::class, 'block'])->name('book.block');
-Route::post('/books/unblock/{bookID}', [AdminController::class, 'unblock'])->name('book.unblock');
-Route::get('/admin/blockedbooks', [AdminController::class, 'viewBlockedBooks'])->name('admin.blocked_books');
-Route::post('/admin/unblockbook/{bookID}', [AdminController::class, 'unblockBook'])->name('admin.unblock_book');
-Route::get('/admin/blockedcomic', [AdminController::class, 'viewBlockedComic'])->name('admin.blocked_comic');
-
-
-
-
-Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
-
-Route::get('/searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
-Route::get('/searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
-Route::get('/searchUserAdmin', [SearchController::class, 'searchAdminUser'])->name('admin.search_user');
-Route::get('/searchUser', [SearchController::class, 'searchUser'])->name('admin.get_info_search');
-
-Route::post('/admin.delete_user', [AdminController::class, 'adminDeleteUser'])->name('admin.delete_user');
-
-Route::get('/admin/deleted-users', [AdminController::class, 'deletedUsers'])->name('admin.deleted_users');
-Route::post('/admin.restore_user', [AdminController::class, 'adminRestoreUser'])->name('admin.restore_user');
