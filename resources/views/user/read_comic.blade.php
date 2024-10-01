@@ -82,7 +82,7 @@
                 @endforeach
                 <hr>
             </div>
-             <div class="share-div p-4 d-flex flex-column justify-content-center align-items-center">
+            <div class="share-div p-4 d-flex flex-column justify-content-center align-items-center">
                 <button id="share-button" onclick="shareClicked()">Share</button>
                 <div class="modal-container">
                     <div class="modal-content-share">

@@ -174,10 +174,6 @@ Route::prefix("admin")->group(function () {
         Route::get("index", [AdminController::class, 'Index'])->name("admin.index");
         Route::get("signout", [AdminController::class, 'SignOut'])->name("admin.signout");
 
-<<<<<<< HEAD
-
-        Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
-=======
         Route::get('checkreport', [AdminController::class, 'Checkreport'])->name('admin.checkreport');
         Route::get('book_detail/{bookID}', [AdminController::class, 'book_detail'])->name('admin.book_detail');
         Route::post('books/block/{bookID}', [AdminController::class, 'block'])->name('book.block');
@@ -185,7 +181,7 @@ Route::prefix("admin")->group(function () {
         Route::get('admin/blockedbooks', [AdminController::class, 'viewBlockedBooks'])->name('admin.blocked_books');
         Route::post('admin/unblockbook/{bookID}', [AdminController::class, 'unblockBook'])->name('admin.unblock_book');
         Route::get('admin/blockedcomic', [AdminController::class, 'viewBlockedComic'])->name('admin.blocked_comic');
->>>>>>> 7b5f0c6afc016d846577db8e88c38166b0d617f2
+
 
         Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin"); //aut
 
@@ -199,13 +195,9 @@ Route::prefix("admin")->group(function () {
         Route::get('admin/deleted-users', [AdminController::class, 'deletedUsers'])->name('admin.deleted_users'); //aut
         Route::post('admin.restore_user', [AdminController::class, 'adminRestoreUser'])->name('admin.restore_user'); //aut
 
-<<<<<<< HEAD
+
         Route::get('/admin/deleted-users', [AdminController::class, 'deletedUsers'])->name('admin.deleted_users');
         Route::post('/admin.restore_user', [AdminController::class, 'adminRestoreUser'])->name('admin.restore_user');
-        
-
-=======
->>>>>>> 7b5f0c6afc016d846577db8e88c38166b0d617f2
     });
 
     Route::get("login", [AdminController::class, 'Login'])->name("admin.login");
