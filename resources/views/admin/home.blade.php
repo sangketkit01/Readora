@@ -14,7 +14,7 @@
     <div class="navbar">
         <div class="nav">
             <ul>
-                <li class="left">เอาชื่อเวปมาใส่</li>
+                <li class="left">Readora Admin System</li>
                 <li class="right"><a href="{{route('Home_admin')}}">Dashboard</a></li>
             </ul>
         </div>
