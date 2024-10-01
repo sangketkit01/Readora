@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Book_type;
 use App\Models\Book_genre;
-use App\Models\BookShelf;
+use App\Models\Bookshelf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -18,6 +18,7 @@ class IndexController extends Controller
             ->whereHas('User', function ($query) {
                 $query->whereNull('deleted_at'); // กรองเฉพาะผู้แต่งที่ไม่ถูกลบ (soft deleted)
             })
+            ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])
             ->take(4)
             ->get();
 
@@ -26,6 +27,7 @@ class IndexController extends Controller
             ->whereHas('User', function ($query) {
                 $query->whereNull('deleted_at'); 
             })
+            ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])
             ->take(4)
             ->get();
 
@@ -37,6 +39,7 @@ class IndexController extends Controller
             ->whereHas('User', function ($query) {
                 $query->whereNull('deleted_at');
             })
+            ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])
             ->limit(4)
             ->get();
 
@@ -68,19 +71,14 @@ class IndexController extends Controller
 
     public function book_shelve()
     {
-        $username = Session::get('user');
-
-        if (is_object($username)) {
-            $username = $username->username; // กรณีเป็น object
-        } elseif (is_array($username)) {
-            $username = $username['username']; // กรณีเป็น array
-        }
-
+        
         $novels = Bookshelf::with('book')
-            ->where('username', $username)
+            ->whereHas('User', function ($query) {
+                $query->whereNull('deleted_at');
+            }) 
             ->whereHas('book', function ($query) {
                 $query->where('BooktypeID', 1);
-            })
+            }) 
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -89,16 +87,10 @@ class IndexController extends Controller
 
     public function book_shelve_commic()
     {
-        $username = Session::get('user');
-
-        if (is_object($username)) {
-            $username = $username->username; // กรณีเป็น object
-        } elseif (is_array($username)) {
-            $username = $username['username']; // กรณีเป็น array
-        }
-
         $comics = Bookshelf::with('book')
-            ->where('username', $username)
+            ->whereHas('User', function ($query) {
+                $query->whereNull('deleted_at');
+            })
             ->whereHas('book', function ($query) {
                 $query->where('BooktypeID', 2);
             })

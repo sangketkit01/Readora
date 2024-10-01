@@ -22,7 +22,7 @@
                         <img src="{{ asset($comic->book->book_pic) }}" alt="Novel Image">
                         <div class="card-body">
                             <h5 class="card-title">{{ $comic->book->book_name }}</h5>
-                            <p class="card-text">{{ $comic->book->book_description }}</p>
+                            <p class="card-text description">{{ $comic->book->book_description }}</p>
                             <p class="card-text"><small class="text-body-secondary">{{ $comic->User->name }}</small></p>
                         </div>
                     </div>

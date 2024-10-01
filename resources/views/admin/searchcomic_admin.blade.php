@@ -175,6 +175,7 @@
             <p>ไม่พบหนังสือตามที่ค้นหา</p>
         @else
             <div class="recommend-section1">
+
                 @foreach ($books as $comic)
                     <a href="{{  route('admin.book_detail', ['bookID' => $comic->bookID]) }}" class="recommend-card-link">
                         <div class="recommend-card">
