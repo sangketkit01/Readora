@@ -24,7 +24,7 @@
         </div>
         <div class="action-box center">
             <a href="{{ route('admin.search_admincomic') }}">
-                <img src="{{asset('admin/ComicBook.png')}}" alt="Comics">
+                <img src="{{asset('admin/comicBook.png')}}" alt="Comics">
                 <p>Comics</p>
             </a>
         </div>
