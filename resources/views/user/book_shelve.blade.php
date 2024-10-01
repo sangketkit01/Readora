@@ -22,7 +22,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $novel->book->book_name }}</h5>
                             <p class="card-text description">{{ $novel->book->book_description }}</p>
-                            <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
+                            <p class="card-text"><small class="text-body-secondary">{{ $novel->book->User->name }}</small></p>
                         </div>
                     </div>
                 </a>
