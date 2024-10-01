@@ -25,7 +25,7 @@
             <a href="{{ route('index.rec2') }}">แนะนำคอมมิค</a>
         </div>
         <div class="right-menu">
-            <form action="/search" method="GET" class="search-form">
+            <form action="{{route('search')}}" method="GET" class="search-form">
                 <input type="text" name="query" placeholder="ค้นหา..." class="search-input">
                 <button type="submit" class="search-button"><img src="/nav/search.svg" width="20" height="20"
                         alt=""></button>
