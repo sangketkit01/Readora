@@ -1,21 +1,21 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const itemsPerPage = 8;
-    const bookList = document.getElementById('bookList');
-    const pagination = document.getElementById('pagination');
-    const items = bookList.getElementsByClassName('list-group-item');
+document.addEventListener('DOMContentLoaded', function () { // ทำงานตั้งแต่เริ่มโหลดหน้า
+    const itemsPerPage = 8; //กำหนกว่าในแต่ละหน้ามีได้8item
+    const bookList = document.getElementById('bookList');//อ้างอิงถึง element ที่เก็บรายการหนังสือ
+    const pagination = document.getElementById('pagination'); //อ้างอิงถึง element สำหรับเปลี่ยนหน้า
+    const items = bookList.getElementsByClassName('list-group-item'); //อ้างอิงถึงitemืั้งหมดใน element นี้
 
-    let pageCount = Math.ceil(items.length / itemsPerPage);
-    let nowFilter = 'all';
+    let pageCount = Math.ceil(items.length / itemsPerPage); //คำนวณจำนวนหน้า
+    let nowFilter = 'all'; //เริ่มต้นหน้าด้วยfilter all
 
-    const tabs = document.querySelectorAll('.tab');
+    const tabs = document.querySelectorAll('.tab');//ดึง tab ทั้งหมดมา
 
-    let currentPage = 1;
+    let currentPage = 1; //หน้าปัจจุบันเริ่มที่ 1
 
     function getVisibleItems() {
         return Array.from(items).filter(item => item.style.display !== 'none');
     }
 
-    function showPage(page) {
+    function showPage(page) { // 
         const startIndex = (page - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
         const displayItems = filterItems(nowFilter);
@@ -77,9 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (filter === 'all') {
                 return true
             } else if (filter === 'author') {
-                const authorName = book.querySelector('p:nth-child(2)').textContent.replace("ผู้เขียน:", "").trim().toLowerCase();
+                const authorName = book.querySelector('p:nth-child(2)').textContent.replace("ผู้เขียน:", "").trim().toLowerCase(); 
                 const query = document.getElementById('mainContainer').getAttribute('data-query');
-
                 if (authorName.includes(query.toLowerCase())) {
                     return true
                 } else {
@@ -87,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             } else if (filter === 'novel') {
                 const type = book.querySelector('p:nth-child(3)').textContent.replace("ประเภท:", "").trim().toLowerCase();
+                console.log(type)
                 if (type == 'novel') {
                     return true
                 } else {
@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function () {
+    tabs.forEach(tab => { 
+        tab.addEventListener('click', function () { //loop tab ออกมาทีละตัวรอการคลิก
             currentPage = 1; // Reset to page 1 when filter changes
             currentFilter = this.getAttribute('id');
 
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 nowFilter = 'comic';
             }
             // Update page numbers after filtering
-            getVisibleItems().forEach(item => item.style.display = 'none')
+            getVisibleItems().filter(item => item.style.display !== 'none')
 
             const displayItems = filterItems(nowFilter);
             pageCount = Math.ceil(displayItems.length / itemsPerPage);

@@ -1,5 +1,5 @@
 @extends('user.layout')
-@section('title', 'Home')
+@section('title', 'Search')
 @push('style')
     <link rel="stylesheet" href="/css/user/index.css">
     <link rel="stylesheet" href="/css/user/search-result.css">
@@ -16,7 +16,7 @@
         <p class="result">ผลการค้นหาสำหรับ: "{{ $query }}"</p>
 
         @if ($books->isEmpty())
-            <p>ไม่พบหนังสือตามที่ค้นหา</p>
+            <p class="undefind-data">ไม่พบหนังสือตามที่ค้นหา</p>
         @else
             <ul id="bookList" class="list-group">
                 @foreach ($books as $book)
