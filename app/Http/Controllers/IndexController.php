@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Book_type;
 use App\Models\Book_genre;
-use App\Models\BookShelf;
+use App\Models\Bookshelf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
