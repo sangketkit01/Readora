@@ -13,7 +13,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-        // ดึงนิยายที่ผู้แต่งไม่ถูกลบ (soft deleted)
         $novels = Book::where('BooktypeID', 1)
             ->where('book_status', 'public')
             ->whereHas('User', function ($query) {
@@ -22,24 +21,21 @@ class IndexController extends Controller
             ->take(4)
             ->get();
 
-        // ดึงคอมิกที่ผู้แต่งไม่ถูกลบ (soft deleted)
         $comics = Book::where('BooktypeID', 2)
             ->where('book_status', 'public')
             ->whereHas('User', function ($query) {
-                $query->whereNull('deleted_at'); // กรองเฉพาะผู้แต่งที่ไม่ถูกลบ
+                $query->whereNull('deleted_at'); 
             })
             ->take(4)
             ->get();
 
-        // ดึงแนวหนังสือทั้งหมด
         $genres = Book_genre::all();
 
-        // ดึงนิยายรักที่ผู้แต่งไม่ถูกลบ (soft deleted)
         $romanticNovels = Book::where('BooktypeID', 1)
             ->where('BookgenreID', 1)
             ->where('book_status', 'public')
             ->whereHas('User', function ($query) {
-                $query->whereNull('deleted_at'); // กรองเฉพาะผู้แต่งที่ไม่ถูกลบ
+                $query->whereNull('deleted_at');
             })
             ->limit(4)
             ->get();
