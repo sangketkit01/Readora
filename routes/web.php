@@ -181,13 +181,8 @@ Route::prefix("admin")->group(function () {
         Route::post('admin/unblockbook/{bookID}', [AdminController::class, 'unblockBook'])->name('admin.unblock_book');
         Route::get('admin/blockedcomic', [AdminController::class, 'viewBlockedComic'])->name('admin.blocked_comic');
 
-<<<<<<< HEAD
-
-        Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin"); //aut
-
-=======
         Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");//aut
->>>>>>> 56461f94bac6ebcfc40bb6cd4e1ac6ebf7f816d9
+
         Route::get('searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
         Route::get('searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
         Route::get('searchUserAdmin', [SearchController::class, 'searchAdminUser'])->name('admin.search_user'); 
