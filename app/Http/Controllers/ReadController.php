@@ -176,39 +176,26 @@ class ReadController extends Controller
     {
         // ค้นหานิยายตาม ID
         $novel = Book::find($bookID);
-
         // เพิ่มค่า click_count ถ้านิยายถูกพบ
         if ($novel) {
             $novel->increment('click_count');
         }
-
-        // เรียงลำดับนิยายตาม click_count
-        $novels = Book::select('bookID', 'book_name', 'book_description', 'book_pic', DB::raw('SUM(click_count) AS total_clicks'))
-            ->groupBy('bookID', 'book_name', 'book_description', 'book_pic')
-            ->orderBy('total_clicks', 'desc')
-            ->get();
-
         // ส่งข้อมูลไปยังหน้าอ่านนิยายและส่งข้อมูลทั้งหมดไปด้วย
         return redirect()->route('read.read_novel', ['bookID' => $bookID])
-            ->with(['novel' => $novel, 'novels' => $novels]);
+            ->with(['novel' => $novel]);
     }
 
     public function incrementClickAndRedirectComic($bookID)
     {
         // ค้นหาการ์ตูนตาม ID
         $comic = Book::find($bookID);
-
         // เพิ่มค่า click_count ถ้าการ์ตูนถูกพบ
         if ($comic) {
             $comic->increment('click_count');
         }
-
-        // เรียงลำดับการ์ตูนตาม click_count
-        $comics = Book::orderBy('click_count', 'desc')->get();
-
         // ส่งข้อมูลไปยังหน้าอ่านการ์ตูน
         return redirect()->route('read.read_comic', ['bookID' => $bookID])
-            ->with(['comic' => $comic, 'comics' => $comics]);
+            ->with(['comic' => $comic]);
     }
 
 
