@@ -7,15 +7,15 @@ document.addEventListener('DOMContentLoaded', function () { // ทำงาน�
     let pageCount = Math.ceil(items.length / itemsPerPage); //คำนวณจำนวนหน้า
     let nowFilter = 'all'; //เริ่มต้นหน้าด้วยfilter all
 
-    const tabs = document.querySelectorAll('.tab');//ดึง tab ทั้งหมดมา
+    const tabs = document.querySelectorAll('.tab');
 
-    let currentPage = 1; //หน้าปัจจุบันเริ่มที่ 1
+    let currentPage = 1;
 
     function getVisibleItems() {
         return Array.from(items).filter(item => item.style.display !== 'none');
     }
 
-    function showPage(page) { // 
+    function showPage(page) {
         const startIndex = (page - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
         const displayItems = filterItems(nowFilter);
@@ -77,8 +77,9 @@ document.addEventListener('DOMContentLoaded', function () { // ทำงาน�
             if (filter === 'all') {
                 return true
             } else if (filter === 'author') {
-                const authorName = book.querySelector('p:nth-child(2)').textContent.replace("ผู้เขียน:", "").trim().toLowerCase(); 
+                const authorName = book.querySelector('p:nth-child(2)').textContent.replace("ผู้เขียน:", "").trim().toLowerCase();
                 const query = document.getElementById('mainContainer').getAttribute('data-query');
+
                 if (authorName.includes(query.toLowerCase())) {
                     return true
                 } else {
@@ -86,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () { // ทำงาน�
                 }
             } else if (filter === 'novel') {
                 const type = book.querySelector('p:nth-child(3)').textContent.replace("ประเภท:", "").trim().toLowerCase();
-                console.log(type)
                 if (type == 'novel') {
                     return true
                 } else {
@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', function () { // ทำงาน�
         });
     }
 
-    tabs.forEach(tab => { 
-        tab.addEventListener('click', function () { //loop tab ออกมาทีละตัวรอการคลิก
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
             currentPage = 1; // Reset to page 1 when filter changes
             currentFilter = this.getAttribute('id');
 
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () { // ทำงาน�
                 nowFilter = 'comic';
             }
             // Update page numbers after filtering
-            getVisibleItems().filter(item => item.style.display !== 'none')
+            getVisibleItems().forEach(item => item.style.display = 'none')
 
             const displayItems = filterItems(nowFilter);
             pageCount = Math.ceil(displayItems.length / itemsPerPage);
