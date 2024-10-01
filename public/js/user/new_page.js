@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', function () { // ทำงาน�
         });
     }
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function () {
+    tabs.forEach(tab => { 
+        tab.addEventListener('click', function () { //loop tab ออกมาทีละตัวรอการคลิก
             currentPage = 1; // Reset to page 1 when filter changes
             currentFilter = this.getAttribute('id');
 
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () { // ทำงาน�
                 nowFilter = 'comic';
             }
             // Update page numbers after filtering
-            getVisibleItems()
+            getVisibleItems().filter(item => item.style.display !== 'none')
 
             const displayItems = filterItems(nowFilter);
             pageCount = Math.ceil(displayItems.length / itemsPerPage);
