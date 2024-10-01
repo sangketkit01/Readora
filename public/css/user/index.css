@@ -213,6 +213,14 @@ h2 a:hover {
     font-weight: bold;
 }
 
+.description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* You'll need to assign specific background colors to each category */
 .category-tag:nth-child(1) { background-color: #4e5be8; }
 .category-tag:nth-child(2) { background-color: #ff6b6b; }
