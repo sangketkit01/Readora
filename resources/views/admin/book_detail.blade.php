@@ -26,7 +26,7 @@
                 </div>
                 <div class="book-info">
                     <h1 class="book-title">ชื่อเรื่อง {{ $book->book_name }}</h1>
-                    <p class="book-author">ผู้เขียน {{ $book->User->name }}</p>
+                    <p class="book-author">ผู้เขียน {{ optional($book->User)->name ?? 'Unknown Author' }}</p>
                     <p class="book-description">คำแนะนำนิยาย {{ $book->book_description }}</p>
                     <p class="book-genre">ประเภท {{ $book->Type->bookType_name ?? 'ไม่มีข้อมูล' }}</p>
                     <form action="{{ route($book->book_status == 'block' ? 'book.unblock' : 'book.block', $book->bookID) }}"
@@ -50,7 +50,7 @@
                         @foreach ($reports as $report)
                             <li class="report-item">
                                 <img src="{{ asset($report->profile) }}" alt="Book Cover">
-                                <p class="report-username">ชื่อผู้รายงาน: {{ $report->name }}</p>
+                                <p class="report-username">ชื่อผู้รายงาน: {{ $report->name ?? 'Unknown Reporter' }}</p>
                                 <p class="report-message">ข้อความรายงาน : {{ $report->report_message }}</p>
                                 <p class="report-date">{{ $report->created_at->format('d/m/Y') }}</p>
                             </li>

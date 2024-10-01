@@ -13,17 +13,36 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->take(4)->get();
-        $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->take(4)->get();
+        $novels = Book::where('BooktypeID', 1)
+            ->where('book_status', 'public')
+            ->whereHas('User', function ($query) {
+                $query->whereNull('deleted_at'); // กรองเฉพาะผู้แต่งที่ไม่ถูกลบ (soft deleted)
+            })
+            ->take(4)
+            ->get();
+
+        $comics = Book::where('BooktypeID', 2)
+            ->where('book_status', 'public')
+            ->whereHas('User', function ($query) {
+                $query->whereNull('deleted_at'); 
+            })
+            ->take(4)
+            ->get();
+
         $genres = Book_genre::all();
+
         $romanticNovels = Book::where('BooktypeID', 1)
             ->where('BookgenreID', 1)
             ->where('book_status', 'public')
+            ->whereHas('User', function ($query) {
+                $query->whereNull('deleted_at');
+            })
             ->limit(4)
             ->get();
 
         return view("user.index", compact("novels", 'romanticNovels', 'comics', 'genres'));
     }
+
 
     public function rec1()
     {
@@ -39,9 +58,9 @@ class IndexController extends Controller
     {
 
         $comics = Book::where('BooktypeID', 2)
-        ->where('book_status', 'public')
-        ->orderBy('click_count', 'DESC')
-        ->get();
+            ->where('book_status', 'public')
+            ->orderBy('click_count', 'DESC')
+            ->get();
 
         return view("user.rec2", compact('comics'));
     }
@@ -63,7 +82,7 @@ class IndexController extends Controller
                 $query->where('BooktypeID', 1);
             })
             ->orderBy('created_at', 'desc')
-            ->get(); 
+            ->get();
 
         return view("user.book_shelve", compact('novels'));
     }
@@ -84,7 +103,7 @@ class IndexController extends Controller
                 $query->where('BooktypeID', 2);
             })
             ->orderBy('created_at', 'desc')
-            ->get();  
+            ->get();
 
         return view("user.book_shelve_commic", compact('comics'));
     }

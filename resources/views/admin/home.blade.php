@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,10 @@
     <title>@yield('title', 'Admin Dashboard')</title>
     <link rel="stylesheet" href="{{ asset('css/admin/navigator.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('css/admin/mainpage.css') }}"> --}}
- @stack('style')
-    
+    @stack('style')
+
 </head>
+
 <body>
     <div class="navbar">
         <div class="nav">
@@ -19,13 +21,13 @@
             </ul>
         </div>
     </div>
-    
-    <div class="@yield("containerClassName")">
+
+    <div class="@yield('containerClassName')">
         @yield('content')
     </div>
 
 
 </body>
-@stack("scripts")
+@stack('scripts')
 
 </html>
