@@ -71,14 +71,19 @@ class IndexController extends Controller
 
     public function book_shelve()
     {
-        
+        $username = Session::get('user');
+
+        if (is_object($username)) {
+            $username = $username->username; // กรณีเป็น object
+        } elseif (is_array($username)) {
+            $username = $username['username']; // กรณีเป็น array
+        }
+
         $novels = Bookshelf::with('book')
-            ->whereHas('User', function ($query) {
-                $query->whereNull('deleted_at');
-            }) 
+            ->where('username', $username)
             ->whereHas('book', function ($query) {
                 $query->where('BooktypeID', 1);
-            }) 
+            })
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -87,10 +92,16 @@ class IndexController extends Controller
 
     public function book_shelve_commic()
     {
+        $username = Session::get('user');
+
+        if (is_object($username)) {
+            $username = $username->username; // กรณีเป็น object
+        } elseif (is_array($username)) {
+            $username = $username['username']; // กรณีเป็น array
+        }
+
         $comics = Bookshelf::with('book')
-            ->whereHas('User', function ($query) {
-                $query->whereNull('deleted_at');
-            })
+            ->where('username', $username)
             ->whereHas('book', function ($query) {
                 $query->where('BooktypeID', 2);
             })
