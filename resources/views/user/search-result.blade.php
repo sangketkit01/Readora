@@ -16,7 +16,7 @@
         <p class="result">ผลการค้นหาสำหรับ: "{{ $query }}"</p>
 
         @if ($books->isEmpty())
-            <p>ไม่พบหนังสือตามที่ค้นหา</p>
+            <p class="undefind-data">ไม่พบหนังสือตามที่ค้นหา</p>
         @else
             <ul id="bookList" class="list-group">
                 @foreach ($books as $book)

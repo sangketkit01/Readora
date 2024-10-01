@@ -91,14 +91,9 @@
                             </div>
                             <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->Chapters->count()}}</span>
                                 @php
-                                    $totalComments = 0;
+                                    $totalComments = $c->Chapters->sum('comments_count');
                                 @endphp
-                                @foreach($c->Chapters as $chapter)
-                                    @php
-                                        $totalComments += $chapter->comments_count;
-                                    @endphp
-                                @endforeach
-                                <span id="comment"><i class="fa-solid fa-comment"></i> {{$totalComments}}</span> <br>
+                            <span id="comment"><i class="fa-solid fa-comment"></i> {{$totalComments}}</span> <br>
                             <span id="genre">{{$c->Genre->bookGenre_name}}</span>
                         </div>
                     </div>
