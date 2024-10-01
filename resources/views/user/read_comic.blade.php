@@ -19,7 +19,7 @@
                         </h1>
                     </div>
                     <div class="profile_user">
-                        <img src="{{ $book->User->profile }}
+                        <img src="{{asset( $book->User->profile) }}
                         " alt="">
                         <p>{{ $book->User->name }}
                         </p>
@@ -106,7 +106,8 @@
                         @foreach ($chapterComments[$chapter->chapterID] ?? [] as $comment)
                             <div class="comment-item">
                                 <div class="header_com">
-                                    <p>{{ $comment->comment_message }}</p>
+                                    <p class="text-end">จากตอน #{{$comment->Chapter->chapter_name}}</p>
+                                    <p>{{ $comment->comment_message }}</p> 
                                 </div>
                                 <div class="user_com">
                                     <div class="img_com">

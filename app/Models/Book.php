@@ -24,7 +24,7 @@ class Book extends Model
     }
 
     function User(){
-        return $this->belongsTo(Userdb::class,"username");
+        return $this->belongsTo(Userdb::class,"username")->withTrashed();
     }
 
     public function Users() {

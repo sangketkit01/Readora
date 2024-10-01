@@ -133,7 +133,7 @@
                     <p>{{ $user->name }}</p>
                     <p>{{ $user->username }}</p>
                     <p>{{ $user->email }}</p>
-                    <p>(wait)</p>
+                    <p>-</p>
                     <p>
                         @if ($user->gender == 'F')
                             หญิง
