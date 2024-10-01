@@ -66,8 +66,8 @@ Route::middleware("checkLogin")->group(function () {
     });
 
     Route::prefix("create_comic")->group(function () {
-        Route::get("/", [ComicController::class, "page"])->name("create_comic");
-        Route::post("insert", [ComicController::class, "insertNewComic"])->name("comic.insert");
+        Route::get("/", [ComicController::class, "page"])->name("create_comic"); //aut
+        Route::post("insert", [ComicController::class, "insertNewComic"])->name("comic.insert"); //aut
     });
 
     Route::middleware("checkNovelOwner")->group(function () {
@@ -112,9 +112,9 @@ Route::middleware("checkLogin")->group(function () {
     });
 
     Route::middleware("checkComicOwner")->group(function () {
-        Route::prefix("edit_comic")->group(function () {
+        Route::prefix("edit_comic")->group(function () { //aut
             Route::get("{bookID}", [ComicController::class, 'edit'])->name("comic.edit");
-            Route::post("insert/{bookID}", [ComicController::class, "EditInsert"])->name("comic.edit_insert");
+            Route::post("insert/{bookID}", [ComicController::class, "EditInsert"])->name("comic.edit_insert"); 
             Route::post('chapter/update/{bookID}/{chapterID}', [ComicController::class, 'ChapterStatusUpdate'])->name('comic.chapter_status_update')->middleware(['checkChapterOwner']);
             Route::get("/{bookID}/trash", [ComicController::class, "Trash"])->name("comic.trash")->middleware(["checkBookBlock"]);;
         });
@@ -181,17 +181,17 @@ Route::prefix("admin")->group(function () {
         Route::post('admin/unblockbook/{bookID}', [AdminController::class, 'unblockBook'])->name('admin.unblock_book');
         Route::get('admin/blockedcomic', [AdminController::class, 'viewBlockedComic'])->name('admin.blocked_comic');
 
-        Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
+         //aut
 
         Route::get('searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
         Route::get('searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
-        Route::get('searchUserAdmin', [SearchController::class, 'searchAdminUser'])->name('admin.search_user');
-        Route::get('searchUser', [SearchController::class, 'searchUser'])->name('admin.get_info_search');
+        Route::get('searchUserAdmin', [SearchController::class, 'searchAdminUser'])->name('admin.search_user'); //aut
+        Route::get('searchUser', [SearchController::class, 'searchUser'])->name('admin.get_info_search'); //aut
 
-        Route::post('admin.delete_user', [AdminController::class, 'adminDeleteUser'])->name('admin.delete_user');
+        Route::post('admin.delete_user', [AdminController::class, 'adminDeleteUser'])->name('admin.delete_user'); //aut 
 
-        Route::get('admin/deleted-users', [AdminController::class, 'deletedUsers'])->name('admin.deleted_users');
-        Route::post('admin.restore_user', [AdminController::class, 'adminRestoreUser'])->name('admin.restore_user');
+        Route::get('admin/deleted-users', [AdminController::class, 'deletedUsers'])->name('admin.deleted_users'); //aut
+        Route::post('admin.restore_user', [AdminController::class, 'adminRestoreUser'])->name('admin.restore_user'); //aut
 
     });
 
@@ -212,5 +212,6 @@ Route::get("/test", function () {
     return view('user.test');
 });
 
-Route::get('/search', [SearchController::class, 'search'])->name('search');
-Route::get("/genre/{genreID}", [IndexController::class, 'Genre'])->name('genre.newpage');
+Route::get('/search', [SearchController::class, 'search'])->name('search'); //aut
+Route::get("/genre/{genreID}", [IndexController::class, 'Genre'])->name('genre.newpage'); //aut
+Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");
