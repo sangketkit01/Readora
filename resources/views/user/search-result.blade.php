@@ -1,5 +1,5 @@
 @extends('user.layout')
-@section('title', 'Home')
+@section('title', 'Search')
 @push('style')
     <link rel="stylesheet" href="/css/user/index.css">
     <link rel="stylesheet" href="/css/user/search-result.css">
