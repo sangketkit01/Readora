@@ -13,12 +13,13 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->take(4)->get();
-        $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->take(4)->get();
+        $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])->take(4)->get();
+        $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])->take(4)->get();
         $genres = Book_genre::all();
         $romanticNovels = Book::where('BooktypeID', 1)
             ->where('BookgenreID', 1)
             ->where('book_status', 'public')
+            ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])
             ->limit(4)
             ->get();
 
