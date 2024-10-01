@@ -72,21 +72,29 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* แสดงการ์ด 4 ใบต่อแถว */
     align-items: stretch;
-    grid-gap: 30px;
+    grid-gap: 15px; /* ปรับระยะห่างระหว่างการ์ดให้เล็กลง (จาก 30px เป็น 15px) */
     padding-left: 3%;
     padding-right: 3%;
 }
 
+* {
+    box-sizing: border-box; 
+}
+
+/* กำหนดขนาดการ์ด */
 .result-card {
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 15px;
     transition: transform 0.2s;
+    width: 380px; /* กำหนดความกว้างให้เหมือนเดิม */
+    max-height: 171px; /* จำกัดความสูง */
+    overflow: hidden; /* ซ่อนเนื้อหาที่เกิน */
 }
 
 .result-card:hover {
@@ -104,16 +112,25 @@ body {
 .result-info {
     text-align: left;
     width: 100%;
+    display: flex; /* ใช้ flexbox */
+    flex-direction: column; /* แสดงข้อมูลในแนวตั้ง */
+    overflow: hidden; /* ซ่อนเนื้อหาที่เกิน */
 }
 
 .result-info h3 {
     margin: 0;
     font-size: 1.2em;
     color: black; /* เปลี่ยนสีชื่อเรื่องเป็นสีดำ */
+    overflow: hidden;  
+    white-space: nowrap; /* ห้ามขึ้นบรรทัดใหม่ */
+    text-overflow: ellipsis; /* แสดง ... แทนข้อความที่ถูกตัด */
 }
 
 .result-info p {
     margin: 5px 0;
+    overflow: hidden;  
+    white-space: nowrap; /* ห้ามขึ้นบรรทัดใหม่ */
+    text-overflow: ellipsis; /* แสดง ... แทนข้อความที่ถูกตัด */
 }
 
 /* จัดรูปแบบปุ่มการดำเนินการ */
@@ -188,6 +205,7 @@ body {
         width: 100%;  
     }
 }
+
 .result-card-link {
     text-decoration: none;
     color: inherit;
