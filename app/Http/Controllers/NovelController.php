@@ -200,7 +200,7 @@ class NovelController extends Controller
         $book->delete();
 
         if($book_chapter->isEmpty()){
-            return redirect()->route("index")->with(["successMsg" => "ลบนิยายสำเร็จ"]);
+            return redirect()->route("profile")->with(["successMsg" => "ลบนิยายสำเร็จ"]);
         }
 
         foreach($book_chapter as $chapter){
