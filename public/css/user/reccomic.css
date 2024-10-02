@@ -127,3 +127,10 @@ select{
         margin-left: 10px;
         margin-bottom: 20px;
 }
+.description {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
