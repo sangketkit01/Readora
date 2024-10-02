@@ -21,7 +21,7 @@
                         <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
                         <div class="card-body">
                             <h5 class="card-title">{{ $novel->book_name }}</h5>
-                            <p class="card-text">{{ $novel->book_description }}</p>
+                            <p class="card-text description">{{ $novel->book_description }}</p>
                             <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
                             <p class="card-text"><small class="text-body-secondary">ยอดชม:
                                     {{ $novel->click_count }}</small></p>

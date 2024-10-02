@@ -213,8 +213,6 @@ class ReadController extends Controller
         } elseif (is_array($username)) {
             $username = $username['username']; // กรณีเป็น array
         }
-
-        // ตรวจสอบว่าหนังสือนี้ถูกเพิ่มในชั้นแล้วหรือไม่
         $existingBook = Bookshelf::where('bookID', $request->bookID)
             ->where('username', $username)
             ->first();
