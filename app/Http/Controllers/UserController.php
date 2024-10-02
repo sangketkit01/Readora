@@ -44,7 +44,6 @@ class UserController extends Controller{
     function edit_info(Request $request){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         if($request->hasFile('inputImage')){
-            $user = Userdb::where('username', Session::get('user')->username)->first();
             if ($user->profile) {
                 $oldImage = str_replace("storage/", "public/", $user->profile);
                 if (Storage::exists($oldImage)){

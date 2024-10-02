@@ -60,7 +60,7 @@ class FacebookController extends Controller
 
             return redirect()->route('index');
         } catch (\Throwable $th) {
-            return redirect()->route('sign_in')->withErrors(["msg"=>"Login failed. Please try again."]);
+            return redirect()->route('sign_in')->withErrors(["msg"=>"เข้าสู่ระบบล้มเหลว โปรดลองอีกครั้ง"]);
         }
     }
 

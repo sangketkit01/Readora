@@ -220,12 +220,14 @@ class ReadController extends Controller
                 'bookID' => $request->bookID,
                 'username' => $username,
             ]);
-            $message = 'Book added to your shelf successfully!';
+            $alert_session = "success_message";
+            $message = 'เพิ่มเข้าชั้นสำเร็จ';
         } else {
-            $message = 'This book is already in your shelf.';
+            $alert_session = "error_message";
+            $message = 'หนังสืออยู่ในชั้นหนังสืออยู่แล้ว';
         }
 
-        return redirect()->back()->with('message', $message);
+        return redirect()->back()->with($alert_session, $message);
 
     }
 

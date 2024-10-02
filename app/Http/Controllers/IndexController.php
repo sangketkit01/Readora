@@ -19,6 +19,7 @@ class IndexController extends Controller
                 $query->whereNull('deleted_at'); //เฉพาะผู้แต่งที่ไม่ถูกลบ (soft deleted)
             })
             ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])
+            ->orderBy('created_at', 'DESC')
             ->take(4)
             ->get();
 
@@ -28,6 +29,7 @@ class IndexController extends Controller
                 $query->whereNull('deleted_at'); 
             })
             ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])
+            ->orderBy('created_at', 'DESC')
             ->take(4)
             ->get();
 
@@ -40,6 +42,7 @@ class IndexController extends Controller
                 $query->whereNull('deleted_at');
             })
             ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])
+            ->orderBy('created_at', 'DESC')
             ->limit(4)
             ->get();
 

@@ -11,8 +11,8 @@
     <div class="side"></div>
     <div class="container">
         <h1>ชั้นหนังสือของฉัน</h1>
-        <a class="btn" id="btn2" href="#" target="_self" role="button">novel</a>
-        <a class="btn" id="btn1" href="{{ route('index.book_shelve_commic') }}" target="_self" role="button">commic</a>
+        <a class="btn" id="btn2" href="#" target="_self" role="button">นิยาย</a>
+        <a class="btn" id="btn1" href="{{ route('index.book_shelve_commic') }}" target="_self" role="button">คอมมิค</a>
 
         <div class="recommend-section1">
             @foreach ($novels as $novel)
@@ -20,7 +20,13 @@
                     <div class="recommend-card">
                         <img src="{{  asset($novel->book->book_pic) }}" alt="Novel Image">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $novel->book->book_name }}</h5>
+                            @php
+                                $deleted = "";
+                                if($novel->book->deleted_at){
+                                    $deleted = "(ถูกลบแล้ว)";
+                                }
+                            @endphp
+                            <h5 class="card-title">{{ $novel->book->book_name }} {{$deleted}}</h5>
                             <p class="card-text description">{{ $novel->book->book_description }}</p>
                             <p class="card-text"><small class="text-body-secondary">{{ $novel->book->User->name }}</small></p>
                         </div>

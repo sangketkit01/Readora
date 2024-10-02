@@ -34,7 +34,7 @@
                                 id="restore-each-{{ $chapter->chapterID }}">@csrf</form>
                                 
                             <button class="btn btn-danger ms-2" type="button"
-                                onclick="ForceDeleteEach({{$chapter->chapterID}},'{{$chapter->chapter_name}}')">ลบฐาวร</button>
+                                onclick="ForceDeleteEach({{$chapter->chapterID}},'{{$chapter->chapter_name}}')">ลบถาวร</button>
                             <form action="{{route("comic.force-delete-each",["bookID" => $bookID , "chapterID" => $chapter->chapterID])}}" style="display: none;" method="POST"
                                 id="force-delete-each-{{ $chapter->chapterID }}">@csrf</form>
                         </div>
