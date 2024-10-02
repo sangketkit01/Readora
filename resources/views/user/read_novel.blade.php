@@ -35,6 +35,8 @@
                                     @if ($book->User->username == session('user')->username)
                                         <a type="button" href="{{ route('novel.edit', ['bookID' => $book->bookID]) }}"
                                             class="button_1 me-2">แก้ไข</a>
+                                    @elseif ($shelve)
+                                        <button type="button" onclick="DeleteOutOfShelve('{{$book->book_name}}')" class="button_1 me-2">ลบออกจากชั้น</button>
                                     @else
                                         <button type="submit" class="button_1 me-2">เพิ่มเข้าชั้น</button>
                                     @endif
@@ -45,11 +47,11 @@
                                                 Swal.fire({
                                                     position: "center",
                                                     icon: "success",
-                                                    title: `{!! nl2br(e(session('message'))) !!}`,
+                                                    title: `{!! nl2br(e(session('success_message'))) !!}`,
                                                     showConfirmButton: false,
                                                     timer: 5000
                                                 });
-                                            })
+                                        })
                                         </script>
                                     @endif
 
@@ -70,6 +72,7 @@
                                     <a href="{{ route('read.read_first_chaptnovel', ['bookID' => $book->bookID]) }}"
                                         class="btn button_2">อ่านเลย</a>
                                 </form>
+                                <form action="{{route('read.delete_shelve',["bookID"=>$book->bookID])}}" id="delete-shelve-form" method="post">@csrf</form>
                             </div>
                             @if ($book->User->username != session('user')->username)
                                 <button type="button" class="btn report-button" onclick="openModal()">
