@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\click;
 
 use App\Models\Book;
-use App\Models\BookShelf;
+use App\Models\Bookshelf;
 use App\Models\Book_type;
 use App\Models\Book_chapter;
 use App\Models\Chapter_comment;
@@ -206,17 +206,15 @@ class ReadController extends Controller
         ]);
 
         $username = Session::get('user'); // ดึงข้อมูล user จาก session
-
-        // ตรวจสอบว่า $username เป็น object หรือ array
         if (is_object($username)) {
-            $username = $username->username; // กรณีเป็น object
+            $username = $username->username; // เป็น object
         } elseif (is_array($username)) {
-            $username = $username['username']; // กรณีเป็น array
+            $username = $username['username']; // เป็น array
         }
+
         $existingBook = Bookshelf::where('bookID', $request->bookID)
             ->where('username', $username)
             ->first();
-
         if (!$existingBook) {
             Bookshelf::create([
                 'bookID' => $request->bookID,

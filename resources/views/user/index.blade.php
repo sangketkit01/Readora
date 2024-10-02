@@ -104,7 +104,8 @@
                                     @php
                                         $totalComments = $novel->Chapters->sum('comments_count');
                                     @endphp
-                                <p><i class="fa-solid fa-list-ul"></i> {{$novel->Chapters->count()}}  <i class="fa-solid fa-comment"></i> {{$totalComments}}</p>
+                                <p><i class="fa-solid fa-list-ul"></i> {{$novel->Chapters->count()}}  
+                                <i class="fa-solid fa-comment"></i> {{$totalComments}}</p>
                             </div>
                         </div>
                     </a>
