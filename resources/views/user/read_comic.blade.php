@@ -44,7 +44,7 @@
                                                 showAlert("{{ session('message') }}");
                                             @endif
                                         </script>
-                                        <a href="{{ route('read.read_first_chaptnovel', ['bookID' => $book->bookID]) }}"
+                                        <a href="{{ route('read.read_first_chaptcomic', ['bookID' => $book->bookID]) }}"
                                             class="btn button_2">อ่านเลย</a>
                                     </form>
                                 </div>

@@ -69,12 +69,13 @@ body {
 }
 
 .results-container {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(4, 1fr); /* แสดงการ์ด 4 ใบต่อแถว */
     align-items: stretch;
     grid-gap: 15px; /* ปรับระยะห่างระหว่างการ์ดให้เล็กลง (จาก 30px เป็น 15px) */
     padding-left: 3%;
     padding-right: 3%;
+    justify-content: flex-start;
 }
 
 * {
