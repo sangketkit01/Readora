@@ -184,7 +184,7 @@
                                 <h5 class="card-title">{{ htmlspecialchars($comic->book_name) }}</h5>
                                 <p class="card-text">{{ Str::limit(htmlspecialchars($comic->book_description), 100) }}</p>
                                 <p class="card-text"><small
-                                        class="text-body-secondary">{{ htmlspecialchars($comic->User->name) }}</small></p>
+                                class="text-body-secondary">{{ htmlspecialchars($comic->User->name) }}</small></p>
                             </div>
                         </div>
                     </a>
