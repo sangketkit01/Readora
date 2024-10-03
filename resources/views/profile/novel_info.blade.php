@@ -84,7 +84,7 @@
                                 <button class="rounded-pill mt-2" onclick="return false;"> <i class="fa-solid fa-lock"></i></i></i> ส่วนตัว</button>
                             @endif
                         </div>
-                        <div class="card-body">
+                        <div class="card-body">3
                             <div class="n-info">
                                 <h5>{{$c->book_name}}</h5>
                                 <p id="writer">{{$c->username}}</p>

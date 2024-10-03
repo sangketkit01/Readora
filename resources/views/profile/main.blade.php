@@ -8,7 +8,7 @@
     @if (isset($edit))
         <div class="row mt-3">
             <div class="top">
-                <img id="profile-image" src="{{asset( $user->profile) }}" alt="" onclick="">
+                <img id="profile-image" src="{{asset( $user->profile) }}" alt="">
                 <div class="cover-upload">
                     <i class="bi bi-camera-fill icon_cam" id="camera-icon" style="cursor: pointer;"></i>
                 </div>            
