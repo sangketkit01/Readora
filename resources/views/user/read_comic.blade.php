@@ -41,7 +41,6 @@
                                             }
                                             // เมื่อโหลดหน้าใหม่ ตรวจสอบว่ามี message ใน session หรือไม่
                                             @if (session('message'))
-                                                // เรียกฟังก์ชัน showAlert พร้อมข้อความ
                                                 showAlert("{{ session('message') }}");
                                             @endif
                                         </script>

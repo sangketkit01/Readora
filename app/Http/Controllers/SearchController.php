@@ -47,24 +47,23 @@ class SearchController extends Controller
     {
         $query = $request->input('query');
 
-        $books = Book::where(function ($q) use ($query) {
-            $q->where('book_name', 'LIKE', "%{$query}%")
-                ->orWhere('book_description', 'LIKE', "%{$query}%");
-        })
-            ->orWhereHas('User', function ($q) use ($query) {
-                $q->where('name', 'LIKE', "%{$query}%");
+        $books = Book::where('bookTypeID', 1) // ตรวจสอบ bookTypeID ก่อน
+            ->where('book_status', 'public') // เงื่อนไขสำหรับ book_status
+            ->where(function ($q) use ($query) {
+                // เงื่อนไขการค้นหาทั้งหมดภายใต้ where หลัก
+                $q->where('book_name', 'LIKE', "%{$query}%")
+                    ->orWhere('book_description', 'LIKE', "%{$query}%")
+                    ->orWhereHas('User', function ($q) use ($query) {
+                    $q->where('name', 'LIKE', "%{$query}%");
+                })
+                    ->orWhereHas('Genre', function ($q) use ($query) {
+                    $q->where('bookGenre_name', 'LIKE', "%{$query}%");
+                })
+                    ->orWhereHas('Type', function ($q) use ($query) {
+                    $q->where('bookType_name', 'LIKE', "%{$query}%");
+                });
             })
-            ->orWhereHas('Genre', function ($q) use ($query) {
-                $q->where('bookGenre_name', 'LIKE', "%{$query}%");
-            })
-            ->orWhereHas('Type', function ($q) use ($query) {
-                $q->where('bookType_name', 'LIKE', "%{$query}%");
-            })
-            ->where('book_status', 'public')
-            ->where('BooktypeID', 2)
             ->paginate(20);
-
-
 
         return view('admin.search_admin', compact('books', 'query'));
     }
@@ -73,25 +72,23 @@ class SearchController extends Controller
     {
         $query = $request->input('query');
 
-        $books = Book::where(function ($q) use ($query) {
-            $q->where('book_name', 'LIKE', "%{$query}%")
-                ->orWhere('book_description', 'LIKE', "%{$query}%");
-        })
-            ->orWhereHas('User', function ($q) use ($query) {
-                $q->where('name', 'LIKE', "%{$query}%");
+        $books = Book::where('bookTypeID', 2) // ตรวจสอบ bookTypeID ก่อน
+            ->where('book_status', 'public') // เงื่อนไขสำหรับ book_status
+            ->where(function ($q) use ($query) {
+                // เงื่อนไขการค้นหาทั้งหมดภายใต้ where หลัก
+                $q->where('book_name', 'LIKE', "%{$query}%")
+                    ->orWhere('book_description', 'LIKE', "%{$query}%")
+                    ->orWhereHas('User', function ($q) use ($query) {
+                    $q->where('name', 'LIKE', "%{$query}%");
+                })
+                    ->orWhereHas('Genre', function ($q) use ($query) {
+                    $q->where('bookGenre_name', 'LIKE', "%{$query}%");
+                })
+                    ->orWhereHas('Type', function ($q) use ($query) {
+                    $q->where('bookType_name', 'LIKE', "%{$query}%");
+                });
             })
-            ->orWhereHas('Genre', function ($q) use ($query) {
-                $q->where('bookGenre_name', 'LIKE', "%{$query}%");
-            })
-            ->orWhereHas('Type', function ($q) use ($query) {
-                $q->where('bookType_name', 'LIKE', "%{$query}%");
-            })
-            ->where('book_status', 'public')
-            ->where('BooktypeID', 2)
             ->paginate(20);
-
-
-
 
         return view('admin.searchcomic_admin', compact('books', 'query'));
     }

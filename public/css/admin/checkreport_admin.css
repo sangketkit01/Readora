@@ -69,13 +69,18 @@ body {
 }
 
 .results-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* แสดงการ์ด 4 ใบต่อแถว */
-    align-items: stretch;
-    grid-gap: 15px; /* ปรับระยะห่างระหว่างการ์ดให้เล็กลง (จาก 30px เป็น 15px) */
+    display: flex;
+    flex-wrap: wrap; /* ทำให้การ์ดหลายแถว */
+    gap: 15px; /* ปรับระยะห่างระหว่างการ์ด */
     padding-left: 3%;
     padding-right: 3%;
 }
+
+.results-container > .card {
+    flex: 1 1 calc(25% - 15px); /* ทำให้การ์ดมีขนาด 25% ของแถว (ลบ gap ออกไป) */
+    box-sizing: border-box; /* รวม padding กับขนาดของการ์ดให้พอดี */
+}
+
 
 * {
     box-sizing: border-box; 
