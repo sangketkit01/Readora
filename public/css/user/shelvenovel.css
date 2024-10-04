@@ -1,12 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
 
-h1 {
-    margin-top: 8%;
-}
-
 p ._1 {
     margin-top: 12%;
 }
+
 
 #btn1 {
     background-color: #33436F;
@@ -15,6 +12,11 @@ p ._1 {
     margin-top: 20px;
     margin-bottom: 20px;
 
+}
+
+h1{
+    position: relative;
+    right: 4%;
 }
 
 #btn2 {
@@ -53,6 +55,7 @@ p ._1 {
     margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
+    margin-top: 5%;
 }
 
 .side {
@@ -155,4 +158,17 @@ select {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+#back-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    border: none;
+    background-color: transparent;
+    color: #33436F;
+    align-items: center;
+    position: relative;
+    bottom: 8px;
+    right: 5%;
 }

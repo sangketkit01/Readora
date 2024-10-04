@@ -6,8 +6,12 @@
 @section('containerClassName', 'TrashNovelContainer')
 @section('content')
     @if ($chapters->isEmpty())
-        <div class="d-flex justify-content-center align-items-center" style="height: 90vh"><label for="" style="font-size: 22px">ไม่มีตอนที่ถูกลบ</label></div>
+        <div class="d-flex flex-column justify-content-center align-items-center" style="height: 90vh">
+            <label for="" style="font-size: 22px">ไม่มีตอนที่ถูกลบ</label>
+            <a href="{{route('comic.edit',["bookID"=>$bookID])}}" style="font-size: 18px" class="mt-2">กลับหน้าแก้ไข</a>
+        </div>
     @else
+        <a href="{{ route('comic.edit',["bookID"=>$bookID]) }}" id="back-icon"><i class="bi bi-arrow-left-circle-fill fs-1"></i> </a>
         <div class="container" style="margin-top: 50px">
             <h4 class="ms-4">ตอนทั้งหมด {{ $count_chapter }}</h4>
 

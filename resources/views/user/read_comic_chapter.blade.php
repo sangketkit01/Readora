@@ -7,7 +7,7 @@
 @section('containerClassName', 'indexContainer')
 
 @section('content')
-
+    <a href="{{ route('read.read_comic',["bookID"=>$chapters->bookID]) }}" id="back-icon"><i class="bi bi-arrow-left-circle-fill fs-1"></i> </a>
     <div class="container">
         <div class="Introducing">
             <h2>{{ $chapters->chapter_name }}</h2>
@@ -68,7 +68,9 @@
                 @else
                     <button class="btn btn-primary" disabled>ตอนก่อนหน้า</button>
                 @endif
-    
+
+                <a href="{{route('read.read_comic',["bookID"=>$books->bookID])}}" class="btn btn-primary" style="color:white;">กลับหน้าแรก</a>
+
                 @if ($nextChapter)
                     <a href="{{ route('read.read_chaptcomic', ['bookID' => $books->bookID, 'chapterID' => $nextChapter->chapterID]) }}"
                         class="btn btn-primary">ตอนถัดไป</a>

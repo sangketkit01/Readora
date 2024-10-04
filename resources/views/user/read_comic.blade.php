@@ -6,6 +6,7 @@
 @section('containerClassName', 'indexContainer')
 
 @section('content')
+<a href="{{ route('index') }}" id="back-icon"><i class="bi bi-arrow-left-circle-fill fs-1"></i> </a>
     @foreach ($books as $book)
         <div class="container_user">
             <div class="card_user">
