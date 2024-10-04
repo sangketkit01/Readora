@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->string("report_status")->default("Not Managed");
+            $table->string("report_status")->after("report_message")->default("Not Managed");
             // Report status :
                     // จัดการแล้ว = Managed 
                     // ยังไม่จัดการ = Not Managed 
