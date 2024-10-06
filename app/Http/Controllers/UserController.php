@@ -44,7 +44,6 @@ class UserController extends Controller{
     function edit_info(Request $request){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         if($request->hasFile('inputImage')){
-            $user = Userdb::where('username', Session::get('user')->username)->first();
             if ($user->profile) {
                 $oldImage = str_replace("storage/", "public/", $user->profile);
                 if (Storage::exists($oldImage)){
@@ -209,7 +208,7 @@ class UserController extends Controller{
 
                 $book->forceDelete();
 
-                return redirect()->route("index")->with(["successMsg" => "ลบ" . $bookType_name_thai . "สำเร็จ"]);
+                return redirect()->route("profile")->with(["successMsg" => "ลบ" . $bookType_name_thai . "สำเร็จ"]);
             }
 
             foreach ($chapters as $chapter) {
@@ -261,7 +260,7 @@ class UserController extends Controller{
 
             $book->forceDelete();
 
-            return redirect()->route("index")->with(["successMsg" => "ลบ" . $bookType_name_thai . "สำเร็จ"]);
+            return redirect()->route("profile")->with(["successMsg" => "ลบ" . $bookType_name_thai . "สำเร็จ"]);
         }
 
         foreach($chapters as $chapter){

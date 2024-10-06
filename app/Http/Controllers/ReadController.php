@@ -44,7 +44,9 @@ class ReadController extends Controller
                 ->from('book_chapters')
                 ->where('bookID', $bookID);
         })->count();
-        return view("user.read_novel", compact('books', 'bookID', 'chapters', 'count_chapter', 'chapterComments', 'count_comment'));
+        $shelve = Bookshelf::where("username",Session::get("user")->username)->where("bookID",$bookID)->first();
+
+        return view("user.read_novel", compact('books', 'bookID', 'chapters', 'count_chapter', 'chapterComments', 'count_comment',"shelve"));
     }
 
     public function readnovel_chapt($bookID, $chapterID)
@@ -113,7 +115,9 @@ class ReadController extends Controller
                 ->from('book_chapters')
                 ->where('bookID', $bookID);
         })->count();
-        return view("user.read_comic", compact('books', 'bookID', 'chapters', 'count_chapter', 'chapterComments', 'count_comment'));
+        $shelve = Bookshelf::where("username", Session::get("user")->username)->where("bookID", $bookID)->first();
+
+        return view("user.read_comic", compact('books', 'bookID', 'chapters', 'count_chapter', 'chapterComments', 'count_comment','shelve'));
     }
 
     public function readcomic_chapt($bookID, $chapterID)
@@ -220,12 +224,14 @@ class ReadController extends Controller
                 'bookID' => $request->bookID,
                 'username' => $username,
             ]);
-            $message = 'Book added to your shelf successfully!';
+            $alert_session = "success_message";
+            $message = 'เพิ่มเข้าชั้นสำเร็จ';
         } else {
-            $message = 'This book is already in your shelf.';
+            $alert_session = "error_message";
+            $message = 'หนังสืออยู่ในชั้นหนังสืออยู่แล้ว';
         }
 
-        return redirect()->back()->with('message', $message);
+        return redirect()->back()->with($alert_session, $message);
 
     }
 
@@ -255,5 +261,17 @@ class ReadController extends Controller
         return redirect("/read_chaptcomic/{$bookID}/{$chapterID}");
     }
 
+
+    function DeleteOutOfShelve(Request $request , $bookID){
+        $book = Bookshelf::where("username",Session::get("user")->username)->where("bookID",$bookID)->first();
+
+        if(!$book){
+            return abort(404);
+        }
+
+        $book->forceDelete();
+
+        return redirect()->back()->with(["success_message" => "ลบหนังสือออกจากชั้นหนังสือสำเร็จ"]);
+    }
 
 }

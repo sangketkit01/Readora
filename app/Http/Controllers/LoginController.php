@@ -23,13 +23,13 @@ class LoginController extends Controller
             $password = $request->password;
 
             if (!($user && Hash::check($password, $user->password))) {
-                return redirect()->back()->withErrors(["msg" => "Invalid username or password."])->withInput();;
+                return redirect()->back()->withErrors(["msg" => "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"])->withInput();;
             }
 
             Session::flush();
             Session::put("user", $user);
         }catch(\Throwable $th){
-            return redirect()->route('sign_in')->withErrors(["msg" => "Login failed. Please try again."]);
+            return redirect()->route('sign_in')->withErrors(["msg" => "เข้าสู่ระบบล้มเหลว โปรดลองอีกครั้ง"]);
         }
 
         if ($intended) {
