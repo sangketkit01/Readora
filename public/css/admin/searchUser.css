@@ -5,6 +5,9 @@ body {
     margin: 0;
 
 }
+.undefind{
+    text-align: center;
+}
 
 /* จัดรูปแบบฟอร์มค้นหา */
 .search-form {
