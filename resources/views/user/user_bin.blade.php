@@ -8,18 +8,32 @@
 @section('content')
     @if ($books->isEmpty())
         <div class="no-bin">
-            ไม่มี{{$bookTypeID == 1 ? "นิยาย" : "คอมมิค"}}ที่ถูกลบ
+            ไม่มี{{ $bookTypeID == 1 ? 'นิยาย' : 'คอมมิค' }}ที่ถูกลบ
+            <a href="{{route('profile')}}" style="font-size: 18px" class="mt-2">กลับหน้าโปรไฟล์</a>
         </div>
     @else
-        <h4 class="h4">{{$bookTypeID == 1 ? "นิยาย" : "คอมมิค"}}ทั้งหมด {{$books->count()}}</h4>
+        @php
+            $back = "";
+            if($bookTypeID == 1){
+                $back = "novel";
+            }else if($bookTypeID == 2){
+                $back = "comic";
+            }
+        @endphp
+        <a href='{{route("profile.$back")}}' id="back-icon"><i class="bi bi-arrow-left-circle-fill fs-1"></i> </a>
+        <h4 class="h4">{{ $bookTypeID == 1 ? 'นิยาย' : 'คอมมิค' }}ทั้งหมด {{ $books->count() }}</h4>
         <div class="d-flex flex-column justify-content-between bin">
 
             <div class="d-flex mb-3" style="width: 100%">
-                <button class="btn btn-primary ms-auto me-2" type="button" onclick="RestoreAll({{$bookTypeID}})">กู้คืนทั้งหมด</button>
-                <button class="btn btn-danger me-4" type="button" onclick="DeleteAll({{$bookTypeID}})">ลบถาวรทั้งหมด</button>
+                <button class="btn btn-primary ms-auto me-2" type="button"
+                    onclick="RestoreAll({{ $bookTypeID }})">กู้คืนทั้งหมด</button>
+                <button class="btn btn-danger me-4" type="button"
+                    onclick="DeleteAll({{ $bookTypeID }})">ลบถาวรทั้งหมด</button>
             </div>
-            <form action="{{route('user.restore_all',["bookTypeID"=>$bookTypeID])}}" method="POST" id="restore-all" style="display: none">@csrf</form>
-            <form action="{{route('user.delete_all',["bookTypeID"=>$bookTypeID])}}" method="POST" id="delete-all" style="display: none">@csrf</form>
+            <form action="{{ route('user.restore_all', ['bookTypeID' => $bookTypeID]) }}" method="POST" id="restore-all"
+                style="display: none">@csrf</form>
+            <form action="{{ route('user.delete_all', ['bookTypeID' => $bookTypeID]) }}" method="POST" id="delete-all"
+                style="display: none">@csrf</form>
 
             @php
                 $count = 0;
@@ -38,15 +52,15 @@
                     </div>
                     <div class="d-flex ms-auto me-4 align-items-center">
                         <button class="btn btn-primary" type="button"
-                            onclick="RestoreEach({{$book->bookID}},{{$bookTypeID}},'{{ $book->book_name }}')">กู้คืน</button>
+                            onclick="RestoreEach({{ $book->bookID }},{{ $bookTypeID }},'{{ $book->book_name }}')">กู้คืน</button>
                         <form
-                            action="{{ route('user.restore_each', ['bookTypeID'=>$bookTypeID,'bookID' => $book->bookID]) }}"
+                            action="{{ route('user.restore_each', ['bookTypeID' => $bookTypeID, 'bookID' => $book->bookID]) }}"
                             style="display: none;" method="POST" id="restore-each-{{ $book->bookID }}">@csrf</form>
 
                         <button class="btn btn-danger ms-2" type="button"
-                            onclick="DeleteEach({{$book->bookID}},{{$bookTypeID}},'{{ $book->book_name }}')">ลบถาวร</button>
+                            onclick="DeleteEach({{ $book->bookID }},{{ $bookTypeID }},'{{ $book->book_name }}')">ลบถาวร</button>
                         <form
-                            action="{{ route('user.delete_each', ['bookTypeID'=>$bookTypeID,'bookID' => $book->bookID]) }}"
+                            action="{{ route('user.delete_each', ['bookTypeID' => $bookTypeID, 'bookID' => $book->bookID]) }}"
                             style="display: none;" method="POST" id="delete-each-{{ $book->bookID }}">@csrf</form>
                     </div>
 
@@ -57,5 +71,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{asset('js/user/bin.js')}}"></script>
+    <script src="{{ asset('js/user/bin.js') }}"></script>
 @endpush

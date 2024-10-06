@@ -10,7 +10,10 @@
 <div class="row">
     <div class="side"></div>
     <div class="container">
-        <h1>ชั้นหนังสือของฉัน</h1>
+        <div class="d-flex align-items-center">
+            <a href="{{ route('profile') }}" id="back-icon"><i class="bi bi-arrow-left-circle-fill fs-1"></i> </a>
+            <h1>ชั้นหนังสือของฉัน</h1>
+        </div>
         <a class="btn" id="btn2" href="#" target="_self" role="button">นิยาย</a>
         <a class="btn" id="btn1" href="{{ route('index.book_shelve_commic') }}" target="_self" role="button">คอมมิค</a>
 
