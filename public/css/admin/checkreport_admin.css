@@ -70,19 +70,12 @@ body {
 
 .results-container {
     display: flex;
-    grid-template-columns: repeat(4, 1fr); /* แสดงการ์ด 4 ใบต่อแถว */
-    align-items: stretch;
-    grid-gap: 15px; /* ปรับระยะห่างระหว่างการ์ดให้เล็กลง (จาก 30px เป็น 15px) */
+    flex-wrap: wrap; /* ให้การ์ดสามารถเลื่อนไปแถวใหม่เมื่อเต็มแถว */
+    gap: 15px; /* ช่องว่างระหว่างการ์ด */
     padding-left: 3%;
     padding-right: 3%;
-    justify-content: flex-start;
+    justify-content: flex-start; /* จัดเรียงการ์ดจากซ้ายไปขวา */
 }
-
-.results-container > .card {
-    flex: 1 1 calc(25% - 15px); /* ทำให้การ์ดมีขนาด 25% ของแถว (ลบ gap ออกไป) */
-    box-sizing: border-box; /* รวม padding กับขนาดของการ์ดให้พอดี */
-}
-
 
 * {
     box-sizing: border-box; 
@@ -106,6 +99,11 @@ body {
 
 .result-card:hover {
     transform: scale(1.02);
+}
+.result-card.hidden {
+    display: none; /* ซ่อนการ์ดเมื่อไม่ได้เลือกประเภท */
+    opacity: 0;
+    visibility: hidden;
 }
 
 .result-card img {

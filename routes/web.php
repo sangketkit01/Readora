@@ -175,6 +175,7 @@ Route::prefix("admin")->group(function () {
         Route::get("signout", [AdminController::class, 'SignOut'])->name("admin.signout");
 
         Route::get('checkreport', [AdminController::class, 'Checkreport'])->name('admin.checkreport');
+        Route::post('report/read/{reportID}', [AdminController::class, 'Read_report'])->name('admin.read_report');
         Route::get('book_detail/{bookID}', [AdminController::class, 'book_detail'])->name('admin.book_detail');
         Route::post('books/block/{bookID}', [AdminController::class, 'block'])->name('book.block');
         Route::post('books/unblock/{bookID}', [AdminController::class, 'unblock'])->name('book.unblock');

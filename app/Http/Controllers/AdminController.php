@@ -64,7 +64,7 @@ class AdminController extends Controller
 
     function Checkreport()
     {
-        $reports = Report::all();
+        $reports = Report::where('report_status','read')->get();
 
         return view('admin.checkreport_admin', compact('reports'));
     }
@@ -75,7 +75,7 @@ class AdminController extends Controller
         if ($books->isEmpty()) {
             abort(404, 'Book not found');
         }
-        $reports = Report::join('userdbs','reports.username','userdbs.username')
+        $reports = Report::join('userdbs', 'reports.username', 'userdbs.username')
             ->where('bookID', $bookID)
             ->get();
         return view("admin.book_detail", compact('books', 'bookID', 'reports'));
@@ -113,7 +113,7 @@ class AdminController extends Controller
     {
         // Query ข้อมูลหนังสือที่ถูกบล็อก
         $books = Book::where('book_status', 'block')
-        ->where('bookTypeID','1')->get();
+            ->where('bookTypeID', '1')->get();
 
         // ส่งข้อมูลไปที่ view
         return view('admin.block_book', compact('books'));
@@ -122,20 +122,45 @@ class AdminController extends Controller
     {
         // Query ข้อมูลหนังสือที่ถูกบล็อก
         $books = Book::where('book_status', 'block')
-        ->where('bookTypeID','2')->get();
+            ->where('bookTypeID', '2')->get();
 
         // ส่งข้อมูลไปที่ view
         return view('admin.block_commic', compact('books'));
     }
     public function unblockBook($bookID)
     {
-        // หา book ตาม ID และเปลี่ยนสถานะ
-        $book = Book::findOrFail($bookID);
-        $book->book_status = 'active';
-        $book->save();
+        // Logic to unblock the book
+        $book = Book::find($bookID);
 
-        return redirect()->route('admin.block_book')->with('success', 'หนังสือถูกปลดบล็อกแล้ว');
+        if ($book) {
+            $book->book_status = 'public'; // Assuming 'active' means unblocked
+            $book->save();
+
+            return redirect()->back()->with('success', 'หนังสือถูกปลดบล็อกเรียบร้อยแล้ว!');
+        }
+
+        return redirect()->back()->with('error', 'ไม่พบหนังสือที่ต้องการปลดบล็อก');
     }
+    // AdminController.php
+    public function Read_report($reportID)
+    {
+        try {
+            $report = Report::find($reportID);
+
+            if (!$report) {
+                return response()->json(['success' => false]); // ส่งแค่ success เท่านั้น
+            }
+
+            $report->report_status = 'read';
+            $report->save();
+
+            return response()->json(['success' => true]); // ส่งแค่ success เท่านั้น
+        } catch (\Exception $e) {
+            \Log::error('Error in Read_report: ' . $e->getMessage());
+            return response()->json(['success' => false]); // ส่งแค่ success เท่านั้น
+        }
+    }
+
 
 
     function adminDeleteUser(Request $request)
