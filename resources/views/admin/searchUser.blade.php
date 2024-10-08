@@ -7,6 +7,9 @@
 @endpush
 
 @section('content')
+    <button onclick="window.history.back();" class="back-button">
+        <i class="fas fa-arrow-left"></i> <!-- ตัวอย่างไอคอนจาก Font Awesome -->
+    </button>
     @if (isset($user))
 
         <form action="{{ route('admin.get_info_search') }}" method="GET" class="search-form">

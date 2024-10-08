@@ -175,3 +175,28 @@ body {
         width: 100%;
     }
 }
+.back-button {
+    background-color: #4F5D87; /* สีพื้นหลัง */
+    color: white; /* สีข้อความ */
+    padding: 10px; /* ขนาด padding */
+    border: none; /* ไม่มีกรอบ */
+    border-radius: 50%; /* ทำให้ปุ่มเป็นวงกลม */
+    cursor: pointer; /* แสดงว่าปุ่มสามารถคลิกได้ */
+    font-size: 16px; /* ขนาดฟอนต์ */
+    transition: background-color 0.3s; /* เปลี่ยนสีอย่างนุ่มนวล */
+    display: flex; /* จัดแนวให้เป็น flex */
+    align-items: center; /* จัดแนวกลางในแนวตั้ง */
+    justify-content: center; /* จัดแนวกลางในแนวนอน */
+    width: 37px; /* ขนาดความกว้างของปุ่ม */
+    height: 37px; /* ขนาดความสูงของปุ่ม */
+    margin-bottom: 0px; /* เพิ่มระยะห่างด้านล่าง */
+    margin-top: 10px; 
+}
+
+.back-button i {
+    margin: 0; /* ไม่ต้องมีระยะห่างระหว่างไอคอนกับขอบ */
+}
+
+.back-button:hover {
+    background-color: #c2c2c2; /* สีเมื่อ hover */
+}

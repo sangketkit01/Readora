@@ -2,9 +2,13 @@
 @section('title', 'รายการผู้ใช้ที่ถูกลบ')
 @push('style')
     <link rel="stylesheet" href="/css/admin/searchUser.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 @endpush
 @section('content')
     <div class="deleted-users-container">
+        <button onclick="window.history.back();" class="back-button">
+            <i class="fas fa-arrow-left"></i> <!-- ตัวอย่างไอคอนจาก Font Awesome -->
+        </button>
 
         <form action="{{ route('admin.deleted_users') }}" method="GET" class="search-form">
             <input type="text" name="query" placeholder="ค้นหา..." class="search-input" value="{{ request('query') }}">
