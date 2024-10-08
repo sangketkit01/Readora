@@ -3,7 +3,14 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
+}
 
+.container {
+    margin: 20px; /* เพิ่มระยะห่างรอบๆ container */
+    padding: 20px; /* เพิ่ม padding ภายใน container */
+    background-color: white; /* พื้นหลัง */
+    border-radius: 8px; /* มุมโค้ง */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* เงา */
 }
 
 /* จัดรูปแบบฟอร์มค้นหา */
@@ -98,7 +105,24 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    
+    font-size: 1rem; /* เพิ่มขนาดตัวอักษร */
+}
+.btn-secondary {
+    background-color: #e74040; /* สีน้ำเงินอ่อน */
+    color: white;
+}
+.btn-secondary:hover {
+    background-color: #a3a4a5; /* สีเข้มขึ้นเมื่อเอาเมาส์ไปวาง */
+}
+
+/* ปรับปรุงปุ่มปลดบล็อก */
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
 }
 
 .btn-danger {
@@ -190,4 +214,33 @@ body {
     color: rgb(41, 176, 73); /* Change icon color to orange */
     margin-bottom: 10px; /* Add space below the icon */
     font-size: 3rem; /* Increase icon size */
+}
+.modal-footer {
+    display: flex;
+    justify-content: flex-end; /* ชิดไปที่ขอบขวา */
+    gap: 10px; /* เพิ่มช่องว่างระหว่างปุ่ม */
+}
+.back-button {
+    background-color: #4F5D87; /* สีพื้นหลัง */
+    color: white; /* สีข้อความ */
+    padding: 10px; /* ขนาด padding */
+    border: none; /* ไม่มีกรอบ */
+    border-radius: 50%; /* ทำให้ปุ่มเป็นวงกลม */
+    cursor: pointer; /* แสดงว่าปุ่มสามารถคลิกได้ */
+    font-size: 16px; /* ขนาดฟอนต์ */
+    transition: background-color 0.3s; /* เปลี่ยนสีอย่างนุ่มนวล */
+    display: flex; /* จัดแนวให้เป็น flex */
+    align-items: center; /* จัดแนวกลางในแนวตั้ง */
+    justify-content: center; /* จัดแนวกลางในแนวนอน */
+    width: 37px; /* ขนาดความกว้างของปุ่ม */
+    height: 37px; /* ขนาดความสูงของปุ่ม */
+    margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่าง */
+}
+
+.back-button i {
+    margin: 0; /* ไม่ต้องมีระยะห่างระหว่างไอคอนกับขอบ */
+}
+
+.back-button:hover {
+    background-color: #c2c2c2; /* สีเมื่อ hover */
 }

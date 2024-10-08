@@ -64,7 +64,7 @@ class AdminController extends Controller
 
     function Checkreport()
     {
-        $reports = Report::where('report_status','read')->get();
+        $reports = Report::where('report_status', 'unread')->get();
 
         return view('admin.checkreport_admin', compact('reports'));
     }
@@ -109,14 +109,15 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Book not found.');
         }
     }
-    public function viewBlockedBooks()
+    public function viewBlockedBooks(Request $request)
     {
         // Query ข้อมูลหนังสือที่ถูกบล็อก
+        $query = $request->input('query'); // Get the query if it exists
         $books = Book::where('book_status', 'block')
             ->where('bookTypeID', '1')->get();
 
         // ส่งข้อมูลไปที่ view
-        return view('admin.block_book', compact('books'));
+        return view('admin.block_book', compact('books', 'query')); // Ensure $query is included
     }
     public function viewBlockedComic()
     {

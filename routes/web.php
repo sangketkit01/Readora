@@ -179,6 +179,8 @@ Route::prefix("admin")->group(function () {
         Route::get('blockedbooks', [AdminController::class, 'viewBlockedBooks'])->name('admin.blocked_books');
         Route::post('unblockbook/{bookID}', [AdminController::class, 'unblockBook'])->name('admin.unblock_book');
         Route::get('blockedcomic', [AdminController::class, 'viewBlockedComic'])->name('admin.blocked_comic');
+        Route::get('searchbookbloked',[SearchController::class,'searchBookbloked'])->name('admin.searchbookblocked');
+        Route::get('searchcomicbloked',[SearchController::class,'searchComicbloked'])->name('admin.searchcomicblocked');
 
         Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");//aut
 

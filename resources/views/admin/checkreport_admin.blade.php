@@ -8,6 +8,9 @@
 
 @section('content')
     <div class="container">
+        <button onclick="window.history.back();" class="back-button">
+            <i class="fas fa-arrow-left"></i> <!-- ตัวอย่างไอคอนจาก Font Awesome -->
+        </button>
         <div class="tabs">
             <div class="tab active" id="all" onclick="filterReports('all')">ทั้งหมด</div>
             <div class="tab" id="1" onclick="filterReports('1')">นิยาย</div> <!-- booktypeid ของนิยาย -->

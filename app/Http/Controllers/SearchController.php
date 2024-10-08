@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Userdb;
+use App\Models\Report;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -37,7 +38,7 @@ class SearchController extends Controller
         //     ->orWhere('bookGenre_name','LIKE',"%{$query}%")
         //     ->orWhere('bookType_name','LIKE',"%{$query}%")
         //     ->get();
-        
+
         return view('user.search-result', compact('books', 'query'));
 
     }
@@ -102,7 +103,7 @@ class SearchController extends Controller
     function searchUser(Request $request)
     {
 
-        $query = $request->input('query'); 
+        $query = $request->input('query');
 
         if ($query) {
             // ค้นหาหนังสือจากฐานข้อมูล
@@ -113,4 +114,47 @@ class SearchController extends Controller
         // ส่งผลลัพธ์การค้นหาไปที่ view
         return view('admin.searchUser', compact('user', 'query'));
     }
+    function searchBookbloked(Request $request)
+    {
+        $query = $request->input('query');
+
+        if ($query) {
+            // ค้นหาจากชื่อหนังสือและชื่อผู้แต่ง โดยมีเงื่อนไข bookTypeID = 1
+            $books = Book::where('bookTypeID', 1)
+                ->where(function ($q) use ($query) {
+                    $q->where('book_name', 'LIKE', "%{$query}%")
+                        ->orWhere('username', 'LIKE', "%{$query}%");
+                })
+                ->get();
+        } else {
+            // ถ้าไม่มี query จะคืนค่าเป็น Collection ว่าง
+            $books = collect([]);
+        }
+
+        // ส่งผลลัพธ์การค้นหาไปที่ view
+        return view('admin.block_book', compact('books', 'query')); // Ensure $query is included
+    }
+
+    function searchComicbloked(Request $request)
+    {
+        $query = $request->input('query');
+
+        if ($query) {
+            // ค้นหาจากชื่อหนังสือและชื่อผู้แต่ง โดยมีเงื่อนไข bookTypeID = 1
+            $books = Book::where('bookTypeID', 2)
+                ->where(function ($q) use ($query) {
+                    $q->where('book_name', 'LIKE', "%{$query}%")
+                        ->orWhere('username', 'LIKE', "%{$query}%");
+                })
+                ->get();
+        } else {
+            // ถ้าไม่มี query จะคืนค่าเป็น Collection ว่าง
+            $books = collect([]);
+        }
+
+        // ส่งผลลัพธ์การค้นหาไปที่ view
+        return view('admin.block_commic', compact('books', 'query')); // Ensure $query is included
+    }
+
+
 }
