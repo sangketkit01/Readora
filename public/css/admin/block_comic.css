@@ -6,46 +6,58 @@ body {
 }
 
 .container {
-    margin: 20px; /* เพิ่มระยะห่างรอบๆ container */
-    padding: 20px; /* เพิ่ม padding ภายใน container */
-    background-color: white; /* พื้นหลัง */
-    border-radius: 8px; /* มุมโค้ง */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* เงา */
+    margin: 20px;
+    /* เพิ่มระยะห่างรอบๆ container */
+    padding: 20px;
+    /* เพิ่ม padding ภายใน container */
+    background-color: white;
+    /* พื้นหลัง */
+    border-radius: 8px;
+    /* มุมโค้ง */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* เงา */
 }
 
 /* จัดรูปแบบฟอร์มค้นหา */
-.search-form {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-}
 
 .no-results {
     text-align: center;
 }
 
+/* สไตล์สำหรับฟอร์มค้นหา */
+.search-form {
+    display: flex;
+    border-radius: 25px;
+    background-color: white;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    margin: 60px auto;
+    width: 1200px;
+}
+
 .search-input {
-    width: 70%;
-    max-width: 500px;
-    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
     font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 25px 0 0 25px;
     outline: none;
+    flex-grow: 1;
 }
 
 .search-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    background: none;
     border: none;
-    border-radius: 0 25px 25px 0;
     cursor: pointer;
-    transition: background-color 0.3s;
+    padding: 5px;
 }
 
-.search-button:hover {
-    background-color: #0056b3;
+.search-button img {
+    vertical-align: middle;
+}
+
+.search-input::placeholder {
+    color: #999;
 }
 
 /* จัดรูปแบบผลลัพธ์การค้นหา */
@@ -67,7 +79,7 @@ body {
 .result-card {
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
     display: flex;
     flex-direction: row;
@@ -105,14 +117,19 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    font-size: 1rem; /* เพิ่มขนาดตัวอักษร */
+    font-size: 1rem;
+    /* เพิ่มขนาดตัวอักษร */
 }
+
 .btn-secondary {
-    background-color: #e74040; /* สีน้ำเงินอ่อน */
+    background-color: #e74040;
+    /* สีน้ำเงินอ่อน */
     color: white;
 }
+
 .btn-secondary:hover {
-    background-color: #a3a4a5; /* สีเข้มขึ้นเมื่อเอาเมาส์ไปวาง */
+    background-color: #a3a4a5;
+    /* สีเข้มขึ้นเมื่อเอาเมาส์ไปวาง */
 }
 
 /* ปรับปรุงปุ่มปลดบล็อก */
@@ -128,8 +145,8 @@ body {
 .btn-danger {
     background-color: #dc3545;
     color: white;
-    
-    
+
+
 }
 
 .btn-danger:hover {
@@ -150,10 +167,11 @@ body {
     margin-right: 5px;
 }
 
-.btn-warning{
+.btn-warning {
     background-color: #007bff;
 }
-.box-restore{
+
+.box-restore {
     display: flex;
     justify-content: flex-end;
 }
@@ -172,6 +190,15 @@ body {
 .restore-button:hover {
     background-color: #218838;
 }
+                a {
+                    text-decoration: none;
+                    color: #fff;
+                }
+        
+                a:hover {
+                    text-decoration: none;
+                    color: #fff;
+                }
 
 /* การตอบสนอง */
 @media (max-width: 768px) {
@@ -183,66 +210,104 @@ body {
         width: 100%;
     }
 }
+
 .modal-dialog {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Ensure modal covers the full height of the viewport */
-    max-width: 600px; /* Set a larger width for the modal */
+    min-height: 100vh;
+    /* Ensure modal covers the full height of the viewport */
+    max-width: 600px;
+    /* Set a larger width for the modal */
 }
 
 /* Ensure modal content is centered */
 .modal-content {
-    margin: auto; /* Center the modal content */
-    width: 100%; /* Allow the modal to take full width */
-    border: none; /* Remove the border */
-    border-radius: 8px; /* Add some border radius */
-    width: 500px; /* กำหนดความกว้าง */
-    height: 300px; 
+    margin: auto;
+    /* Center the modal content */
+    width: 100%;
+    /* Allow the modal to take full width */
+    border: none;
+    /* Remove the border */
+    border-radius: 8px;
+    /* Add some border radius */
+    width: 500px;
+    /* กำหนดความกว้าง */
+    height: 300px;
 }
 
 /* Make text in modal bold and larger */
 .modal-body {
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center horizontally */
-    text-align: center; /* Center text */
-    font-size: 1.8rem; /* Increase font size */
-    font-weight: bold; /* Make text bold */
+    flex-direction: column;
+    /* Stack elements vertically */
+    align-items: center;
+    /* Center horizontally */
+    text-align: center;
+    /* Center text */
+    font-size: 1.8rem;
+    /* Increase font size */
+    font-weight: bold;
+    /* Make text bold */
 }
 
 /* Center the icon and add some space below */
 .modal-body i {
-    color: rgb(41, 176, 73); /* Change icon color to orange */
-    margin-bottom: 10px; /* Add space below the icon */
-    font-size: 3rem; /* Increase icon size */
+    color: rgb(41, 176, 73);
+    /* Change icon color to orange */
+    margin-bottom: 10px;
+    /* Add space below the icon */
+    font-size: 3rem;
+    /* Increase icon size */
 }
+
 .modal-footer {
     display: flex;
-    justify-content: flex-end; /* ชิดไปที่ขอบขวา */
-    gap: 10px; /* เพิ่มช่องว่างระหว่างปุ่ม */
+    justify-content: flex-end;
+    /* ชิดไปที่ขอบขวา */
+    gap: 10px;
+    /* เพิ่มช่องว่างระหว่างปุ่ม */
 }
+
 .back-button {
-    background-color: #4F5D87; /* สีพื้นหลัง */
-    color: white; /* สีข้อความ */
-    padding: 10px; /* ขนาด padding */
-    border: none; /* ไม่มีกรอบ */
-    border-radius: 50%; /* ทำให้ปุ่มเป็นวงกลม */
-    cursor: pointer; /* แสดงว่าปุ่มสามารถคลิกได้ */
-    font-size: 16px; /* ขนาดฟอนต์ */
-    transition: background-color 0.3s; /* เปลี่ยนสีอย่างนุ่มนวล */
-    display: flex; /* จัดแนวให้เป็น flex */
-    align-items: center; /* จัดแนวกลางในแนวตั้ง */
-    justify-content: center; /* จัดแนวกลางในแนวนอน */
-    width: 37px; /* ขนาดความกว้างของปุ่ม */
-    height: 37px; /* ขนาดความสูงของปุ่ม */
-    margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่าง */
+    background-color: #4F5D87;
+    /* สีพื้นหลัง */
+    color: white;
+    /* สีข้อความ */
+    padding: 10px;
+    /* ขนาด padding */
+    border: none;
+    /* ไม่มีกรอบ */
+    border-radius: 50%;
+    /* ทำให้ปุ่มเป็นวงกลม */
+    cursor: pointer;
+    /* แสดงว่าปุ่มสามารถคลิกได้ */
+    font-size: 16px;
+    /* ขนาดฟอนต์ */
+    transition: background-color 0.3s;
+    /* เปลี่ยนสีอย่างนุ่มนวล */
+    display: flex;
+    /* จัดแนวให้เป็น flex */
+    align-items: center;
+    /* จัดแนวกลางในแนวตั้ง */
+    justify-content: center;
+    /* จัดแนวกลางในแนวนอน */
+    width: 37px;
+    /* ขนาดความกว้างของปุ่ม */
+    height: 37px;
+    /* ขนาดความสูงของปุ่ม */
+    margin-bottom: 10px;
+    margin-top: 25px;
+    margin-left: 25px;
+    /* เพิ่มระยะห่างด้านล่าง */
 }
 
 .back-button i {
-    margin: 0; /* ไม่ต้องมีระยะห่างระหว่างไอคอนกับขอบ */
+    margin: 0;
+    /* ไม่ต้องมีระยะห่างระหว่างไอคอนกับขอบ */
 }
 
 .back-button:hover {
-    background-color: #c2c2c2; /* สีเมื่อ hover */
+    background-color: #c2c2c2;
+    /* สีเมื่อ hover */
 }

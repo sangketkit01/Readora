@@ -1,7 +1,4 @@
 @extends('admin.home')
-
-@section('containerClassName', 'block-comic-page')
-
 @section('title', 'Blocked Novel')
 
 @push('style')
@@ -9,6 +6,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        a{
+            text-decoration: none;
+            color: #fff;
+        }
+        a:hover{
+            text-decoration: none;
+            color: #fff;
+        }
+        ul{
+            margin: 0;
+        }
+        nav{
+            border-radius: 0;
+            padding-left: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/admin/navigator.css">
 @endpush
 
 @section('content')

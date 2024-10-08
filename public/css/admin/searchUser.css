@@ -190,7 +190,8 @@ body {
     width: 37px; /* ขนาดความกว้างของปุ่ม */
     height: 37px; /* ขนาดความสูงของปุ่ม */
     margin-bottom: 0px; /* เพิ่มระยะห่างด้านล่าง */
-    margin-top: 10px; 
+        margin-top: 2.5%;
+            margin-left: 2.5%;
 }
 
 .back-button i {
