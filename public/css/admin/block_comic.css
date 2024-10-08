@@ -197,6 +197,8 @@ body {
     width: 100%; /* Allow the modal to take full width */
     border: none; /* Remove the border */
     border-radius: 8px; /* Add some border radius */
+    width: 500px; /* กำหนดความกว้าง */
+    height: 300px; 
 }
 
 /* Make text in modal bold and larger */
