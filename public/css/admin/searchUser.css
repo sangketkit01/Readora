@@ -7,45 +7,55 @@ body {
 }
 
 /* จัดรูปแบบฟอร์มค้นหา */
-.search-form {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-}
 
 .no-results {
     text-align: center;
 }
 
+/* สไตล์สำหรับฟอร์มค้นหา */
+.search-form {
+    display: flex;
+    border-radius: 25px;
+    background-color: white;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    margin: 60px auto;
+    width: 1200px;
+}
+
 .search-input {
-    width: 70%;
-    max-width: 500px;
-    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
     font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 25px 0 0 25px;
     outline: none;
+    flex-grow: 1;
 }
 
 .search-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    background: none;
     border: none;
-    border-radius: 0 25px 25px 0;
     cursor: pointer;
-    transition: background-color 0.3s;
+    padding: 5px;
 }
 
-.search-button:hover {
-    background-color: #0056b3;
+.search-button img {
+    vertical-align: middle;
 }
+
+.search-input::placeholder {
+    color: #999;
+}
+
 
 /* จัดรูปแบบผลลัพธ์การค้นหา */
 .box-result {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
+
+
 }
 
 .results-container {
@@ -55,17 +65,19 @@ body {
     grid-gap: 30px;
     padding-left: 3%;
     padding-right: 3%;
+    text-align: center;
 }
 
 .result-card {
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
     display: flex;
     flex-direction: row;
     align-items: stretch;
     gap: 10px;
+    
 }
 
 .result-card img {
@@ -98,14 +110,14 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    
+
 }
 
 .btn-danger {
     background-color: #dc3545;
     color: white;
-    
-    
+
+
 }
 
 .btn-danger:hover {
@@ -126,10 +138,11 @@ body {
     margin-right: 5px;
 }
 
-.btn-warning{
-    background-color: #007bff;
+.btn-warning {
+    background-color: #4F5D87;
 }
-.box-restore{
+
+.box-restore {
     display: flex;
     justify-content: flex-end;
 }
