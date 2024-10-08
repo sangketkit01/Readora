@@ -1,0 +1,148 @@
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    padding: 60px; /* เพิ่ม padding ให้กับ container */
+}
+
+/* Book Detail Section */
+.book-detail {
+    display: flex;
+    margin-bottom: 30px; /* เพิ่มระยะห่างระหว่างหนังสือ */
+    border: 1px solid #ddd; /* เพิ่มกรอบให้กับแต่ละรายการหนังสือ */
+    border-radius: 8px; /* เพิ่มมุมโค้งให้กับกรอบ */
+    padding: 15px; /* เพิ่ม padding ภายในกรอบ */
+    background-color: #fff; /* สีพื้นหลังของกรอบหนังสือ */
+    align-items: stretch; /* ทำให้สูงเท่ากัน */
+}
+
+.book-cover {
+    flex: 0 0 30%; /* กำหนดขนาดให้เป็น 30% ของกรอบ */
+    margin-right: 20px; /* เพิ่มระยะห่างระหว่างรูปภาพกับข้อมูล */
+}
+
+.book-cover img {
+    width: 100%; /* ให้รูปภาพขยายเต็มพื้นที่ */
+    height: auto; /* ให้ความสูงของรูปภาพอัตโนมัติ */
+    border-radius: 5px; /* เพิ่มมุมโค้งให้กับรูปภาพ */
+}
+
+.book-info {
+    flex: 1; /* ขยายเต็มพื้นที่ */
+    flex-direction: column; /* แนวตั้ง */
+    justify-content: space-between; /* จัดให้สูงเท่ากัน */
+    position: relative; /* ทำให้เป็น relative สำหรับ position ของปุ่ม */
+}
+
+.block {
+    background-color: #ff6f6f; /* สีพื้นฐานของปุ่ม */
+    color: #fff; /* สีข้อความ */
+    border: none; /* ไม่มีกรอบ */
+    padding: 15px 30px; /* เพิ่มขนาดของ padding เพื่อทำให้ปุ่มใหญ่ขึ้น */
+    font-size: 18px; /* ปรับขนาดฟอนต์ให้ใหญ่ขึ้น */
+    border-radius: 5px; /* มุมโค้ง */
+    cursor: pointer; /* แสดงมือเมื่อ hover */
+    transition: background-color 0.3s ease; /* เปลี่ยนสีอย่างนุ่มนวล */
+    position: absolute; /* ทำให้ปุ่มอยู่ในตำแหน่งที่แน่นอน */
+    bottom: 15px; /* ระยะห่างจากด้านล่างของกรอบ */
+    right: 15px; /* ระยะห่างจากด้านขวาของกรอบ */
+    width: 120px; /* เพิ่มความกว้างของปุ่ม */
+    text-align: center; /* จัดตำแหน่งข้อความให้กลางปุ่ม */
+}
+
+.block:hover {
+    background-color: #bbb; /* สีเมื่อ hover เป็นสีเทา */
+}
+
+
+.book-title {
+    font-size: 35px; /* ปรับขนาดตัวหนังสือชื่อเรื่อง */
+    margin-bottom: 10px;
+    margin: 15px 0 5px
+}
+
+
+/* Book Author */
+.book-author {
+    font-size: 20px; /* ขนาดฟอนต์สำหรับผู้เขียน */
+    margin: 4px 0; /* ลดระยะห่างระหว่างผู้เขียนกับข้อความถัดไป */
+}
+
+/* Book Description */
+.book-description {
+    font-size: 20px; /* ขนาดฟอนต์สำหรับคำบรรยาย */
+    margin: 4px 0; /* ลดระยะห่างระหว่างคำบรรยายกับข้อความถัดไป */
+}
+
+/* Book Genre */
+.book-genre {
+    font-size: 20px; /* ขนาดฟอนต์สำหรับประเภท */
+    margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่างของประเภท */
+}
+
+
+.reports-section {
+    margin-top: 30px; /* ระยะห่างระหว่างหนังสือและส่วนรายงาน */
+    padding: 15px; /* เพิ่ม padding ภายในกรอบ */
+    background-color: #fff; /* สีพื้นหลังของส่วนรายงาน */
+    border: 1px solid #ddd; /* เพิ่มกรอบให้กับส่วนรายงาน */
+    border-radius: 8px; /* เพิ่มมุมโค้งให้กับกรอบ */
+}
+
+.reports-section h2 {
+    font-size: 25px; /* ปรับขนาดตัวหนังสือหัวข้อรายงาน */
+    margin-bottom: 15px; /* เพิ่มระยะห่างด้านล่าง */
+}
+
+.reports-list {
+    list-style: none;
+    padding: 0;
+}
+
+.report-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0; /* เพิ่ม padding สำหรับแต่ละรายการรายงาน */
+}
+
+.report-username,
+.report-message,
+.report-date {
+    margin-bottom: 5px;
+}
+
+.report-username {
+    font-weight: bold;
+    font-size: 16px; /* ปรับขนาดตัวหนังสือสำหรับชื่อผู้รายงาน */
+}
+
+.report-message {
+    font-size: 14px; /* ปรับขนาดตัวหนังสือสำหรับข้อความรายงาน */
+}
+
+.report-date {
+    font-size: 12px; /* ขนาดตัวหนังสือสำหรับวันที่ */
+}
+
+/* Alert Styles */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}

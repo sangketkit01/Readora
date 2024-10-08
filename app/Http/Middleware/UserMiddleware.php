@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Userdb;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -16,11 +17,16 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {   
-
         if(Session::has("user")){
+            $user = Userdb::where("username",Session::get("user")->username)->first();
+            if(!$user){
+                Session::flush();
+                return redirect()->route("sign_in");
+            }
             return $next($request);
         }
 
+        Session::put('url.intended', $request->fullUrl());
         return redirect()->route("sign_in");
     }
 }

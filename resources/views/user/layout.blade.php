@@ -20,12 +20,12 @@
 <body style="background-color: #F1F1F1; margin-bottom:20px;">
     <div class="navbar-layout">
         <div class="left-menu">
-            <a href="/" id="title">เอาชื่อเว็บมาใส่</a>
+            <a href="/" id="title">Readora</a>
             <a href="{{ route('index.rec1') }}">แนะนำนิยาย</a>
             <a href="{{ route('index.rec2') }}">แนะนำคอมมิค</a>
         </div>
         <div class="right-menu">
-            <form action="/search" method="GET" class="search-form">
+            <form action="{{route('search')}}" method="GET" class="search-form">
                 <input type="text" name="query" placeholder="ค้นหา..." class="search-input">
                 <button type="submit" class="search-button"><img src="/nav/search.svg" width="20" height="20"
                         alt=""></button>
@@ -40,6 +40,7 @@
                         <li><a class="dropdown-item" href="{{ route('profile') }}">โปรไฟล์</a></li>
                         <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยายของฉัน</a></li>
                         <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
+                        <li><a class="dropdown-item" href="{{ route('index.book_shelve') }}">ชั้นหนังสือของฉัน</a></li>
                         <li><a class="dropdown-item" href="{{ route('create_novel') }}">สร้างนิยาย</a></li>
                         <li><a class="dropdown-item" href="{{ route('create_comic') }}">สร้างคอมมิค</a></li>
                         <li><a class="dropdown-item" href="{{ route('sign_out') }}">ออกจากระบบ</a></li>

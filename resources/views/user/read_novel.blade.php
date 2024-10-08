@@ -12,14 +12,14 @@
             <div class="card_user">
                 <div class="img row col-4 md-6 sm-12">
                     <img src="{{ asset($book->book_pic) }}
-                " alt="">
+                                " alt="">
                 </div>
                 <div class="user col-8 md-6 sm-12">
                     <div class="head">
                         <h1>{{ $book->book_name }}</h1>
                     </div>
                     <div class="profile_user">
-                        <img src="{{ $book->User->profile }}" alt="">
+                        <img src="{{ asset($book->User->profile) }}" alt="">
                         <p>{{ $book->User->name }}
                         </p>
                     </div>
@@ -27,19 +27,58 @@
                         <h4>{{ $book->Genre->bookGenre_name }}</h4>
                     </div>
                     <div class="button">
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center bbb">
                             <div class="mr-2">
                                 <form action="{{ route('add_to_shelf') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="bookID" value="{{ $book->bookID }}">
-                                    <button type="submit" class="button_1">เพิ่มเข้าชั้น</button>
+                                    @if ($book->User->username == session('user')->username)
+                                        <a type="button" href="{{ route('novel.edit', ['bookID' => $book->bookID]) }}"
+                                            class="button_1 me-2">แก้ไข</a>
+                                    @elseif ($shelve)
+                                        <button type="button" onclick="DeleteOutOfShelve('{{$book->book_name}}')" class="button_1 me-2">ลบออกจากชั้น</button>
+                                    @else
+                                        <button type="submit" class="button_1 me-2">เพิ่มเข้าชั้น</button>
+                                    @endif
+                                    
+                                    @if (session('success_message'))
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded",()=>{
+                                                Swal.fire({
+                                                    position: "center",
+                                                    icon: "success",
+                                                    title: `{!! nl2br(e(session('success_message'))) !!}`,
+                                                    showConfirmButton: false,
+                                                    timer: 5000
+                                                });
+                                        })
+                                        </script>
+                                    @endif
+
+                                    @if (session('error_message'))
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded",()=>{
+                                                Swal.fire({
+                                                    position: "center",
+                                                    icon: "error",
+                                                    title: `{!! nl2br(e(session('error_message'))) !!}`,
+                                                    showConfirmButton: false,
+                                                    timer: 5000
+                                                });
+                                            })
+                                        </script>
+                                    @endif
+
                                     <a href="{{ route('read.read_first_chaptnovel', ['bookID' => $book->bookID]) }}"
                                         class="btn button_2">อ่านเลย</a>
                                 </form>
+                                <form action="{{route('read.delete_shelve',["bookID"=>$book->bookID])}}" id="delete-shelve-form" method="post">@csrf</form>
                             </div>
-                            <button type="button" class="btn report-button" onclick="openModal()">
-                                <i class="fas fa-exclamation-triangle"></i> 
-                            </button>
+                            @if ($book->User->username != session('user')->username)
+                                <button type="button" class="btn report-button" onclick="openModal()">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </button>
+                            @endif
 
                         </div>
                     </div>
@@ -81,13 +120,36 @@
                 @endforeach
                 <hr>
             </div>
+
+            <div class="share-div p-4 d-flex flex-column justify-content-center align-items-center">
+                <button id="share-button" onclick="shareClicked()">Share</button>
+                <div class="modal-container">
+                    <div class="modal-content-share">
+                        <div class="modal-header d-flex flex-column">
+                            <a id="exit-modal-button" onclick="closeShare()"><img src="{{ asset('novel/exit.png') }}"
+                                    width="30" alt=""></a>
+                            <label for="" id="modal-label">แชร์ {{ $book->book_name }}</label>
+                        </div>
+                        <div class="modal-element d-flex align-items-center">
+                            <input type="text" readonly id="link" class="form-control">
+                            <a id="share-modal-button" onclick="copyLink()"><img src="{{ asset('novel/copy.png') }}"
+                                    width="30" alt=""></a>
+                        </div>
+                        <div id="alert-container"
+                            style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="com">
                 <h4>ความคิดเห็นทั้งหมด ( {{ $count_comment }} )</h4>
-                @foreach ($chapters as $chapter)
-                    <div class="chapter-section">
+                <div class="chapter-section">
+                    @foreach ($chapters as $chapter)
                         @foreach ($chapterComments[$chapter->chapterID] ?? [] as $comment)
                             <div class="comment-item">
                                 <div class="header_com">
+                                    <p class="text-end">จากตอน #{{ $comment->Chapter->chapter_name }}</p>
                                     <p>{{ $comment->comment_message }}</p>
                                 </div>
                                 <div class="user_com">
@@ -103,9 +165,8 @@
                                 </div>
                             </div>
                         @endforeach
-                    </div>
-                @endforeach
-                
+                    @endforeach
+                </div>
             </div>
     @endforeach
     <div id="reportModal" class="modal">
@@ -127,4 +188,9 @@
 @endsection
 @push('scripts')
     <script src="/js/user/read_report.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("link").value = window.location.href;
+        })
+    </script>
 @endpush

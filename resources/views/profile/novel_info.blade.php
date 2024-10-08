@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                         <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                        <td>{{$totalComments == 0 ? '-' : $totalComments}}</td>
+                        <td>{{$allComments == 0 ? '-' : $allComments}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -36,7 +36,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('index.book_shelve') }}">ชั้นหนังสือของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
                 </ul>
                 <div class="btinfo">
@@ -62,7 +62,7 @@
                 </a>
                 <ul class="dropdown-menu ">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('index.book_shelve') }}">ชั้นหนังสือของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
                 </ul>
                 <div class="btinfo">
@@ -87,10 +87,13 @@
                         <div class="card-body">3
                             <div class="n-info">
                                 <h5>{{$c->book_name}}</h5>
-                                <p id="writer">{{$c->username}}</p>
+                                <p id="writer">{{$c->User->name}}</p>
                             </div>
-                            <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->chapters_count}}</span> 
-                            <span id="comment"><i class="fa-solid fa-comment"></i> {{$c->comments_count}}</span> <br>
+                            <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->Chapters->count()}}</span>
+                                @php
+                                    $totalComments = $c->Chapters->sum('comments_count');
+                                @endphp
+                            <span id="comment"><i class="fa-solid fa-comment"></i> {{$totalComments}}</span> <br>
                             <span id="genre">{{$c->Genre->bookGenre_name}}</span>
                         </div>
                     </div>

@@ -24,11 +24,11 @@ class Book extends Model
     }
 
     function User(){
-        return $this->belongsTo(Userdb::class,"username");
+        return $this->belongsTo(Userdb::class,"username")->withTrashed();
     }
 
-    function Users(){
-        return $this->belongsToMany(Userdb::class,"username");
+    public function Users() {
+        return $this->belongsToMany(Userdb::class, 'book_shelves', 'bookID', 'username');
     }
 
     function Chapters(){
@@ -36,8 +36,7 @@ class Book extends Model
     }
 
     function BookShelves(){
-        return $this->hasMany(BookShelf::class,"bookID","bookID");
-
+        return $this->hasMany(Bookshelf::class,"bookID","bookID");
     }
 
     function Reports(){

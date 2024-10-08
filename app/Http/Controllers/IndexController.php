@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Book_type;
 use App\Models\Book_genre;
-use App\Models\BookShelf;
+use App\Models\Bookshelf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -13,21 +13,45 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $novels = Book::where('BooktypeID', 1)->where('book_status', 'public')->take(4)->get();
-        $comics = Book::where('BooktypeID', 2)->where('book_status', 'public')->take(4)->get();
+        $novels = Book::where('BooktypeID', 1)
+            ->where('book_status', 'public')
+            ->whereHas('User', function ($query) {
+                $query->whereNull('deleted_at'); //เฉพาะผู้แต่งที่ไม่ถูกลบ (soft deleted)
+            })
+            ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])
+            ->orderBy('created_at', 'DESC')
+            ->take(4)
+            ->get();
+
+        $comics = Book::where('BooktypeID', 2)
+            ->where('book_status', 'public')
+            ->whereHas('User', function ($query) {
+                $query->whereNull('deleted_at'); 
+            })
+            ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])
+            ->orderBy('created_at', 'DESC')
+            ->take(4)
+            ->get();
+
         $genres = Book_genre::all();
+
         $romanticNovels = Book::where('BooktypeID', 1)
             ->where('BookgenreID', 1)
             ->where('book_status', 'public')
+            ->whereHas('User', function ($query) {
+                $query->whereNull('deleted_at');
+            })
+            ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])
+            ->orderBy('created_at', 'DESC')
             ->limit(4)
             ->get();
 
         return view("user.index", compact("novels", 'romanticNovels', 'comics', 'genres'));
     }
 
+
     public function rec1()
     {
-
         $novels = Book::where('BooktypeID', 1)
             ->where('book_status', 'public')
             ->orderBy('click_count', 'DESC')
@@ -37,12 +61,10 @@ class IndexController extends Controller
 
     public function rec2()
     {
-
         $comics = Book::where('BooktypeID', 2)
-        ->where('book_status', 'public')
-        ->orderBy('click_count', 'DESC')
-        ->get();
-
+            ->where('book_status', 'public')
+            ->orderBy('click_count', 'DESC')
+            ->get();
         return view("user.rec2", compact('comics'));
     }
 
@@ -63,7 +85,7 @@ class IndexController extends Controller
                 $query->where('BooktypeID', 1);
             })
             ->orderBy('created_at', 'desc')
-            ->get(); 
+            ->get();
 
         return view("user.book_shelve", compact('novels'));
     }
@@ -84,7 +106,7 @@ class IndexController extends Controller
                 $query->where('BooktypeID', 2);
             })
             ->orderBy('created_at', 'desc')
-            ->get();  
+            ->get();
 
         return view("user.book_shelve_commic", compact('comics'));
     }

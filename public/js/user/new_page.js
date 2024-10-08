@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const itemsPerPage = 8;
-    const bookList = document.getElementById('bookList');
-    const pagination = document.getElementById('pagination');
-    const items = bookList.getElementsByClassName('list-group-item');
+document.addEventListener('DOMContentLoaded', function () { // ทำงานตั้งแต่เริ่มโหลดหน้า
+    const itemsPerPage = 8; //กำหนกว่าในแต่ละหน้ามีได้8item
+    const bookList = document.getElementById('bookList');//อ้างอิงถึง element ที่เก็บรายการหนังสือ
+    const pagination = document.getElementById('pagination'); //อ้างอิงถึง element สำหรับเปลี่ยนหน้า
+    const items = bookList.getElementsByClassName('list-group-item'); //อ้างอิงถึงitemืั้งหมดใน element นี้
 
-    let pageCount = Math.ceil(items.length / itemsPerPage);
-    let nowFilter = 'all';
+    let pageCount = Math.ceil(items.length / itemsPerPage); //คำนวณจำนวนหน้า
+    let nowFilter = 'all'; //เริ่มต้นหน้าด้วยfilter all
 
     const tabs = document.querySelectorAll('.tab');
 

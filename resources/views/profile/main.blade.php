@@ -23,7 +23,7 @@
                         <tr>
                             <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                             <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                            <td>{{$totalComments == 0 ? '-' : $totalComments}}</td>
+                            <td>{{$allComments == 0 ? '-' : $allComments}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -78,7 +78,7 @@
         </div>
         
     @else
-        <div class="row mt-3">
+        <div class="row mt-3" >
             <div class="top">
                 <img src="{{asset( $user->profile )}}" alt="" onclick="" style="object-fit: cover">            
                 <p>{{ $user->name }}</p>
@@ -92,7 +92,7 @@
                         <tr>
                             <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                             <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                            <td>{{$totalComments == 0 ? '-' : $totalComments}}</td>
+                            <td>{{$allComments == 0 ? '-' : $allComments}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -106,7 +106,7 @@
                     ข้อมูลส่วนตัว
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('profile.bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('index.book_shelve') }}">ชั้นหนังสือของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยายของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.comic') }}">คอมมิคของฉัน</a></li>
                 </ul>
@@ -133,7 +133,7 @@
                     <p>{{ $user->name }}</p>
                     <p>{{ $user->username }}</p>
                     <p>{{ $user->email }}</p>
-                    <p>(wait)</p>
+                    <p>-</p>
                     <p>
                         @if ($user->gender == 'F')
                             หญิง
@@ -158,7 +158,20 @@
             <button id="logout" onclick="window.location.href='/signout'">ออกจากระบบ</button>
         </div>
     @endif
-
+    
+    @if (session('successMsg'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: `{!! nl2br(e(session('successMsg'))) !!}`,
+                    showConfirmButton: false,
+                    timer: 5000
+                });
+            });
+        </script>
+    @endif
 
 @endsection
 

@@ -86,15 +86,21 @@ p {
 
 .button_2 {
     background-color: #4F5D87;
-    color: #ffffff;
-    padding: 10px 28px;
-    border-radius: 20px;
-    text-decoration: none;
+        color: #ffffff;
+        padding: 10px 28px;
+        border-radius: 20px;
+        text-decoration: none;
+        margin-bottom: 3px;
 }
+
+.button_2:hover {
+    background-color: #929ab5;
+}
+
 
 .type {
     margin: 10px 0;
-    height: 65%;
+    height: 63%;
 }
 
 .Introducing {
@@ -164,7 +170,7 @@ p {
 .com {
     background-color: #e2e2e2;
     width: 70%;
-    height: 220px;
+    /* height: 220px; */
     padding: 20px;
     border-radius: 20px;
     justify-content: center;
@@ -370,27 +376,25 @@ p {
 }
 
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    position: fixed; 
+    z-index: 1; 
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.5);
 }
 
-/* Modal Content Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from top and centered */
+    margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 60%; /* Could be more or less, depending on screen size */
+    width: 60%; 
     border-radius: 10px;
 }
 
-/* Close Button */
 .close {
     color: #aaa;
     float: right;
@@ -405,7 +409,6 @@ p {
     cursor: pointer;
 }
 
-/* Form elements */
 .modal textarea {
     width: 100%;
     padding: 10px;
@@ -467,4 +470,101 @@ p.p_smaill{
 .img_com img{
     width: 100%;
     height: 100%;
+}
+
+
+.report-button {
+    background-color: #4F5D87; 
+    color: white; 
+    border: none;
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+    font-size: 16px; 
+}
+
+.report-button:hover {
+    background-color: #6d83bc; 
+}
+
+
+#share-button{
+    width: 154px;
+    height: 39px;
+    border: none;
+    border-radius: 20px;
+    background-color: #D9D9D9;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#share-button:hover{
+    background-color: #D3D3D3;
+}
+
+.modal-container{
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-element{
+    padding: 5px 0;
+}
+
+.modal-content-share{
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    border-radius: 10px;
+}
+
+#link{
+    margin-right: 10px;
+}
+
+#modal-label{
+    align-self: self-start;
+    font-size: 1.4rem;
+}
+
+#exit-modal-button{
+    align-self: self-end;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+#exit-modal-button:hover {
+    background-color: #FAFAFA;
+}
+
+#share-modal-button{
+    border: none;
+    background-color: transparent;
+    outline: none;
+    margin: auto 0;
+    background-color: white;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#share-modal-button:hover {
+    background-color: #FAFAFA;
 }

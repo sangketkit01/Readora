@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                         <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                        <td>{{$totalComments == 0 ? '-' : $totalComments}}</td>
+                        <td>{{$allComments == 0 ? '-' : $allComments}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -37,7 +37,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('index.book_shelve') }}">ชั้นหนังสือของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยายของฉัน</a></li>
                 </ul>
                 <div class="btinfo">
@@ -62,19 +62,19 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">ข้อมูลส่วนตัว</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.bookshelf') }}">ชั้นหนังสือของฉัน</a></li>
+                    <li><a class="dropdown-item" href="{{ route('index.book_shelve') }}">ชั้นหนังสือของฉัน</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยายของฉัน</a></li>
                 </ul>
                 <div class="btinfo">
                     <a class="deltitle" href="{{route("user.bin",["bookTypeID"=>1])}}"><i class="bi bi-trash3-fill"></i> เรื่องที่ลบไป</a>
-                    <button class="create-novel-n" onclick="window.location.href='/create_novel'">สร้างเรื่องใหม่</button>
+                    <button class="create-novel-n" onclick="window.location.href='/create_comic'">สร้างเรื่องใหม่</button>
                 </div>
             </div>
         </div>
 
         <div class="row mt-3 card_user">
             @foreach ($comics as $c)
-                <div class="col-3 mt-3 d-flex justify-content-center" onclick="window.location.href='{{ route('novel.edit', ['bookID' => $c->bookID]) }}'">
+                <div class="col-3 mt-3 d-flex justify-content-center" onclick="window.location.href='{{ route('comic.edit', ['bookID' => $c->bookID]) }}'">
                     <div class="card" style="width: 14rem; max-width: 14rem;">
                         <img src="{{asset($c->book_pic)}}" class="card-img-top img_user" alt="...">
                         <div class="status-button">
@@ -87,10 +87,13 @@
                         <div class="card-body">
                             <div class="n-info">
                                 <h5>{{$c->book_name}}</h5>
-                                <p id="writer">{{$c->username}}</p>
+                                <p id="writer">{{$c->User->name}}</p>
                             </div>
-                            <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->chapters_count}}</span> 
-                            <span id="comment"><i class="fa-solid fa-comment"></i> {{$c->comments_count}}</span> <br>
+                            <span id="chapter"><i class="fa-solid fa-list-ul"></i> {{$c->Chapters->count()}}</span>
+                                @php
+                                    $totalComments = $c->Chapters->sum('comments_count');
+                                @endphp
+                            <span id="comment"> <i class="fa-solid fa-comment"></i> {{$totalComments}}</span> <br>
                             <span id="genre">{{$c->Genre->bookGenre_name}}</span>
                         </div>
                     </div>

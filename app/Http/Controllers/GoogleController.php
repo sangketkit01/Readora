@@ -19,8 +19,14 @@ class GoogleController extends Controller
         try{
             $google_user = Socialite::driver('google')->user();
 
+            $intended = null;
+            if (Session::has('url.intended')) {
+                $intended = Session::get('url.intended');
+            }
+
             $user = DB::table("userdbs")->where("email",$google_user->getEmail())->first();
             if(!$user){
+
                 Session::flush();
                 Session::put("google_email",$google_user->getEmail());
                 Session::put("google_avatar",$google_user->getAvatar());
@@ -40,14 +46,23 @@ class GoogleController extends Controller
                 Session::flush();
                 Session::put("user", $user);
 
+               if($intended){
+                    return redirect($intended);
+               }
+
                 return redirect()->route("index");
             }
             Session::flush();
             Session::put("user",$user);
 
+            if ($intended) {
+                return redirect($intended);
+            }
+            
+
             return redirect()->route('index');
         }catch(\Throwable $th){
-            return redirect()->route('sign_in')->withErrors(["msg"=>"Login failed. Please try again."]);
+            return redirect()->route('sign_in')->withErrors(["msg"=> "เข้าสู่ระบบล้มเหลว โปรดลองอีกครั้ง"]);
         }
     }
 }

@@ -13,24 +13,39 @@ class LoginController extends Controller
     //
 
     function Verify(Request $request){
+        $intended = null;
+        if (Session::has('url.intended')) {
+            $intended = Session::get('url.intended');
+        }
+
         try{
             $user = DB::table("userdbs")->where("username", $request->username)->first();
             $password = $request->password;
 
             if (!($user && Hash::check($password, $user->password))) {
-                return redirect()->back()->withErrors(["msg" => "Invalid username or password."])->withInput();;
+                return redirect()->back()->withErrors(["msg" => "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"])->withInput();;
             }
 
             Session::flush();
             Session::put("user", $user);
         }catch(\Throwable $th){
-            return redirect()->route('sign_in')->withErrors(["msg" => "Login failed. Please try again."]);
+            return redirect()->route('sign_in')->withErrors(["msg" => "เข้าสู่ระบบล้มเหลว โปรดลองอีกครั้ง"]);
+        }
+
+        if ($intended) {
+            return redirect($intended);
         }
 
         return redirect()->route("index");
     }
 
     function Insert(Request $request){
+        $intended = null;
+        if (Session::has('url.intended')) {
+            $intended = Session::get('url.intended');
+        }
+
+
         $request->validate([
             "username" => "unique:userdbs,username",
             "email" => "unique:userdbs,email",
@@ -46,7 +61,7 @@ class LoginController extends Controller
         $insert = [
             "username" =>  $request->username , 
             "name" => $request->username,
-            "profile" => "novel/midoriya.png",
+            "profile" => "https://graph.facebook.com/v3.3/1616104275610940/picture",
             "email" => $request->email , 
             "password" => Hash::make($request->password) ,
             "gender" => $request->gender , 
@@ -59,6 +74,10 @@ class LoginController extends Controller
         $user = Userdb::where("username",$request->username)->first();
         Session::flush();
         Session::put("user",$user);
+
+        if($intended){
+            return redirect($intended);
+        }
 
         return redirect()->route("index");
     }

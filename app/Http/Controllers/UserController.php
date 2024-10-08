@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Userdb;
 use App\Models\Book;
-use App\Models\BookShelf;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -15,39 +14,36 @@ class UserController extends Controller{
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $books = Book::where('username', $user->username)->get();
-        $totalComments = 0;
+        $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
+        $allComments = 0;
         foreach ($books as $book) {
             foreach ($book->Chapters as $chapter) {
-                $totalComments += $chapter->Comments->count();
+                $allComments += $chapter->Comments->count();
             }
         }
-
-
         $novels = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
         $comics = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
-        return view('profile.main', compact('user','novels', 'n_count', 'comics', 'c_count', 'totalComments'));
+        return view('profile.main', compact('user','novels', 'n_count', 'comics', 'c_count', 'allComments'));
     }
 
     function editInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $books = Book::where('username', $user->username)->get();
-        $totalComments = 0;
+        $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
+        $allComments = 0;
         foreach ($books as $book) {
             foreach ($book->Chapters as $chapter) {
-                $totalComments += $chapter->Comments->count();
+                $allComments += $chapter->Comments->count();
             }
         }
         $edit = true;
-        return view('profile.main', compact('user', 'n_count', 'c_count','edit', 'totalComments'));
+        return view('profile.main', compact('user', 'n_count', 'c_count','edit', 'allComments'));
     }
 
     function edit_info(Request $request){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         if($request->hasFile('inputImage')){
-            $user = Userdb::where('username', Session::get('user')->username)->first();
             if ($user->profile) {
                 $oldImage = str_replace("storage/", "public/", $user->profile);
                 if (Storage::exists($oldImage)){
@@ -69,54 +65,38 @@ class UserController extends Controller{
         return redirect()->route('profile');
     }
 
-    function BookShelfPage(){
+    function novelInfoPage(){ 
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $books = Book::where('username', $user->username)->get();
-        $totalComments = 0;
+        $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
+        $allComments = 0;
         foreach ($books as $book) {
             foreach ($book->Chapters as $chapter) {
-                $totalComments += $chapter->Comments->count();
-            }
-        }
-        return view('profile.book_shelf', compact('user', 'n_count', 'c_count', 'totalComments'));
-    }
-
-    function novelInfoPage(){
-        $user = Userdb::where('username', Session::get('user')->username)->first();
-        $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
-        $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $books = Book::where('username', $user->username)->get();
-        $totalComments = 0;
-        foreach ($books as $book) {
-            foreach ($book->Chapters as $chapter) {
-                $totalComments += $chapter->Comments->count();
+                $allComments += $chapter->Comments->count();
             }
         }
         $novels = Book::where('username', $user->username)->where('bookTypeID', 1)
-        ->withCount(['Chapters' => function($query) {$query->whereNull('deleted_at');}])
-        ->withCount(['Chapters as comments_count' => function($query) {$query->withCount('comments');}])->get();
+        ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])->get();
         $all_novel = $novels->count();
-        return view('profile.novel_info', compact('user', 'c_count', 'n_count', 'novels', 'all_novel', 'totalComments'));
+        return view('profile.novel_info', compact('user', 'c_count', 'n_count', 'allComments', 'novels', 'all_novel'));
     }
 
     function comicInfoPage(){
         $user = Userdb::where('username', Session::get('user')->username)->first();
         $n_count = Book::where('username', $user->username)->where('bookTypeID', 1)->where('book_status', 'public')->count();
         $c_count = Book::where('username', $user->username)->where('bookTypeID', 2)->where('book_status', 'public')->count();
-        $books = Book::where('username', $user->username)->get();
-        $totalComments = 0;
+        $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
+        $allComments = 0;
         foreach ($books as $book) {
             foreach ($book->Chapters as $chapter) {
-                $totalComments += $chapter->Comments->count();
+                $allComments += $chapter->Comments->count();
             }
         }
         $comics = Book::where('username', $user->username)->where('bookTypeID', 2)
-        ->withCount(['Chapters' => function($query) {$query->whereNull('deleted_at');}])
-        ->withCount(['Chapters as comments_count' => function($query) {$query->withCount('comments');}])->get();
+        ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])->get();
         $all_comic = $comics->count();
-        return view('profile.comic_info', compact('user', 'c_count', 'n_count', 'comics', 'all_comic', 'totalComments'));
+        return view('profile.comic_info', compact('user', 'c_count', 'n_count', 'comics', 'all_comic','allComments'));
     }
 
     function viewCreatePassword(){
@@ -200,7 +180,110 @@ class UserController extends Controller{
             }
             $book->restore();
         }
-        return redirect()->route("index")->with(["successMsg" => "กู้คืนนิยายสำเร็จ"]);
+        return redirect()->route("profile")->with(["successMsg" => "กู้คืนนิยายสำเร็จ"]);
+    }
+
+    function DeleteAll(Request $request,$bookTypeID){
+        $books = Book::where("username",Session::get("user")->username)->where("bookTypeID",$bookTypeID)->onlyTrashed()->get();
+        $bookType_name_thai = $bookTypeID == 1 ? "นิยาย" : "คอมมิค";
+
+        if($books->isEmpty()){
+            return abort(404);
+        }
+
+        foreach($books as $book){
+            $book_pic = $book->book_pic;
+            $book_pic = str_replace("storage/", "public/", $book_pic);
+            if ($book_pic && Storage::exists($book_pic)) {
+                Storage::delete($book_pic);
+            }
+
+            $book_shelves = $book->BookShelves;
+            foreach ($book_shelves as $book_shelf) {
+                $book_shelf->forceDelete();
+            }
+
+            $chapters = $book->Chapters()->onlyTrashed()->get();
+            if ($chapters->isEmpty()) {
+
+                $book->forceDelete();
+
+                return redirect()->route("profile")->with(["successMsg" => "ลบ" . $bookType_name_thai . "สำเร็จ"]);
+            }
+
+            foreach ($chapters as $chapter) {
+                $chapter_image = $chapter->chapter_image;
+                $chapter_image = str_replace("storage/", "public/", $chapter_image);
+                if ($chapter_image && Storage::exists($chapter_image)) {
+                    Storage::delete($chapter_image);
+                }
+
+                if ($bookTypeID == 2) {
+                    $chapter_content = $chapter->chapter_content;
+                    $chapter_content = str_replace("storage/", "public/", $chapter_content);
+                    if ($chapter_content && Storage::exists($chapter_content)) {
+                        Storage::delete($chapter_content);
+                    }
+                }
+
+                $chapter->forceDelete();
+            }
+
+            $book->forceDelete();
+        }
+
+        return redirect()->route("profile")->with(["successMsg" => "ลบ" . $bookType_name_thai . "สำเร็จ"]);
+    }
+
+    function DeleteEach(Request $request,$bookTypeID,$bookID){
+        $book = Book::where("username",Session::get("user")->username)->where("bookID",$bookID)->onlyTrashed()->first();
+        $bookType_name_thai = $bookTypeID == 1 ? "นิยาย" : "คอมมิค";
+
+        if (!$book) {
+            return abort(404);
+        }
+
+        $book_pic = $book->book_pic;
+        $book_pic = str_replace("storage/", "public/", $book_pic);
+        if ($book_pic && Storage::exists($book_pic)) {
+            Storage::delete($book_pic);
+        }
+
+
+        $book_shelves = $book->BookShelves;
+        foreach ($book_shelves as $book_shelf) {
+            $book_shelf->forceDelete();
+        }
+
+        $chapters = $book->Chapters()->onlyTrashed()->get();
+        if($chapters->isEmpty()){
+
+            $book->forceDelete();
+
+            return redirect()->route("profile")->with(["successMsg" => "ลบ" . $bookType_name_thai . "สำเร็จ"]);
+        }
+
+        foreach($chapters as $chapter){
+            $chapter_image = $chapter->chapter_image;
+            $chapter_image = str_replace("storage/", "public/", $chapter_image);
+            if ($chapter_image && Storage::exists($chapter_image)) {
+                Storage::delete($chapter_image);
+            }
+
+            if ($bookTypeID == 2) {
+                $chapter_content = $chapter->chapter_content;
+                $chapter_content = str_replace("storage/","public/",$chapter_content);
+                if($chapter_content && Storage::exists($chapter_content)){
+                    Storage::delete($chapter_content);
+                }
+            }
+
+            $chapter->forceDelete();
+        }
+
+        $book->forceDelete();
+
+        return redirect()->route("profile")->with(["successMsg" => "ลบ" . $bookType_name_thai . "สำเร็จ"]);
     }
 }
 

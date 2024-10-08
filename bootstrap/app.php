@@ -2,6 +2,7 @@
 
 
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\BookBlockMiddleware;
 use App\Http\Middleware\ChapterOwner;
 use App\Http\Middleware\OwnerComicMiddleware;
 use App\Http\Middleware\OwnerNovelMiddleware;
@@ -24,6 +25,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'checkAdminLogin' => AdminMiddleware::class,
             'checkChapterOwner' => ChapterOwner::class,
             'checkComicOwner' => OwnerComicMiddleware::class,
+            'checkBookBlock' => BookBlockMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
