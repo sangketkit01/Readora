@@ -54,3 +54,20 @@ function showAlert(message, type) {
         alert.close();
     }, 3000);
 }
+
+
+function DeleteOutOfShelve(bookName){
+    Swal.fire({
+        title: `คุณต้องการที่จะลบเรื่อง "${bookName}" ออกจากชั้นหนังสือหรือไม่?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: `ยืนยัน`,
+        cancelButtonText: "ยกเลิก",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById("delete-shelve-form").submit();
+        }
+    });
+}

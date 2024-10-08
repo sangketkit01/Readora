@@ -86,19 +86,21 @@ p {
 
 .button_2 {
     background-color: #4F5D87;
-    color: #ffffff;
-    padding: 10px 28px;
-    border-radius: 20px;
-    text-decoration: none;
+        color: #ffffff;
+        padding: 10px 28px;
+        border-radius: 20px;
+        text-decoration: none;
+        margin-bottom: 3px;
 }
 
 .button_2:hover {
     background-color: #929ab5;
 }
 
+
 .type {
     margin: 10px 0;
-    height: 65%;
+    height: 63%;
 }
 
 .Introducing {
@@ -565,4 +567,17 @@ p.p_smaill{
 
 #share-modal-button:hover {
     background-color: #FAFAFA;
+}
+
+#back-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    border: none;
+    background-color: transparent;
+    color: #33436F;
+    align-items: start;
+    position: relative;
+    left: 8%;
+    top: 70px;
 }

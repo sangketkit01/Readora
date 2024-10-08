@@ -27,3 +27,16 @@
     margin: 50px auto 0 auto;
     padding-left: 2px;
 }
+
+#back-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    border: none;
+    background-color: transparent;
+    color: #33436F;
+    align-items: center;
+    position: relative;
+    left: 20%;
+    top: 95px;
+}

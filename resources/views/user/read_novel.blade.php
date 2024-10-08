@@ -4,15 +4,15 @@
     <link rel="stylesheet" href="/css/user/read.css">
 @endpush
 @section('containerClassName', 'indexContainer')
-
 @section('content')
 
+<a href="{{ route('index') }}" id="back-icon"><i class="bi bi-arrow-left-circle-fill fs-1"></i> </a>
     @foreach ($books as $book)
         <div class="container_user">
             <div class="card_user">
                 <div class="img row col-4 md-6 sm-12">
                     <img src="{{ asset($book->book_pic) }}
-                " alt="">
+                                " alt="">
                 </div>
                 <div class="user col-8 md-6 sm-12">
                     <div class="head">
@@ -27,19 +27,58 @@
                         <h4>{{ $book->Genre->bookGenre_name }}</h4>
                     </div>
                     <div class="button">
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center bbb">
                             <div class="mr-2">
                                 <form action="{{ route('add_to_shelf') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="bookID" value="{{ $book->bookID }}">
-                                    <button type="submit" class="button_1">เพิ่มเข้าชั้น</button>
+                                    @if ($book->User->username == session('user')->username)
+                                        <a type="button" href="{{ route('novel.edit', ['bookID' => $book->bookID]) }}"
+                                            class="button_1 me-2">แก้ไข</a>
+                                    @elseif ($shelve)
+                                        <button type="button" onclick="DeleteOutOfShelve('{{$book->book_name}}')" class="button_1 me-2">ลบออกจากชั้น</button>
+                                    @else
+                                        <button type="submit" class="button_1 me-2">เพิ่มเข้าชั้น</button>
+                                    @endif
+                                    
+                                    @if (session('success_message'))
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded",()=>{
+                                                Swal.fire({
+                                                    position: "center",
+                                                    icon: "success",
+                                                    title: `{!! nl2br(e(session('success_message'))) !!}`,
+                                                    showConfirmButton: false,
+                                                    timer: 5000
+                                                });
+                                        })
+                                        </script>
+                                    @endif
+
+                                    @if (session('error_message'))
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded",()=>{
+                                                Swal.fire({
+                                                    position: "center",
+                                                    icon: "error",
+                                                    title: `{!! nl2br(e(session('error_message'))) !!}`,
+                                                    showConfirmButton: false,
+                                                    timer: 5000
+                                                });
+                                            })
+                                        </script>
+                                    @endif
+
                                     <a href="{{ route('read.read_first_chaptnovel', ['bookID' => $book->bookID]) }}"
                                         class="btn button_2">อ่านเลย</a>
                                 </form>
+                                <form action="{{route('read.delete_shelve',["bookID"=>$book->bookID])}}" id="delete-shelve-form" method="post">@csrf</form>
                             </div>
-                            <button type="button" class="btn report-button" onclick="openModal()">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </button>
+                            @if ($book->User->username != session('user')->username)
+                                <button type="button" class="btn report-button" onclick="openModal()">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </button>
+                            @endif
 
                         </div>
                     </div>
@@ -110,8 +149,8 @@
                         @foreach ($chapterComments[$chapter->chapterID] ?? [] as $comment)
                             <div class="comment-item">
                                 <div class="header_com">
-                                    <p class="text-end">จากตอน #{{$comment->Chapter->chapter_name}}</p>
-                                    <p>{{ $comment->comment_message }}</p> 
+                                    <p class="text-end">จากตอน #{{ $comment->Chapter->chapter_name }}</p>
+                                    <p>{{ $comment->comment_message }}</p>
                                 </div>
                                 <div class="user_com">
                                     <div class="img_com">
@@ -121,7 +160,7 @@
                                         <div class="name_com">
                                             <p>{{ $comment->User->name }}</p>
                                         </div>
-                                        <p class="p_smaill">{{ $comment->created_at}}</p>
+                                        <p class="p_smaill">{{ $comment->created_at }}</p>
                                     </div>
                                 </div>
                             </div>

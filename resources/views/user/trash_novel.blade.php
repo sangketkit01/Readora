@@ -6,16 +6,19 @@
 @section('containerClassName', 'TrashNovelContainer')
 @section('content')
     @if ($chapters->isEmpty())
-        <div class="d-flex justify-content-center align-items-center" style="height: 90vh"><label for=""
-                style="font-size: 22px">ไม่มีตอนที่ถูกลบ</label></div>
+        <div class="d-flex flex-column justify-content-center align-items-center" style="height: 90vh">
+            <label for="" style="font-size: 22px">ไม่มีตอนที่ถูกลบ</label>
+            <a href="{{route('novel.edit',["bookID"=>$bookID])}}" style="font-size: 18px" class="mt-2">กลับหน้าแก้ไข</a>
+        </div>
     @else
+        <a href="{{ route('novel.edit',["bookID"=>$bookID]) }}" id="back-icon"><i class="bi bi-arrow-left-circle-fill fs-1"></i> </a>
         <div class="container" style="margin-top: 50px">
             <h4 class="ms-4">ตอนทั้งหมด {{ $count_chapter }}</h4>
             <div class="d-flex ms-auto me-4">
                 <button type="button" class="btn btn-primary" onclick="RestoreAll()">กูคืนทั้งหมด</button>
                 <form action="{{route('novel.restore_all',["bookID"=>$bookID])}}" style="display: none;" method="POST" id="restore-all">@csrf</form>
                 
-                <button type="button" class="btn btn-danger ms-2" onclick="ForceDeleteAll()">ลบฐาวรทั้งหมด</button>
+                <button type="button" class="btn btn-danger ms-2" onclick="ForceDeleteAll()">ลบถาวรทั้งหมด</button>
                 <form action="{{route('novel.force-delete-all',["bookID"=>$bookID])}}" style="display: none;" method="POST" id="force-delete-all">@csrf</form>
             </div>
 
@@ -42,7 +45,7 @@
                                 id="restore-each-{{ $chapter->chapterID }}">@csrf</form>
 
                             <button class="btn btn-danger ms-2" type="button"
-                                onclick="ForceDeleteEach({{$chapter->chapterID}},'{{$chapter->chapter_name}}')">ลบฐาวร</button>
+                                onclick="ForceDeleteEach({{$chapter->chapterID}},'{{$chapter->chapter_name}}')">ลบถาวร</button>
                             <form action="{{route("novel.force-delete-each",["bookID" => $bookID , "chapterID" => $chapter->chapterID])}}" style="display: none;" method="POST"
                                 id="force-delete-each-{{ $chapter->chapterID }}">@csrf</form>
                         </div>

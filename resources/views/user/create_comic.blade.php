@@ -5,10 +5,11 @@
 @endpush
 @section('containerClassName', 'createNovelContainer')
 @section('content')
-    <div class="container">
-        <form action="{{ route('comic.insert') }}" method="post" class="form-group d-flex align-items-center" enctype="multipart/form-data" id="form">
-            @csrf
-            <div class="d-flex flex-column">
+<div class="container">
+    <form action="{{ route('comic.insert') }}" method="post" class="form-group d-flex align-items-center" enctype="multipart/form-data" id="form">
+        @csrf
+        <div class="d-flex flex-column">
+                <a href="{{ route('profile.comic') }}" id="back-icon"><i class="bi bi-arrow-left-circle-fill fs-1"></i> </a>
                 <h2>สร้างคอมมิค</h2>
                 <div>
                     <label for="" class="form-label">ชื่อเรื่อง</label>

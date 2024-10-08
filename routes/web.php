@@ -159,6 +159,7 @@ Route::middleware("checkLogin")->group(function () {
     Route::get("/book_shelve_commic", [IndexController::class, "book_shelve_commic"])->name("index.book_shelve_commic");
     Route::get('/book_shelve', [IndexController::class, 'book_shelve'])->name('index.book_shelve');
     Route::post('/add-to-shelf', [ReadController::class, 'addToShelf'])->name('add_to_shelf');
+    Route::post("/delete/shelve/{bookID}",[ReadController::class,"DeleteOutOfShelve"])->name("read.delete_shelve");
 
     Route::get('/increment-click-and-redirect-novel/{bookID}', [ReadController::class, 'incrementClickAndRedirect'])->name('novel.incrementAndRedirect');
     Route::get('/increment-click-and-redirect-comic/{bookID}', [ReadController::class, 'incrementClickAndRedirectComic'])->name('novel.incrementAndRedirectcomic');
@@ -173,9 +174,27 @@ Route::prefix("admin")->group(function () {
         Route::get('book_detail/{bookID}', [AdminController::class, 'book_detail'])->name('admin.book_detail');
         Route::post('books/block/{bookID}', [AdminController::class, 'block'])->name('book.block');
         Route::post('books/unblock/{bookID}', [AdminController::class, 'unblock'])->name('book.unblock');
-        Route::get('admin/blockedbooks', [AdminController::class, 'viewBlockedBooks'])->name('admin.blocked_books');
-        Route::post('admin/unblockbook/{bookID}', [AdminController::class, 'unblockBook'])->name('admin.unblock_book');
-        Route::get('admin/blockedcomic', [AdminController::class, 'viewBlockedComic'])->name('admin.blocked_comic');
+
+        Route::get('blockedbooks', [AdminController::class, 'viewBlockedBooks'])->name('admin.blocked_books');
+        Route::post('unblockbook/{bookID}', [AdminController::class, 'unblockBook'])->name('admin.unblock_book');
+        Route::get('blockedcomic', [AdminController::class, 'viewBlockedComic'])->name('admin.blocked_comic');
+
+        Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");//aut
+
+        Route::get('searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
+        Route::get('searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
+        Route::get('searchUserAdmin', [SearchController::class, 'searchAdminUser'])->name('admin.search_user'); 
+        Route::get('searchUser', [SearchController::class, 'searchUser'])->name('admin.get_info_search'); 
+
+        Route::post('/delete_user', [AdminController::class, 'adminDeleteUser'])->name('admin.delete_user'); 
+
+        Route::get('deleted-users', [AdminController::class, 'deletedUsers'])->name('admin.deleted_users');
+        Route::post('admin.restore_user', [AdminController::class, 'adminRestoreUser'])->name('admin.restore_user'); 
+
+
+        Route::get('/admin/deleted-users', [AdminController::class, 'deletedUsers'])->name('admin.deleted_users');
+        Route::post('/admin.restore_user', [AdminController::class, 'adminRestoreUser'])->name('admin.restore_user');
+
     });
 
     Route::get("login", [AdminController::class, 'Login'])->name("admin.login");

@@ -107,3 +107,22 @@
     height: 26px;
     padding: 1px 6px;
 }
+
+.btn-primary{
+    background-color: #33436F !important;
+    border-color: transparent !important;
+    color: white !important;
+}
+
+.btn-primary:hover {
+    background-color: #253057 !important; /* เปลี่ยนสีเมื่อ hover ให้เข้มขึ้น */
+}
+
+.btn-danger{
+    background-color: #C72B2B !important;
+    border-color: transparent !important;
+}
+
+.btn-danger:hover{
+    background-color: #A52727 !important;
+}

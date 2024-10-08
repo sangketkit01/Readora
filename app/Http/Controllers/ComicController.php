@@ -129,7 +129,7 @@ class ComicController extends Controller
 
         $book = Book::where("bookID", $bookID)->first();
         if (!$book) {
-            return redirect()->route('index')->withErrors(["msg" => "Something went wrong."]);
+            return redirect()->route('index')->withErrors(["msg" => "มีบางอย่างผิดพลาด"]);
         }
 
         $data = [
@@ -161,7 +161,7 @@ class ComicController extends Controller
         $chapterContent = Book_chapter::where('bookID',$bookID)->where('chapterID',$chapterID)->first();
 
         if (!$chapterContent) {
-            return redirect()->route('index')->withErrors(["msg" => "Something went wrong."]);
+            return redirect()->route('index')->withErrors(["msg" => "มีบางอย่างผิดพลาด"]);
         }
 
         if($request->has('image')){
@@ -262,7 +262,7 @@ class ComicController extends Controller
         $chapter = Book_chapter::where("bookID", $bookID)->where("chapterID", $chapterID)->onlyTrashed()->first();
 
         if (!$chapter) {
-            return redirect()->route("novel.trash", ["bookID" => $bookID])->withErrors(["msg" => "Something went wrong. Please try again"]);
+            return redirect()->route("novel.trash", ["bookID" => $bookID])->withErrors(["msg" => "มีบางอย่างผิดพลาด โปรดลองอีกครั้ง"]);
         }
 
         $chapter_image = $chapter->chapter_image;

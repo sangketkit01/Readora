@@ -74,7 +74,7 @@
                             <img src="{{ asset($comic->book_pic) }}" alt="Novel Image">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $comic->book_name }}</h5>
-                                <p class="card-text">{{ $comic->book_description }}</p>
+                                <p class="card-text description">{{ $comic->book_description }}</p>
                                 <p class="card-text"><small class="text-body-secondary">{{ $comic->User->name }}</small></p>
                                     @php
                                         $totalComments = $comic->Chapters->sum('comments_count');
@@ -99,12 +99,13 @@
                             <img src="{{ asset($novel->book_pic) }}" alt="Novel Image">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $novel->book_name }}</h5>
-                                <p class="card-text">{{ $novel->book_description }}</p>
+                                <p class="card-text description">{{ $novel->book_description }}</p>
                                 <p class="card-text"><small class="text-body-secondary">{{ $novel->User->name }}</small></p>
                                     @php
                                         $totalComments = $novel->Chapters->sum('comments_count');
                                     @endphp
-                                <p><i class="fa-solid fa-list-ul"></i> {{$novel->Chapters->count()}}  <i class="fa-solid fa-comment"></i> {{$totalComments}}</p>
+                                <p><i class="fa-solid fa-list-ul"></i> {{$novel->Chapters->count()}}  
+                                <i class="fa-solid fa-comment"></i> {{$totalComments}}</p>
                             </div>
                         </div>
                     </a>

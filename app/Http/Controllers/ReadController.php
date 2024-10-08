@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\click;
 
 use App\Models\Book;
-use App\Models\BookShelf;
+use App\Models\Bookshelf;
 use App\Models\Book_type;
 use App\Models\Book_chapter;
 use App\Models\Chapter_comment;
@@ -44,7 +44,9 @@ class ReadController extends Controller
                 ->from('book_chapters')
                 ->where('bookID', $bookID);
         })->count();
-        return view("user.read_novel", compact('books', 'bookID', 'chapters', 'count_chapter', 'chapterComments', 'count_comment'));
+        $shelve = Bookshelf::where("username",Session::get("user")->username)->where("bookID",$bookID)->first();
+
+        return view("user.read_novel", compact('books', 'bookID', 'chapters', 'count_chapter', 'chapterComments', 'count_comment',"shelve"));
     }
 
     public function readnovel_chapt($bookID, $chapterID)
@@ -113,7 +115,9 @@ class ReadController extends Controller
                 ->from('book_chapters')
                 ->where('bookID', $bookID);
         })->count();
-        return view("user.read_comic", compact('books', 'bookID', 'chapters', 'count_chapter', 'chapterComments', 'count_comment'));
+        $shelve = Bookshelf::where("username", Session::get("user")->username)->where("bookID", $bookID)->first();
+
+        return view("user.read_comic", compact('books', 'bookID', 'chapters', 'count_chapter', 'chapterComments', 'count_comment','shelve'));
     }
 
     public function readcomic_chapt($bookID, $chapterID)
@@ -176,39 +180,26 @@ class ReadController extends Controller
     {
         // ค้นหานิยายตาม ID
         $novel = Book::find($bookID);
-
         // เพิ่มค่า click_count ถ้านิยายถูกพบ
         if ($novel) {
             $novel->increment('click_count');
         }
-
-        // เรียงลำดับนิยายตาม click_count
-        $novels = Book::select('bookID', 'book_name', 'book_description', 'book_pic', DB::raw('SUM(click_count) AS total_clicks'))
-            ->groupBy('bookID', 'book_name', 'book_description', 'book_pic')
-            ->orderBy('total_clicks', 'desc')
-            ->get();
-
         // ส่งข้อมูลไปยังหน้าอ่านนิยายและส่งข้อมูลทั้งหมดไปด้วย
         return redirect()->route('read.read_novel', ['bookID' => $bookID])
-            ->with(['novel' => $novel, 'novels' => $novels]);
+            ->with(['novel' => $novel]);
     }
 
     public function incrementClickAndRedirectComic($bookID)
     {
         // ค้นหาการ์ตูนตาม ID
         $comic = Book::find($bookID);
-
         // เพิ่มค่า click_count ถ้าการ์ตูนถูกพบ
         if ($comic) {
             $comic->increment('click_count');
         }
-
-        // เรียงลำดับการ์ตูนตาม click_count
-        $comics = Book::orderBy('click_count', 'desc')->get();
-
         // ส่งข้อมูลไปยังหน้าอ่านการ์ตูน
         return redirect()->route('read.read_comic', ['bookID' => $bookID])
-            ->with(['comic' => $comic, 'comics' => $comics]);
+            ->with(['comic' => $comic]);
     }
 
 
@@ -219,30 +210,28 @@ class ReadController extends Controller
         ]);
 
         $username = Session::get('user'); // ดึงข้อมูล user จาก session
-
-        // ตรวจสอบว่า $username เป็น object หรือ array
         if (is_object($username)) {
-            $username = $username->username; // กรณีเป็น object
+            $username = $username->username; // เป็น object
         } elseif (is_array($username)) {
-            $username = $username['username']; // กรณีเป็น array
+            $username = $username['username']; // เป็น array
         }
 
-        // ตรวจสอบว่าหนังสือนี้ถูกเพิ่มในชั้นแล้วหรือไม่
         $existingBook = Bookshelf::where('bookID', $request->bookID)
             ->where('username', $username)
             ->first();
-
         if (!$existingBook) {
             Bookshelf::create([
                 'bookID' => $request->bookID,
                 'username' => $username,
             ]);
-            $message = 'Book added to your shelf successfully!';
+            $alert_session = "success_message";
+            $message = 'เพิ่มเข้าชั้นสำเร็จ';
         } else {
-            $message = 'This book is already in your shelf.';
+            $alert_session = "error_message";
+            $message = 'หนังสืออยู่ในชั้นหนังสืออยู่แล้ว';
         }
 
-        return redirect()->back()->with('message', $message);
+        return redirect()->back()->with($alert_session, $message);
 
     }
 
@@ -272,5 +261,17 @@ class ReadController extends Controller
         return redirect("/read_chaptcomic/{$bookID}/{$chapterID}");
     }
 
+
+    function DeleteOutOfShelve(Request $request , $bookID){
+        $book = Bookshelf::where("username",Session::get("user")->username)->where("bookID",$bookID)->first();
+
+        if(!$book){
+            return abort(404);
+        }
+
+        $book->forceDelete();
+
+        return redirect()->back()->with(["success_message" => "ลบหนังสือออกจากชั้นหนังสือสำเร็จ"]);
+    }
 
 }
