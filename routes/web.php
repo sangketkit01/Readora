@@ -171,6 +171,7 @@ Route::prefix("admin")->group(function () {
         Route::get("signout", [AdminController::class, 'SignOut'])->name("admin.signout");
 
         Route::get('checkreport', [AdminController::class, 'Checkreport'])->name('admin.checkreport');
+        Route::post('report/read/{reportID}', [AdminController::class, 'Read_report'])->name('admin.read_report');
         Route::get('book_detail/{bookID}', [AdminController::class, 'book_detail'])->name('admin.book_detail');
         Route::post('books/block/{bookID}', [AdminController::class, 'block'])->name('book.block');
         Route::post('books/unblock/{bookID}', [AdminController::class, 'unblock'])->name('book.unblock');
@@ -178,6 +179,8 @@ Route::prefix("admin")->group(function () {
         Route::get('blockedbooks', [AdminController::class, 'viewBlockedBooks'])->name('admin.blocked_books');
         Route::post('unblockbook/{bookID}', [AdminController::class, 'unblockBook'])->name('admin.unblock_book');
         Route::get('blockedcomic', [AdminController::class, 'viewBlockedComic'])->name('admin.blocked_comic');
+        Route::get('searchbookbloked',[SearchController::class,'searchBookbloked'])->name('admin.searchbookblocked');
+        Route::get('searchcomicbloked',[SearchController::class,'searchComicbloked'])->name('admin.searchcomicblocked');
 
         Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin");//aut
 

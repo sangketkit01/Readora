@@ -39,10 +39,13 @@ body {
 }
 
 .block {
+    display: flex; /* ใช้ Flexbox */
+    align-items: center; /* จัดให้ปุ่มอยู่ตรงกลาง */
+    justify-content: center; /* จัดให้เนื้อหาภายในอยู่กลาง */
     background-color: #ff6f6f; /* สีพื้นฐานของปุ่ม */
     color: #fff; /* สีข้อความ */
     border: none; /* ไม่มีกรอบ */
-    padding: 15px 30px; /* เพิ่มขนาดของ padding เพื่อทำให้ปุ่มใหญ่ขึ้น */
+    padding: 15px 30px; /* ขนาดของ padding เพื่อทำให้ปุ่มใหญ่ขึ้น */
     font-size: 18px; /* ปรับขนาดฟอนต์ให้ใหญ่ขึ้น */
     border-radius: 5px; /* มุมโค้ง */
     cursor: pointer; /* แสดงมือเมื่อ hover */
@@ -50,10 +53,15 @@ body {
     position: absolute; /* ทำให้ปุ่มอยู่ในตำแหน่งที่แน่นอน */
     bottom: 15px; /* ระยะห่างจากด้านล่างของกรอบ */
     right: 15px; /* ระยะห่างจากด้านขวาของกรอบ */
-    width: 120px; /* เพิ่มความกว้างของปุ่ม */
+    width: 150px; /* เพิ่มความกว้างของปุ่ม */
     text-align: center; /* จัดตำแหน่งข้อความให้กลางปุ่ม */
 }
 
+/* ปรับปรุงรูปแบบให้ปุ่มบล็อกและเลิกบล็อกติดกัน */
+.block-container {
+    display: flex; /* ใช้ Flexbox */
+    gap: 10px; /* ระยะห่างระหว่างปุ่ม */
+}
 .block:hover {
     background-color: #bbb; /* สีเมื่อ hover เป็นสีเทา */
 }
@@ -88,7 +96,7 @@ body {
 .reports-section {
     margin-top: 30px; /* ระยะห่างระหว่างหนังสือและส่วนรายงาน */
     padding: 15px; /* เพิ่ม padding ภายในกรอบ */
-    background-color: #fff; /* สีพื้นหลังของส่วนรายงาน */
+    background-color: #e7e7e7; /* สีพื้นหลังของส่วนรายงาน */
     border: 1px solid #ddd; /* เพิ่มกรอบให้กับส่วนรายงาน */
     border-radius: 8px; /* เพิ่มมุมโค้งให้กับกรอบ */
 }
@@ -104,27 +112,48 @@ body {
 }
 
 .report-item {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0; /* เพิ่ม padding สำหรับแต่ละรายการรายงาน */
+    margin-bottom: 20px; /* เพิ่มระยะห่างระหว่างการ์ด */
 }
 
-.report-username,
-.report-message,
-.report-date {
-    margin-bottom: 5px;
+.report-card {
+    border: 1px solid #ddd; /* กรอบของการ์ด */
+    border-radius: 8px; /* มุมโค้งของการ์ด */
+    padding: 15px; /* เพิ่ม padding ภายในการ์ด */
+    background-color: #fff; /* สีพื้นหลังของการ์ด */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* เงาเบาให้กับการ์ด */
+}
+
+.report-message {
+    font-size: 16px; /* ขนาดตัวหนังสือสำหรับข้อความรายงาน */
+    margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่าง */
+}
+
+.report-profile {
+    display: flex; /* ใช้ flexbox เพื่อจัดตำแหน่งโปรไฟล์ */
+    align-items: center; /* จัดให้สูงเท่ากันในแนวตั้ง */
+    justify-content: flex-end; /* ให้ชื่อผู้รายงานและโปรไฟล์อยู่ที่ด้านขวา */
+    margin-bottom: 5px; /* เพิ่มระยะห่างด้านล่างระหว่างโปรไฟล์กับวันที่ */
+}
+
+.report-profile-pic {
+    width: 40px; /* กำหนดความกว้างของรูปภาพ */
+    height: 40px; /* กำหนดความสูงของรูปภาพ */
+    border-radius: 50%; /* ทำให้รูปภาพเป็นวงกลม */
+    object-fit: cover; /* ให้ภาพไม่ผิดสัดส่วน */
+    margin-left: 10px; /* เพิ่มระยะห่างด้านซ้ายของรูปภาพ */
 }
 
 .report-username {
     font-weight: bold;
-    font-size: 16px; /* ปรับขนาดตัวหนังสือสำหรับชื่อผู้รายงาน */
+    font-size: 20px; /* ปรับขนาดตัวหนังสือสำหรับชื่อผู้รายงาน */
+    margin-left: 10px; /* เพิ่มระยะห่างด้านซ้ายของชื่อ */
 }
 
-.report-message {
-    font-size: 14px; /* ปรับขนาดตัวหนังสือสำหรับข้อความรายงาน */
-}
-
+/* วันที่อยู่ในบรรทัดใหม่และจัดให้ไปที่ขวาสุด */
 .report-date {
     font-size: 12px; /* ขนาดตัวหนังสือสำหรับวันที่ */
+    text-align: right; /* จัดให้ข้อความอยู่ที่ด้านขวา */
+    margin-top: 5px; /* เพิ่มระยะห่างด้านบนเพื่อแยกจากโปรไฟล์ */
 }
 
 /* Alert Styles */
@@ -146,3 +175,106 @@ body {
     background-color: #f8d7da;
     border-color: #f5c6cb;
 }
+.modal {
+    display: none; /* ซ่อน modal โดยเริ่มต้น */
+    position: fixed; /* ทำให้ modal อยู่เหนือเนื้อหาอื่น ๆ */
+    z-index: 1000; /* ให้ modal อยู่บนสุด */
+    left: 0;
+    top: 0;
+    width: 100%; /* ความกว้างเต็ม */
+    height: 100%; /* ความสูงเต็ม */
+    overflow: auto; /* สร้างการเลื่อนหากจำเป็น */
+    background-color: rgba(0, 0, 0, 0.5); /* พื้นหลังสีดำแบบโปร่งใส */
+    display: flex; /* ใช้ Flexbox */
+    justify-content: center; /* จัดให้อยู่กลาง */
+    align-items: center; /* จัดแนวตั้งให้กลาง */
+}
+
+.modal-content {
+    background-color: #fefefe; /* สีพื้นหลังของ modal */
+    padding: 20px; /* เพิ่มระยะห่างภายใน */
+    border-radius: 12px; /* มุมโค้ง */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* เงาเบาให้กับ modal */
+    width: 500px; /* กำหนดความกว้าง */
+    height: 300px; /* กำหนดความสูง */
+    max-width: 90%; /* ทำให้ responsive */
+    position: relative; /* ใช้ relative สำหรับตำแหน่งของปุ่ม */
+    display: flex; /* ใช้ Flexbox เพื่อให้ใช้งานง่าย */
+    flex-direction: column; /* แนวตั้ง */
+}
+
+.modal-body {
+    display: flex; /* ใช้ Flexbox */
+    flex-direction: column; /* แนวตั้ง */
+    justify-content: center; /* จัดกลางแนวตั้ง */
+    align-items: center; /* จัดกลางแนวนอน */
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+    flex-grow: 1; /* ขยายให้เต็มพื้นที่ */
+}
+
+.modal-buttons {
+    display: flex; /* ใช้ Flexbox */
+    justify-content: flex-end; /* จัดให้ปุ่มอยู่ด้านขวา */
+    margin-top: auto; /* ทำให้ปุ่มไปอยู่ด้านล่างสุด */
+}
+
+.confirm-button,
+.cancel-button {
+    padding: 10px 20px; /* ขนาดของปุ่ม */
+    margin-left: 10px; /* ระยะห่างระหว่างปุ่ม */
+    border: none; /* ไม่มีเส้นขอบ */
+    border-radius: 5px; /* มุมโค้ง */
+    cursor: pointer; /* แสดงว่าปุ่มสามารถคลิกได้ */
+}
+
+.confirm-button {
+    background-color: #28a745; /* สีเขียว */
+    color: white; /* สีข้อความ */
+}
+
+.cancel-button {
+    background-color: #dc3545; /* สีแดง */
+    color: white; /* สีข้อความ */
+}
+
+.confirm-button:hover {
+    background-color: #218838; /* สีเขียวเข้มเมื่อ hover */
+}
+
+.cancel-button:hover {
+    background-color: #c82333; /* สีแดงเข้มเมื่อ hover */
+}
+
+#modalQuestion {
+    font-size: 36px; /* ปรับขนาดฟอนต์ */
+    font-weight: bold; /* ทำให้เป็นตัวหนา */
+    margin-bottom: 20px; /* เพิ่มระยะห่างด้านล่าง */
+}
+
+.back-button {
+    background-color: #4F5D87; /* สีพื้นหลัง */
+    color: white; /* สีข้อความ */
+    padding: 10px; /* ขนาด padding */
+    border: none; /* ไม่มีกรอบ */
+    border-radius: 50%; /* ทำให้ปุ่มเป็นวงกลม */
+    cursor: pointer; /* แสดงว่าปุ่มสามารถคลิกได้ */
+    font-size: 16px; /* ขนาดฟอนต์ */
+    transition: background-color 0.3s; /* เปลี่ยนสีอย่างนุ่มนวล */
+    display: flex; /* จัดแนวให้เป็น flex */
+    align-items: center; /* จัดแนวกลางในแนวตั้ง */
+    justify-content: center; /* จัดแนวกลางในแนวนอน */
+    width: 37px; /* ขนาดความกว้างของปุ่ม */
+    height: 37px; /* ขนาดความสูงของปุ่ม */
+    margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่าง */
+}
+
+.back-button i {
+    margin: 0; /* ไม่ต้องมีระยะห่างระหว่างไอคอนกับขอบ */
+}
+
+.back-button:hover {
+    background-color: #c2c2c2; /* สีเมื่อ hover */
+}
+
+
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Userdb;
+use App\Models\Report;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -13,7 +14,7 @@ class SearchController extends Controller
     {
         $query = $request->input('query');
 
-        // ค้นหาหนังสือจากฐานข้อมูล
+        //ค้นหาหนังสือจากฐานข้อมูล
         $books = Book::where('book_name', 'LIKE', "%{$query}%")
             ->orWhere('book_description', 'LIKE', "%{$query}%")
             ->orWhereHas('User', function ($q) use ($query) {
@@ -26,8 +27,20 @@ class SearchController extends Controller
                 $q->where('bookType_name', 'LIKE', "%{$query}%");
             })
             ->get();
-        // ส่งผลลัพธ์การค้นหาไปที่ view
+        //ส่งผลลัพธ์การค้นหาไปที่ view
+
+        // $books = Book::join('userdbs', 'userdbs.username', '=', 'books.username')
+        //     ->join('book_genres', 'book_genres.bookGenreID', '=', 'books.bookGenreID')
+        //     ->join('book_types', 'book_types.bookTypeID', '=', 'books.bookTypeID')
+        //     ->where('book_name', 'LIKE', "%{$query}%")
+        //     ->orWhere('book_description', 'LIKE', "%{$query}%")
+        //     ->orWhere('name','LIKE',"%{$query}%")
+        //     ->orWhere('bookGenre_name','LIKE',"%{$query}%")
+        //     ->orWhere('bookType_name','LIKE',"%{$query}%")
+        //     ->get();
+
         return view('user.search-result', compact('books', 'query'));
+
     }
 
 
@@ -78,20 +91,19 @@ class SearchController extends Controller
             })
             ->paginate(20);
 
-
         return view('admin.searchcomic_admin', compact('books', 'query'));
     }
     function searchAdminUser()
     {
         $query = '';
         $user = Userdb::all();
-        return view('admin.searchUser' ,compact('user','query'));
+        return view('admin.searchUser', compact('user', 'query'));
     }
 
     function searchUser(Request $request)
     {
 
-        $query = $request->input('query'); 
+        $query = $request->input('query');
 
         if ($query) {
             // ค้นหาหนังสือจากฐานข้อมูล
@@ -102,4 +114,47 @@ class SearchController extends Controller
         // ส่งผลลัพธ์การค้นหาไปที่ view
         return view('admin.searchUser', compact('user', 'query'));
     }
+    function searchBookbloked(Request $request)
+    {
+        $query = $request->input('query');
+
+        if ($query) {
+            // ค้นหาจากชื่อหนังสือและชื่อผู้แต่ง โดยมีเงื่อนไข bookTypeID = 1
+            $books = Book::where('bookTypeID', 1)
+                ->where(function ($q) use ($query) {
+                    $q->where('book_name', 'LIKE', "%{$query}%")
+                        ->orWhere('username', 'LIKE', "%{$query}%");
+                })
+                ->get();
+        } else {
+            // ถ้าไม่มี query จะคืนค่าเป็น Collection ว่าง
+            $books = collect([]);
+        }
+
+        // ส่งผลลัพธ์การค้นหาไปที่ view
+        return view('admin.block_book', compact('books', 'query')); // Ensure $query is included
+    }
+
+    function searchComicbloked(Request $request)
+    {
+        $query = $request->input('query');
+
+        if ($query) {
+            // ค้นหาจากชื่อหนังสือและชื่อผู้แต่ง โดยมีเงื่อนไข bookTypeID = 1
+            $books = Book::where('bookTypeID', 2)
+                ->where(function ($q) use ($query) {
+                    $q->where('book_name', 'LIKE', "%{$query}%")
+                        ->orWhere('username', 'LIKE', "%{$query}%");
+                })
+                ->get();
+        } else {
+            // ถ้าไม่มี query จะคืนค่าเป็น Collection ว่าง
+            $books = collect([]);
+        }
+
+        // ส่งผลลัพธ์การค้นหาไปที่ view
+        return view('admin.block_commic', compact('books', 'query')); // Ensure $query is included
+    }
+
+
 }
