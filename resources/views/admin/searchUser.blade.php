@@ -9,7 +9,7 @@
 @section('content')
     @if (isset($user))
 
-        <form action="{{ route('admin.search_admincomic') }}" method="GET" class="search-form">
+        <form action="{{ route('admin.get_info_search') }}" method="GET" class="search-form">
             <input type="text" name="query" placeholder="ค้นหา..." class="search-input" value="{{ $query }}">
             <button type="submit" class="search-button">
                 <img src="{{ asset('nav/search.svg') }}" width="20" height="20" alt="ค้นหา">

@@ -216,18 +216,3 @@ Route::get("/test", function () {
 
 Route::get('/search', [SearchController::class, 'search'])->name('search'); //aut
 Route::get("/genre/{genreID}", [IndexController::class, 'Genre'])->name('genre.newpage'); //aut
-Route::get("Home_admin", [AdminController::class, "Home"])->name("Home_admin"); //aut
-
-Route::get('searchadmin', [SearchController::class, 'searchAdmin'])->name('admin.search_admin');
-Route::get('searchadmincomic', [SearchController::class, 'searchAdmincomic'])->name('admin.search_admincomic');
-Route::get('searchUserAdmin', [SearchController::class, 'searchAdminUser'])->name('admin.search_user');
-Route::get('searchUser', [SearchController::class, 'searchUser'])->name('admin.get_info_search');
-
-Route::post('admin.delete_user', [AdminController::class, 'adminDeleteUser'])->name('admin.delete_user');
-
-Route::get('admin/deleted-users', [AdminController::class, 'deletedUsers'])->name('admin.deleted_users');
-Route::post('admin.restore_user', [AdminController::class, 'adminRestoreUser'])->name('admin.restore_user');
-
-
-Route::get('/admin/deleted-users', [AdminController::class, 'deletedUsers'])->name('admin.deleted_users');
-Route::post('/admin.restore_user', [AdminController::class, 'adminRestoreUser'])->name('admin.restore_user');
