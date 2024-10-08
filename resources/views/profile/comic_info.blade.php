@@ -66,7 +66,7 @@
                     <li><a class="dropdown-item" href="{{ route('profile.novel') }}">นิยายของฉัน</a></li>
                 </ul>
                 <div class="btinfo">
-                    <a class="deltitle" href="{{route("user.bin",["bookTypeID"=>1])}}"><i class="bi bi-trash3-fill"></i> เรื่องที่ลบไป</a>
+                    <a class="deltitle" href="{{route("user.bin",["bookTypeID"=>2])}}"><i class="bi bi-trash3-fill"></i> เรื่องที่ลบไป</a>
                     <button class="create-novel-n" onclick="window.location.href='/create_comic'">สร้างเรื่องใหม่</button>
                 </div>
             </div>

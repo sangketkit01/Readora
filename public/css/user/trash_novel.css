@@ -79,3 +79,16 @@ strong {
     background-color: transparent;
     outline: none;
 }
+
+#back-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    border: none;
+    background-color: transparent;
+    color: #33436F;
+    align-items: start;
+    position: relative;
+    left: 3%;
+    top: 100px;
+}

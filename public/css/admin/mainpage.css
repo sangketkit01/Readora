@@ -6,15 +6,17 @@
     margin-right: 20%;
 }
 
+
 .box {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .action-box {
-    background-color: #4a66d3;
+    background-color: #4F5D87;
     color: white;
     padding: 20px;
     border-radius: 8px;
@@ -29,6 +31,7 @@
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+
 
 }
 .action-box {
@@ -47,7 +50,7 @@
 }
 
 .action-box:hover {
-    background-color: #3949ab;
+    background-color: rgb(55, 65, 130);
 }
 
 .action-box a {

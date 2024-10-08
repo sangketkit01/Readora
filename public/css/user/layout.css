@@ -111,6 +111,7 @@
 .btn-primary{
     background-color: #33436F !important;
     border-color: transparent !important;
+    color: white !important;
 }
 
 .btn-primary:hover {
