@@ -17,8 +17,8 @@
     <div class="navbar">
         <div class="nav">
             <ul>
-                <li class="left">Readora Admin System</li>
-                <li class="right"><a href="{{route('Home_admin')}}">Dashboard</a></li>
+                <li class="left"><a href="{{route('Home_admin')}}"><span class="admin">ผู้ดูแล</span> <span>Readora</span></a></li>
+                <li class="right"><a href="{{route('Home_admin')}}">หน้าหลัก</a></li>
             </ul>
         </div>
     </div>

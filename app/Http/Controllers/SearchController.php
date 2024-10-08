@@ -102,7 +102,7 @@ class SearchController extends Controller
     function searchUser(Request $request)
     {
 
-        $query = $request->input('query');
+        $query = $request->input('query'); 
 
         if ($query) {
             // ค้นหาหนังสือจากฐานข้อมูล
