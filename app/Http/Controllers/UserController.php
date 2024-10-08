@@ -17,9 +17,8 @@ class UserController extends Controller{
         $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
         $allComments = 0;
         foreach ($books as $book) {
-            foreach ($book->Chapters as $chapter) {
-                $allComments += $chapter->Comments->count();
-            }
+            $allComments += $book->click_count;
+            
         }
         $novels = Book::where('username', $user->username)->where('bookTypeID', 1)->get();
         $comics = Book::where('username', $user->username)->where('bookTypeID', 2)->get();
@@ -33,9 +32,8 @@ class UserController extends Controller{
         $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
         $allComments = 0;
         foreach ($books as $book) {
-            foreach ($book->Chapters as $chapter) {
-                $allComments += $chapter->Comments->count();
-            }
+            $allComments += $book->click_count;
+            
         }
         $edit = true;
         return view('profile.main', compact('user', 'n_count', 'c_count','edit', 'allComments'));
@@ -72,9 +70,8 @@ class UserController extends Controller{
         $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
         $allComments = 0;
         foreach ($books as $book) {
-            foreach ($book->Chapters as $chapter) {
-                $allComments += $chapter->Comments->count();
-            }
+            $allComments += $book->click_count;
+            
         }
         $novels = Book::where('username', $user->username)->where('bookTypeID', 1)
         ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])->get();
@@ -89,9 +86,8 @@ class UserController extends Controller{
         $books = Book::where('username', $user->username)->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at');}])->get();
         $allComments = 0;
         foreach ($books as $book) {
-            foreach ($book->Chapters as $chapter) {
-                $allComments += $chapter->Comments->count();
-            }
+            $allComments += $book->click_count;
+            
         }
         $comics = Book::where('username', $user->username)->where('bookTypeID', 2)
         ->with(['Chapters' => function($query) {$query->where('chapter_status', 'public')->whereNull('deleted_at')->withCount('Comments');}])->get();
