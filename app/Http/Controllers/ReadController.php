@@ -169,12 +169,11 @@ class ReadController extends Controller
             'bookID' => $request->input('bookID'),
             'username' => $request->input('username'),
             'report_message' => $request->input('report_message'),
+            'report_status' => 'unread',
         ]);
 
         return back()->with('success', 'รายงานนิยายเรียบร้อยแล้ว');
     }
-
-
 
     public function incrementClickAndRedirect($bookID)
     {

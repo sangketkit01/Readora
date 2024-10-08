@@ -89,7 +89,7 @@ class AdminController extends Controller
             $book->book_status = 'block';
             $book->save();
 
-            return redirect()->back()->with('success', 'Book has been blocked successfully.');
+            return redirect()->back()->with('success', 'บล็อกหนังสือสำเร็จ.');
         } else {
             return redirect()->back()->with('error', 'Book not found.');
         }
@@ -104,7 +104,7 @@ class AdminController extends Controller
             $book->book_status = 'public'; // หรือ 'private' ตามที่คุณต้องการ
             $book->save();
 
-            return redirect()->back()->with('success', 'Book has been unblocked successfully.');
+            return redirect()->back()->with('success', 'ปลดบล็อกหนังสือสำเร็จ.');
         } else {
             return redirect()->back()->with('error', 'Book not found.');
         }

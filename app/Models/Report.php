@@ -18,6 +18,7 @@ class Report extends Model
         'bookID',         
         'username',       
         'report_message', 
+        'report_status',
     ];
 
     function Book(){

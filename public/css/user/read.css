@@ -388,11 +388,29 @@ p {
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; 
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 60%; 
+    width: 60%;
     border-radius: 10px;
+    position: relative;
+}
+
+.modal-content button[type="submit"] {
+    display: block;
+    margin-left: auto; /* จัดให้ปุ่มอยู่มุมขวาสุด */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4F5D87; /* สีปุ่มเริ่มต้น */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #b0b0b0; /* สี hover เป็นสีเทา */
 }
 
 .close {
@@ -417,18 +435,6 @@ p {
     margin-bottom: 15px;
 }
 
-.modal button {
-    background-color: #1d5a9b;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.modal button:hover {
-    background-color: #4e8fd4;
-}
 
 .comment-item{
     background-color:  white;
