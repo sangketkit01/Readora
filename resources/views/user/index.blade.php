@@ -54,7 +54,7 @@
                                     @php
                                         $totalComments = $novel->Chapters->sum('comments_count');
                                     @endphp
-                                <p><i class="fa-solid fa-list-ul"></i> {{$novel->Chapters->count() }} <i class="fa-solid fa-comment"></i> {{$totalComments}}</p>
+                                <p><i class="fa-solid fa-list-ul"></i> {{$novel->Chapters->count() }} <i class="fa-solid fa-comment ms-2"></i> {{$totalComments}}</p>
                             </div>
                         </div>
                     </a>
@@ -79,7 +79,7 @@
                                     @php
                                         $totalComments = $comic->Chapters->sum('comments_count');
                                     @endphp
-                                <p><i class="fa-solid fa-list-ul"></i> {{$comic->Chapters->count() }} <i class="fa-solid fa-comment"></i> {{$totalComments}}</p>
+                                <p><i class="fa-solid fa-list-ul"></i> {{$comic->Chapters->count() }} <i class="fa-solid fa-comment ms-2"></i> {{$totalComments}}</p>
                             </div>
                         </div>
                     </a>
@@ -104,8 +104,7 @@
                                     @php
                                         $totalComments = $novel->Chapters->sum('comments_count');
                                     @endphp
-                                <p><i class="fa-solid fa-list-ul"></i> {{$novel->Chapters->count()}}  
-                                <i class="fa-solid fa-comment"></i> {{$totalComments}}</p>
+                                <p><i class="fa-solid fa-list-ul"></i> {{$novel->Chapters->count()}} <i class="fa-solid fa-comment ms-2"></i> {{$totalComments}}</p>
                             </div>
                         </div>
                     </a>

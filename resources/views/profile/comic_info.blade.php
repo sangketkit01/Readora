@@ -15,7 +15,7 @@
                 <thead>
                     <th>นิยาย</th>
                     <th>คอมมิค</th>
-                    <th>ความคิดเห็น</th>
+                    <th>ยอดการเข้าชม</th>
                 </thead>
                 <tbody>
                     <tr>
@@ -74,7 +74,7 @@
 
         <div class="row mt-3 card_user">
             @foreach ($comics as $c)
-                <div class="col-3 mt-3 d-flex justify-content-center" onclick="window.location.href='{{ route('comic.edit', ['bookID' => $c->bookID]) }}'">
+                <div class="col-3 mt-3 d-flex justify-content-center" onclick="window.location.href='{{ route('read.read_comic', ['bookID' => $c->bookID]) }}'">
                     <div class="card" style="width: 14rem; max-width: 14rem;">
                         <img src="{{asset($c->book_pic)}}" class="card-img-top img_user" alt="...">
                         <div class="status-button">

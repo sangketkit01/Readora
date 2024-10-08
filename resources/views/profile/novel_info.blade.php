@@ -14,7 +14,7 @@
                 <thead>
                     <th>นิยาย</th>
                     <th>คอมมิค</th>
-                    <th>ความคิดเห็น</th>
+                    <th>ยอดการเข้าชม</th>
                 </thead>
                 <tbody>
                     <tr>
@@ -74,7 +74,7 @@
 
         <div class="row mt-3 card_user">
             @foreach ($novels as $c)
-                <div class="col-3 mt-3 d-flex justify-content-center" onclick="window.location.href='{{ route('novel.edit', ['bookID' => $c->bookID]) }}'">
+                <div class="col-3 mt-3 d-flex justify-content-center" onclick="window.location.href='{{ route('read.read_novel', ['bookID' => $c->bookID]) }}'">
                     <div class="card" style="width: 14rem; max-width: 14rem;">
                         <img src="{{asset($c->book_pic)}}" class="card-img-top img_user" alt="...">
                         <div class="status-button">
@@ -84,7 +84,7 @@
                                 <button class="rounded-pill mt-2" onclick="return false;"> <i class="fa-solid fa-lock"></i></i></i> ส่วนตัว</button>
                             @endif
                         </div>
-                        <div class="card-body">3
+                        <div class="card-body">
                             <div class="n-info">
                                 <h5>{{$c->book_name}}</h5>
                                 <p id="writer">{{$c->User->name}}</p>
