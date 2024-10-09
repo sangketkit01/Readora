@@ -7,6 +7,7 @@
 
 @section('content')
     <div id="mainContainer" class="container" data-query="{{ $query }}">
+
         <div class="tabs">
             <div class="tab active" id="all">ทั้งหมด</div>
             <div class="tab" id="author">ชื่อผู้แต่ง</div>
