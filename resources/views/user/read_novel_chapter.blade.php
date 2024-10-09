@@ -15,7 +15,7 @@
                 {!! nl2br($chapters->chapter_content) !!}
                 <br><br><br>
                 <div class="writer-message">
-                    <strong>Writer:</strong> {{ $chapters->writer_message ?? 'No message from the writer.' }}
+                    <strong>ข้อความจากนักเขียน:</strong> {{ $chapters->writer_message ?? 'No message from the writer.' }}
                 </div>
             </div>
             <br>

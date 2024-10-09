@@ -23,7 +23,7 @@
                         <tr>
                             <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                             <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                            <td>{{$allComments == 0 ? '-' : $allComments}}</td>
+                            <td>{{$allViews == 0 ? '-' : $allViews}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -92,7 +92,7 @@
                         <tr>
                             <td>{{ $n_count == 0 ? '-' : $n_count }}</td>
                             <td>{{ $c_count == 0 ? '-' : $c_count }}</td>
-                            <td>{{$allComments == 0 ? '-' : $allComments}}</td>
+                            <td>{{$allViews == 0 ? '-' : $allViews}}</td>
                         </tr>
                     </tbody>
                 </table>

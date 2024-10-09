@@ -54,7 +54,7 @@
                 @endif
             </div>
             <div class="writer-message">
-                <strong>Writer:</strong> {{ $chapters->writer_message ?? 'No message from the writer.' }}
+                <strong>ข้อความจากนักเขียน:</strong> {{ $chapters->writer_message ?? 'No message from the writer.' }}
             </div>
             <br><br><br><br>
             <div class="pofile_user_com">

@@ -157,7 +157,7 @@ class AdminController extends Controller
 
             return response()->json(['success' => true]); // ส่งแค่ success เท่านั้น
         } catch (\Exception $e) {
-            \Log::error('Error in Read_report: ' . $e->getMessage());
+            Log::error('Error in Read_report: ' . $e->getMessage());
             return response()->json(['success' => false]); // ส่งแค่ success เท่านั้น
         }
     }
