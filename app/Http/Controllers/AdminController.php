@@ -64,7 +64,17 @@ class AdminController extends Controller
 
     function Checkreport()
     {
-        $reports = Report::where('report_status', 'unread')->get();
+        $reports = Report::where('report_status', 'unread')
+            ->whereHas(
+                'Book',
+                function ($query) {
+                    $query->whereNull('deleted_at');
+                }
+            )->get();
+        if ($reports->isEmpty()) {
+            return abort(404);
+        }
+
 
         return view('admin.checkreport_admin', compact('reports'));
     }

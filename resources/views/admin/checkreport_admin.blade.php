@@ -9,7 +9,7 @@
 @section('content')
     <div class="container">
         <button onclick="window.history.back();" class="back-button">
-            <i class="fas fa-arrow-left"></i> 
+            <i class="fas fa-arrow-left"></i> <!-- ตัวอย่างไอคอนจาก Font Awesome -->
         </button>
         <div class="tabs">
             <div class="tab active" id="all" onclick="filterReports('all')">ทั้งหมด</div>
@@ -24,6 +24,7 @@
             <h2 class="box-result">รายงานทั้งหมด</h2>
             <div class="results-container">
                 @foreach ($reports as $report)
+                    @if($report)
                     <a href="{{ route('admin.book_detail', ['bookID' => $report->book->bookID]) }}" class="result-card-link"
                         data-reportid="{{ $report->reportID }}">
                         <div class="result-card" data-type="{{ $report->book->bookTypeID }}">
@@ -37,6 +38,7 @@
                             </div>
                         </div>
                     </a>
+                    @endif
                 @endforeach
             </div>
         @endif
