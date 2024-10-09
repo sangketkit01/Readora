@@ -12,7 +12,7 @@
     <div class="container">
 
         <button onclick="window.history.back();" class="back-button">
-            <i class="fas fa-arrow-left"></i> <!-- ตัวอย่างไอคอนจาก Font Awesome -->
+            <i class="fas fa-arrow-left"></i> 
         </button>
         
         @if (session('success'))
@@ -41,7 +41,7 @@
                         @csrf
                         <button type="button" class="block"
                             onclick="confirmAction('{{ $book->book_name }}', '{{ $book->book_status }}', this.closest('form'))">
-                            {{ $book->book_status == 'block' ? 'ปลดบล็อก' : 'บล็อก' }} <!-- เปลี่ยนที่นี่ -->
+                            {{ $book->book_status == 'block' ? 'ปลดบล็อก' : 'บล็อก' }} 
                         </button>
                     </form>
 
@@ -73,8 +73,7 @@
         </div>
     </div>
 
-    <!-- Modal Popup -->
-    <div id="confirmationModal" class="modal" style="display: none;"> <!-- เพิ่ม style="display: none;" -->
+    <div id="confirmationModal" class="modal" style="display: none;"> 
         <div class="modal-content">
             <span class="close" id="modalClose">&times;</span>
             <div class="modal-body">
@@ -98,31 +97,28 @@
         $(document).ready(function() {
             let currentForm; // เพื่อเก็บฟอร์มที่ต้องการส่ง
 
-            // ฟังก์ชันเปิด modal
             window.confirmAction = function(bookName, currentStatus, form) {
                 var action = currentStatus === 'block' ? 'ปลดบล็อก' : 'บล็อก';
                 var modalMessage = 'คุณต้องการที่จะ ' + action + ' เรื่อง ' + bookName + ' หรือไม่?';
 
-                $('#modalQuestion').text(modalMessage); // แสดงข้อความใน modal
-                $('#confirmationModal').show(); // แสดง modal เมื่อกดปุ่ม
+                $('#modalQuestion').text(modalMessage); 
+                $('#confirmationModal').show(); 
 
-                currentForm = form; // เก็บฟอร์มไว้เพื่อส่งในภายหลัง
+                currentForm = form; 
             };
 
-            // ฟังก์ชันปิด modal
             $('#modalClose, #cancelBlock').click(function() {
-                $('#confirmationModal').hide(); // ซ่อน modal
+                $('#confirmationModal').hide(); 
             });
 
-            // ฟังก์ชันยืนยันการดำเนินการ
             $('#confirmBlock').click(function() {
                 if (currentForm) {
-                    currentForm.submit(); // ส่งฟอร์มที่ถูกเก็บไว้
+                    currentForm.submit(); 
                 }
             });
             $(window).click(function(event) {
                 if (event.target.id === 'confirmationModal') {
-                    $('#confirmationModal').hide(); // ซ่อน modal เมื่อคลิกที่พื้นที่นอก
+                    $('#confirmationModal').hide(); 
                 }
             });
         });

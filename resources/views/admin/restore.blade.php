@@ -32,7 +32,7 @@
                             <p><strong>เพศ:</strong> {{ $user->gender }}</p>
 
                             <div class="action-buttons">
-                                <form class action="{{ route('admin.restore_user') }}" method="POST" onsubmit="return confirm('Are you sure you want to resotre this user?');">
+                                <form class action="{{ route('admin.restore_user') }}" method="POST" onsubmit="return confirm('คุณต้องการที่จะกู้คืนผู้ใช้หรือไม่');">
                                     @csrf
                                     <input type="hidden" name="username" value="{{ $user->username }}">
                                     <button type="submit" class="restore-button" title="กู้คืนผู้ใช้" >
@@ -49,3 +49,4 @@
         @endif
     </div>
 @endsection
+

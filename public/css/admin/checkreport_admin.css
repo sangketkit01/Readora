@@ -1,11 +1,10 @@
-/* ตั้งค่าพื้นฐาน */
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
     margin: 0;
 }
 
-/* จัดรูปแบบฟอร์มค้นหา */
 .search-form {
     display: flex;
     justify-content: center;
@@ -42,7 +41,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* จัดรูปแบบแท็บ */
 .tabs {
     display: flex;
     border-bottom: 1px solid #ddd;
@@ -60,7 +58,6 @@ body {
     font-weight: bold;
 }
 
-/* จัดรูปแบบผลลัพธ์การค้นหา */
 .box-result {
     text-align: center;
     color: #333;
@@ -70,18 +67,17 @@ body {
 
 .results-container {
     display: flex;
-    flex-wrap: wrap; /* ให้การ์ดสามารถเลื่อนไปแถวใหม่เมื่อเต็มแถว */
-    gap: 15px; /* ช่องว่างระหว่างการ์ด */
+    flex-wrap: wrap; 
+    gap: 15px; 
     padding-left: 3%;
     padding-right: 3%;
-    justify-content: flex-start; /* จัดเรียงการ์ดจากซ้ายไปขวา */
+    justify-content: flex-start; 
 }
 
 * {
     box-sizing: border-box; 
 }
 
-/* กำหนดขนาดการ์ด */
 .result-card {
     background-color: white;
     border-radius: 8px;
@@ -92,16 +88,16 @@ body {
     align-items: center;
     gap: 15px;
     transition: transform 0.2s;
-    width: 380px; /* กำหนดความกว้างให้เหมือนเดิม */
-    max-height: 171px; /* จำกัดความสูง */
-    overflow: hidden; /* ซ่อนเนื้อหาที่เกิน */
+    width: 380px; 
+    max-height: 171px; 
+    overflow: hidden; 
 }
 
 .result-card:hover {
     transform: scale(1.02);
 }
 .result-card.hidden {
-    display: none; /* ซ่อนการ์ดเมื่อไม่ได้เลือกประเภท */
+    display: none;
     opacity: 0;
     visibility: hidden;
 }
@@ -111,43 +107,41 @@ body {
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #ddd; /* ขอบรอบภาพ */
+    border: 2px solid #ddd; 
 }
 
 .result-info {
     text-align: left;
     width: 100%;
-    display: flex; /* ใช้ flexbox */
-    flex-direction: column; /* แสดงข้อมูลในแนวตั้ง */
-    overflow: hidden; /* ซ่อนเนื้อหาที่เกิน */
-    flex-grow: 1; /* ให้ข้อมูลขยายเต็มพื้นที่ */
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden;
+    flex-grow: 1; 
 }
 
 .result-info h3 {
     margin: 0;
     font-size: 0.8em; 
     color: black; 
-    overflow: hidden; /* ซ่อนข้อความที่ยาวเกิน */
-    white-space: nowrap; /* ห้ามขึ้นบรรทัดใหม่ */
-    text-overflow: ellipsis; /* แสดง ... แทนข้อความที่ถูกตัด */
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
 }
 
 .result-info p {
     margin: 5px 0;
     font-size: 0.75em; 
-    overflow: hidden; /* ซ่อนข้อความที่ยาวเกิน */
-    white-space: nowrap; /* ห้ามขึ้นบรรทัดใหม่ */
-    text-overflow: ellipsis; /* แสดง ... แทนข้อความที่ถูกตัด */
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
 }
 
 
-/* การปรับการเลื่อนเมื่อข้อความยาว */
 .result-info {
-    overflow-y: auto; /* เลื่อนแนวตั้งถ้าข้อมูลยาวเกิน */
-    max-height: 140px; /* ความสูงสูงสุดของข้อมูล */
+    overflow-y: auto; 
+    max-height: 140px; 
 }
 
-/* จัดรูปแบบปุ่มการดำเนินการ */
 .action-buttons {
     margin-top: 15px;
     display: flex;
@@ -180,7 +174,6 @@ body {
     background-color: #218838;
 }
 
-/* สไตล์สำหรับไอคอน */
 .fas {
     margin-right: 5px;
 }
@@ -209,7 +202,7 @@ body {
     background-color: #218838;
 }
 
-/* การตอบสนอง */
+
 @media (max-width: 768px) {
     .search-input {
         width: 60%;
@@ -225,27 +218,27 @@ body {
     color: inherit;
 }
 .back-button {
-    background-color: #4F5D87; /* สีพื้นหลัง */
-    color: white; /* สีข้อความ */
-    padding: 10px; /* ขนาด padding */
-    border: none; /* ไม่มีกรอบ */
-    border-radius: 50%; /* ทำให้ปุ่มเป็นวงกลม */
-    cursor: pointer; /* แสดงว่าปุ่มสามารถคลิกได้ */
-    font-size: 16px; /* ขนาดฟอนต์ */
-    transition: background-color 0.3s; /* เปลี่ยนสีอย่างนุ่มนวล */
-    display: flex; /* จัดแนวให้เป็น flex */
-    align-items: center; /* จัดแนวกลางในแนวตั้ง */
-    justify-content: center; /* จัดแนวกลางในแนวนอน */
-    width: 37px; /* ขนาดความกว้างของปุ่ม */
-    height: 37px; /* ขนาดความสูงของปุ่ม */
-    margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่าง */
-    margin-top: 10px; /* เพิ่มระยะห่างด้านบน */
+    background-color: #4F5D87; 
+    color: white; 
+    padding: 10px; 
+    border: none; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background-color 0.3s; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 37px; 
+    height: 37px; 
+    margin-bottom: 10px; 
+    margin-top: 10px; 
 }
 
 .back-button i {
-    margin: 0; /* ไม่ต้องมีระยะห่างระหว่างไอคอนกับขอบ */
+    margin: 0;
 }
 
 .back-button:hover {
-    background-color: #c2c2c2; /* สีเมื่อ hover */
+    background-color: #c2c2c2; 
 }

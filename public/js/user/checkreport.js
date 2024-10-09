@@ -1,10 +1,9 @@
-// report-management.js
+
 document.addEventListener('DOMContentLoaded', function () {
     initializeReportSystem();
 });
 
 function initializeReportSystem() {
-    // Initialize report filtering
     const tabs = document.querySelectorAll('.tab');
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -13,7 +12,7 @@ function initializeReportSystem() {
         });
     });
 
-    // Initialize report card click handlers
+
     const reportCards = document.querySelectorAll('.result-card-link');
     reportCards.forEach(card => {
         card.addEventListener('click', function (event) {
@@ -31,13 +30,12 @@ function filterReports(type) {
     reports.forEach(report => {
         const reportTypeId = report.getAttribute('data-type');
         if (type === 'all' || reportTypeId === type) {
-            report.parentElement.style.display = ''; // Show the card's container
+            report.parentElement.style.display = ''; 
         } else {
-            report.parentElement.style.display = 'none'; // Hide the card's container
+            report.parentElement.style.display = 'none'; 
         }
     });
 
-    // Update active tab
     document.querySelectorAll('.tab').forEach(tab => {
         tab.classList.remove('active');
     });
@@ -45,7 +43,6 @@ function filterReports(type) {
 }
 
 function markReportAsRead(reportID, detailUrl) {
-    // Get CSRF token from meta tag
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     fetch(`/admin/report/read/${reportID}`, {
@@ -60,13 +57,12 @@ function markReportAsRead(reportID, detailUrl) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Redirect to book detail page without showing any message
+            
             window.location.href = detailUrl;
         }
-        // No alert or message shown in case of failure
+        
     })
     .catch(error => {
         console.error('Error:', error);
-        // No alert or message shown in case of error
     });
 }

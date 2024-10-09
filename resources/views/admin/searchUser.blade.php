@@ -36,7 +36,7 @@
                             <p>gender: {{ $item->gender }}</p>
                             <div class="action-buttons">
                                 <form action="{{ route('admin.delete_user') }}" method="POST" class="d-inline"
-                                    onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                    onsubmit="return confirm('คุณต้องการที่จะลบผู้ใช้ใช่หรือไม่');">
                                     @csrf
                                     <input type="hidden" name="username" value="{{ $item->username }}">
                                     <button type="submit" class="btn btn-danger" title="Delete User">
@@ -62,7 +62,7 @@
                             <p>gender: {{ $item->gender }}</p>
                             <div class="action-buttons">
                                 <form action="{{ route('admin.delete_user') }}" method="POST" class="d-inline"
-                                    onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                    onsubmit="return confirm('คุณต้องการที่จะลบผู้ใช้ใช่หรือไม่');">
                                     @csrf
                                     <input type="hidden" name="username" value="{{ $item->username }}">
                                     <button type="submit" class="btn btn-danger" title="Delete User">

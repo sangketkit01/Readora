@@ -9,12 +9,12 @@
 @section('content')
     <div class="container">
         <button onclick="window.history.back();" class="back-button">
-            <i class="fas fa-arrow-left"></i> <!-- ตัวอย่างไอคอนจาก Font Awesome -->
+            <i class="fas fa-arrow-left"></i> 
         </button>
         <div class="tabs">
             <div class="tab active" id="all" onclick="filterReports('all')">ทั้งหมด</div>
-            <div class="tab" id="1" onclick="filterReports('1')">นิยาย</div> <!-- booktypeid ของนิยาย -->
-            <div class="tab" id="2" onclick="filterReports('2')">คอมมิค</div> <!-- booktypeid ของคอมมิก -->
+            <div class="tab" id="1" onclick="filterReports('1')">นิยาย</div> 
+            <div class="tab" id="2" onclick="filterReports('2')">คอมมิค</div>
         </div>
 
 
@@ -44,7 +44,6 @@
 </div>
 
 @push('scripts')
-    <!-- SweetAlert CSS and JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

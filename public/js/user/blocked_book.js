@@ -15,12 +15,11 @@ function DeleteComic(bookName) {
 }
 
 $('#confirmModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Button that triggered the modal
-    var bookId = button.data('bookid'); // Extract bookID from data-* attributes
+    var button = $(event.relatedTarget); 
+    var bookId = button.data('bookid'); 
 
-    // Update the modal's content
     var modal = $(this);
     modal.find('#bookName').text(button.data('bookname'));
-    // Set the action for the form using the correct route
-    modal.find('#unblockForm').attr('action', 'book.unblock' + bookId); // Use your route here
+
+    modal.find('#unblockForm').attr('action', 'book.unblock' + bookId); 
 });

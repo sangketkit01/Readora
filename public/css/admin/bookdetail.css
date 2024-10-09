@@ -6,104 +6,99 @@ body {
 }
 
 .container {
-    padding: 60px; /* เพิ่ม padding ให้กับ container */
+    padding: 60px; 
 }
 
-/* Book Detail Section */
 .book-detail {
     display: flex;
-    margin-bottom: 30px; /* เพิ่มระยะห่างระหว่างหนังสือ */
-    border: 1px solid #ddd; /* เพิ่มกรอบให้กับแต่ละรายการหนังสือ */
-    border-radius: 8px; /* เพิ่มมุมโค้งให้กับกรอบ */
-    padding: 15px; /* เพิ่ม padding ภายในกรอบ */
-    background-color: #fff; /* สีพื้นหลังของกรอบหนังสือ */
-    align-items: stretch; /* ทำให้สูงเท่ากัน */
+    margin-bottom: 30px; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    padding: 15px; 
+    background-color: #fff; 
+    align-items: stretch; 
 }
 
 .book-cover {
-    flex: 0 0 30%; /* กำหนดขนาดให้เป็น 30% ของกรอบ */
-    margin-right: 20px; /* เพิ่มระยะห่างระหว่างรูปภาพกับข้อมูล */
+    flex: 0 0 30%; 
+    margin-right: 20px; 
 }
 
 .book-cover img {
-    width: 100%; /* ให้รูปภาพขยายเต็มพื้นที่ */
-    height: auto; /* ให้ความสูงของรูปภาพอัตโนมัติ */
-    border-radius: 5px; /* เพิ่มมุมโค้งให้กับรูปภาพ */
+    width: 100%; 
+    height: auto; 
+    border-radius: 5px; 
 }
 
 .book-info {
-    flex: 1; /* ขยายเต็มพื้นที่ */
-    flex-direction: column; /* แนวตั้ง */
-    justify-content: space-between; /* จัดให้สูงเท่ากัน */
-    position: relative; /* ทำให้เป็น relative สำหรับ position ของปุ่ม */
+    flex: 1; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    position: relative; 
 }
 
 .block {
-    display: flex; /* ใช้ Flexbox */
-    align-items: center; /* จัดให้ปุ่มอยู่ตรงกลาง */
-    justify-content: center; /* จัดให้เนื้อหาภายในอยู่กลาง */
-    background-color: #ff6f6f; /* สีพื้นฐานของปุ่ม */
-    color: #fff; /* สีข้อความ */
-    border: none; /* ไม่มีกรอบ */
-    padding: 15px 30px; /* ขนาดของ padding เพื่อทำให้ปุ่มใหญ่ขึ้น */
-    font-size: 18px; /* ปรับขนาดฟอนต์ให้ใหญ่ขึ้น */
-    border-radius: 5px; /* มุมโค้ง */
-    cursor: pointer; /* แสดงมือเมื่อ hover */
-    transition: background-color 0.3s ease; /* เปลี่ยนสีอย่างนุ่มนวล */
-    position: absolute; /* ทำให้ปุ่มอยู่ในตำแหน่งที่แน่นอน */
-    bottom: 15px; /* ระยะห่างจากด้านล่างของกรอบ */
-    right: 15px; /* ระยะห่างจากด้านขวาของกรอบ */
-    width: 150px; /* เพิ่มความกว้างของปุ่ม */
-    text-align: center; /* จัดตำแหน่งข้อความให้กลางปุ่ม */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background-color: #ff6f6f; 
+    color: #fff; 
+    border: none; 
+    padding: 15px 30px; 
+    font-size: 18px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+    position: absolute; 
+    bottom: 15px; 
+    right: 15px; 
+    width: 150px; 
+    text-align: center; 
 }
 
-/* ปรับปรุงรูปแบบให้ปุ่มบล็อกและเลิกบล็อกติดกัน */
 .block-container {
-    display: flex; /* ใช้ Flexbox */
-    gap: 10px; /* ระยะห่างระหว่างปุ่ม */
+    display: flex; 
+    gap: 10px; 
 }
 .block:hover {
-    background-color: #bbb; /* สีเมื่อ hover เป็นสีเทา */
+    background-color: #bbb; 
 }
 
 
 .book-title {
-    font-size: 35px; /* ปรับขนาดตัวหนังสือชื่อเรื่อง */
+    font-size: 35px; 
     margin-bottom: 10px;
     margin: 15px 0 5px
 }
 
 
-/* Book Author */
 .book-author {
-    font-size: 20px; /* ขนาดฟอนต์สำหรับผู้เขียน */
-    margin: 4px 0; /* ลดระยะห่างระหว่างผู้เขียนกับข้อความถัดไป */
+    font-size: 20px;
+    margin: 4px 0; 
 }
 
-/* Book Description */
 .book-description {
-    font-size: 20px; /* ขนาดฟอนต์สำหรับคำบรรยาย */
-    margin: 4px 0; /* ลดระยะห่างระหว่างคำบรรยายกับข้อความถัดไป */
+    font-size: 20px; 
+    margin: 4px 0; 
 }
 
-/* Book Genre */
 .book-genre {
-    font-size: 20px; /* ขนาดฟอนต์สำหรับประเภท */
-    margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่างของประเภท */
+    font-size: 20px; 
+    margin-bottom: 10px;
 }
 
 
 .reports-section {
-    margin-top: 30px; /* ระยะห่างระหว่างหนังสือและส่วนรายงาน */
-    padding: 15px; /* เพิ่ม padding ภายในกรอบ */
-    background-color: #e7e7e7; /* สีพื้นหลังของส่วนรายงาน */
-    border: 1px solid #ddd; /* เพิ่มกรอบให้กับส่วนรายงาน */
-    border-radius: 8px; /* เพิ่มมุมโค้งให้กับกรอบ */
+    margin-top: 30px; 
+    padding: 15px; 
+    background-color: #e7e7e7; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
 }
 
 .reports-section h2 {
-    font-size: 25px; /* ปรับขนาดตัวหนังสือหัวข้อรายงาน */
-    margin-bottom: 15px; /* เพิ่มระยะห่างด้านล่าง */
+    font-size: 25px; 
+    margin-bottom: 15px; 
 }
 
 .reports-list {
@@ -112,51 +107,49 @@ body {
 }
 
 .report-item {
-    margin-bottom: 20px; /* เพิ่มระยะห่างระหว่างการ์ด */
+    margin-bottom: 20px; 
 }
 
 .report-card {
-    border: 1px solid #ddd; /* กรอบของการ์ด */
-    border-radius: 8px; /* มุมโค้งของการ์ด */
-    padding: 15px; /* เพิ่ม padding ภายในการ์ด */
-    background-color: #fff; /* สีพื้นหลังของการ์ด */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* เงาเบาให้กับการ์ด */
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    padding: 15px; 
+    background-color: #fff; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
 .report-message {
-    font-size: 16px; /* ขนาดตัวหนังสือสำหรับข้อความรายงาน */
-    margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่าง */
+    font-size: 16px;
+    margin-bottom: 10px; 
 }
 
 .report-profile {
-    display: flex; /* ใช้ flexbox เพื่อจัดตำแหน่งโปรไฟล์ */
-    align-items: center; /* จัดให้สูงเท่ากันในแนวตั้ง */
-    justify-content: flex-end; /* ให้ชื่อผู้รายงานและโปรไฟล์อยู่ที่ด้านขวา */
-    margin-bottom: 5px; /* เพิ่มระยะห่างด้านล่างระหว่างโปรไฟล์กับวันที่ */
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-end; 
+    margin-bottom: 5px; 
 }
 
 .report-profile-pic {
-    width: 40px; /* กำหนดความกว้างของรูปภาพ */
-    height: 40px; /* กำหนดความสูงของรูปภาพ */
-    border-radius: 50%; /* ทำให้รูปภาพเป็นวงกลม */
-    object-fit: cover; /* ให้ภาพไม่ผิดสัดส่วน */
-    margin-left: 10px; /* เพิ่มระยะห่างด้านซ้ายของรูปภาพ */
+    width: 40px;
+    height: 40px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-left: 10px; 
 }
 
 .report-username {
     font-weight: bold;
-    font-size: 20px; /* ปรับขนาดตัวหนังสือสำหรับชื่อผู้รายงาน */
-    margin-left: 10px; /* เพิ่มระยะห่างด้านซ้ายของชื่อ */
+    font-size: 20px; 
+    margin-left: 10px; 
 }
 
-/* วันที่อยู่ในบรรทัดใหม่และจัดให้ไปที่ขวาสุด */
 .report-date {
-    font-size: 12px; /* ขนาดตัวหนังสือสำหรับวันที่ */
-    text-align: right; /* จัดให้ข้อความอยู่ที่ด้านขวา */
-    margin-top: 5px; /* เพิ่มระยะห่างด้านบนเพื่อแยกจากโปรไฟล์ */
+    font-size: 12px; 
+    text-align: right;
+    margin-top: 5px; 
 }
 
-/* Alert Styles */
 .alert {
     padding: 15px;
     margin-bottom: 20px;
@@ -176,31 +169,31 @@ body {
     border-color: #f5c6cb;
 }
 .modal {
-    display: none; /* ซ่อน modal โดยเริ่มต้น */
-    position: fixed; /* ทำให้ modal อยู่เหนือเนื้อหาอื่น ๆ */
-    z-index: 1000; /* ให้ modal อยู่บนสุด */
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
     left: 0;
     top: 0;
-    width: 100%; /* ความกว้างเต็ม */
-    height: 100%; /* ความสูงเต็ม */
-    overflow: auto; /* สร้างการเลื่อนหากจำเป็น */
-    background-color: rgba(0, 0, 0, 0.5); /* พื้นหลังสีดำแบบโปร่งใส */
-    display: flex; /* ใช้ Flexbox */
-    justify-content: center; /* จัดให้อยู่กลาง */
-    align-items: center; /* จัดแนวตั้งให้กลาง */
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
 
 .modal-content {
-    background-color: #fefefe; /* สีพื้นหลังของ modal */
-    padding: 20px; /* เพิ่มระยะห่างภายใน */
-    border-radius: 12px; /* มุมโค้ง */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* เงาเบาให้กับ modal */
-    width: 500px; /* กำหนดความกว้าง */
-    height: 300px; /* กำหนดความสูง */
-    max-width: 90%; /* ทำให้ responsive */
-    position: relative; /* ใช้ relative สำหรับตำแหน่งของปุ่ม */
-    display: flex; /* ใช้ Flexbox เพื่อให้ใช้งานง่าย */
-    flex-direction: column; /* แนวตั้ง */
+    background-color: #fefefe; 
+    padding: 20px; 
+    border-radius: 12px; 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    width: 500px; 
+    height: 300px;
+    max-width: 90%; 
+    position: relative; 
+    display: flex; 
+    flex-direction: column; 
 }
 
 .modal-body {

@@ -25,9 +25,9 @@
 
 @section('content')
     <button onclick="window.history.back();" class="back-button">
-        <i class="fas fa-arrow-left"></i> <!-- ตัวอย่างไอคอนจาก Font Awesome -->
+        <i class="fas fa-arrow-left"></i> 
     </button>
-    <!-- ฟอร์มค้นหา ใช้ route ไปยังฟังก์ชัน searchBookbloked -->
+
     <form action="{{ route('admin.searchcomicblocked') }}" method="GET" class="search-form">
         <input type="text" name="query" placeholder="ค้นหา..." class="search-input" value="{{ request('query') }}">
         <button type="submit" class="search-button">
@@ -38,12 +38,10 @@
     <br>
     <h2 class="box-result">คอมมิคที่ถูกบล็อกทั้งหมด</h2>
 
-    <!-- ตรวจสอบว่ามีผลลัพธ์จาก books หรือไม่ -->
     @if ($books && $books->count() > 0)
         <div class="results-container">
             @foreach ($books as $book)
                 <div class="result-card">
-                    <!-- ตรวจสอบว่ามี book_pic หรือไม่ หากไม่มีให้ใช้รูป default -->
                     <img src="{{ asset($book->book_pic ?? '/default-book-cover.png') }}" alt="{{ $book->book_name }}">
                     <div class="result-info">
                         <p>ชื่อเรื่อง: {{ $book->book_name }}</p>
@@ -65,8 +63,7 @@
         <p>ไม่พบคอมมิคที่ถูกบล็อก</p>
     @endif
 
-    <!-- Modal สำหรับยืนยันการปลดบล็อกหนังสือ -->
-    <!-- Modal สำหรับยืนยันการปลดบล็อกหนังสือ -->
+
     <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -104,13 +101,12 @@
     <script>
         $('#confirmModal').on('show.bs.modal', function(event) {
             console.log("Modal is about to be shown"); // เช็คว่า modal กำลังจะถูกเปิด
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var bookId = button.data('bookid'); // Extract bookID from data-* attributes
+            var button = $(event.relatedTarget); 
+            var bookId = button.data('bookid'); 
 
-            // Update the modal's content
             var modal = $(this);
             modal.find('#bookName').text(button.data('bookname'));
-            // Set the action for the form using the correct route
+
             modal.find('#unblockForm').attr('action', '{{ route('admin.unblock_book', ':bookID') }}'.replace(
                 ':bookID', bookId));
         });
