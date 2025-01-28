@@ -88,6 +88,9 @@ Ensure you have the following installed on your machine:
    ```bash
    php artisan serve
    ```
+8. You MUST have connect public folder with storage folder:
+   ```bash
+   php artisan storage:link
 
 ---
 
